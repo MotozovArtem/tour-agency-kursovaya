@@ -7,7 +7,7 @@
 
 
 class Model {
-private:
+protected:
     int id;
 public:
     Model(int id);
