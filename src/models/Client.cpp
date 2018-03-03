@@ -34,7 +34,7 @@ Client::Client(std::string *firstName, std::string *name, std::string *patronymi
     this->birthplace = birthplace;
 }
 
-Client::~Client() : ~Model() {
+Client::~Client(){
     delete this->firstName;
     delete this->name;
     delete this->patronymic;
