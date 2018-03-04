@@ -4,7 +4,7 @@
 
 #include "Model.h"
 
-int Model::getId() {
+int Model::getId() const {
     return this->id;
 }
 

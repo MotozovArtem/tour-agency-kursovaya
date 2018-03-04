@@ -34,7 +34,7 @@ Client::Client(std::string *firstName, std::string *name, std::string *patronymi
     this->birthplace = birthplace;
 }
 
-Client::~Client(){
+Client::~Client() {
     delete this->firstName;
     delete this->name;
     delete this->patronymic;
@@ -42,7 +42,7 @@ Client::~Client(){
     delete this->birthplace;
 }
 
-std::string *Client::getFirstName() const{
+std::string *Client::getFirstName() const {
     return this->firstName;
 }
 
@@ -58,15 +58,15 @@ void Client::setName(std::string *name) {
     this->name = name;
 }
 
-std::string* Client::getPatronymic() const{
+std::string *Client::getPatronymic() const {
     return this->patronymic;
 }
 
 void Client::setPatronymic(std::string *patronymic) {
-    this->patronymic=patronymic;
+    this->patronymic = patronymic;
 }
 
-std::string* Client::getBirthday() const{
+std::string *Client::getBirthday() const {
     return this->birthday;
 }
 
@@ -74,13 +74,14 @@ void Client::setBirthday(std::string *birthday) {
     this->birthday = birthday;
 }
 
-std::string* Client::getBirthplace() const {
+std::string *Client::getBirthplace() const {
     return this->birthplace;
 }
 
 void Client::setBirthplace(std::string *birthplace) {
-    this->birthplace=birthplace;
+    this->birthplace = birthplace;
 }
+
 
 
 

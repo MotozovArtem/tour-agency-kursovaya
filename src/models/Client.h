@@ -18,6 +18,8 @@ private:
 public:
     Client();
 
+    ~Client();
+
     Client(int id);
 
     Client(std::string *firstName, std::string *name, std::string *patronymic, std::string *birthday,
@@ -25,8 +27,6 @@ public:
 
     Client(int id, std::string *firstName, std::string *name, std::string *patronymic, std::string *birthday,
            std::string *birthplace);
-
-    ~Client();
 
     std::string *getFirstName() const;
 

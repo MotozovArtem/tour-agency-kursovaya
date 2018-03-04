@@ -11,9 +11,13 @@ protected:
     int id;
 public:
     Model(int id);
+
     Model();
-    ~Model();
-    int getId();
+
+    virtual ~Model();
+
+    int getId() const;
+
     void setId(int id);
 };
 
