@@ -23,7 +23,7 @@ set(MODELS ${PROJECT_SOURCE_DIR}/models/Model.cpp ${PROJECT_SOURCE_DIR}/models/M
         src/models/Ticket.cpp src/models/Ticket.h
         src/models/Flight.cpp src/models/Flight.h
         src/models/DocumentType.cpp src/models/DocumentType.h
-        src/models/Contract.cpp src/models/Contract.h src/models/Check.cpp src/models/Check.h src/models/Status.cpp src/models/Status.h)
+        src/models/Contract.cpp src/models/Contract.h src/models/Check.cpp src/models/Check.h src/models/Status.cpp src/models/Status.h src/models/Tour.cpp src/models/Tour.h src/models/TourType.cpp src/models/TourType.h src/models/City.cpp src/models/City.h)
 
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${MODELS} ${INTERFACES})
