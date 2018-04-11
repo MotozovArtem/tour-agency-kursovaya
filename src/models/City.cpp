@@ -1,50 +1,51 @@
 //
-// Created by rienel on 11.03.18.
+// Created by rienel on 11.04.18.
 //
 
 #include "City.h"
 
-City::City(int id, const std::string &name, double price, const std::string &duration, const std::string &country)
-        : Model(id), name(name), price(price), duration(duration), country(country) {}
+City::City(int id, QString *name, float price, int idCity, int idCityType) : Model(id), name(name), price(price),
+                                                                             idCity(idCity), idCityType(idCityType) {}
 
-City::City(const std::string &name, double price, const std::string &duration, const std::string &country) : name(name),
-                                                                                                             price(price),
-                                                                                                             duration(
-                                                                                                                     duration),
-                                                                                                             country(country) {}
+City::City(QString *name, float price, int idCity, int idCityType) : name(name), price(price), idCity(idCity),
+                                                                     idCityType(idCityType) {}
 
 City::City(int id) : Model(id) {}
 
-City::City() {}
+City::City(QString *name) : name(name) {}
 
-const std::string &City::getName() const {
+City::~City() {
+    delete this->name;
+}
+
+QString *City::getName() const {
     return name;
 }
 
-void City::setName(const std::string &name) {
+void City::setName(QString *name) {
     City::name = name;
 }
 
-double City::getPrice() const {
+float City::getPrice() const {
     return price;
 }
 
-void City::setPrice(double price) {
+void City::setPrice(float price) {
     City::price = price;
 }
 
-const std::string &City::getDuration() const {
-    return duration;
+int City::getIdCity() const {
+    return idCity;
 }
 
-void City::setDuration(const std::string &duration) {
-    City::duration = duration;
+void City::setIdCity(int idCity) {
+    City::idCity = idCity;
 }
 
-const std::string &City::getCountry() const {
-    return country;
+int City::getIdCityType() const {
+    return idCityType;
 }
 
-void City::setCountry(const std::string &country) {
-    City::country = country;
+void City::setIdCityType(int idCityType) {
+    City::idCityType = idCityType;
 }

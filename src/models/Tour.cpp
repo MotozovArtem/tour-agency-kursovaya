@@ -1,44 +1,51 @@
 //
-// Created by rienel on 11.03.18.
+// Created by rienel on 11.04.18.
 //
 
 #include "Tour.h"
 
-const std::string &Tour::getName() const {
-    return name;
-}
+Tour::Tour(int id, QString *name, int days, int idCity, int idTourType) : Model(id), name(name), days(days),
+                                                                          idCity(idCity), idTourType(idTourType) {}
 
-void Tour::setName(const std::string &name) {
-    Tour::name = name;
-}
-
-const std::string &Tour::getDuration() const {
-    return duration;
-}
-
-void Tour::setDuration(const std::string &duration) {
-    Tour::duration = duration;
-}
-
-const std::string &Tour::getTransfer() const {
-    return transfer;
-}
-
-void Tour::setTransfer(const std::string &transfer) {
-    Tour::transfer = transfer;
-}
-
-Tour::Tour(int id, const std::string &name, const std::string &duration, const std::string &transfer) : Model(id),
-                                                                                                        name(name),
-                                                                                                        duration(
-                                                                                                                duration),
-                                                                                                        transfer(
-                                                                                                                transfer) {}
-
-Tour::Tour(const std::string &name, const std::string &duration, const std::string &transfer) : name(name),
-                                                                                                duration(duration),
-                                                                                                transfer(transfer) {}
+Tour::Tour(QString *name, int days, int idCity, int idTourType) : name(name), days(days), idCity(idCity),
+                                                                  idTourType(idTourType) {}
 
 Tour::Tour(int id) : Model(id) {}
 
 Tour::Tour() {}
+
+Tour::~Tour() {
+    delete this->name;
+}
+
+QString *Tour::getName() const {
+    return name;
+}
+
+void Tour::setName(QString *name) {
+    Tour::name = name;
+}
+
+int Tour::getDays() const {
+    return days;
+}
+
+void Tour::setDays(int days) {
+    Tour::days = days;
+}
+
+int Tour::getIdCity() const {
+    return idCity;
+}
+
+void Tour::setIdCity(int idCity) {
+    Tour::idCity = idCity;
+}
+
+int Tour::getIdTourType() const {
+    return idTourType;
+}
+
+void Tour::setIdTourType(int idTourType) {
+    Tour::idTourType = idTourType;
+}

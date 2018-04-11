@@ -1,91 +1,65 @@
 //
-// Created by rienel on 04.03.18.
+// Created by rienel on 11.04.18.
 //
 
 #include "Flight.h"
 
-Flight::Flight(int id, std::string *purchaseDate, int flightSer, std::string *arrivalDate, std::string *departureDate,
-               std::string *arrivalTime, std::string *departureTime, std::string *airportOfArrival,
-               std::string *airportOfDeparture) : Model(id), purchaseDate(purchaseDate), flightSer(flightSer),
-                                                  arrivalDate(arrivalDate), departureDate(departureDate),
-                                                  arrivalTime(arrivalTime), departureTime(departureTime),
-                                                  airportOfArrival(airportOfArrival),
-                                                  airportOfDeparture(airportOfDeparture) {}
+Flight::Flight(int id, QDate *dateOfPurchase, QDate *dateOfDeparture, QTime *departureTime, QTime *arrivalTime,
+               QDate *arrivalDate) : Model(id), dateOfPurchase(dateOfPurchase), dateOfDeparture(dateOfDeparture),
+                                     departureTime(departureTime), arrivalTime(arrivalTime), arrivalDate(arrivalDate) {}
 
-Flight::Flight(std::string *purchaseDate, int flightSer, std::string *arrivalDate, std::string *departureDate,
-               std::string *arrivalTime, std::string *departureTime, std::string *airportOfArrival,
-               std::string *airportOfDeparture) : purchaseDate(purchaseDate), flightSer(flightSer),
-                                                  arrivalDate(arrivalDate), departureDate(departureDate),
-                                                  arrivalTime(arrivalTime), departureTime(departureTime),
-                                                  airportOfArrival(airportOfArrival),
-                                                  airportOfDeparture(airportOfDeparture) {}
+Flight::Flight(QDate *dateOfPurchase, QDate *dateOfDeparture, QTime *departureTime, QTime *arrivalTime,
+               QDate *arrivalDate) : dateOfPurchase(dateOfPurchase), dateOfDeparture(dateOfDeparture),
+                                     departureTime(departureTime), arrivalTime(arrivalTime), arrivalDate(arrivalDate) {}
 
 Flight::Flight(int id) : Model(id) {}
 
-Flight::Flight() = default;
+Flight::Flight() {}
 
-Flight::~Flight() = default;
-
-std::string *Flight::getPurchaseDate() const {
-    return purchaseDate;
+Flight::~Flight() {
+    delete this->dateOfPurchase;
+    delete this->arrivalDate;
+    delete this->arrivalTime;
+    delete this->dateOfDeparture;
+    delete this->departureTime;
 }
 
-void Flight::setPurchaseDate(std::string *purchaseDate) {
-    Flight::purchaseDate = purchaseDate;
+QDate *Flight::getDateOfPurchase() const {
+    return dateOfPurchase;
 }
 
-int Flight::getFlightSer() const {
-    return flightSer;
+void Flight::setDateOfPurchase(QDate *dateOfPurchase) {
+    Flight::dateOfPurchase = dateOfPurchase;
 }
 
-void Flight::setFlightSer(int flightSer) {
-    Flight::flightSer = flightSer;
+QDate *Flight::getDateOfDeparture() const {
+    return dateOfDeparture;
 }
 
-std::string *Flight::getArrivalDate() const {
-    return arrivalDate;
+void Flight::setDateOfDeparture(QDate *dateOfDeparture) {
+    Flight::dateOfDeparture = dateOfDeparture;
 }
 
-void Flight::setArrivalDate(std::string *arrivalDate) {
-    Flight::arrivalDate = arrivalDate;
-}
-
-std::string *Flight::getDepartureDate() const {
-    return departureDate;
-}
-
-void Flight::setDepartureDate(std::string *departureDate) {
-    Flight::departureDate = departureDate;
-}
-
-std::string *Flight::getArrivalTime() const {
-    return arrivalTime;
-}
-
-void Flight::setArrivalTime(std::string *arrivalTime) {
-    Flight::arrivalTime = arrivalTime;
-}
-
-std::string *Flight::getDepartureTime() const {
+QTime *Flight::getDepartureTime() const {
     return departureTime;
 }
 
-void Flight::setDepartureTime(std::string *departureTime) {
+void Flight::setDepartureTime(QTime *departureTime) {
     Flight::departureTime = departureTime;
 }
 
-std::string *Flight::getAirportOfArrival() const {
-    return airportOfArrival;
+QTime *Flight::getArrivalTime() const {
+    return arrivalTime;
 }
 
-void Flight::setAirportOfArrival(std::string *airportOfArrival) {
-    Flight::airportOfArrival = airportOfArrival;
+void Flight::setArrivalTime(QTime *arrivalTime) {
+    Flight::arrivalTime = arrivalTime;
 }
 
-std::string *Flight::getAirportOfDeparture() const {
-    return airportOfDeparture;
+QDate *Flight::getArrivalDate() const {
+    return arrivalDate;
 }
 
-void Flight::setAirportOfDeparture(std::string *airportOfDeparture) {
-    Flight::airportOfDeparture = airportOfDeparture;
+void Flight::setArrivalDate(QDate *arrivalDate) {
+    Flight::arrivalDate = arrivalDate;
 }

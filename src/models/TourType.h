@@ -1,28 +1,31 @@
 //
-// Created by rienel on 11.03.18.
+// Created by rienel on 11.04.18.
 //
 
 #ifndef PSQLWORK_TOURTYPE_H
 #define PSQLWORK_TOURTYPE_H
 
+#include <QtCore>
 #include "Model.h"
-#include <string>
 
-class TourType: public Model {
+class TourType : public Model {
 private:
-    std::string name;
+    QString *name;
 public:
-    TourType(int id, const std::string &name);
+    TourType(int id, QString *name);
 
-    TourType(const std::string &name);
+    TourType(QString *name);
 
     TourType(int id);
 
     TourType();
 
-    const std::string &getName() const;
+    virtual ~TourType();
 
-    void setName(const std::string &name);
+    QString *getName() const;
+
+    void setName(QString *name);
+
 };
 
 

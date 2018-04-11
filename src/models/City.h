@@ -1,43 +1,45 @@
 //
-// Created by rienel on 11.03.18.
+// Created by rienel on 11.04.18.
 //
 
 #ifndef PSQLWORK_CITY_H
 #define PSQLWORK_CITY_H
 
+#include <QtCore>
 #include "Model.h"
-#include <string>
 
-class City:public Model {
+class City: public Model {
 private:
-    std::string name;
-    double price;
-    std::string duration;
-    std::string country;
+    QString *name;
+    float price;
+    int idCity;
+    int idCityType;
 public:
-    City(int id, const std::string &name, double price, const std::string &duration, const std::string &country);
+    City(int id, QString *name, float price, int idCity, int idCityType);
 
-    City(const std::string &name, double price, const std::string &duration, const std::string &country);
+    City(QString *name, float price, int idCity, int idCityType);
 
     City(int id);
 
-    City();
+    City(QString *name);
 
-    const std::string &getName() const;
+    virtual ~City();
 
-    void setName(const std::string &name);
+    QString *getName() const;
 
-    double getPrice() const;
+    void setName(QString *name);
 
-    void setPrice(double price);
+    float getPrice() const;
 
-    const std::string &getDuration() const;
+    void setPrice(float price);
 
-    void setDuration(const std::string &duration);
+    int getIdCity() const;
 
-    const std::string &getCountry() const;
+    void setIdCity(int idCity);
 
-    void setCountry(const std::string &country);
+    int getIdCityType() const;
+
+    void setIdCityType(int idCityType);
 };
 
 

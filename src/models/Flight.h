@@ -1,69 +1,51 @@
 //
-// Created by rienel on 04.03.18.
+// Created by rienel on 11.04.18.
 //
 
 #ifndef PSQLWORK_FLIGHT_H
 #define PSQLWORK_FLIGHT_H
 
+#include <QtCore>
 #include "Model.h"
-#include <string>
 
-class Flight : public Model {
+class Flight: public Model {
 private:
-    std::string* purchaseDate;
-    int flightSer;
-    std::string* arrivalDate;
-    std::string* departureDate;
-    std::string* arrivalTime;
-    std::string* departureTime;
-    std::string* airportOfArrival;
-    std::string* airportOfDeparture;
+    QDate *dateOfPurchase;
+    QDate *dateOfDeparture;
+    QTime *departureTime;
+    QTime *arrivalTime;
+    QDate *arrivalDate;
 public:
-    Flight(int id, std::string *purchaseDate, int flightSer, std::string *arrivalDate, std::string *departureDate,
-           std::string *arrivalTime, std::string *departureTime, std::string *airportOfArrival,
-           std::string *airportOfDeparture);
+    Flight(int id, QDate *dateOfPurchase, QDate *dateOfDeparture, QTime *departureTime, QTime *arrivalTime,
+           QDate *arrivalDate);
 
-    Flight(std::string *purchaseDate, int flightSer, std::string *arrivalDate, std::string *departureDate,
-           std::string *arrivalTime, std::string *departureTime, std::string *airportOfArrival,
-           std::string *airportOfDeparture);
+    Flight(QDate *dateOfPurchase, QDate *dateOfDeparture, QTime *departureTime, QTime *arrivalTime, QDate *arrivalDate);
 
     Flight(int id);
 
     Flight();
 
-    std::string *getPurchaseDate() const;
-
-    void setPurchaseDate(std::string *purchaseDate);
-
-    int getFlightSer() const;
-
-    void setFlightSer(int flightSer);
-
-    std::string *getArrivalDate() const;
-
-    void setArrivalDate(std::string *arrivalDate);
-
-    std::string *getDepartureDate() const;
-
-    void setDepartureDate(std::string *departureDate);
-
-    std::string *getArrivalTime() const;
-
-    void setArrivalTime(std::string *arrivalTime);
-
-    std::string *getDepartureTime() const;
-
-    void setDepartureTime(std::string *departureTime);
-
-    std::string *getAirportOfArrival() const;
-
-    void setAirportOfArrival(std::string *airportOfArrival);
-
-    std::string *getAirportOfDeparture() const;
-
-    void setAirportOfDeparture(std::string *airportOfDeparture);
-
     virtual ~Flight();
+
+    QDate *getDateOfPurchase() const;
+
+    void setDateOfPurchase(QDate *dateOfPurchase);
+
+    QDate *getDateOfDeparture() const;
+
+    void setDateOfDeparture(QDate *dateOfDeparture);
+
+    QTime *getDepartureTime() const;
+
+    void setDepartureTime(QTime *departureTime);
+
+    QTime *getArrivalTime() const;
+
+    void setArrivalTime(QTime *arrivalTime);
+
+    QDate *getArrivalDate() const;
+
+    void setArrivalDate(QDate *arrivalDate);
 };
 
 

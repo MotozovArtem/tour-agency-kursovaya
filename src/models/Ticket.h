@@ -1,47 +1,32 @@
 //
-// Created by rienel on 04.03.18.
+// Created by rienel on 11.04.18.
 //
 
 #ifndef PSQLWORK_TICKET_H
 #define PSQLWORK_TICKET_H
 
 #include "Model.h"
-#include <string>
+#include <QtCore>
+
 
 class Ticket: public Model {
 private:
-    int ticketSer;
-public:
-    virtual ~Ticket();
-
-private:
-    int seatNum;
-    std::string* date;
+    int place;
+    QDate *date;
     float price;
+    int idDocuments;
+    QDate *dateOfPurchase;
+    int idFlight;
 public:
-    Ticket(int id, int ticketSer, int seatNum, std::string *date, float price);
+    Ticket(int id, int place, QDate *date, float price, int idDocuments, QDate *dateOfPurchase, int idFlight);
 
-    Ticket(int ticketSer, int seatNum, std::string *date, float price);
+    Ticket(int place, QDate *date, float price, int idDocuments, QDate *dateOfPurchase, int idFlight);
 
     Ticket(int id);
 
     Ticket();
 
-    int getTicketSer() const;
-
-    void setTicketSer(int ticketSer);
-
-    int getSeatNum() const;
-
-    void setSeatNum(int seatNum);
-
-    std::string *getDate() const;
-
-    void setDate(std::string *date);
-
-    float getPrice() const;
-
-    void setPrice(float price);
+    virtual ~Ticket();
 };
 
 

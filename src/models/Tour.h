@@ -1,38 +1,45 @@
 //
-// Created by rienel on 11.03.18.
+// Created by rienel on 11.04.18.
 //
 
 #ifndef PSQLWORK_TOUR_H
 #define PSQLWORK_TOUR_H
 
-#include <string>
 #include "Model.h"
+#include <QtCore>
 
-class Tour : public Model {
+class Tour: public Model{
 private:
-    std::string name;
-    std::string duration;
-    std::string transfer;
+    QString * name;
+    int days;
+    int idCity;
+    int idTourType;
 public:
-    Tour(int id, const std::string &name, const std::string &duration, const std::string &transfer);
+    Tour(int id, QString *name, int days, int idCity, int idTourType);
 
-    Tour(const std::string &name, const std::string &duration, const std::string &transfer);
+    Tour(QString *name, int days, int idCity, int idTourType);
 
     Tour(int id);
 
     Tour();
 
-    const std::string &getName() const;
+    virtual ~Tour();
 
-    void setName(const std::string &name);
+    QString *getName() const;
 
-    const std::string &getDuration() const;
+    void setName(QString *name);
 
-    void setDuration(const std::string &duration);
+    int getDays() const;
 
-    const std::string &getTransfer() const;
+    void setDays(int days);
 
-    void setTransfer(const std::string &transfer);
+    int getIdCity() const;
+
+    void setIdCity(int idCity);
+
+    int getIdTourType() const;
+
+    void setIdTourType(int idTourType);
 };
 
 

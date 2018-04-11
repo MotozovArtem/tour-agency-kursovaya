@@ -1,20 +1,28 @@
 //
-// Created by rienel on 04.03.18.
+// Created by rienel on 11.04.18.
 //
 
-#ifndef PSQLWORK_CONTRACT_H
-#define PSQLWORK_CONTRACT_H
+#ifndef PSQLWORK_CHECK_H
+#define PSQLWORK_CHECK_H
 
 #include "Model.h"
-#include <string>
+#include <QtCore>
 
-class Contract : public Model {
+class Contract: public Model {
 private:
-    std::string *name;
+    QString *name;
+    QDate *dateOfPayment;
+    QDate *dateOfIssue;
+    float total;
+    int idStatus;
+    int idTourType;
+    int idDocuments;
 public:
-    Contract(int id, std::string *name);
+    Contract(int id, QString *name, QDate *dateOfPayment, QDate *dateOfIssue, float total, int idStatus, int idTourType,
+          int idDocuments);
 
-    Contract(std::string *name);
+    Contract(QString *name, QDate *dateOfPayment, QDate *dateOfIssue, float total, int idStatus, int idTourType,
+          int idDocuments);
 
     Contract(int id);
 
@@ -22,11 +30,34 @@ public:
 
     virtual ~Contract();
 
-    std::string *getName() const;
+    QString *getName() const;
 
-    void setName(std::string *name);
+    void setName(QString *name);
 
+    QDate *getDateOfPayment() const;
+
+    void setDateOfPayment(QDate *dateOfPayment);
+
+    QDate *getDateOfIssue() const;
+
+    void setDateOfIssue(QDate *dateOfIssue);
+
+    float getTotal() const;
+
+    void setTotal(float total);
+
+    int getIdStatus() const;
+
+    void setIdStatus(int idStatus);
+
+    int getIdTourType() const;
+
+    void setIdTourType(int idTourType);
+
+    int getIdDocuments() const;
+
+    void setIdDocuments(int idDocuments);
 };
 
 
-#endif //PSQLWORK_CONTRACT_H
+#endif //PSQLWORK_CHECK_H
