@@ -1,0 +1,62 @@
+//
+// Created by rienel on 14.04.18.
+//
+
+#ifndef PSQLWORK_CLIENTS_H
+#define PSQLWORK_CLIENTS_H
+
+#include "Model.h"
+#include <QtCore>
+class Client: public Model {
+private:
+    QString *passportData;
+    QString *surname;
+    QString *name;
+    QString *patronymic;
+    QDate *dateOfBirth;
+    QString *placeOfBirth;
+    bool sex;
+public:
+    Client(int id, QString *passportData, QString *surname, QString *name, QString *patronymic, QDate *dateOfBirth,
+           QString *placeOfBirth, bool sex);
+
+    Client(QString *passportData, QString *surname, QString *name, QString *patronymic, QDate *dateOfBirth,
+           QString *placeOfBirth, bool sex);
+
+    Client(int id);
+
+    Client();
+
+    virtual ~Client();
+
+    QString *getPassportData() const;
+
+    void setPassportData(QString *passportData);
+
+    QString *getSurname() const;
+
+    void setSurname(QString *surname);
+
+    QString *getName() const;
+
+    void setName(QString *name);
+
+    QString *getPatronymic() const;
+
+    void setPatronymic(QString *patronymic);
+
+    QDate *getDateOfBirth() const;
+
+    void setDateOfBirth(QDate *dateOfBirth);
+
+    QString *getPlaceOfBirth() const;
+
+    void setPlaceOfBirth(QString *placeOfBirth);
+
+    bool isSex() const;
+
+    void setSex(bool sex);
+};
+
+
+#endif //PSQLWORK_CLIENTS_H

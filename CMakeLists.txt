@@ -28,7 +28,10 @@ set(MODELS ${PROJECT_SOURCE_DIR}/models/Model.cpp ${PROJECT_SOURCE_DIR}/models/M
         src/models/Sight.cpp src/models/Sight.h
         src/models/City.cpp src/models/City.h
         src/models/CityType.cpp src/models/CityType.h
-        src/models/Contract.cpp src/models/Contract.h src/models/ClientsRest.cpp src/models/ClientsRest.h src/models/Ticket.cpp src/models/Ticket.h src/models/Flight.cpp src/models/Flight.h)
+        src/models/Contract.cpp src/models/Contract.h
+        src/models/ClientsRest.cpp src/models/ClientsRest.h
+        src/models/Ticket.cpp src/models/Ticket.h
+        src/models/Flight.cpp src/models/Flight.h src/models/TransportNode.cpp src/models/TransportNode.h src/models/TransportNodeType.cpp src/models/TransportNodeType.h src/models/PlaceArrival.cpp src/models/PlaceArrival.h src/models/PlaceArrivalType.cpp src/models/PlaceArrivalType.h src/models/Client.cpp src/models/Client.h src/models/Documents.cpp src/models/Documents.h src/models/DocumentsForTour.cpp src/models/DocumentsForTour.h src/models/ReservByAgreement.cpp src/models/ReservByAgreement.h src/models/Country.cpp src/models/Country.h src/models/DocumentType.cpp src/models/DocumentType.h)
 
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${MODELS} ${INTERFACES})

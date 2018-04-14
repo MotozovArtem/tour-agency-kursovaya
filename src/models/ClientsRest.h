@@ -10,7 +10,26 @@
 
 class ClientsRest: public Model {
 private:
+    int idContract;
+    int idClient;
+public:
+    ClientsRest(int id, int idContract, int idClient);
 
+    ClientsRest(int idContract, int idClient);
+
+    ClientsRest(int id);
+
+    ClientsRest();
+
+    virtual ~ClientsRest();
+
+    int getIdContract() const;
+
+    void setIdContract(int idContract);
+
+    int getIdClient() const;
+
+    void setIdClient(int idClient);
 };
 
 
