@@ -19,7 +19,7 @@ set(PROJECT_SOURCE_DIR src)
 set(SOURCES ${PROJECT_SOURCE_DIR}/main.cpp)
 set(INTERFACES src/models/interfaces/ModelDAO.h src/models/interfaces/HotelDAO.h
         src/models/interfaces/HotelRoomTypeDAO.h src/models/interfaces/HotelRoomDAO.h
-        src/models/interfaces/ReservationDAO.h src/models/interfaces/TourTypeDAO.h src/models/interfaces/TourDAO.h src/models/interfaces/SightDAO.h src/models/interfaces/CityDAO.h src/models/interfaces/CityTypeDAO.h src/models/interfaces/ContractDAO.h src/models/interfaces/ClientsRestDAO.h src/models/interfaces/TicketDAO.h)
+        src/models/interfaces/ReservationDAO.h src/models/interfaces/TourTypeDAO.h src/models/interfaces/TourDAO.h src/models/interfaces/SightDAO.h src/models/interfaces/CityDAO.h src/models/interfaces/CityTypeDAO.h src/models/interfaces/ContractDAO.h src/models/interfaces/ClientsRestDAO.h src/models/interfaces/TicketDAO.h src/models/interfaces/FlightDAO.h src/models/interfaces/TransportNodeDAO.h src/models/interfaces/TransportNodeTypeDAO.h src/models/interfaces/PlaceArrivalDAO.h)
 set(MODELS ${PROJECT_SOURCE_DIR}/models/Model.cpp ${PROJECT_SOURCE_DIR}/models/Model.h
         src/models/Hotel.cpp src/models/Hotel.h
         src/models/HotelRoomType.cpp src/models/HotelRoomType.h
