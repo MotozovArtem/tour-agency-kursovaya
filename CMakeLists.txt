@@ -17,6 +17,8 @@ include_directories(src src/models)
 set(PROJECT_SOURCE_DIR src)
 
 set(SOURCES ${PROJECT_SOURCE_DIR}/main.cpp)
+
+
 set(INTERFACES src/models/interfaces/ModelDAO.h src/models/interfaces/HotelDAO.h
         src/models/interfaces/HotelRoomTypeDAO.h src/models/interfaces/HotelRoomDAO.h
         src/models/interfaces/ReservationDAO.h src/models/interfaces/TourTypeDAO.h
@@ -25,7 +27,12 @@ set(INTERFACES src/models/interfaces/ModelDAO.h src/models/interfaces/HotelDAO.h
         src/models/interfaces/ContractDAO.h src/models/interfaces/ClientsRestDAO.h
         src/models/interfaces/TicketDAO.h src/models/interfaces/FlightDAO.h
         src/models/interfaces/TransportNodeDAO.h src/models/interfaces/TransportNodeTypeDAO.h
-        src/models/interfaces/PlaceArrivalDAO.h src/models/interfaces/PlaceArrivalTypeDAO.h src/models/interfaces/ClientDAO.h src/models/interfaces/DocumentsDAO.h src/models/interfaces/DocumentsForTourDAO.h src/models/interfaces/ReservByAgreementDAO.h src/models/interfaces/CountryDAO.h src/models/interfaces/DocumentTypeDAO.h)
+        src/models/interfaces/PlaceArrivalDAO.h src/models/interfaces/PlaceArrivalTypeDAO.h
+        src/models/interfaces/ClientDAO.h src/models/interfaces/DocumentsDAO.h
+        src/models/interfaces/DocumentsForTourDAO.h src/models/interfaces/ReservByAgreementDAO.h
+        src/models/interfaces/CountryDAO.h src/models/interfaces/DocumentTypeDAO.h)
+
+
 set(MODELS ${PROJECT_SOURCE_DIR}/models/Model.cpp ${PROJECT_SOURCE_DIR}/models/Model.h
         src/models/Hotel.cpp src/models/Hotel.h
         src/models/HotelRoomType.cpp src/models/HotelRoomType.h
