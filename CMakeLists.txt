@@ -17,7 +17,9 @@ include_directories(src src/models)
 set(PROJECT_SOURCE_DIR src)
 
 set(SOURCES ${PROJECT_SOURCE_DIR}/main.cpp)
-set(INTERFACES src/models/interfaces/ModelDAO.cpp src/models/interfaces/ModelDAO.h)
+set(INTERFACES src/models/interfaces/ModelDAO.h src/models/interfaces/HotelDAO.h
+        src/models/interfaces/HotelRoomTypeDAO.h src/models/interfaces/HotelRoomDAO.h
+        src/models/interfaces/ReservationDAO.h src/models/interfaces/TourTypeDAO.h src/models/interfaces/TourDAO.h src/models/interfaces/SightDAO.h src/models/interfaces/CityDAO.h src/models/interfaces/CityTypeDAO.h src/models/interfaces/ContractDAO.h src/models/interfaces/ClientsRestDAO.h src/models/interfaces/TicketDAO.h)
 set(MODELS ${PROJECT_SOURCE_DIR}/models/Model.cpp ${PROJECT_SOURCE_DIR}/models/Model.h
         src/models/Hotel.cpp src/models/Hotel.h
         src/models/HotelRoomType.cpp src/models/HotelRoomType.h
@@ -31,7 +33,17 @@ set(MODELS ${PROJECT_SOURCE_DIR}/models/Model.cpp ${PROJECT_SOURCE_DIR}/models/M
         src/models/Contract.cpp src/models/Contract.h
         src/models/ClientsRest.cpp src/models/ClientsRest.h
         src/models/Ticket.cpp src/models/Ticket.h
-        src/models/Flight.cpp src/models/Flight.h src/models/TransportNode.cpp src/models/TransportNode.h src/models/TransportNodeType.cpp src/models/TransportNodeType.h src/models/PlaceArrival.cpp src/models/PlaceArrival.h src/models/PlaceArrivalType.cpp src/models/PlaceArrivalType.h src/models/Client.cpp src/models/Client.h src/models/Documents.cpp src/models/Documents.h src/models/DocumentsForTour.cpp src/models/DocumentsForTour.h src/models/ReservByAgreement.cpp src/models/ReservByAgreement.h src/models/Country.cpp src/models/Country.h src/models/DocumentType.cpp src/models/DocumentType.h)
+        src/models/Flight.cpp src/models/Flight.h
+        src/models/TransportNode.cpp src/models/TransportNode.h
+        src/models/TransportNodeType.cpp src/models/TransportNodeType.h
+        src/models/PlaceArrival.cpp src/models/PlaceArrival.h
+        src/models/PlaceArrivalType.cpp src/models/PlaceArrivalType.h
+        src/models/Client.cpp src/models/Client.h
+        src/models/Documents.cpp src/models/Documents.h
+        src/models/DocumentsForTour.cpp src/models/DocumentsForTour.h
+        src/models/ReservByAgreement.cpp src/models/ReservByAgreement.h
+        src/models/Country.cpp src/models/Country.h
+        src/models/DocumentType.cpp src/models/DocumentType.h)
 
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${MODELS} ${INTERFACES})

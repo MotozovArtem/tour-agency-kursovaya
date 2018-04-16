@@ -80,3 +80,35 @@ int main() {
     terminate(0);
     return 0;
 }
+
+//#include <iostream>
+//
+//void sort(int *array, int length) {
+//    bool isSorted = false;
+//    do {
+//        isSorted = true;
+//        for (int *i = array, j = 0; j < length - 1; i++, j++) {
+//            if (*i < *(i + 1)) {
+//                int buff = *i;
+//                *i = *(i + 1);
+//                *(i + 1) = buff;
+//                isSorted = false;
+//                continue;
+//            }
+//        }
+//    } while (!isSorted);
+//}
+//
+//int main() {
+//    int length = 4;
+//    int *array = new int[length];
+//    for (int i = 0; i < length; i++) {
+//        std::cin >> array[i];
+//    }
+//    sort(array, length);
+//    std::cout << "\n";
+//    for (int i = 0; i < length; i++) {
+//        std::cout << array[i] << " ";
+//    }
+//    return 0;
+//}

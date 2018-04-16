@@ -14,8 +14,6 @@ private:
 public:
     CityType(int id, QString *name);
 
-    CityType(int id, QString *name);
-
     CityType(QString *name);
 
     CityType(int id);

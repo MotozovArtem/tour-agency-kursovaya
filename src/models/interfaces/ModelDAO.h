@@ -10,17 +10,17 @@
 
 
 template<class T>
-class ModelDAO {
+class ModelDAO<T *> {
 public:
-    virtual std::list<Model> getAll()= 0;
+    virtual std::list<T *> getAll()= 0;
 
-    virtual T getById(int id)= 0;
+    virtual T *getById(int id)= 0;
 
-    virtual void add(T model) = 0;
+    virtual void add(T *model) = 0;
 
-    virtual void update(T model)=0;
+    virtual void update(T *model)=0;
 
-    virtual void del(T model)=0;
+    virtual void del(T *model)=0;
 
 };
 
