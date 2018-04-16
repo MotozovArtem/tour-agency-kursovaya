@@ -7,6 +7,7 @@ set(PROJECT_NAME psqlWork)
 
 find_package(PostgreSQL REQUIRED)
 find_package(Qt5Widgets REQUIRED)
+find_package(Qt5Sql REQUIRED)
 #find_package(Boost 1.64 REQUIRED)
 
 
@@ -59,6 +60,9 @@ set(MODELS ${PROJECT_SOURCE_DIR}/models/Model.cpp ${PROJECT_SOURCE_DIR}/models/M
         src/models/DocumentType.cpp src/models/DocumentType.h)
 
 
-add_executable(${PROJECT_NAME} ${SOURCES} ${MODELS} ${INTERFACES})
+set(REALIZATION src/models/interfaces/dao_realization/HotelDataBaseDAO.cpp src/models/interfaces/dao_realization/HotelDataBaseDAO.h)
+
+add_executable(${PROJECT_NAME} ${SOURCES} ${MODELS} ${INTERFACES} ${REALIZATION})
 target_link_libraries(${PROJECT_NAME} ${PostgreSQL_LIBRARIES})
 target_link_libraries(${PROJECT_NAME} Qt5::Widgets)
+target_link_libraries(${PROJECT_NAME} Qt5::Sql)

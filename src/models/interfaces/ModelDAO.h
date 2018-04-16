@@ -8,6 +8,10 @@
 #include <list>
 #include "../Model.h"
 
+template<class T>
+class ModelDAO {
+
+};
 
 template<class T>
 class ModelDAO<T *> {
