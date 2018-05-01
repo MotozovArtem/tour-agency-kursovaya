@@ -11,13 +11,12 @@
 class City : public Model {
 private:
     QString *name;
-    float price;
     int idCityType;
     int idCountry;
 public:
-    City(QString *name, float price, int idCityType, int idCountry);
+    City(int id, QString *name, int idCityType, int idCountry);
 
-    City(int id, QString *name, float price, int idCityType, int idCountry);
+    City(QString *name, int idCityType, int idCountry);
 
     City(int id);
 
@@ -26,10 +25,6 @@ public:
     QString *getName() const;
 
     void setName(QString *name);
-
-    float getPrice() const;
-
-    void setPrice(float price);
 
     int getIdCityType() const;
 

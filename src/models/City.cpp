@@ -4,12 +4,10 @@
 
 #include "City.h"
 
-City::City(QString *name, float price, int idCityType, int idCountry) : name(name), price(price),
-                                                                        idCityType(idCityType), idCountry(idCountry) {}
+City::City(int id, QString *name, int idCityType, int idCountry) : Model(id), name(name), idCityType(idCityType),
+                                                                   idCountry(idCountry) {}
 
-City::City(int id, QString *name, float price, int idCityType, int idCountry) : Model(id), name(name), price(price),
-                                                                                idCityType(idCityType),
-                                                                                idCountry(idCountry) {}
+City::City(QString *name, int idCityType, int idCountry) : name(name), idCityType(idCityType), idCountry(idCountry) {}
 
 City::City(int id) : Model(id) {}
 
@@ -25,14 +23,6 @@ QString *City::getName() const {
 
 void City::setName(QString *name) {
     City::name = name;
-}
-
-float City::getPrice() const {
-    return price;
-}
-
-void City::setPrice(float price) {
-    City::price = price;
 }
 
 int City::getIdCityType() const {

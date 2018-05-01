@@ -53,10 +53,14 @@ CREATE TABLE IF NOT EXISTS Sight(
 );
 
 CREATE TABLE IF NOT EXISTS City(
-id SERIAL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+    id_country INTEGER,
+    id_city_type INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS CityType(
     id SERIAL PRIMARY KEY,
     name VARCHAR(80)
 );
+
