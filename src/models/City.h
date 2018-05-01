@@ -13,16 +13,15 @@ private:
     QString *name;
     float price;
     int idCityType;
+    int idCountry;
 public:
-    City(int id, QString *name, float price, int idCityType);
+    City(QString *name, float price, int idCityType, int idCountry);
 
-    City(QString *name, float price, int idCityType);
+    City(int id, QString *name, float price, int idCityType, int idCountry);
 
     City(int id);
 
-    City(QString *name);
-
-    virtual ~City();
+    City();
 
     QString *getName() const;
 
@@ -35,6 +34,12 @@ public:
     int getIdCityType() const;
 
     void setIdCityType(int idCityType);
+
+    int getIdCountry() const;
+
+    void setIdCountry(int idCountry);
+
+    virtual ~City();
 };
 
 
