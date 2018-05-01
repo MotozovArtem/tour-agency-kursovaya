@@ -8,16 +8,15 @@
 #include <QtCore>
 #include "Model.h"
 
-class City: public Model {
+class City : public Model {
 private:
     QString *name;
     float price;
-    int idCity;
     int idCityType;
 public:
-    City(int id, QString *name, float price, int idCity, int idCityType);
+    City(int id, QString *name, float price, int idCityType);
 
-    City(QString *name, float price, int idCity, int idCityType);
+    City(QString *name, float price, int idCityType);
 
     City(int id);
 
@@ -32,10 +31,6 @@ public:
     float getPrice() const;
 
     void setPrice(float price);
-
-    int getIdCity() const;
-
-    void setIdCity(int idCity);
 
     int getIdCityType() const;
 

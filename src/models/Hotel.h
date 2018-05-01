@@ -14,11 +14,11 @@ private:
     QString* address;
     int stars;
     QDate* yearOfFoundation;
-    QString* city;
+    int idCity;
 public:
-    Hotel(int id, QString *hotelName, QString *address, int stars, QDate *yearOfFoundation, QString *city);
+    Hotel(int id, QString *hotelName, QString *address, int stars, QDate *yearOfFoundation, int idCity);
 
-    Hotel(QString *hotelName, QString *address, int stars, QDate *yearOfFoundation, QString *city);
+    Hotel(QString *hotelName, QString *address, int stars, QDate *yearOfFoundation, int idCity);
 
     Hotel(int id);
 
@@ -42,9 +42,9 @@ public:
 
     void setYearOfFoundation(QDate *yearOfFoundation);
 
-    QString *getCity() const;
+    int getIdCity() const;
 
-    void setCity(QString *city);
+    void setIdCity(int idCity);
 };
 
 

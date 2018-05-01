@@ -4,7 +4,7 @@
 
 #include "HotelDataBaseDAO.h"
 #include <QtSql/QtSql>
-
+#include "SQL/SQLConnection.h"
 
 //#include <QtSql/QtSql>
 //#include "iostream"
@@ -13,7 +13,7 @@
 //    QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
 //    db.setDatabaseName("testdb");
 //    db.setUserName("rienel");
-////    db.setHostName("asus");
+//    db.setHostName("asus");
 //    db.setPassword("1957");
 //    if (!db.open()) {
 //        qDebug() << "Cannot open database: " << db.lastError();
@@ -26,9 +26,15 @@
 //    return 0;
 //}
 
+
 std::list<Hotel *> HotelDataBaseDAO::getAll() {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
-    db.setDatabaseName("");
+    SQLConnection *con = new SQLConnection("tour_agency", "rienel", "1957");
+    QSqlDatabase *db = con->getConnection();
+    if (!db->open()) {
+        return nullptr;
+        qDebug() << ""; // TODO: Запихнуть сюда логгер кастомный
+    }
+    QSqlQuery query;
     return std::list<Hotel *>();
 }
 

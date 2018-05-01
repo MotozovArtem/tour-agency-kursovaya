@@ -4,11 +4,11 @@
 
 #include "Hotel.h"
 
-Hotel::Hotel(int id, QString *hotelName, QString *address, int stars, QDate *yearOfFoundation, QString *city) : Model(
-        id), hotelName(hotelName), address(address), stars(stars), yearOfFoundation(yearOfFoundation), city(city) {}
+Hotel::Hotel(int id, QString *hotelName, QString *address, int stars, QDate *yearOfFoundation, int idCity) : Model(
+        id), hotelName(hotelName), address(address), stars(stars), yearOfFoundation(yearOfFoundation), idCity(idCity) {}
 
-Hotel::Hotel(QString *hotelName, QString *address, int stars, QDate *yearOfFoundation, QString *city) : hotelName(
-        hotelName), address(address), stars(stars), yearOfFoundation(yearOfFoundation), city(city) {}
+Hotel::Hotel(QString *hotelName, QString *address, int stars, QDate *yearOfFoundation, int idCity) : hotelName(
+        hotelName), address(address), stars(stars), yearOfFoundation(yearOfFoundation), idCity(idCity) {}
 
 Hotel::Hotel(int id) : Model(id) {}
 
@@ -46,17 +46,18 @@ void Hotel::setYearOfFoundation(QDate *yearOfFoundation) {
     Hotel::yearOfFoundation = yearOfFoundation;
 }
 
-QString *Hotel::getCity() const {
-    return city;
-}
-
-void Hotel::setCity(QString *city) {
-    Hotel::city = city;
-}
 
 Hotel::~Hotel() {
     delete this->hotelName;
     delete this->address;
-    delete this->city;
+    delete this->idCity;
     delete this->yearOfFoundation;
+}
+
+int Hotel::getIdCity() const {
+    return idCity;
+}
+
+void Hotel::setIdCity(int idCity) {
+    Hotel::idCity = idCity;
 }

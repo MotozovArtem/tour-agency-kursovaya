@@ -17,7 +17,9 @@ include_directories(src src/models)
 
 set(PROJECT_SOURCE_DIR src)
 
-set(SOURCES ${PROJECT_SOURCE_DIR}/main.cpp)
+set(SOURCES ${PROJECT_SOURCE_DIR}/main.cpp
+        src/SQL/SQLConnection.cpp src/SQL/SQLConnection.h
+        src/utils/Logger.cpp src/utils/Logger.h)
 
 
 set(INTERFACES src/models/interfaces/ModelDAO.h src/models/interfaces/HotelDAO.h
