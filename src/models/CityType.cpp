@@ -23,3 +23,12 @@ QString *CityType::getName() const {
 void CityType::setName(QString *name) {
     CityType::name = name;
 }
+
+CityType::CityType(int id, const QString &name) : Model(id) {
+    this->name = new QString(name);
+}
+
+CityType::CityType(const QString &name) : Model() {
+    this->name = new QString(name);
+}
+

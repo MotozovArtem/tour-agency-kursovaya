@@ -7,7 +7,8 @@
 
 #include "Model.h"
 #include <QtCore>
-class Client: public Model {
+
+class Client : public Model {
 private:
     QString *passportData;
     QString *surname;
@@ -20,8 +21,16 @@ public:
     Client(int id, QString *passportData, QString *surname, QString *name, QString *patronymic, QDate *dateOfBirth,
            QString *placeOfBirth, bool sex);
 
+    Client(int id, const QString &passportData, const QString &surname, const QString &name, const QString &patronymic,
+           const QDate &dateOfBirth,
+           const QString *&placeOfBirth, bool sex);
+
     Client(QString *passportData, QString *surname, QString *name, QString *patronymic, QDate *dateOfBirth,
            QString *placeOfBirth, bool sex);
+
+    Client(const QString &passportData, const QString &surname, const QString &name, const QString &patronymic,
+           const QDate &dateOfBirth,
+           const QString *&placeOfBirth, bool sex);
 
     Client(int id);
 

@@ -40,3 +40,15 @@ int City::getIdCountry() const {
 void City::setIdCountry(int idCountry) {
     City::idCountry = idCountry;
 }
+
+City::City(int id, const QString &name, int idCityType, int idCountry) : Model(id) {
+    this->name = new QString(name);
+    this->idCityType = idCityType;
+    this->idCountry = idCountry;
+}
+
+City::City(const QString &name, int idCityType, int idCountry) : Model() {
+    this->name = new QString(name);
+    this->idCityType = idCityType;
+    this->idCountry = idCountry;
+}

@@ -16,6 +16,10 @@ private:
 public:
     City(int id, QString *name, int idCityType, int idCountry);
 
+    City(int id, const QString &name, int idCityType, int idCountry);
+
+    City(const QString &name, int idCityType, int idCountry);
+
     City(QString *name, int idCityType, int idCountry);
 
     City(int id);

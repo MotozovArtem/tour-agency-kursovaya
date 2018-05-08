@@ -8,11 +8,15 @@
 #include <QtCore>
 #include "Model.h"
 
-class CityType: public Model {
+class CityType : public Model {
 private:
     QString *name;
 public:
     CityType(int id, QString *name);
+
+    CityType(int id, const QString &name);
+
+    CityType(const QString &name);
 
     CityType(QString *name);
 

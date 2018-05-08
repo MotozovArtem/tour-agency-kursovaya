@@ -82,3 +82,24 @@ bool Client::isSex() const {
 void Client::setSex(bool sex) {
     Client::sex = sex;
 }
+
+Client::Client(int id, const QString &passportData, const QString &surname, const QString &name,
+               const QString &patronymic, const QDate &dateOfBirth, const QString *&placeOfBirth, bool sex) : Model(
+        id) {
+    this->passportData = new QString(passportData);
+    this->surname = new QString(surname);
+    this->name = new QString(name);
+    this->patronymic = new QString(patronymic);
+    this->dateOfBirth = new QDate(dateOfBirth);
+    this->sex = sex;
+}
+
+Client::Client(const QString &passportData, const QString &surname, const QString &name,
+               const QString &patronymic, const QDate &dateOfBirth, const QString *&placeOfBirth, bool sex) : Model() {
+    this->passportData = new QString(passportData);
+    this->surname = new QString(surname);
+    this->name = new QString(name);
+    this->patronymic = new QString(patronymic);
+    this->dateOfBirth = new QDate(dateOfBirth);
+    this->sex = sex;
+}

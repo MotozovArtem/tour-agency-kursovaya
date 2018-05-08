@@ -21,8 +21,14 @@ public:
     Contract(int id, QString *name, QDate *dateOfPayment, QDate *dateOfIssue, float total, int idStatus, int idTourType,
           int idDocuments);
 
+    Contract(int id,const QString &name,const QDate &dateOfPayment,const QDate &dateOfIssue, float total, int idStatus, int idTourType,
+             int idDocuments);
+
     Contract(QString *name, QDate *dateOfPayment, QDate *dateOfIssue, float total, int idStatus, int idTourType,
           int idDocuments);
+
+    Contract(const QString &name,const QDate &dateOfPayment,const QDate &dateOfIssue, float total, int idStatus, int idTourType,
+             int idDocuments);
 
     Contract(int id);
 

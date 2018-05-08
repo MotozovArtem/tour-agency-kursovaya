@@ -66,4 +66,14 @@ Hotel::Hotel(int id, const QString &hotelName, const QString &address, int stars
     this->hotelName = new QString(hotelName);
     this->address = new QString(address);
     this->yearOfFoundation = new QDate(yearOfFoundation);
+    this->stars=stars;
+    this->idCity=idCity;
+}
+
+Hotel::Hotel(const QString &hotelName, const QString &address, int stars, const QDate &yearOfFoundation, int idCity): Model() {
+    this->hotelName = new QString(hotelName);
+    this->address = new QString(address);
+    this->yearOfFoundation = new QDate(yearOfFoundation);
+    this->stars=stars;
+    this->idCity=idCity;
 }
