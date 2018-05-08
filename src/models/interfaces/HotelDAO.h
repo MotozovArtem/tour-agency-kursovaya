@@ -10,7 +10,7 @@
 
 class HotelDAO : public ModelDAO<Hotel *> {
 public:
-    std::list<Hotel *> getAll() =0;
+    QList<Hotel *> getAll() =0;
 
     Hotel *getById(int id) =0;
 

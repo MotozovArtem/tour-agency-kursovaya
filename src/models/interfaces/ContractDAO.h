@@ -10,7 +10,7 @@
 
 class ContractDAO : public ModelDAO<Contract *> {
 public:
-    virtual std::list<Contract *> getAll() =0;
+    virtual QList<Contract *> getAll() =0;
 
     virtual Contract *getById(int id) =0;
 

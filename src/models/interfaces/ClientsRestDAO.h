@@ -10,7 +10,7 @@
 
 class ClientsRestDAO : public ModelDAO<ClientsRest *> {
 public:
-    virtual std::list<ClientsRest *> getAll() =0;
+    virtual QList<ClientsRest *> getAll() =0;
 
     virtual ClientsRest *getById(int id) =0;
 

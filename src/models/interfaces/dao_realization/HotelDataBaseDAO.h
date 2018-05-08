@@ -10,7 +10,7 @@
 
 class HotelDataBaseDAO : public HotelDAO {
 public:
-    virtual std::list<Hotel *> getAll();
+    virtual QList<Hotel *> getAll();
 
     virtual Hotel *getById(int id);
 

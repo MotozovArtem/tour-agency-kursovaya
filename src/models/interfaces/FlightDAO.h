@@ -10,7 +10,7 @@
 
 class FlightDAO : public ModelDAO<Flight *> {
 public:
-    virtual std::list<Flight *> getAll() =0;
+    virtual QList<Flight *> getAll() =0;
 
     virtual Flight *getById(int id) =0;
 

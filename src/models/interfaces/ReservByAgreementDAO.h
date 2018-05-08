@@ -10,7 +10,7 @@
 
 class ReservByAgreementDAO : public ModelDAO<ReservByAgreement *> {
 public:
-    virtual std::list<ReservByAgreement *> getAll() =0;
+    virtual QList<ReservByAgreement *> getAll() =0;
 
     virtual ReservByAgreement *getById(int id) =0;
 

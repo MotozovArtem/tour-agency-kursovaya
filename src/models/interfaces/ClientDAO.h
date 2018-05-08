@@ -11,7 +11,7 @@
 
 class ClientDAO : public ModelDAO<Client *> {
 public:
-    virtual std::list<Client *> getAll() =0;
+    virtual QList<Client *> getAll() =0;
 
     virtual Client *getById(int id) =0;
 

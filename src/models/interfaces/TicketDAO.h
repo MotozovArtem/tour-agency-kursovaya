@@ -10,7 +10,7 @@
 
 class TicketDAO : public ModelDAO<Ticket *> {
 public:
-    virtual std::list<Ticket *> getAll() =0;
+    virtual QList<Ticket *> getAll() =0;
 
     virtual Ticket *getById(int id) =0;
 

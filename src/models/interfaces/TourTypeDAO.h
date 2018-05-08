@@ -11,7 +11,7 @@
 
 class TourTypeDAO : public ModelDAO<TourType *> {
 public:
-    virtual std::list<TourType *> getAll() =0;
+    virtual QList<TourType *> getAll() =0;
 
     virtual TourType *getById(int id) =0;
 

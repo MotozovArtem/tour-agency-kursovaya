@@ -10,7 +10,7 @@
 
 class ReservationDAO : public ModelDAO<Reservation *> {
 public:
-    virtual std::list<Reservation *> getAll() =0;
+    virtual QList<Reservation *> getAll() =0;
 
     virtual Reservation *getById(int id) =0;
 

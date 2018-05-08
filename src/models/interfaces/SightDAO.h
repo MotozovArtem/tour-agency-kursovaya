@@ -10,7 +10,7 @@
 
 class SightDAO : public ModelDAO<Sight *> {
 public:
-    virtual std::list<Sight *> getAll() =0;
+    virtual QList<Sight *> getAll() =0;
 
     virtual Sight *getById(int id) =0;
 

@@ -14,20 +14,16 @@ SQLConnection::SQLConnection(const QString &dbName, const QString &username, con
                                                                                                         password(
                                                                                                                 password) {
     this->driverName = "QPSQL";
-    *connection = QSqlDatabase::addDatabase(this->driverName);
-    connection->setDatabaseName(this->dbName);
-    connection->setUserName(this->username);
-    connection->setPassword(this->password);
+    connection = QSqlDatabase::addDatabase(this->driverName);
+    connection.setDatabaseName(this->dbName);
+    connection.setUserName(this->username);
+    connection.setPassword(this->password);
 }
 
 SQLConnection::~SQLConnection() {
-    delete this->password;
-    delete this->username;
-    delete this->dbName;
-    if (this->connection->isOpen()) {
-        this->connection->close();
+    if (this->connection.isOpen()) {
+        this->connection.close();
     }
-    delete this->connection;
 }
 
 const QString &SQLConnection::getDriverName() const {
@@ -62,10 +58,10 @@ void SQLConnection::setPassword(const QString &password) {
     SQLConnection::password = password;
 }
 
-QSqlDatabase *SQLConnection::getConnection() const {
+QSqlDatabase SQLConnection::getConnection() const {
     return connection;
 }
 
-void SQLConnection::setConnection(QSqlDatabase *connection) {
+void SQLConnection::setConnection(QSqlDatabase connection) {
     SQLConnection::connection = connection;
 }

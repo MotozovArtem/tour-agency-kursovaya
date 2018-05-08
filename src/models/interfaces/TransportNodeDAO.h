@@ -10,7 +10,7 @@
 
 class TransportNodeDAO : public ModelDAO<TransportNode *> {
 public:
-    virtual std::list<TransportNode *> getAll() =0;
+    virtual QList<TransportNode *> getAll() =0;
 
     virtual TransportNode *getById(int id) =0;
 

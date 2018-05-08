@@ -3,6 +3,7 @@ project(psqlWork)
 
 set(CMAKE_CXX_STANDARD 11)
 set(PROJECT_NAME psqlWork)
+set(CMAKE_AUTOMOC True)
 
 
 find_package(PostgreSQL REQUIRED)
@@ -19,7 +20,8 @@ set(PROJECT_SOURCE_DIR src)
 
 set(SOURCES ${PROJECT_SOURCE_DIR}/main.cpp
         src/SQL/SQLConnection.cpp src/SQL/SQLConnection.h
-        src/utils/Logger.cpp src/utils/Logger.h)
+        src/utils/Logger.cpp src/utils/Logger.h
+        src/GUI/MainWindow.cpp src/GUI/MainWindow.h)
 
 
 set(INTERFACES src/models/interfaces/ModelDAO.h src/models/interfaces/HotelDAO.h

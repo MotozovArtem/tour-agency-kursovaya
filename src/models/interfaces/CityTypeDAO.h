@@ -11,7 +11,7 @@
 
 class CityTypeDAO : public ModelDAO<CityType *> {
 public:
-    virtual std::list<CityType *> getAll() =0;
+    virtual QList<CityType *> getAll() =0;
 
     virtual CityType *getById(int id) =0;
 

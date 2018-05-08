@@ -64,3 +64,8 @@ CREATE TABLE IF NOT EXISTS CityType(
     name VARCHAR(80)
 );
 
+CREATE TABLE IF NOT EXISTS Country(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+    foundation_date DATE
+);

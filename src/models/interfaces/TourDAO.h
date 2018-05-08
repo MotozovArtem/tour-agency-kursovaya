@@ -10,7 +10,7 @@
 
 class TourDAO : public ModelDAO<Tour *> {
 public:
-    virtual std::list<Tour *> getAll() =0;
+    virtual QList<Tour *> getAll() =0;
 
     virtual Tour *getById(int id) =0;
 

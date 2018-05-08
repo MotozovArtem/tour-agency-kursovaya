@@ -14,7 +14,7 @@ private:
     QString dbName;
     QString username;
     QString password;
-    QSqlDatabase *connection;
+    QSqlDatabase connection;
 public:
     SQLConnection(const QString &driverName, const QString &dbName, const QString &username, const QString &password);
 
@@ -36,9 +36,9 @@ public:
 
     void setPassword(const QString &password);
 
-    QSqlDatabase *getConnection() const;
+    QSqlDatabase getConnection() const;
 
-    void setConnection(QSqlDatabase *connection);
+    void setConnection(QSqlDatabase connection);
 
     virtual ~SQLConnection();
 };

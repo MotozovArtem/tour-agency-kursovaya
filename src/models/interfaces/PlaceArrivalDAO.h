@@ -10,7 +10,7 @@
 
 class PlaceArrivalDAO : public ModelDAO<PlaceArrival *> {
 public:
-    virtual std::list<PlaceArrival *> getAll() =0;
+    virtual QList<PlaceArrival *> getAll() =0;
 
     virtual PlaceArrival *getById(int id) =0;
 

@@ -11,7 +11,7 @@
 
 class DocumentsDAO : public ModelDAO<Documents *> {
 public:
-    virtual std::list<Documents *> getAll() =0;
+    virtual QList<Documents *> getAll() =0;
 
     virtual Documents *getById(int id) =0;
 

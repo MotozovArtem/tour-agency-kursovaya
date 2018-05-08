@@ -11,7 +11,7 @@
 
 class PlaceArrivalTypeDAO : public ModelDAO<PlaceArrivalType *> {
 public:
-    virtual std::list<PlaceArrivalType *> getAll() =0;
+    virtual QList<PlaceArrivalType *> getAll() =0;
 
     virtual PlaceArrivalType *getById(int id) =0;
 

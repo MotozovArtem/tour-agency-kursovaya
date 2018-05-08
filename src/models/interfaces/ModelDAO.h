@@ -6,7 +6,9 @@
 #define PSQLWORK_MODELDAO_H
 
 #include <list>
+#include <QtCore>
 #include "../Model.h"
+
 
 template<class T>
 class ModelDAO {
@@ -16,7 +18,7 @@ class ModelDAO {
 template<class T>
 class ModelDAO<T *> {
 public:
-    virtual std::list<T *> getAll()= 0;
+    virtual QList<T *> getAll()= 0;
 
     virtual T *getById(int id)= 0;
 

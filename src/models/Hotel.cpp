@@ -50,7 +50,6 @@ void Hotel::setYearOfFoundation(QDate *yearOfFoundation) {
 Hotel::~Hotel() {
     delete this->hotelName;
     delete this->address;
-    delete this->idCity;
     delete this->yearOfFoundation;
 }
 
@@ -60,4 +59,11 @@ int Hotel::getIdCity() const {
 
 void Hotel::setIdCity(int idCity) {
     Hotel::idCity = idCity;
+}
+
+Hotel::Hotel(int id, const QString &hotelName, const QString &address, int stars, const QDate &yearOfFoundation,
+             int idCity) : Model(id) {
+    this->hotelName = new QString(hotelName);
+    this->address = new QString(address);
+    this->yearOfFoundation = new QDate(yearOfFoundation);
 }

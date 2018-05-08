@@ -10,7 +10,7 @@
 
 class CountryDAO : public ModelDAO<Country *> {
 public:
-    virtual std::list<Country *> getAll() =0;
+    virtual QList<Country *> getAll() =0;
 
     virtual Country *getById(int id) =0;
 
