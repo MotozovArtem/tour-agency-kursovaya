@@ -6,26 +6,6 @@
 #include <QtSql/QtSql>
 #include "SQL/SQLConnection.h"
 
-//#include <QtSql/QtSql>
-//#include "iostream"
-//
-//int main() {
-//    QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
-//    db.setDatabaseName("testdb");
-//    db.setUserName("rienel");
-//    db.setHostName("asus");
-//    db.setPassword("1957");
-//    if (!db.open()) {
-//        qDebug() << "Cannot open database: " << db.lastError();
-//        return 0;
-//    }
-//    QStringList lst = db.tables();
-//            foreach(QString str, lst) {
-//            std::cout << "Table:" << str.toStdString();
-//        }
-//    return 0;
-//}
-
 
 QList<Hotel *> HotelDataBaseDAO::getAll() {
 //    SQLConnection *con = new SQLConnection("tour_agency", "rienel", "1957");
@@ -52,10 +32,38 @@ QList<Hotel *> HotelDataBaseDAO::getAll() {
 }
 
 Hotel *HotelDataBaseDAO::getById(int id) {
-    return nullptr;
+    QSqlQuery query;
+    query.prepare("SELECT * FROM Hotel WHERE id=:id");
+    query.bindValue(":id", id);
+    query.exec();
+    QSqlRecord rec = query.record();
+    Hotel *hotel = nullptr;
+    while (query.next()) {
+        hotel = new Hotel(
+                query.value(rec.indexOf("id")).toInt(),
+                query.value(rec.indexOf("hotel_name")).toString(),
+                query.value(rec.indexOf("address")).toString(),
+                query.value(rec.indexOf("stars")).toInt(),
+                query.value(rec.indexOf("year_of_foundation")).toDate(),
+                query.value(rec.indexOf("id_city")).toInt()
+        );
+    }
+    return hotel;
 }
 
 void HotelDataBaseDAO::add(Hotel *model) {
+    QSqlQuery query;
+    query.prepare("INSERT INTO Hotel(hotel_name, address, stars, year_of_foundation, id_city) "
+                  "VALUES (:hotel_name, :address, :stars, :year_of_foundation, :id_city)");
+    query.bindValue(":hotel_name", *model->getHotelName());
+    query.bindValue(":address", *model->getAddress());
+    query.bindValue(":stars", model->getStars());
+    query.bindValue(":year_of_foundation", *model->getYearOfFoundation());
+    query.bindValue(":id_city", model->getIdCity());
+    if (query.exec()) {
+
+    }
+
 
 }
 

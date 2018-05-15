@@ -16,6 +16,8 @@ private:
     QDate *yearOfFoundation;
     int idCity;
 public:
+    static QStringList columnList;
+
     Hotel(int id, QString *hotelName, QString *address, int stars, QDate *yearOfFoundation, int idCity);
 
     Hotel(int id, const QString &hotelName, const QString &address, int stars, const QDate &yearOfFoundation,

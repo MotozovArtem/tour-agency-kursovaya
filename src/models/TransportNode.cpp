@@ -52,3 +52,19 @@ int TransportNode::getIdTransportNodeType() const {
 void TransportNode::setIdTransportNodeType(int idTransportNodeType) {
     TransportNode::idTransportNodeType = idTransportNodeType;
 }
+
+TransportNode::TransportNode(int id, const QDate &dateOfPurchase, int idFlight, const QString &nodeName,
+                             int idTransportNodeType) : Model(id) {
+    this->dateOfPurchase = new QDate(dateOfPurchase);
+    this->idFlight = idFlight;
+    this->nodeName = new QString(nodeName);
+    this->idTransportNodeType = idTransportNodeType;
+}
+
+TransportNode::TransportNode(const QDate &dateOfPurchase, int idFlight, const QString &nodeName,
+                             int idTransportNodeType) : Model() {
+    this->dateOfPurchase = new QDate(dateOfPurchase);
+    this->idFlight = idFlight;
+    this->nodeName = new QString(nodeName);
+    this->idTransportNodeType = idTransportNodeType;
+}

@@ -8,7 +8,7 @@
 #include <QtCore>
 #include "Model.h"
 
-class Flight: public Model {
+class Flight : public Model {
 private:
     QDate *dateOfPurchase;
     QDate *dateOfDeparture;
@@ -19,7 +19,15 @@ public:
     Flight(int id, QDate *dateOfPurchase, QDate *dateOfDeparture, QTime *departureTime, QTime *arrivalTime,
            QDate *arrivalDate);
 
+    Flight(int id, const QDate &dateOfPurchase, const QDate &dateOfDeparture, const QTime &departureTime,
+           const QTime &arrivalTime,
+           const QDate &arrivalDate);
+
     Flight(QDate *dateOfPurchase, QDate *dateOfDeparture, QTime *departureTime, QTime *arrivalTime, QDate *arrivalDate);
+
+    Flight(const QDate &dateOfPurchase, const QDate &dateOfDeparture, const QTime &departureTime,
+           const QTime &arrivalTime,
+           const QDate &arrivalDate);
 
     Flight(int id);
 

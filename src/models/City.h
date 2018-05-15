@@ -14,6 +14,8 @@ private:
     int idCityType;
     int idCountry;
 public:
+    static QStringList columnList;
+
     City(int id, QString *name, int idCityType, int idCountry);
 
     City(int id, const QString &name, int idCityType, int idCountry);

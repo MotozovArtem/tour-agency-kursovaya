@@ -69,3 +69,19 @@ int Sight::getIdCity() const {
 void Sight::setIdCity(int idCity) {
     Sight::idCity = idCity;
 }
+
+Sight::Sight(int id, const QString &name, const QString &address, const QDate &yearOfCreation, const QString &toponym,
+             int idCity) : Model(id) {
+    this->name = new QString(name);
+    this->address = new QString(address);
+    this->yearOfCreation = new QDate(yearOfCreation);
+    this->toponym = new QString(toponym);
+}
+
+Sight::Sight(const QString &name, const QString &address, const QDate &yearOfCreation, const QString &toponym,
+             int idCity): Model() {
+    this->name = new QString(name);
+    this->address = new QString(address);
+    this->yearOfCreation = new QDate(yearOfCreation);
+    this->toponym = new QString(toponym);
+}

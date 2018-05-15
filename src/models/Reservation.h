@@ -17,7 +17,11 @@ private:
 public:
     Reservation(QDate *dateOfBegining, int idHotelRoom, QDate *dateOfEnding, int idContract);
 
+    Reservation(const QDate &dateOfBegining, int idHotelRoom, const QDate &dateOfEnding, int idContract);
+
     Reservation(int id, QDate *dateOfBegining, int idHotelRoom, QDate *dateOfEnding, int idContract);
+
+    Reservation(int id, const QDate &dateOfBegining, int idHotelRoom, const QDate &dateOfEnding, int idContract);
 
     Reservation(int id);
 

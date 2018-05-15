@@ -17,7 +17,11 @@ private:
 public:
     Tour(int id, QString *name, int days, int idCity, int idTourType);
 
+    Tour(int id,const  QString &name, int days, int idCity, int idTourType);
+
     Tour(QString *name, int days, int idCity, int idTourType);
+
+    Tour(const QString &name, int days, int idCity, int idTourType);
 
     Tour(int id);
 

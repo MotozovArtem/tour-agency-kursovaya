@@ -14,7 +14,11 @@ private:
 public:
     TourType(int id, QString *name);
 
+    TourType(int id, const QString &name);
+
     TourType(QString *name);
+
+    TourType(const QString &name);
 
     TourType(int id);
 

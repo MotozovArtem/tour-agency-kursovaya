@@ -18,7 +18,11 @@ private:
 public:
     PlaceArrival(int id, QString *name, QString *address, int idCity, int idPlaceArrivalType);
 
+    PlaceArrival(int id, const QString &name, const QString &address, int idCity, int idPlaceArrivalType);
+
     PlaceArrival(QString *name, QString *address, int idCity, int idPlaceArrivalType);
+
+    PlaceArrival(const QString &name, const QString &address, int idCity, int idPlaceArrivalType);
 
     PlaceArrival(int id);
 

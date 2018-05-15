@@ -9,7 +9,7 @@
 #include <QtCore>
 
 
-class Ticket: public Model {
+class Ticket : public Model {
 private:
     int place;
     QDate *date;
@@ -20,7 +20,12 @@ private:
 public:
     Ticket(int id, int place, QDate *date, float price, int idDocuments, QDate *dateOfPurchase, int idFlight);
 
+    Ticket(int id, int place, const QDate &date, float price, int idDocuments, const QDate &dateOfPurchase,
+           int idFlight);
+
     Ticket(int place, QDate *date, float price, int idDocuments, QDate *dateOfPurchase, int idFlight);
+
+    Ticket(int place, const QDate &date, float price, int idDocuments, const QDate &dateOfPurchase, int idFlight);
 
     Ticket(int id);
 

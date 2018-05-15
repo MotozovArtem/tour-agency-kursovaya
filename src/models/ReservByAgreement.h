@@ -17,7 +17,11 @@ private:
 public:
     ReservByAgreement(int id, QDate *dateOfBegining, int idHotelRoom, int idContract);
 
+    ReservByAgreement(int id,const QDate &dateOfBegining, int idHotelRoom, int idContract);
+
     ReservByAgreement(QDate *dateOfBegining, int idHotelRoom, int idContract);
+
+    ReservByAgreement(const QDate &dateOfBegining, int idHotelRoom, int idContract);
 
     ReservByAgreement(int id);
 

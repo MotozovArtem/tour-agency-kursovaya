@@ -5,42 +5,21 @@
 #include <QtSql/QSqlRelationalTableModel>
 #include "MainWindow.h"
 
-MainWindow::MainWindow(QWidget *pwgt) : QWidget(pwgt) {
-    this->pLayout= new QVBoxLayout();
+
+MainWindow::MainWindow(QMainWindow *pwgt) : QMainWindow(pwgt) {
     this->pTable = new QTableWidget();
-    this->pButton = new QPushButton("Submit");
+    this->pButton = new QPushButton();
+    this->menu = new QMenuBar;
 
-    this->tabWidget = new QTabWidget();
+    QMenu *files = new QMenu("&Files");
+    menu->addMenu(files);
 
-    pLayout->addWidget(pTable);
-    pLayout->addWidget(pButton);
-    pLayout->addWidget(tabWidget);
-    pTable->show();
+    QAction *exit = new QAction("&Close");
 
-    QWidget::setLayout(pLayout);
-}
-
-MainWindow::~MainWindow() {
-    delete this->pLayout;
-    delete this->pTable;
-    delete this->pButton;
-    delete this->tabWidget;
-}
-
-QTabWidget *MainWindow::getTabWidget() const {
-    return tabWidget;
-}
-
-void MainWindow::setTabWidget(QTabWidget *tabWidget) {
-    MainWindow::tabWidget = tabWidget;
-}
-
-QVBoxLayout *MainWindow::getPLayout() const {
-    return pLayout;
-}
-
-void MainWindow::setPLayout(QVBoxLayout *pLayout) {
-    MainWindow::pLayout = pLayout;
+    connect(exit, &QAction::triggered, this, &MainWindow::close);
+    files->addAction(exit);
+    this->setCentralWidget(pTable);
+    this->setMenuBar(menu);
 }
 
 QTableWidget *MainWindow::getPTable() const {
@@ -59,3 +38,17 @@ void MainWindow::setPButton(QPushButton *pButton) {
     MainWindow::pButton = pButton;
 }
 
+QTabWidget *MainWindow::getTabWidget() const {
+    return tabWidget;
+}
+
+void MainWindow::setTabWidget(QTabWidget *tabWidget) {
+    MainWindow::tabWidget = tabWidget;
+}
+
+MainWindow::~MainWindow() {
+    delete this->pButton;
+    delete this->pTable;
+    delete this->tabWidget;
+    delete this->menu;
+}

@@ -8,26 +8,17 @@
 #include <QtCore>
 #include <QtWidgets>
 
-class MainWindow : public QWidget {
+class MainWindow : public QMainWindow {
 Q_OBJECT
 private:
-    QVBoxLayout *pLayout;
     QTableWidget *pTable;
     QPushButton *pButton;
     QTabWidget *tabWidget;
+    QMenuBar *menu;
 public:
-    QTabWidget *getTabWidget() const;
+    MainWindow(QMainWindow* pwgt=0);
 
-    void setTabWidget(QTabWidget *tabWidget);
-
-public:
-    MainWindow(QWidget *pwgt = nullptr);
-
-    ~MainWindow();
-
-    QVBoxLayout *getPLayout() const;
-
-    void setPLayout(QVBoxLayout *pLayout);
+    virtual ~MainWindow();
 
     QTableWidget *getPTable() const;
 
@@ -36,6 +27,10 @@ public:
     QPushButton *getPButton() const;
 
     void setPButton(QPushButton *pButton);
+
+    QTabWidget *getTabWidget() const;
+
+    void setTabWidget(QTabWidget *tabWidget);
 };
 
 

@@ -46,3 +46,15 @@ int ReservByAgreement::getIdContract() const {
 void ReservByAgreement::setIdContract(int idContract) {
     ReservByAgreement::idContract = idContract;
 }
+
+ReservByAgreement::ReservByAgreement(const QDate &dateOfBegining, int idHotelRoom, int idContract) : Model() {
+    this->dateOfBegining = new QDate(dateOfBegining);
+    this->idHotelRoom = idHotelRoom;
+    this->idContract = idContract;
+}
+
+ReservByAgreement::ReservByAgreement(int id, const QDate &dateOfBegining, int idHotelRoom, int idContract) : Model(id) {
+    this->dateOfBegining = new QDate(dateOfBegining);
+    this->idHotelRoom = idHotelRoom;
+    this->idContract = idContract;
+}

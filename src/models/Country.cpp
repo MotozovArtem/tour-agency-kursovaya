@@ -33,3 +33,13 @@ QDate *Country::getFoundationDate() const {
 void Country::setFoundationDate(QDate *foundationDate) {
     Country::foundationDate = foundationDate;
 }
+
+Country::Country(int id, const QString &name, const QDate &foundationDate) : Model(id) {
+    this->name = new QString(name);
+    this->foundationDate = new QDate(foundationDate);
+}
+
+Country::Country(const QString &name, const QDate &foundationDate) : Model() {
+    this->name = new QString(name);
+    this->foundationDate = new QDate(foundationDate);
+}

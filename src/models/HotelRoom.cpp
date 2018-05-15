@@ -78,3 +78,25 @@ void HotelRoom::setIdHotelRoomType(int idHotelRoomType) {
 HotelRoom::~HotelRoom() {
     delete hotelRoomName;
 }
+
+HotelRoom::HotelRoom(const QString &hotelRoomName, int places, bool shower, bool secondRestroom, bool balcony,
+                     int idHotel, int idHotelRoomType) : Model() {
+    this->hotelRoomName = new QString(hotelRoomName);
+    this->places=places;
+    this->shower = shower;
+    this->secondRestroom=secondRestroom;
+    this->balcony = balcony;
+    this->idHotel = idHotel;
+    this->idHotelRoomType = idHotelRoomType;
+}
+
+HotelRoom::HotelRoom(int id, const QString &hotelRoomName, int places, bool shower, bool secondRestroom, bool balcony,
+                     int idHotel, int idHotelRoomType) : Model(id) {
+    this->hotelRoomName = new QString(hotelRoomName);
+    this->places=places;
+    this->shower = shower;
+    this->secondRestroom=secondRestroom;
+    this->balcony = balcony;
+    this->idHotel = idHotel;
+    this->idHotelRoomType = idHotelRoomType;
+}

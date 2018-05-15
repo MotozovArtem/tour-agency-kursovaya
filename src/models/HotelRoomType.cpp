@@ -12,6 +12,14 @@ HotelRoomType::HotelRoomType(int id) : Model(id) {}
 
 HotelRoomType::HotelRoomType() {}
 
+HotelRoomType::HotelRoomType(int id, const QString &name) : Model(id) {
+    this->name = new QString(name);
+}
+
+HotelRoomType::HotelRoomType(const QString &name) : Model() {
+    this->name = new QString(name);
+}
+
 QString *HotelRoomType::getName() const {
     return name;
 }
@@ -23,3 +31,5 @@ void HotelRoomType::setName(QString *name) {
 HotelRoomType::~HotelRoomType() {
     delete this->name;
 }
+
+

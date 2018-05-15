@@ -20,3 +20,22 @@ Ticket::~Ticket() {
     delete this->date;
     delete this->dateOfPurchase;
 }
+
+Ticket::Ticket(int id, int place, const QDate &date, float price, int idDocuments, const QDate &dateOfPurchase,
+               int idFlight) : Model(id) {
+    this->place = place;
+    this->date = new QDate(date);
+    this->price = price;
+    this->idDocuments = idDocuments;
+    this->dateOfPurchase = new QDate(dateOfPurchase);
+    this->idFlight = idFlight;
+}
+
+Ticket::Ticket(int place, const QDate &date, float price, int idDocuments, const QDate &dateOfPurchase, int idFlight) {
+    this->place = place;
+    this->date = new QDate(date);
+    this->price = price;
+    this->idDocuments = idDocuments;
+    this->dateOfPurchase = new QDate(dateOfPurchase);
+    this->idFlight = idFlight;
+}

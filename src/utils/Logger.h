@@ -7,7 +7,13 @@
 
 
 class Logger {
-
+//public:
+//    static Logger *getInstance();
+//
+//private:
+//    static Logger *instance;
+//
+//    static Logger();
 };
 
 

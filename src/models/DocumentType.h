@@ -9,13 +9,17 @@
 #include <QtCore>
 
 
-class DocumentType: public Model {
+class DocumentType : public Model {
 private:
     QString *name;
 public:
     DocumentType(int id, QString *name);
 
+    DocumentType(int id, const QString &name);
+
     DocumentType(QString *name);
+
+    DocumentType(const QString &name);
 
     DocumentType(int id);
 

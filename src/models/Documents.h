@@ -8,15 +8,19 @@
 #include "Model.h"
 #include <QtCore>
 
-class Documents: public Model {
+class Documents : public Model {
 private:
     QString *serial;
     QDate *dateOfIssue;
-    QDate *issuanceDepartment;
+    QString *issuanceDepartment;
 public:
-    Documents(int id, QString *serial, QDate *dateOfIssue, QDate *issuanceDepartment);
+    Documents(int id, QString *serial, QDate *dateOfIssue, QString *issuanceDepartment);
 
-    Documents(QString *serial, QDate *dateOfIssue, QDate *issuanceDepartment);
+    Documents(int id, const QString &serial, const QDate &dateOfIssue, const QString &issuanceDepartment);
+
+    Documents(QString *serial, QDate *dateOfIssue, QString *issuanceDepartment);
+
+    Documents(const QString &serial, const QDate &dateOfIssue, const QString &issuanceDepartment);
 
     Documents(int id);
 
@@ -32,9 +36,9 @@ public:
 
     void setDateOfIssue(QDate *dateOfIssue);
 
-    QDate *getIssuanceDepartment() const;
+    QString *getIssuanceDepartment() const;
 
-    void setIssuanceDepartment(QDate *issuanceDepartment);
+    void setIssuanceDepartment(QString *issuanceDepartment);
 };
 
 

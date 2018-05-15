@@ -8,13 +8,17 @@
 #include "Model.h"
 #include <QString>
 
-class TransportNodeType: public Model {
+class TransportNodeType : public Model {
 private:
     QString *name;
 public:
     TransportNodeType(int id, QString *name);
 
+    TransportNodeType(int id, const QString &name);
+
     TransportNodeType(QString *name);
+
+    TransportNodeType(const QString &name);
 
     TransportNodeType(int id);
 

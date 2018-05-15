@@ -24,6 +24,12 @@ public:
     HotelRoom(QString *hotelRoomName, int places, bool shower, bool secondRestroom, bool balcony, int idHotel,
               int idHotelRoomType);
 
+    HotelRoom(const QString &hotelRoomName, int places, bool shower, bool secondRestroom, bool balcony, int idHotel,
+              int idHotelRoomType);
+
+    HotelRoom(int id, const QString &hotelRoomName, int places, bool shower, bool secondRestroom, bool balcony, int idHotel,
+              int idHotelRoomType);
+
     HotelRoom(int id);
 
     HotelRoom();

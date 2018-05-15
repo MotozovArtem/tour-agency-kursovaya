@@ -23,3 +23,11 @@ QString *PlaceArrivalType::getName() const {
 void PlaceArrivalType::setName(QString *name) {
     PlaceArrivalType::name = name;
 }
+
+PlaceArrivalType::PlaceArrivalType(int id, const QString &name) : Model(id) {
+    this->name = new QString(name);
+}
+
+PlaceArrivalType::PlaceArrivalType(const QString &name) {
+    this->name = new QString(name);
+}

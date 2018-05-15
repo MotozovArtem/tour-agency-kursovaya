@@ -4,16 +4,17 @@
 
 #include "Documents.h"
 
-Documents::Documents(int id, QString *serial, QDate *dateOfIssue, QDate *issuanceDepartment) : Model(id),
-                                                                                               serial(serial),
-                                                                                               dateOfIssue(dateOfIssue),
-                                                                                               issuanceDepartment(
-                                                                                                       issuanceDepartment) {}
+Documents::Documents(int id, QString *serial, QDate *dateOfIssue, QString *issuanceDepartment) : Model(id),
+                                                                                                 serial(serial),
+                                                                                                 dateOfIssue(
+                                                                                                         dateOfIssue),
+                                                                                                 issuanceDepartment(
+                                                                                                         issuanceDepartment) {}
 
-Documents::Documents(QString *serial, QDate *dateOfIssue, QDate *issuanceDepartment) : serial(serial),
-                                                                                       dateOfIssue(dateOfIssue),
-                                                                                       issuanceDepartment(
-                                                                                               issuanceDepartment) {}
+Documents::Documents(QString *serial, QDate *dateOfIssue, QString *issuanceDepartment) : serial(serial),
+                                                                                         dateOfIssue(dateOfIssue),
+                                                                                         issuanceDepartment(
+                                                                                                 issuanceDepartment) {}
 
 Documents::Documents(int id) : Model(id) {}
 
@@ -41,10 +42,18 @@ void Documents::setDateOfIssue(QDate *dateOfIssue) {
     Documents::dateOfIssue = dateOfIssue;
 }
 
-QDate *Documents::getIssuanceDepartment() const {
+QString *Documents::getIssuanceDepartment() const {
     return issuanceDepartment;
 }
 
-void Documents::setIssuanceDepartment(QDate *issuanceDepartment) {
+void Documents::setIssuanceDepartment(QString *issuanceDepartment) {
     Documents::issuanceDepartment = issuanceDepartment;
+}
+
+Documents::Documents(int id, const QString &serial, const QDate &dateOfIssue, const QString &issuanceDepartment)
+        : Model(
+        id) {
+    this->serial = new QString(serial);
+    this->dateOfIssue = new QDate(dateOfIssue);
+    this->issuanceDepartment = new QString(issuanceDepartment);
 }

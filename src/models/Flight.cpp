@@ -63,3 +63,21 @@ QDate *Flight::getArrivalDate() const {
 void Flight::setArrivalDate(QDate *arrivalDate) {
     Flight::arrivalDate = arrivalDate;
 }
+
+Flight::Flight(int id, const QDate &dateOfPurchase, const QDate &dateOfDeparture, const QTime &departureTime,
+               const QTime &arrivalTime, const QDate &arrivalDate) : Model(id) {
+    this->dateOfPurchase = new QDate(dateOfPurchase);
+    this->dateOfDeparture = new QDate(dateOfDeparture);
+    this->departureTime = new QTime(departureTime);
+    this->arrivalTime = new QTime(arrivalTime);
+    this->arrivalDate = new QDate(arrivalDate);
+}
+
+Flight::Flight(const QDate &dateOfPurchase, const QDate &dateOfDeparture, const QTime &departureTime,
+               const QTime &arrivalTime, const QDate &arrivalDate) : Model() {
+    this->dateOfPurchase = new QDate(dateOfPurchase);
+    this->dateOfDeparture = new QDate(dateOfDeparture);
+    this->departureTime = new QTime(departureTime);
+    this->arrivalTime = new QTime(arrivalTime);
+    this->arrivalDate = new QDate(arrivalDate);
+}

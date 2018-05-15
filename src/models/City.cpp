@@ -52,3 +52,5 @@ City::City(const QString &name, int idCityType, int idCountry) : Model() {
     this->idCityType = idCityType;
     this->idCountry = idCountry;
 }
+
+QStringList City::columnList = {"id", "Name", "id City Type", "id Country"};

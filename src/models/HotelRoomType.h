@@ -8,13 +8,17 @@
 #include "Model.h"
 #include <QtCore>
 
-class HotelRoomType: public Model {
+class HotelRoomType : public Model {
 private:
-    QString* name;
+    QString *name;
 public:
     HotelRoomType(int id, QString *name);
 
+    HotelRoomType(int id, const QString &name);
+
     HotelRoomType(QString *name);
+
+    HotelRoomType(const QString &name);
 
     HotelRoomType(int id);
 

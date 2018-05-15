@@ -18,7 +18,11 @@ private:
 public:
     TransportNode(int id, QDate *dateOfPurchase, int idFlight, QString *nodeName, int idTransportNodeType);
 
+    TransportNode(int id,const QDate &dateOfPurchase, int idFlight, const QString &nodeName, int idTransportNodeType);
+
     TransportNode(QDate *dateOfPurchase, int idFlight, QString *nodeName, int idTransportNodeType);
+
+    TransportNode(const QDate &dateOfPurchase, int idFlight, const QString &nodeName, int idTransportNodeType);
 
     TransportNode(int id);
 

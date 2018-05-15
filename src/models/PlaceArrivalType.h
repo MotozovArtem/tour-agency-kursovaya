@@ -9,13 +9,17 @@
 #include <QtCore>
 #include "Model.h"
 
-class PlaceArrivalType: public Model {
+class PlaceArrivalType : public Model {
 private:
     QString *name;
 public:
     PlaceArrivalType(int id, QString *name);
 
+    PlaceArrivalType(int id, const QString &name);
+
     PlaceArrivalType(QString *name);
+
+    PlaceArrivalType(const QString &name);
 
     PlaceArrivalType(int id);
 

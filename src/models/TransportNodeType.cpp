@@ -23,3 +23,11 @@ QString *TransportNodeType::getName() const {
 void TransportNodeType::setName(QString *name) {
     TransportNodeType::name = name;
 }
+
+TransportNodeType::TransportNodeType(int id, const QString &name) : Model(id) {
+    this->name = new QString(name);
+}
+
+TransportNodeType::TransportNodeType(const QString &name): Model() {
+    this->name = new QString(name);
+}

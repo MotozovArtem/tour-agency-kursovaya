@@ -51,3 +51,19 @@ int Reservation::getIdContract() const {
 void Reservation::setIdContract(int idContract) {
     Reservation::idContract = idContract;
 }
+
+Reservation::Reservation(const QDate &dateOfBegining, int idHotelRoom, const QDate &dateOfEnding, int idContract)
+        : Model() {
+    this->dateOfBegining = new QDate(dateOfBegining);
+    this->dateOfEnding = new QDate(dateOfEnding);
+    this->idContract = idContract;
+    this->idHotelRoom = idHotelRoom;
+}
+
+Reservation::Reservation(int id, const QDate &dateOfBegining, int idHotelRoom, const QDate &dateOfEnding,
+                         int idContract) : Model(id) {
+    this->dateOfEnding = new QDate(dateOfEnding);
+    this->dateOfBegining = new QDate(dateOfBegining);
+    this->idContract = idContract;
+    this->idHotelRoom = idHotelRoom;
+}

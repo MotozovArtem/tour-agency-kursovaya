@@ -15,7 +15,11 @@ private:
 public:
     Country(int id, QString *name, QDate *foundationDate);
 
+    Country(int id, const QString &name,const QDate &foundationDate);
+
     Country(QString *name, QDate *foundationDate);
+
+    Country(const QString &name, const QDate &foundationDate);
 
     Country(int id);
 

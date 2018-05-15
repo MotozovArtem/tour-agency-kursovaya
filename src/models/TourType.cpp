@@ -23,3 +23,11 @@ QString *TourType::getName() const {
 void TourType::setName(QString *name) {
     TourType::name = name;
 }
+
+TourType::TourType(int id, const QString &name) : Model(id) {
+    this->name = new QString(name);
+}
+
+TourType::TourType(const QString &name) : Model() {
+    this->name = new QString(name);
+}

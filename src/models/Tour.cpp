@@ -49,3 +49,19 @@ int Tour::getIdTourType() const {
 void Tour::setIdTourType(int idTourType) {
     Tour::idTourType = idTourType;
 }
+
+Tour::Tour(int id, const QString &name, int days, int idCity, int idTourType) : Model(id) {
+    this->name = new QString(name);
+    this->days = days;
+    this->idCity = idCity;
+    this->idTourType = idTourType;
+}
+
+Tour::Tour(const QString &name, int days, int idCity, int idTourType): Model() {
+    this->name = new QString(name);
+    this->days = days;
+    this->idCity = idCity;
+    this->idTourType = idTourType;
+}
+
+

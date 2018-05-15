@@ -23,3 +23,11 @@ QString *DocumentType::getName() const {
 void DocumentType::setName(QString *name) {
     DocumentType::name = name;
 }
+
+DocumentType::DocumentType(int id, const QString &name) : Model(id) {
+    this->name = new QString(name);
+}
+
+DocumentType::DocumentType(const QString &name) : Model() {
+    this->name = new QString(name);
+}
