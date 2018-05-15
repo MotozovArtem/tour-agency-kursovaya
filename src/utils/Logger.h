@@ -6,14 +6,25 @@
 #define PSQLWORK_LOGGER_H
 
 
-class Logger {
-//public:
-//    static Logger *getInstance();
-//
-//private:
-//    static Logger *instance;
-//
-//    static Logger();
+#include <QObject>
+#include <QPlainTextEdit>
+#include <QIODevice>
+#include <QtCore/QDate>
+
+class Logger : public QObject {
+Q_OBJECT
+public:
+    Logger(QObject *parent, QString fileName, QPlainTextEdit *editor = nullptr);
+
+    ~Logger();
+
+private:
+    QFile *file;
+    QPlainTextEdit *editor;
+public slots:
+
+    void write(const QString &value);
+
 };
 
 

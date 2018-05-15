@@ -64,7 +64,7 @@ set(MODELS ${PROJECT_SOURCE_DIR}/models/Model.cpp ${PROJECT_SOURCE_DIR}/models/M
         src/models/DocumentType.cpp src/models/DocumentType.h)
 
 
-set(REALIZATION src/models/interfaces/dao_realization/HotelDataBaseDAO.cpp src/models/interfaces/dao_realization/HotelDataBaseDAO.h)
+set(REALIZATION src/models/interfaces/dao_realization/HotelDataBaseDAO.cpp src/models/interfaces/dao_realization/HotelDataBaseDAO.h src/models/interfaces/dao_realization/CityDataBaseDAO.cpp src/models/interfaces/dao_realization/CityDataBaseDAO.h)
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${MODELS} ${INTERFACES} ${REALIZATION})
 target_link_libraries(${PROJECT_NAME} ${PostgreSQL_LIBRARIES})

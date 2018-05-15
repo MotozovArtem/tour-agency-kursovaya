@@ -4,7 +4,6 @@
 
 #include "HotelDataBaseDAO.h"
 #include <QtSql/QtSql>
-#include "SQL/SQLConnection.h"
 
 
 QList<Hotel *> HotelDataBaseDAO::getAll() {
@@ -68,9 +67,25 @@ void HotelDataBaseDAO::add(Hotel *model) {
 }
 
 void HotelDataBaseDAO::update(Hotel *model) {
+    QSqlQuery query;
+    query.prepare("UPDATE Hotel SET address=:address, hotel_name=:hotel_name, "
+                  "stars=:stars, year_of_foundation=:year_of_foundation, "
+                  "id_city=:id_city WHERE id=:id");
+    query.bindValue(":address", *model->getAddress());
+    query.bindValue(":hotel_name", *model->getHotelName());
+    query.bindValue(":stars", model->getStars());
+    query.bindValue(":year_of_foundation", *model->getYearOfFoundation());
+    query.bindValue(":id_city", model->getIdCity());
+    if(query.exec()){
 
+    }
 }
 
 void HotelDataBaseDAO::del(Hotel *model) {
+    QSqlQuery query;
+    query.prepare("DELETE FROM Hotel WHERE id=:id");
+    query.bindValue(":id", model->getId());
+    if (query.exec()) {
 
+    }
 }
