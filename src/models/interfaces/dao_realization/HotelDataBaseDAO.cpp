@@ -4,6 +4,7 @@
 
 #include "HotelDataBaseDAO.h"
 #include <QtSql/QtSql>
+#include "utils/Logger.h"
 
 
 QList<Hotel *> HotelDataBaseDAO::getAll() {
@@ -13,19 +14,25 @@ QList<Hotel *> HotelDataBaseDAO::getAll() {
 //        qDebug() << "Ошибка"; // TODO: Запихнуть сюда логгер кастомный
 //    }
     QSqlQuery query;
-    query.exec("SELECT * FROM Hotel");
-    QSqlRecord rec = query.record();
     QList<Hotel *> hotelList;
-    while (query.next()) {
-        hotelList << new Hotel(
-                query.value(rec.indexOf("id")).toInt(),
-                query.value(rec.indexOf("hotel_name")).toString(),
-                query.value(rec.indexOf("address")).toString(),
-                query.value(rec.indexOf("stars")).toInt(),
-                query.value(rec.indexOf("year_of_foundation")).toDate(),
-                query.value(rec.indexOf("id_city")).toInt()
-        );
+    if (query.exec("SELECT * FROM Hotel")) {
+        QSqlRecord rec = query.record();
+        while (query.next()) {
+            hotelList << new Hotel(
+                    query.value(rec.indexOf("id")).toInt(),
+                    query.value(rec.indexOf("hotel_name")).toString(),
+                    query.value(rec.indexOf("address")).toString(),
+                    query.value(rec.indexOf("stars")).toInt(),
+                    query.value(rec.indexOf("year_of_foundation")).toDate(),
+                    query.value(rec.indexOf("id_city")).toInt()
+            );
+        }
+    } else {
+        Logger logger(nullptr, "log.txt", nullptr);
+        logger.write(QString("%1 %2").arg("HotelDataBaseDAO::getAll error", query.lastError().text()));
     }
+
+
 //    delete con;
     return hotelList;
 }
@@ -34,18 +41,22 @@ Hotel *HotelDataBaseDAO::getById(int id) {
     QSqlQuery query;
     query.prepare("SELECT * FROM Hotel WHERE id=:id");
     query.bindValue(":id", id);
-    query.exec();
-    QSqlRecord rec = query.record();
     Hotel *hotel = nullptr;
-    while (query.next()) {
-        hotel = new Hotel(
-                query.value(rec.indexOf("id")).toInt(),
-                query.value(rec.indexOf("hotel_name")).toString(),
-                query.value(rec.indexOf("address")).toString(),
-                query.value(rec.indexOf("stars")).toInt(),
-                query.value(rec.indexOf("year_of_foundation")).toDate(),
-                query.value(rec.indexOf("id_city")).toInt()
-        );
+    if (query.exec()) {
+        QSqlRecord rec = query.record();
+        while (query.next()) {
+            hotel = new Hotel(
+                    query.value(rec.indexOf("id")).toInt(),
+                    query.value(rec.indexOf("hotel_name")).toString(),
+                    query.value(rec.indexOf("address")).toString(),
+                    query.value(rec.indexOf("stars")).toInt(),
+                    query.value(rec.indexOf("year_of_foundation")).toDate(),
+                    query.value(rec.indexOf("id_city")).toInt()
+            );
+        }
+    } else {
+        Logger logger(nullptr, "log.txt", nullptr);
+        logger.write(QString("%1 %2").arg("HotelDataBaseDAO::getById error", query.lastError().text()));
     }
     return hotel;
 }
@@ -59,11 +70,10 @@ void HotelDataBaseDAO::add(Hotel *model) {
     query.bindValue(":stars", model->getStars());
     query.bindValue(":year_of_foundation", *model->getYearOfFoundation());
     query.bindValue(":id_city", model->getIdCity());
-    if (query.exec()) {
-
+    if (!query.exec()) {
+        Logger logger(nullptr, "log.txt", nullptr);
+        logger.write(QString("%1 %2").arg("HotelDataBaseDAO::add error", query.lastError().text()));
     }
-
-
 }
 
 void HotelDataBaseDAO::update(Hotel *model) {
@@ -76,8 +86,9 @@ void HotelDataBaseDAO::update(Hotel *model) {
     query.bindValue(":stars", model->getStars());
     query.bindValue(":year_of_foundation", *model->getYearOfFoundation());
     query.bindValue(":id_city", model->getIdCity());
-    if(query.exec()){
-
+    if (!query.exec()) {
+        Logger logger(nullptr, "log.txt", nullptr);
+        logger.write(QString("%1 %2").arg("HotelDataBaseDAO::update error", query.lastError().text()));
     }
 }
 
@@ -85,7 +96,8 @@ void HotelDataBaseDAO::del(Hotel *model) {
     QSqlQuery query;
     query.prepare("DELETE FROM Hotel WHERE id=:id");
     query.bindValue(":id", model->getId());
-    if (query.exec()) {
-
+    if (!query.exec()) {
+        Logger logger(nullptr, "log.txt", nullptr);
+        logger.write(QString("%1 %2").arg("HotelDataBaseDAO::del error", query.lastError().text()));
     }
 }

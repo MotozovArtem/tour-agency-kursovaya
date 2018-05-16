@@ -3,6 +3,7 @@
 #include <models/interfaces/dao_realization/HotelDataBaseDAO.h>
 #include "SQL/SQLConnection.h"
 #include "GUI/MainWindow.h"
+#include "utils/Logger.h"
 
 
 int main(int argc, char **argv) {
@@ -10,7 +11,6 @@ int main(int argc, char **argv) {
     MainWindow *window = new MainWindow();
     SQLConnection *con = new SQLConnection("tour_agency", "rienel", "1957");
     QSqlDatabase db = con->getConnection();
-
     if (!db.open()) {
         QMessageBox *msgBox = new QMessageBox(QMessageBox::Information, "Warning",
                                               "Can't connect to database.<br> Exit program", QMessageBox::Ok);
@@ -20,14 +20,11 @@ int main(int argc, char **argv) {
     }
 
     QTableWidget *view = window->getPTable();
-    QPushButton *button = window->getPButton();
-
 
     QList<Hotel *> hotelList = HotelDataBaseDAO().getAll();
 
     view->setRowCount(hotelList.size());
-    view->setColumnCount(6);
-
+    view->setColumnCount(Hotel::columnList.length());
 
     view->setHorizontalHeaderLabels(Hotel::columnList);
 
@@ -40,28 +37,6 @@ int main(int argc, char **argv) {
             view->setItem(i, 4, new QTableWidgetItem(hotel->getYearOfFoundation()->toString()));
             view->setItem(i, 5, new QTableWidgetItem(QString::number(hotel->getIdCity())));
         }
-
-
-//    QTabWidget *tabWidget = window->getTabWidget();
-//    QStringList tableList = db.tables();
-//
-//
-//    QSqlRelationalTableModel model;
-//    model.setTable("Hotel");
-//    model.setRelation(5, QSqlRelation("City", "id", "name"));
-//
-//    model.select();
-//    model.setEditStrategy(QSqlTableModel::OnManualSubmit);
-//
-//    QObject::connect(button, SIGNAL(button->clicked()), &model, SLOT(model.submitAll()));
-//
-//    view->setModel(&model);
-//    view->setItemDelegate(new QSqlRelationalDelegate(view));
-//
-//            foreach(QString label, tableList) {
-//            tabWidget->addTab(new QLabel(label, tabWidget), label); // На каждую страницу добавляет Label
-//        }
-
 
     window->show();
     int exit_code = QApplication::exec();

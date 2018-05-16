@@ -10,17 +10,17 @@
 
 class Documents : public Model {
 private:
-    QString *serial;
+    QString *documentSerial;
     QDate *dateOfIssue;
     QString *issuanceDepartment;
 public:
     Documents(int id, QString *serial, QDate *dateOfIssue, QString *issuanceDepartment);
 
-    Documents(int id, const QString &serial, const QDate &dateOfIssue, const QString &issuanceDepartment);
+    Documents(int id, const QString &documentSerial, const QDate &dateOfIssue, const QString &issuanceDepartment);
 
     Documents(QString *serial, QDate *dateOfIssue, QString *issuanceDepartment);
 
-    Documents(const QString &serial, const QDate &dateOfIssue, const QString &issuanceDepartment);
+    Documents(const QString &documentSerial, const QDate &dateOfIssue, const QString &issuanceDepartment);
 
     Documents(int id);
 

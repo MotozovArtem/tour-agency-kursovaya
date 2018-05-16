@@ -66,3 +66,10 @@ PlaceArrival::PlaceArrival(int id, const QString &name, const QString &address, 
     this->idCity = idCity;
     this->idPlaceArrivalType = idPlaceArrivalType;
 }
+
+PlaceArrival::PlaceArrival(const QString &name, const QString &address, int idCity, int idPlaceArrivalType): Model() {
+    this->name = new QString(name);
+    this->address = new QString(address);
+    this->idCity = idCity;
+    this->idPlaceArrivalType = idPlaceArrivalType;
+}

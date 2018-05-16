@@ -4,37 +4,31 @@
 
 #include "TransportNode.h"
 
-TransportNode::TransportNode(int id, QDate *dateOfPurchase, int idFlight, QString *nodeName, int idTransportNodeType)
-        : Model(id), dateOfPurchase(dateOfPurchase), idFlight(idFlight), nodeName(nodeName),
-          idTransportNodeType(idTransportNodeType) {}
+TransportNode::TransportNode(int id, QString *nodeName, int idFlight, int idTransportNodeType) : Model(id),
+                                                                                                 nodeName(nodeName),
+                                                                                                 idFlight(idFlight),
+                                                                                                 idTransportNodeType(
+                                                                                                         idTransportNodeType) {}
 
-TransportNode::TransportNode(QDate *dateOfPurchase, int idFlight, QString *nodeName, int idTransportNodeType)
-        : dateOfPurchase(dateOfPurchase), idFlight(idFlight), nodeName(nodeName),
-          idTransportNodeType(idTransportNodeType) {}
+TransportNode::TransportNode(QString *nodeName, int idFlight, int idTransportNodeType) : nodeName(nodeName),
+                                                                                         idFlight(idFlight),
+                                                                                         idTransportNodeType(
+                                                                                                 idTransportNodeType) {}
 
 TransportNode::TransportNode(int id) : Model(id) {}
 
 TransportNode::TransportNode() {}
 
-TransportNode::~TransportNode() {
-    delete this->dateOfPurchase;
-    delete this->nodeName;
+TransportNode::TransportNode(int id, const QString &nodeName, int idFlight, int idTransportNodeType) : Model(id) {
+    this->nodeName = new QString(nodeName);
+    this->idFlight = idFlight;
+    this->idTransportNodeType = idTransportNodeType;
 }
 
-QDate *TransportNode::getDateOfPurchase() const {
-    return dateOfPurchase;
-}
-
-void TransportNode::setDateOfPurchase(QDate *dateOfPurchase) {
-    TransportNode::dateOfPurchase = dateOfPurchase;
-}
-
-int TransportNode::getIdFlight() const {
-    return idFlight;
-}
-
-void TransportNode::setIdFlight(int idFlight) {
-    TransportNode::idFlight = idFlight;
+TransportNode::TransportNode(const QString &nodeName, int idFlight, int idTransportNodeType) : Model() {
+    this->nodeName = new QString(nodeName);
+    this->idFlight = idFlight;
+    this->idTransportNodeType = idTransportNodeType;
 }
 
 QString *TransportNode::getNodeName() const {
@@ -45,26 +39,18 @@ void TransportNode::setNodeName(QString *nodeName) {
     TransportNode::nodeName = nodeName;
 }
 
+int TransportNode::getIdFlight() const {
+    return idFlight;
+}
+
+void TransportNode::setIdFlight(int idFlight) {
+    TransportNode::idFlight = idFlight;
+}
+
 int TransportNode::getIdTransportNodeType() const {
     return idTransportNodeType;
 }
 
 void TransportNode::setIdTransportNodeType(int idTransportNodeType) {
     TransportNode::idTransportNodeType = idTransportNodeType;
-}
-
-TransportNode::TransportNode(int id, const QDate &dateOfPurchase, int idFlight, const QString &nodeName,
-                             int idTransportNodeType) : Model(id) {
-    this->dateOfPurchase = new QDate(dateOfPurchase);
-    this->idFlight = idFlight;
-    this->nodeName = new QString(nodeName);
-    this->idTransportNodeType = idTransportNodeType;
-}
-
-TransportNode::TransportNode(const QDate &dateOfPurchase, int idFlight, const QString &nodeName,
-                             int idTransportNodeType) : Model() {
-    this->dateOfPurchase = new QDate(dateOfPurchase);
-    this->idFlight = idFlight;
-    this->nodeName = new QString(nodeName);
-    this->idTransportNodeType = idTransportNodeType;
 }

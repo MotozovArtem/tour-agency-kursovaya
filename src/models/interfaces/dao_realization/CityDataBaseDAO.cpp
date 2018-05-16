@@ -2,22 +2,25 @@
 // Created by rienel on 15.05.18.
 //
 
-#include <QtSql/QSqlQuery>
-#include <QtSql/QSqlRecord>
+#include <QtSql/QtSql>
+#include <utils/Logger.h>
 #include "CityDataBaseDAO.h"
 
 QList<City *> CityDataBaseDAO::getAll() {
     QSqlQuery query;
-    query.exec("SELECT * FROM City");
-//    QSqlRecord rec = query.record();
     QList<City *> list;
-    while (query.next()) {
-        list << new City(
-                query.value("id").toInt(),
-                query.value("name").toString(),
-                query.value("id_city_type").toInt(),
-                query.value("id_country").toInt()
-        );
+    if (query.exec("SELECT * FROM City")) {
+        while (query.next()) {
+            list << new City(
+                    query.value("id").toInt(),
+                    query.value("name").toString(),
+                    query.value("id_city_type").toInt(),
+                    query.value("id_country").toInt()
+            );
+        }
+    } else {
+        Logger logger(nullptr, "log.txt", nullptr);
+        logger.write(QString("%1 %2").arg("CityDataBaseDAO::getAll error", query.lastError().text()));
     }
     return list;
 }
@@ -36,6 +39,9 @@ City *CityDataBaseDAO::getById(int id) {
                     query.value("id_country").toInt()
             );
         }
+    } else {
+        Logger logger(nullptr, "log.txt", nullptr);
+        logger.write(QString("%1 %2").arg("CityDataBaseDAO::getById error", query.lastError().text()));
     }
     return city;
 }
@@ -47,8 +53,9 @@ void CityDataBaseDAO::add(City *model) {
     query.bindValue(":name", *model->getName());
     query.bindValue(":id_city_type", model->getIdCityType());
     query.bindValue(":id_country", model->getIdCountry());
-    if (query.exec()) {
-
+    if (!query.exec()) {
+        Logger logger(nullptr, "log.txt", nullptr);
+        logger.write(QString("%1 %2").arg("CityDataBaseDAO::add() error", query.lastError().text()));
     }
 }
 
@@ -59,8 +66,9 @@ void CityDataBaseDAO::update(City *model) {
     query.bindValue(":id_city_type", model->getIdCityType());
     query.bindValue(":id_country", model->getIdCountry());
     query.bindValue(":id", model->getId());
-    if (query.exec()) {
-
+    if (!query.exec()) {
+        Logger logger(nullptr, "log.txt", nullptr);
+        logger.write(QString("%1 %2").arg("CityDataBaseDAO::update error", query.lastError().text()));
     }
 }
 
@@ -68,7 +76,8 @@ void CityDataBaseDAO::del(City *model) {
     QSqlQuery query;
     query.prepare("DELETE FROM City WHERE id=:id");
     query.bindValue(":id", model->getId());
-    if(query.exec()){
-
+    if (!query.exec()) {
+        Logger logger(nullptr, "log.txt", nullptr);
+        logger.write(QString("%1 %2").arg("CityDataBaseDAO::del error", query.lastError().text()));
     }
 }

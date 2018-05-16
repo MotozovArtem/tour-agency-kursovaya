@@ -11,40 +11,33 @@
 
 class TransportNode: public Model {
 private:
-    QDate *dateOfPurchase;
-    int idFlight;
     QString *nodeName;
+    int idFlight;
     int idTransportNodeType;
 public:
-    TransportNode(int id, QDate *dateOfPurchase, int idFlight, QString *nodeName, int idTransportNodeType);
+    TransportNode(int id, QString *nodeName, int idFlight, int idTransportNodeType);
 
-    TransportNode(int id,const QDate &dateOfPurchase, int idFlight, const QString &nodeName, int idTransportNodeType);
+    TransportNode(int id, const QString &nodeName, int idFlight, int idTransportNodeType);
 
-    TransportNode(QDate *dateOfPurchase, int idFlight, QString *nodeName, int idTransportNodeType);
+    TransportNode(QString *nodeName, int idFlight, int idTransportNodeType);
 
-    TransportNode(const QDate &dateOfPurchase, int idFlight, const QString &nodeName, int idTransportNodeType);
+    TransportNode(const QString &nodeName, int idFlight, int idTransportNodeType);
 
     TransportNode(int id);
 
     TransportNode();
 
-    QDate *getDateOfPurchase() const;
+    QString *getNodeName() const;
 
-    void setDateOfPurchase(QDate *dateOfPurchase);
+    void setNodeName(QString *nodeName);
 
     int getIdFlight() const;
 
     void setIdFlight(int idFlight);
 
-    QString *getNodeName() const;
-
-    void setNodeName(QString *nodeName);
-
     int getIdTransportNodeType() const;
 
     void setIdTransportNodeType(int idTransportNodeType);
-
-    virtual ~TransportNode();
 };
 
 

@@ -12,26 +12,53 @@
 class Ticket : public Model {
 private:
     int place;
-    QDate *date;
+    QDate *date_flight;
     float price;
     int idDocuments;
     QDate *dateOfPurchase;
     int idFlight;
 public:
-    Ticket(int id, int place, QDate *date, float price, int idDocuments, QDate *dateOfPurchase, int idFlight);
+    Ticket(int id, int place, QDate *date_flight, float price, int idDocuments, QDate *dateOfPurchase, int idFlight);
 
-    Ticket(int id, int place, const QDate &date, float price, int idDocuments, const QDate &dateOfPurchase,
+    Ticket(int id, int place, const QDate &date_flight, float price, int idDocuments, const QDate &dateOfPurchase,
            int idFlight);
 
-    Ticket(int place, QDate *date, float price, int idDocuments, QDate *dateOfPurchase, int idFlight);
+    Ticket(int place, QDate *date_flight, float price, int idDocuments, QDate *dateOfPurchase, int idFlight);
 
-    Ticket(int place, const QDate &date, float price, int idDocuments, const QDate &dateOfPurchase, int idFlight);
+    Ticket(int place, const QDate &date_flight, float price, int idDocuments, const QDate &dateOfPurchase,
+           int idFlight);
 
     Ticket(int id);
 
     Ticket();
 
     virtual ~Ticket();
+
+    int getPlace() const;
+
+    void setPlace(int place);
+
+    QDate *getDate_flight() const;
+
+    void setDate_flight(QDate *date_flight);
+
+    float getPrice() const;
+
+    void setPrice(float price);
+
+    int getIdDocuments() const;
+
+    void setIdDocuments(int idDocuments);
+
+    QDate *getDateOfPurchase() const;
+
+    void setDateOfPurchase(QDate *dateOfPurchase);
+
+    int getIdFlight() const;
+
+    void setIdFlight(int idFlight);
+
+
 };
 
 
