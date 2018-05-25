@@ -13,6 +13,7 @@ private:
     QString *name;
     QDate *foundationDate;
 public:
+    static QStringList columnList;
     Country(int id, QString *name, QDate *foundationDate);
 
     Country(int id, const QString &name,const QDate &foundationDate);

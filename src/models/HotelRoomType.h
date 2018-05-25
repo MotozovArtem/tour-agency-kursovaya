@@ -12,6 +12,8 @@ class HotelRoomType : public Model {
 private:
     QString *name;
 public:
+    static QStringList columnList;
+    
     HotelRoomType(int id, QString *name);
 
     HotelRoomType(int id, const QString &name);

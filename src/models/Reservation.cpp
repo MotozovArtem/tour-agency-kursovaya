@@ -67,3 +67,5 @@ Reservation::Reservation(int id, const QDate &dateOfBegining, int idHotelRoom, c
     this->idContract = idContract;
     this->idHotelRoom = idHotelRoom;
 }
+
+QStringList Reservation::columnList = {"ID", "Date of begining", "Date of Ending", "Hotel room_f", "Contract_f"};

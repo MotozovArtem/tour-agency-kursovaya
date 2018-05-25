@@ -13,6 +13,7 @@ private:
     int idContract;
     int idClient;
 public:
+    static QStringList columnList;
     ClientsRest(int id, int idContract, int idClient);
 
     ClientsRest(int idContract, int idClient);

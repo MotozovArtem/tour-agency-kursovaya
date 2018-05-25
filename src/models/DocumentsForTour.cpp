@@ -45,3 +45,5 @@ int DocumentsForTour::getIdDocumentType() const {
 void DocumentsForTour::setIdDocumentType(int idDocumentType) {
     DocumentsForTour::idDocumentType = idDocumentType;
 }
+
+QStringList DocumentsForTour::columnList = {"ID", "Document_f", "Client_f","Document type_f"};

@@ -16,6 +16,7 @@ private:
     int idCity;
     int idPlaceArrivalType;
 public:
+    static QStringList columnList;
     PlaceArrival(int id, QString *name, QString *address, int idCity, int idPlaceArrivalType);
 
     PlaceArrival(int id, const QString &name, const QString &address, int idCity, int idPlaceArrivalType);

@@ -101,3 +101,6 @@ Contract::Contract(const QString &name, const QDate &dateOfPayment, const QDate 
     this->idTourType = idTourType;
     this->idDocuments = idDocuments;
 }
+
+QStringList Contract::columnList = {"ID", "Name", "Date of payment_f", "Date of issue", "Total", "Status_f",
+                                    "Tour type_f", "Documents_f"};

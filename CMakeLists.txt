@@ -35,7 +35,7 @@ set(INTERFACES src/models/interfaces/ModelDAO.h src/models/interfaces/HotelDAO.h
         src/models/interfaces/PlaceArrivalDAO.h src/models/interfaces/PlaceArrivalTypeDAO.h
         src/models/interfaces/ClientDAO.h src/models/interfaces/DocumentsDAO.h
         src/models/interfaces/DocumentsForTourDAO.h src/models/interfaces/ReservByAgreementDAO.h
-        src/models/interfaces/CountryDAO.h src/models/interfaces/DocumentTypeDAO.h)
+        src/models/interfaces/CountryDAO.h src/models/interfaces/DocumentTypeDAO.h src/models/interfaces/StatusDAO.h)
 
 
 set(MODELS ${PROJECT_SOURCE_DIR}/models/Model.cpp ${PROJECT_SOURCE_DIR}/models/Model.h
@@ -61,7 +61,7 @@ set(MODELS ${PROJECT_SOURCE_DIR}/models/Model.cpp ${PROJECT_SOURCE_DIR}/models/M
         src/models/DocumentsForTour.cpp src/models/DocumentsForTour.h
         src/models/ReservByAgreement.cpp src/models/ReservByAgreement.h
         src/models/Country.cpp src/models/Country.h
-        src/models/DocumentType.cpp src/models/DocumentType.h)
+        src/models/DocumentType.cpp src/models/DocumentType.h src/models/Status.cpp src/models/Status.h)
 
 
 set(REALIZATION src/models/interfaces/dao_realization/HotelDataBaseDAO.cpp src/models/interfaces/dao_realization/HotelDataBaseDAO.h src/models/interfaces/dao_realization/CityDataBaseDAO.cpp src/models/interfaces/dao_realization/CityDataBaseDAO.h src/models/interfaces/dao_realization/HotelRoomTypeDataBaseDAO.cpp src/models/interfaces/dao_realization/HotelRoomTypeDataBaseDAO.h)

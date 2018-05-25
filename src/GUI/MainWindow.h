@@ -7,6 +7,7 @@
 
 #include <QtCore>
 #include <QtWidgets>
+#include <models/interfaces/ModelDAO.h>
 
 class MainWindow : public QMainWindow {
 Q_OBJECT
@@ -16,7 +17,7 @@ private:
     QTabWidget *tabWidget;
     QMenuBar *menu;
 public:
-    MainWindow(QMainWindow* pwgt=0);
+    MainWindow(QMainWindow *pwgt = 0);
 
     virtual ~MainWindow();
 
@@ -31,6 +32,8 @@ public:
     QTabWidget *getTabWidget() const;
 
     void setTabWidget(QTabWidget *tabWidget);
+
+    template<class modelClass, class daoClass>void renderTable();
 };
 
 

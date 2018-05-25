@@ -14,6 +14,7 @@ private:
     QDate *dateOfIssue;
     QString *issuanceDepartment;
 public:
+    static QStringList columnList;
     Documents(int id, QString *serial, QDate *dateOfIssue, QString *issuanceDepartment);
 
     Documents(int id, const QString &documentSerial, const QDate &dateOfIssue, const QString &issuanceDepartment);

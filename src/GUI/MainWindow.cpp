@@ -52,3 +52,12 @@ MainWindow::~MainWindow() {
     delete this->tabWidget;
     delete this->menu;
 }
+
+template<class modelClass, class daoClass>
+void MainWindow::renderTable() {
+    QList<modelClass *> objectList = daoClass().getAll();
+    this->pTable->setRowCount(objectList.size());
+    this->pTable->setColumnCount(modelClass::columnList.length());
+
+    this->pTable->setHorizontalHeaderLabels(modelClass::columnList);
+}

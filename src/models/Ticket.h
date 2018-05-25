@@ -18,6 +18,7 @@ private:
     QDate *dateOfPurchase;
     int idFlight;
 public:
+    static QStringList columnList;
     Ticket(int id, int place, QDate *date_flight, float price, int idDocuments, QDate *dateOfPurchase, int idFlight);
 
     Ticket(int id, int place, const QDate &date_flight, float price, int idDocuments, const QDate &dateOfPurchase,

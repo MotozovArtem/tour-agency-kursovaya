@@ -16,6 +16,7 @@ private:
     QString *toponym;
     int idCity;
 public:
+    static QStringList columnList;
     Sight(int id, QString *name, QString *address, QDate *yearOfCreation, QString *toponym, int idCity);
 
     Sight(int id, const QString &name, const QString &address, const QDate &yearOfCreation, const QString &toponym,

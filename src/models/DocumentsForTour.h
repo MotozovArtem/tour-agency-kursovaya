@@ -14,6 +14,7 @@ private:
     int idClient;
     int idDocumentType;
 public:
+    static QStringList columnList;
     DocumentsForTour(int id, int idDocument, int idClient, int idDocumentType);
 
     DocumentsForTour(int idDocument, int idClient, int idDocumentType);

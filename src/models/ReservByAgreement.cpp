@@ -58,3 +58,5 @@ ReservByAgreement::ReservByAgreement(int id, const QDate &dateOfBegining, int id
     this->idHotelRoom = idHotelRoom;
     this->idContract = idContract;
 }
+
+QStringList ReservByAgreement::columnList = {"ID", "Date of begining", "Hotel room_f", "Contract_f"};

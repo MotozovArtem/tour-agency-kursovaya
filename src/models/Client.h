@@ -18,6 +18,7 @@ private:
     QString *placeOfBirth;
     bool sex;
 public:
+    static QStringList columnList;
     Client(int id, QString *passportData, QString *surname, QString *name, QString *patronymic, QDate *dateOfBirth,
            QString *placeOfBirth, bool sex);
 

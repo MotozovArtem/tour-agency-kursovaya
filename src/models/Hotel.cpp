@@ -79,4 +79,4 @@ Hotel::Hotel(const QString &hotelName, const QString &address, int stars, const 
     this->idCity = idCity;
 }
 
-QStringList Hotel::columnList = {"id", "Hotel Name", "Address", "Year of Foundation", "Stars", "City"};
+QStringList Hotel::columnList = {"ID", "Hotel Name", "Address", "Year of Foundation", "Stars", "City"};

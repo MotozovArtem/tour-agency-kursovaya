@@ -85,3 +85,5 @@ Sight::Sight(const QString &name, const QString &address, const QDate &yearOfCre
     this->yearOfCreation = new QDate(yearOfCreation);
     this->toponym = new QString(toponym);
 }
+
+QStringList Sight::columnList = {"ID", "Name", "Address", "Year of creation", "Toponym", "City_f"};

@@ -13,6 +13,7 @@ class PlaceArrivalType : public Model {
 private:
     QString *name;
 public:
+    static QStringList columnList;
     PlaceArrivalType(int id, QString *name);
 
     PlaceArrivalType(int id, const QString &name);

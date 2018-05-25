@@ -100,3 +100,5 @@ HotelRoom::HotelRoom(int id, const QString &hotelRoomName, int places, bool show
     this->idHotel = idHotel;
     this->idHotelRoomType = idHotelRoomType;
 }
+
+QStringList HotelRoom::columnList = {"ID", "Hotel room name", "Places", "Shower", "Second restroom", "Balcony", "Hotel_f", "Hotel Room Type_f"};

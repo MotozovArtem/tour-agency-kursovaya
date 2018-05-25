@@ -31,3 +31,5 @@ TransportNodeType::TransportNodeType(int id, const QString &name) : Model(id) {
 TransportNodeType::TransportNodeType(const QString &name): Model() {
     this->name = new QString(name);
 }
+
+QStringList TransportNodeType::columnList = {"ID", "Name"};

@@ -18,6 +18,7 @@ private:
     int idHotel;
     int idHotelRoomType;
 public:
+    static QStringList columnList;
     HotelRoom(int id, QString *hotelRoomName, int places, bool shower, bool secondRestroom, bool balcony, int idHotel,
               int idHotelRoomType);
 

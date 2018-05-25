@@ -16,6 +16,7 @@ private:
     QTime *arrivalTime;
     QDate *arrivalDate;
 public:
+    static QStringList columnList;
     Flight(int id, QDate *dateOfPurchase, QDate *dateOfDeparture, QTime *departureTime, QTime *arrivalTime,
            QDate *arrivalDate);
 

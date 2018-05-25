@@ -81,3 +81,6 @@ Flight::Flight(const QDate &dateOfPurchase, const QDate &dateOfDeparture, const 
     this->arrivalTime = new QTime(arrivalTime);
     this->arrivalDate = new QDate(arrivalDate);
 }
+
+QStringList Flight::columnList = {"ID", "Date of Purchase", "Date of Departure", "Departure time", "Arrival time",
+                                  "Arrival date"};

@@ -12,6 +12,7 @@ class TourType : public Model {
 private:
     QString *name;
 public:
+    static QStringList columnList;
     TourType(int id, QString *name);
 
     TourType(int id, const QString &name);

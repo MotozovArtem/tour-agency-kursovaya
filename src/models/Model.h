@@ -5,7 +5,6 @@
 #ifndef PSQLWORK_MODEL_H
 #define PSQLWORK_MODEL_H
 
-
 class Model {
 protected:
     int id;

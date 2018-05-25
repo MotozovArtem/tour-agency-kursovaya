@@ -73,3 +73,5 @@ PlaceArrival::PlaceArrival(const QString &name, const QString &address, int idCi
     this->idCity = idCity;
     this->idPlaceArrivalType = idPlaceArrivalType;
 }
+
+QStringList PlaceArrival::columnList = {"ID", "Name","Address","City_f","Place arrival type_f"};

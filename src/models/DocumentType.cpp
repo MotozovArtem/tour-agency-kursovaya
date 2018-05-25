@@ -31,3 +31,5 @@ DocumentType::DocumentType(int id, const QString &name) : Model(id) {
 DocumentType::DocumentType(const QString &name) : Model() {
     this->name = new QString(name);
 }
+
+QStringList DocumentType::columnList = {"ID", "Name"};

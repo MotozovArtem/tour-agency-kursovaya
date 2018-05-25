@@ -62,3 +62,5 @@ Documents::Documents(const QString &documentSerial, const QDate &dateOfIssue, co
     this->dateOfIssue = new QDate(dateOfIssue);
     this->issuanceDepartment = new QString(issuanceDepartment);
 }
+
+QStringList Documents::columnList = {"ID", "Serial", "Date of issue", "Issuance department"};

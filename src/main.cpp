@@ -27,7 +27,6 @@ int main(int argc, char **argv) {
     view->setColumnCount(Hotel::columnList.length());
 
     view->setHorizontalHeaderLabels(Hotel::columnList);
-
     int i = 0;
             foreach(Hotel *hotel, hotelList) {
             view->setItem(i, 0, new QTableWidgetItem(QString::number(hotel->getId())));

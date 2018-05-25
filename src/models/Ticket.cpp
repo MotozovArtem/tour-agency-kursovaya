@@ -87,3 +87,5 @@ int Ticket::getIdFlight() const {
 void Ticket::setIdFlight(int idFlight) {
     Ticket::idFlight = idFlight;
 }
+
+QStringList Ticket::columnList = {"ID", "Place", "Date", "Price", "Date of purchase", "Documents_f", "Flight_f"};

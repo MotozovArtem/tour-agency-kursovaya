@@ -151,3 +151,24 @@ CREATE TABLE IF NOT EXISTS DocumentsForTour (
   id_document_type INTEGER
 );
 
+CREATE TABLE IF NOT EXISTS ReservByAgreement(
+    id SERIAL PRIMARY KEY,
+    date_of_begining DATE,
+    id_hotel_room INTEGER,
+    id_contract INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS DocumentType(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100)
+);
+
+CREATE TABLE IF NOT EXISTS TransportNodeType(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100)
+);
+
+CREATE TABLE IF NOT EXISTS Status(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100)
+);

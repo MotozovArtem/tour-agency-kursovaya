@@ -32,4 +32,4 @@ HotelRoomType::~HotelRoomType() {
     delete this->name;
 }
 
-
+QStringList HotelRoomType::columnList = {"ID", "Name"};

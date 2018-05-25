@@ -57,11 +57,11 @@ Tour::Tour(int id, const QString &name, int days, int idCity, int idTourType) : 
     this->idTourType = idTourType;
 }
 
-Tour::Tour(const QString &name, int days, int idCity, int idTourType): Model() {
+Tour::Tour(const QString &name, int days, int idCity, int idTourType) : Model() {
     this->name = new QString(name);
     this->days = days;
     this->idCity = idCity;
     this->idTourType = idTourType;
 }
 
-
+QStringList Tour::columnList = {"ID", "Name", "Days", "City_f", "Tour Type_f"};

@@ -7,11 +7,14 @@
 
 #include "Model.h"
 #include <QString>
+#include <QtCore/QStringList>
 
 class TransportNodeType : public Model {
 private:
     QString *name;
 public:
+    static QStringList columnList;
+
     TransportNodeType(int id, QString *name);
 
     TransportNodeType(int id, const QString &name);

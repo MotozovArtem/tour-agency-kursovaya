@@ -31,3 +31,5 @@ PlaceArrivalType::PlaceArrivalType(int id, const QString &name) : Model(id) {
 PlaceArrivalType::PlaceArrivalType(const QString &name) {
     this->name = new QString(name);
 }
+
+QStringList PlaceArrivalType::columnList = {"ID", "Name"};

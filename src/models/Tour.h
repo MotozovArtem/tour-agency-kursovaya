@@ -15,6 +15,7 @@ private:
     int idCity;
     int idTourType;
 public:
+    static QStringList columnList;
     Tour(int id, QString *name, int days, int idCity, int idTourType);
 
     Tour(int id,const  QString &name, int days, int idCity, int idTourType);

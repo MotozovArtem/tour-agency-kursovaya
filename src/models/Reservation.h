@@ -15,6 +15,7 @@ private:
     QDate *dateOfEnding;
     int idContract;
 public:
+    static QStringList columnList;
     Reservation(QDate *dateOfBegining, int idHotelRoom, QDate *dateOfEnding, int idContract);
 
     Reservation(const QDate &dateOfBegining, int idHotelRoom, const QDate &dateOfEnding, int idContract);

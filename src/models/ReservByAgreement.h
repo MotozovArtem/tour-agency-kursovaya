@@ -15,6 +15,7 @@ private:
     int idHotelRoom;
     int idContract;
 public:
+    static QStringList columnList;
     ReservByAgreement(int id, QDate *dateOfBegining, int idHotelRoom, int idContract);
 
     ReservByAgreement(int id,const QDate &dateOfBegining, int idHotelRoom, int idContract);

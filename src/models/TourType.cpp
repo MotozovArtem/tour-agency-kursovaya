@@ -31,3 +31,5 @@ TourType::TourType(int id, const QString &name) : Model(id) {
 TourType::TourType(const QString &name) : Model() {
     this->name = new QString(name);
 }
+
+QStringList TourType::columnList = {"ID", "Name"};

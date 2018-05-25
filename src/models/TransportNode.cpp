@@ -54,3 +54,5 @@ int TransportNode::getIdTransportNodeType() const {
 void TransportNode::setIdTransportNodeType(int idTransportNodeType) {
     TransportNode::idTransportNodeType = idTransportNodeType;
 }
+
+QStringList TransportNode::columnList = {"ID", "Node name", "Flight_f", "Transport Node Type_f"};

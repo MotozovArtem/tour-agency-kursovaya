@@ -12,6 +12,7 @@ class CityType : public Model {
 private:
     QString *name;
 public:
+    static QStringList columnList;
     CityType(int id, QString *name);
 
     CityType(int id, const QString &name);

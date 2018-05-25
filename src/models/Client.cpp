@@ -103,3 +103,6 @@ Client::Client(const QString &passportData, const QString &surname, const QStrin
     this->dateOfBirth = new QDate(dateOfBirth);
     this->sex = sex;
 }
+
+QStringList Client::columnList = {"ID", "Passport Data", "Surname", "Name", "Patronymic", "Date of birth",
+                                  "Place of birth", "Sex"};

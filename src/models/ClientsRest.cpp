@@ -32,3 +32,5 @@ int ClientsRest::getIdClient() const {
 void ClientsRest::setIdClient(int idClient) {
     ClientsRest::idClient = idClient;
 }
+
+QStringList ClientsRest::columnList = {"ID", "Contract_f","Client_f"};

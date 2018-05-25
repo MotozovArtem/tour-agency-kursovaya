@@ -18,6 +18,7 @@ private:
     int idTourType;
     int idDocuments;
 public:
+    static QStringList columnList;
     Contract(int id, QString *name, QDate *dateOfPayment, QDate *dateOfIssue, float total, int idStatus, int idTourType,
           int idDocuments);
 
