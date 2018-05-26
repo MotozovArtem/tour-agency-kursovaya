@@ -12,6 +12,9 @@ class ClientsRest: public Model {
 private:
     int idContract;
     int idClient;
+
+    QString *contract;
+    QString *clientName;
 public:
     static QStringList columnList;
     ClientsRest(int id, int idContract, int idClient);
@@ -31,6 +34,16 @@ public:
     int getIdClient() const;
 
     void setIdClient(int idClient);
+
+    QString *getContract() const;
+
+    void setContract(QString *contract);
+
+    QString *getClientName() const;
+
+    void setClientName(QString *clientName);
+
+    virtual QStringList *getValueList();
 };
 
 

@@ -6,7 +6,8 @@
 #define PSQLWORK_CHECK_H
 
 #include "Model.h"
-#include <QtCore>
+#include <QString>
+#include <QDate>
 
 class Contract: public Model {
 private:
@@ -17,6 +18,10 @@ private:
     int idStatus;
     int idTourType;
     int idDocuments;
+
+    QString *statusName;
+    QString *tourTypeName;
+    QString *docuements;
 public:
     static QStringList columnList;
     Contract(int id, QString *name, QDate *dateOfPayment, QDate *dateOfIssue, float total, int idStatus, int idTourType,
@@ -64,6 +69,20 @@ public:
     int getIdDocuments() const;
 
     void setIdDocuments(int idDocuments);
+
+    QString *getStatusName() const;
+
+    void setStatusName(QString *statusName);
+
+    QString *getTourTypeName() const;
+
+    void setTourTypeName(QString *tourTypeName);
+
+    QString *getDocuements() const;
+
+    void setDocuements(QString *docuements);
+
+    virtual QStringList *getValueList();
 };
 
 

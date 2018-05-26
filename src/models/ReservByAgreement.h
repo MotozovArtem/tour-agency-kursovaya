@@ -14,6 +14,9 @@ private:
     QDate *dateOfBegining;
     int idHotelRoom;
     int idContract;
+
+    QString *hotelRoom;
+    QString *contract;
 public:
     static QStringList columnList;
     ReservByAgreement(int id, QDate *dateOfBegining, int idHotelRoom, int idContract);
@@ -41,6 +44,8 @@ public:
     int getIdContract() const;
 
     void setIdContract(int idContract);
+
+    virtual QStringList *getValueList();
 };
 
 

@@ -106,3 +106,9 @@ Client::Client(const QString &passportData, const QString &surname, const QStrin
 
 QStringList Client::columnList = {"ID", "Passport Data", "Surname", "Name", "Patronymic", "Date of birth",
                                   "Place of birth", "Sex"};
+
+QStringList *Client::getValueList() {
+    return new QStringList(
+            {QString::number(this->id), *this->passportData, *this->surname, *this->name, *this->patronymic,
+             this->dateOfBirth->toString(), *this->placeOfBirth, (this->sex ? "+" : "-")});
+}

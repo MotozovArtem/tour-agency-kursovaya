@@ -5,7 +5,8 @@
 #ifndef PSQLWORK_COUNTRY_H
 #define PSQLWORK_COUNTRY_H
 
-#include <QtCore>
+#include <QString>
+#include <QDate>
 #include "Model.h"
 
 class Country : public Model{
@@ -35,6 +36,8 @@ public:
     QDate *getFoundationDate() const;
 
     void setFoundationDate(QDate *foundationDate);
+
+    virtual QStringList *getValueList();
 };
 
 

@@ -68,4 +68,25 @@ Reservation::Reservation(int id, const QDate &dateOfBegining, int idHotelRoom, c
     this->idHotelRoom = idHotelRoom;
 }
 
+QString *Reservation::getHotelRoom() const {
+    return hotelRoom;
+}
+
+void Reservation::setHotelRoom(QString *hotelRoom) {
+    Reservation::hotelRoom = hotelRoom;
+}
+
+QString *Reservation::getContract() const {
+    return contract;
+}
+
+void Reservation::setContract(QString *contract) {
+    Reservation::contract = contract;
+}
+
 QStringList Reservation::columnList = {"ID", "Date of begining", "Date of Ending", "Hotel room_f", "Contract_f"};
+
+QStringList *Reservation::getValueList() {
+    return new QStringList({QString::number(this->id), this->dateOfBegining->toString(), this->dateOfEnding->toString(),
+                            *this->hotelRoom, *this->contract});
+}

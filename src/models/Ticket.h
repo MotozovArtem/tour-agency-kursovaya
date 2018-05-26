@@ -17,6 +17,9 @@ private:
     int idDocuments;
     QDate *dateOfPurchase;
     int idFlight;
+
+    QString *documents;
+    QString *flight;
 public:
     static QStringList columnList;
     Ticket(int id, int place, QDate *date_flight, float price, int idDocuments, QDate *dateOfPurchase, int idFlight);
@@ -60,6 +63,15 @@ public:
     void setIdFlight(int idFlight);
 
 
+    QString *getDocuments() const;
+
+    void setDocuments(QString *documents);
+
+    QString *getFlight() const;
+
+    void setFlight(QString *flight);
+
+    virtual QStringList *getValueList();
 };
 
 

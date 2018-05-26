@@ -64,4 +64,25 @@ Tour::Tour(const QString &name, int days, int idCity, int idTourType) : Model() 
     this->idTourType = idTourType;
 }
 
+QString *Tour::getCity() const {
+    return city;
+}
+
+void Tour::setCity(QString *city) {
+    Tour::city = city;
+}
+
+QString *Tour::getTourType() const {
+    return tourType;
+}
+
+void Tour::setTourType(QString *tourType) {
+    Tour::tourType = tourType;
+}
+
 QStringList Tour::columnList = {"ID", "Name", "Days", "City_f", "Tour Type_f"};
+
+QStringList *Tour::getValueList() {
+    return new QStringList(
+            {QString::number(this->id), *this->name, QString::number(this->days), *this->city, *this->tourType});
+}

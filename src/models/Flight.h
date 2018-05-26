@@ -5,7 +5,8 @@
 #ifndef PSQLWORK_FLIGHT_H
 #define PSQLWORK_FLIGHT_H
 
-#include <QtCore>
+#include <QString>
+#include <QDate>
 #include "Model.h"
 
 class Flight : public Model {
@@ -55,6 +56,8 @@ public:
     QDate *getArrivalDate() const;
 
     void setArrivalDate(QDate *arrivalDate);
+
+    virtual QStringList *getValueList();
 };
 
 

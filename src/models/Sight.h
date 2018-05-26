@@ -5,7 +5,8 @@
 #ifndef PSQLWORK_SIGHT_H
 #define PSQLWORK_SIGHT_H
 
-#include <QtCore>
+#include <QString>
+#include <QDate>
 #include "Model.h"
 
 class Sight : public Model {
@@ -15,6 +16,8 @@ private:
     QDate *yearOfCreation;
     QString *toponym;
     int idCity;
+
+    QString *city;
 public:
     static QStringList columnList;
     Sight(int id, QString *name, QString *address, QDate *yearOfCreation, QString *toponym, int idCity);
@@ -51,6 +54,12 @@ public:
     int getIdCity() const;
 
     void setIdCity(int idCity);
+
+    QString *getCity() const;
+
+    void setCity(QString *city);
+
+    virtual QStringList *getValueList();
 };
 
 

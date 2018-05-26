@@ -6,7 +6,8 @@
 #define PSQLWORK_CLIENTS_H
 
 #include "Model.h"
-#include <QtCore>
+#include <QString>
+#include <QDate>
 
 class Client : public Model {
 private:
@@ -66,6 +67,8 @@ public:
     bool isSex() const;
 
     void setSex(bool sex);
+
+    virtual QStringList *getValueList();
 };
 
 

@@ -13,6 +13,9 @@ private:
     QString *name;
     int idCityType;
     int idCountry;
+
+    QString *cityTypeName;
+    QString *countryName;
 public:
     static QStringList columnList;
 
@@ -41,6 +44,16 @@ public:
     void setIdCountry(int idCountry);
 
     virtual ~City();
+
+    QString *getCityTypeName() const;
+
+    void setCityTypeName(QString *cityTypeName);
+
+    QString *getCountryName() const;
+
+    void setCountryName(QString *countryName);
+
+    virtual QStringList *getValueList();
 };
 
 

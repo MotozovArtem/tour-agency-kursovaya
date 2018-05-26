@@ -79,11 +79,25 @@ Sight::Sight(int id, const QString &name, const QString &address, const QDate &y
 }
 
 Sight::Sight(const QString &name, const QString &address, const QDate &yearOfCreation, const QString &toponym,
-             int idCity): Model() {
+             int idCity) : Model() {
     this->name = new QString(name);
     this->address = new QString(address);
     this->yearOfCreation = new QDate(yearOfCreation);
     this->toponym = new QString(toponym);
 }
 
+QString *Sight::getCity() const {
+    return city;
+}
+
+void Sight::setCity(QString *city) {
+    Sight::city = city;
+}
+
 QStringList Sight::columnList = {"ID", "Name", "Address", "Year of creation", "Toponym", "City_f"};
+
+QStringList *Sight::getValueList() {
+    return new QStringList(
+            {QString::number(this->id), *this->name, *this->address, this->yearOfCreation->toString(), *this->toponym,
+             *this->city});
+}

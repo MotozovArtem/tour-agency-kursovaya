@@ -14,6 +14,9 @@ private:
     QString *nodeName;
     int idFlight;
     int idTransportNodeType;
+
+    QString *flight;
+    QString *transportNodeType;
 public:
     static QStringList columnList;
     TransportNode(int id, QString *nodeName, int idFlight, int idTransportNodeType);
@@ -39,6 +42,16 @@ public:
     int getIdTransportNodeType() const;
 
     void setIdTransportNodeType(int idTransportNodeType);
+
+    QString *getFlight() const;
+
+    void setFlight(QString *flight);
+
+    QString *getTransportNodeType() const;
+
+    void setTransportNodeType(QString *transportNodeType);
+
+    virtual QStringList *getValueList();
 };
 
 

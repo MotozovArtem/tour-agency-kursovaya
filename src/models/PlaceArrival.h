@@ -15,8 +15,12 @@ private:
     QString *address;
     int idCity;
     int idPlaceArrivalType;
+
+    QString *city;
+    QString *placeArrivalType;
 public:
     static QStringList columnList;
+
     PlaceArrival(int id, QString *name, QString *address, int idCity, int idPlaceArrivalType);
 
     PlaceArrival(int id, const QString &name, const QString &address, int idCity, int idPlaceArrivalType);
@@ -46,6 +50,16 @@ public:
     int getIdPlaceArrivalType() const;
 
     void setIdPlaceArrivalType(int idPlaceArrivalType);
+
+    QString *getCity() const;
+
+    void setCity(QString *city);
+
+    QString *getPlaceArrivalType() const;
+
+    void setPlaceArrivalType(QString *placeArrivalType);
+
+    virtual QStringList *getValueList();
 };
 
 

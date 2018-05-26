@@ -33,3 +33,7 @@ PlaceArrivalType::PlaceArrivalType(const QString &name) {
 }
 
 QStringList PlaceArrivalType::columnList = {"ID", "Name"};
+
+QStringList *PlaceArrivalType::getValueList() {
+    return new QStringList({QString::number(this->id), *this->name});
+}

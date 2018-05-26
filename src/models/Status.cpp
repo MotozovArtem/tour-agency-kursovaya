@@ -12,7 +12,7 @@ Status::Status(int id, QString &name) : Model(id) {
     this->name = new QString(name);
 }
 
-Status::Status(QString &name) : {
+Status::Status(QString &name) : Model() {
     this->name = new QString(name);
 }
 
@@ -33,3 +33,8 @@ void Status::setName(QString *name) {
 }
 
 QStringList Status::columnList = {"ID", "Name"};
+
+QStringList *Status::getValueList() {
+    QStringList *list = new QStringList({QString::number(this->id), *this->name});
+    return list;
+}

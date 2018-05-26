@@ -31,6 +31,8 @@ public:
 
     void setName(QString *name);
 
+    virtual QStringList *getValueList();
+
 };
 
 

@@ -17,6 +17,9 @@ private:
     bool balcony;
     int idHotel;
     int idHotelRoomType;
+
+    QString *hotel;
+    QString *hotelRoomType;
 public:
     static QStringList columnList;
     HotelRoom(int id, QString *hotelRoomName, int places, bool shower, bool secondRestroom, bool balcony, int idHotel,
@@ -64,6 +67,16 @@ public:
     int getIdHotelRoomType() const;
 
     void setIdHotelRoomType(int idHotelRoomType);
+
+    QString *getHotel() const;
+
+    void setHotel(QString *hotel);
+
+    QString *getHotelRoomType() const;
+
+    void setHotelRoomType(QString *hotelRoomType);
+
+    virtual QStringList *getValueList();
 };
 
 

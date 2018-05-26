@@ -45,3 +45,7 @@ Country::Country(const QString &name, const QDate &foundationDate) : Model() {
 }
 
 QStringList Country::columnList = {"ID", "Name", "Foundation date"};
+
+QStringList *Country::getValueList() {
+    return new QStringList({QString::number(this->id), *this->name, this->foundationDate->toString()});
+}

@@ -6,7 +6,8 @@
 #define PSQLWORK_DOCUMENTS_H
 
 #include "Model.h"
-#include <QtCore>
+#include <QString>
+#include <QDate>
 
 class Documents : public Model {
 private:
@@ -40,6 +41,8 @@ public:
     QString *getIssuanceDepartment() const;
 
     void setIssuanceDepartment(QString *issuanceDepartment);
+
+    virtual QStringList *getValueList();
 };
 
 

@@ -60,3 +60,8 @@ ReservByAgreement::ReservByAgreement(int id, const QDate &dateOfBegining, int id
 }
 
 QStringList ReservByAgreement::columnList = {"ID", "Date of begining", "Hotel room_f", "Contract_f"};
+
+QStringList *ReservByAgreement::getValueList() {
+    return new QStringList(
+            {QString::number(this->id), this->dateOfBegining->toString(), *this->hotelRoom, *this->contract});
+}

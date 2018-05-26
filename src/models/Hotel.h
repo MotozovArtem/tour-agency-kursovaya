@@ -7,6 +7,7 @@
 
 #include "Model.h"
 #include <QtCore>
+#include <QDate>
 
 class Hotel : public Model {
 private:
@@ -52,6 +53,9 @@ public:
     int getIdCity() const;
 
     void setIdCity(int idCity);
+
+    virtual QStringList *getValueList();
+
 };
 
 

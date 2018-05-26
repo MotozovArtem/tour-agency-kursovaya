@@ -33,3 +33,7 @@ DocumentType::DocumentType(const QString &name) : Model() {
 }
 
 QStringList DocumentType::columnList = {"ID", "Name"};
+
+QStringList *DocumentType::getValueList() {
+    return new QStringList({QString::number(this->id), *this->name});
+}

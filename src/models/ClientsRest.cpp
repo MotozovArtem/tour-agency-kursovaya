@@ -33,4 +33,24 @@ void ClientsRest::setIdClient(int idClient) {
     ClientsRest::idClient = idClient;
 }
 
-QStringList ClientsRest::columnList = {"ID", "Contract_f","Client_f"};
+QString *ClientsRest::getContract() const {
+    return contract;
+}
+
+void ClientsRest::setContract(QString *contract) {
+    ClientsRest::contract = contract;
+}
+
+QString *ClientsRest::getClientName() const {
+    return clientName;
+}
+
+void ClientsRest::setClientName(QString *clientName) {
+    ClientsRest::clientName = clientName;
+}
+
+QStringList ClientsRest::columnList = {"ID", "Contract_f", "Client_f"};
+
+QStringList *ClientsRest::getValueList() {
+    return new QStringList({QString::number(this->id), *this->contract, *this->clientName});
+}

@@ -8,17 +8,21 @@
 #include "Model.h"
 #include <QtCore>
 
-class Tour: public Model{
+class Tour : public Model {
 private:
-    QString * name;
+    QString *name;
     int days;
     int idCity;
     int idTourType;
+
+    QString *city;
+    QString *tourType;
 public:
     static QStringList columnList;
+
     Tour(int id, QString *name, int days, int idCity, int idTourType);
 
-    Tour(int id,const  QString &name, int days, int idCity, int idTourType);
+    Tour(int id, const QString &name, int days, int idCity, int idTourType);
 
     Tour(QString *name, int days, int idCity, int idTourType);
 
@@ -45,6 +49,16 @@ public:
     int getIdTourType() const;
 
     void setIdTourType(int idTourType);
+
+    QString *getCity() const;
+
+    void setCity(QString *city);
+
+    QString *getTourType() const;
+
+    void setTourType(QString *tourType);
+
+    virtual QStringList *getValueList();
 };
 
 

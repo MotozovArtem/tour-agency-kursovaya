@@ -14,6 +14,7 @@ private:
     QString *name;
 public:
     static QStringList columnList;
+
     PlaceArrivalType(int id, QString *name);
 
     PlaceArrivalType(int id, const QString &name);
@@ -31,6 +32,8 @@ public:
     QString *getName() const;
 
     void setName(QString *name);
+
+    virtual QStringList *getValueList();
 };
 
 

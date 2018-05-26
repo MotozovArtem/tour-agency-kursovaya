@@ -13,6 +13,10 @@ private:
     int idDocument;
     int idClient;
     int idDocumentType;
+
+    QString *document;
+    QString *clientName;
+    QString *documentType;
 public:
     static QStringList columnList;
     DocumentsForTour(int id, int idDocument, int idClient, int idDocumentType);
@@ -36,6 +40,20 @@ public:
     int getIdDocumentType() const;
 
     void setIdDocumentType(int idDocumentType);
+
+    QString *getDocument() const;
+
+    void setDocument(QString *document);
+
+    QString *getClientName() const;
+
+    void setClientName(QString *clientName);
+
+    QString *getDocumentType() const;
+
+    void setDocumentType(QString *documentType);
+
+    virtual QStringList *getValueList();
 };
 
 

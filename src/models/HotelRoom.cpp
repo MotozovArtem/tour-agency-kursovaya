@@ -82,9 +82,9 @@ HotelRoom::~HotelRoom() {
 HotelRoom::HotelRoom(const QString &hotelRoomName, int places, bool shower, bool secondRestroom, bool balcony,
                      int idHotel, int idHotelRoomType) : Model() {
     this->hotelRoomName = new QString(hotelRoomName);
-    this->places=places;
+    this->places = places;
     this->shower = shower;
-    this->secondRestroom=secondRestroom;
+    this->secondRestroom = secondRestroom;
     this->balcony = balcony;
     this->idHotel = idHotel;
     this->idHotelRoomType = idHotelRoomType;
@@ -93,12 +93,40 @@ HotelRoom::HotelRoom(const QString &hotelRoomName, int places, bool shower, bool
 HotelRoom::HotelRoom(int id, const QString &hotelRoomName, int places, bool shower, bool secondRestroom, bool balcony,
                      int idHotel, int idHotelRoomType) : Model(id) {
     this->hotelRoomName = new QString(hotelRoomName);
-    this->places=places;
+    this->places = places;
     this->shower = shower;
-    this->secondRestroom=secondRestroom;
+    this->secondRestroom = secondRestroom;
     this->balcony = balcony;
     this->idHotel = idHotel;
     this->idHotelRoomType = idHotelRoomType;
 }
 
-QStringList HotelRoom::columnList = {"ID", "Hotel room name", "Places", "Shower", "Second restroom", "Balcony", "Hotel_f", "Hotel Room Type_f"};
+QString *HotelRoom::getHotel() const {
+    return hotel;
+}
+
+void HotelRoom::setHotel(QString *hotel) {
+    HotelRoom::hotel = hotel;
+}
+
+QString *HotelRoom::getHotelRoomType() const {
+    return hotelRoomType;
+}
+
+void HotelRoom::setHotelRoomType(QString *hotelRoomType) {
+    HotelRoom::hotelRoomType = hotelRoomType;
+}
+
+QStringList HotelRoom::columnList = {"ID", "Hotel room name", "Places", "Shower", "Second restroom", "Balcony",
+                                     "Hotel_f", "Hotel Room Type_f"};
+
+QStringList *HotelRoom::getValueList() {
+    return new QStringList({QString::number(this->id),
+                            *this->hotelRoomName,
+                            QString::number(this->places),
+                            (this->shower ? "Yes" : "No"),
+                            (this->secondRestroom ? "Yes" : "No"),
+                            (this->balcony ? "Yes" : "No"),
+                            *this->hotel,
+                            *this->hotelRoomType});
+}

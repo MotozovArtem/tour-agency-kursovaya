@@ -60,4 +60,6 @@ void MainWindow::renderTable() {
     this->pTable->setColumnCount(modelClass::columnList.length());
 
     this->pTable->setHorizontalHeaderLabels(modelClass::columnList);
+
+//    this->
 }

@@ -46,4 +46,32 @@ void DocumentsForTour::setIdDocumentType(int idDocumentType) {
     DocumentsForTour::idDocumentType = idDocumentType;
 }
 
-QStringList DocumentsForTour::columnList = {"ID", "Document_f", "Client_f","Document type_f"};
+QString *DocumentsForTour::getDocument() const {
+    return document;
+}
+
+void DocumentsForTour::setDocument(QString *document) {
+    DocumentsForTour::document = document;
+}
+
+QString *DocumentsForTour::getClientName() const {
+    return clientName;
+}
+
+void DocumentsForTour::setClientName(QString *clientName) {
+    DocumentsForTour::clientName = clientName;
+}
+
+QString *DocumentsForTour::getDocumentType() const {
+    return documentType;
+}
+
+void DocumentsForTour::setDocumentType(QString *documentType) {
+    DocumentsForTour::documentType = documentType;
+}
+
+QStringList DocumentsForTour::columnList = {"ID", "Document_f", "Client_f", "Document type_f"};
+
+QStringList *DocumentsForTour::getValueList() {
+    return new QStringList({QString::number(this->id), *this->document, *this->clientName, *this->documentType});
+}

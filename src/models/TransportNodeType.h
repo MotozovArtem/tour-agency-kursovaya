@@ -32,6 +32,8 @@ public:
     QString *getName() const;
 
     void setName(QString *name);
+
+    virtual QStringList *getValueList();
 };
 
 

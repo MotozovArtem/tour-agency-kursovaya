@@ -5,6 +5,8 @@
 #ifndef PSQLWORK_MODEL_H
 #define PSQLWORK_MODEL_H
 
+#include <QtCore/QObject>
+
 class Model {
 protected:
     int id;
@@ -18,6 +20,8 @@ public:
     int getId() const;
 
     void setId(int id);
+
+    virtual QStringList *getValueList()=0;
 };
 
 

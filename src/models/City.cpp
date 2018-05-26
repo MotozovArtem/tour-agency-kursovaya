@@ -53,4 +53,24 @@ City::City(const QString &name, int idCityType, int idCountry) : Model() {
     this->idCountry = idCountry;
 }
 
+QString *City::getCityTypeName() const {
+    return cityTypeName;
+}
+
+void City::setCityTypeName(QString *cityTypeName) {
+    City::cityTypeName = cityTypeName;
+}
+
+QString *City::getCountryName() const {
+    return countryName;
+}
+
+void City::setCountryName(QString *countryName) {
+    City::countryName = countryName;
+}
+
 QStringList City::columnList = {"ID", "Name", "id City Type", "id Country"};
+
+QStringList *City::getValueList() {
+    return new QStringList({QString::number(this->id), *this->name, *this->cityTypeName, *this->countryName});
+}

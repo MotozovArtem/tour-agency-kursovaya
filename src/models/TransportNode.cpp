@@ -55,4 +55,24 @@ void TransportNode::setIdTransportNodeType(int idTransportNodeType) {
     TransportNode::idTransportNodeType = idTransportNodeType;
 }
 
+QString *TransportNode::getFlight() const {
+    return flight;
+}
+
+void TransportNode::setFlight(QString *flight) {
+    TransportNode::flight = flight;
+}
+
+QString *TransportNode::getTransportNodeType() const {
+    return transportNodeType;
+}
+
+void TransportNode::setTransportNodeType(QString *transportNodeType) {
+    TransportNode::transportNodeType = transportNodeType;
+}
+
 QStringList TransportNode::columnList = {"ID", "Node name", "Flight_f", "Transport Node Type_f"};
+
+QStringList *TransportNode::getValueList() {
+    return new QStringList({QString::number(this->id), *this->nodeName, *this->flight, *this->transportNodeType});
+}

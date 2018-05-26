@@ -102,5 +102,35 @@ Contract::Contract(const QString &name, const QDate &dateOfPayment, const QDate 
     this->idDocuments = idDocuments;
 }
 
+QString *Contract::getStatusName() const {
+    return statusName;
+}
+
+void Contract::setStatusName(QString *statusName) {
+    Contract::statusName = statusName;
+}
+
+QString *Contract::getTourTypeName() const {
+    return tourTypeName;
+}
+
+void Contract::setTourTypeName(QString *tourTypeName) {
+    Contract::tourTypeName = tourTypeName;
+}
+
+QString *Contract::getDocuements() const {
+    return docuements;
+}
+
+void Contract::setDocuements(QString *docuements) {
+    Contract::docuements = docuements;
+}
+
 QStringList Contract::columnList = {"ID", "Name", "Date of payment_f", "Date of issue", "Total", "Status_f",
                                     "Tour type_f", "Documents_f"};
+
+QStringList *Contract::getValueList() {
+    return new QStringList(
+            {QString::number(this->id), *this->name, this->dateOfPayment->toString(), this->dateOfIssue->toString(),
+             QString::number(this->total), *this->statusName, *this->tourTypeName, *this->docuements});
+}

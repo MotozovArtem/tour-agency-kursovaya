@@ -67,11 +67,32 @@ PlaceArrival::PlaceArrival(int id, const QString &name, const QString &address, 
     this->idPlaceArrivalType = idPlaceArrivalType;
 }
 
-PlaceArrival::PlaceArrival(const QString &name, const QString &address, int idCity, int idPlaceArrivalType): Model() {
+PlaceArrival::PlaceArrival(const QString &name, const QString &address, int idCity, int idPlaceArrivalType) : Model() {
     this->name = new QString(name);
     this->address = new QString(address);
     this->idCity = idCity;
     this->idPlaceArrivalType = idPlaceArrivalType;
 }
 
-QStringList PlaceArrival::columnList = {"ID", "Name","Address","City_f","Place arrival type_f"};
+QString *PlaceArrival::getCity() const {
+    return city;
+}
+
+void PlaceArrival::setCity(QString *city) {
+    PlaceArrival::city = city;
+}
+
+QString *PlaceArrival::getPlaceArrivalType() const {
+    return placeArrivalType;
+}
+
+void PlaceArrival::setPlaceArrivalType(QString *placeArrivalType) {
+    PlaceArrival::placeArrivalType = placeArrivalType;
+}
+
+QStringList PlaceArrival::columnList = {"ID", "Name", "Address", "City_f", "Place arrival type_f"};
+
+QStringList *PlaceArrival::getValueList() {
+    return new QStringList(
+            {QString::number(this->id), *this->name, *this->address, *this->city, *this->placeArrivalType});
+}

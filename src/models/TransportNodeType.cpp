@@ -28,8 +28,12 @@ TransportNodeType::TransportNodeType(int id, const QString &name) : Model(id) {
     this->name = new QString(name);
 }
 
-TransportNodeType::TransportNodeType(const QString &name): Model() {
+TransportNodeType::TransportNodeType(const QString &name) : Model() {
     this->name = new QString(name);
 }
 
 QStringList TransportNodeType::columnList = {"ID", "Name"};
+
+QStringList *TransportNodeType::getValueList() {
+    return new QStringList({QString::number(this->id), *this->name});
+}

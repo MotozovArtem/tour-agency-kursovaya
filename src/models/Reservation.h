@@ -6,7 +6,8 @@
 #define PSQLWORK_RESERVATION_H
 
 #include "Model.h"
-#include <QtCore>
+#include <QString>
+#include <QDate>
 
 class Reservation : public Model {
 private:
@@ -14,6 +15,9 @@ private:
     int idHotelRoom;
     QDate *dateOfEnding;
     int idContract;
+
+    QString *hotelRoom;
+    QString *contract;
 public:
     static QStringList columnList;
     Reservation(QDate *dateOfBegining, int idHotelRoom, QDate *dateOfEnding, int idContract);
@@ -45,6 +49,16 @@ public:
     void setIdContract(int idContract);
 
     virtual ~Reservation();
+
+    QString *getHotelRoom() const;
+
+    void setHotelRoom(QString *hotelRoom);
+
+    QString *getContract() const;
+
+    void setContract(QString *contract);
+
+    virtual QStringList *getValueList();
 };
 
 
