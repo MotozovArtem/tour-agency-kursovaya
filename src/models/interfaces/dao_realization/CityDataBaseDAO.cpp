@@ -9,7 +9,7 @@
 QList<City *> CityDataBaseDAO::getAll() {
     QSqlQuery query;
     QList<City *> list;
-    if (query.exec("SELECT * FROM City")) {
+    if (query.exec("SELECT id, name, id_city_type, id_country FROM City ORDER BY id")) {
         while (query.next()) {
             list << new City(
                     query.value("id").toInt(),
@@ -27,7 +27,7 @@ QList<City *> CityDataBaseDAO::getAll() {
 
 City *CityDataBaseDAO::getById(int id) {
     QSqlQuery query;
-    query.prepare("SELECT * FROM City WHERE id=:id");
+    query.prepare("SELECT id, name, id_city_type, id_country FROM City WHERE id=:id");
     query.bindValue(":id", id);
     City *city = nullptr;
     if (query.exec()) {
