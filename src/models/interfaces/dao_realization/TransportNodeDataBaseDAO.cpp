@@ -88,14 +88,16 @@ QList<TransportNode *> TransportNodeDataBaseDAO::getAllFilled() {
     QSqlQuery query;
     QList<TransportNode *> list;
     if (query.exec("SELECT TransportNode.id, TransportNode.node_name, TransportNode.id_flight, "
-                   "TransportNodeType.transport_node_type_name FROM TransportNode "
+                   "TransportNodeType.transport_node_type_name,"
+                   "TransportNode.id_flight, TransportNode.id_transport_node_type FROM TransportNode "
                    "LEFT JOIN TransportNodeType ON (TransportNode.id_transport_node_type=TransportNodeType.id)"
                    "ORDER BY id")) {
         while (query.next()) {
             TransportNode *transportNode = new TransportNode(
                     query.value("id").toInt(),
                     query.value("node_name").toString(),
-                    0,0
+                    query.value("id_flight").toInt(),
+                    query.value("id_transport_node_type").toInt()
             );
             transportNode->setFlight(new QString(query.value("id_flight").toString()));
             transportNode->setTransportNodeType(new QString(query.value("transport_node_type_name").toString()));

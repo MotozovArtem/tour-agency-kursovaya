@@ -101,7 +101,8 @@ void TicketDataBaseDAO::del(Ticket *model) {
 QList<Ticket *> TicketDataBaseDAO::getAllFilled() {
     QSqlQuery query;
     QList<Ticket *> list;
-    if (query.exec("SELECT Ticket.id, Ticket.place, Ticket.date_flight, Ticket.price, Ticket.date_of_purchase"
+    if (query.exec("SELECT Ticket.id, Ticket.place, Ticket.date_flight, Ticket.price, Ticket.date_of_purchase, "
+                   "Ticket.id_documents, Ticket.id_flight, "
                    "Documents.document_serial, Ticket.id_flight FROM Ticket "
                    "LEFT JOIN Documents ON (Ticket.id_documents=Documents.id)"
                    "ORDER BY id")) {
@@ -112,7 +113,8 @@ QList<Ticket *> TicketDataBaseDAO::getAllFilled() {
                     query.value("date_flight").toDate(),
                     query.value("price").toFloat(),
                     query.value("date_of_purchase").toDate(),
-                    0, 0
+                    query.value("id_documents").toInt(),
+                    query.value("id_flight").toInt()
             );
             ticket->setDocuments(new QString(query.value("city_name").toString()));
             ticket->setFlight(new QString(query.value("id_flight").toString()));

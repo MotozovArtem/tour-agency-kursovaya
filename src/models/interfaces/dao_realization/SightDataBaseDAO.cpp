@@ -96,7 +96,8 @@ void SightDataBaseDAO::del(Sight *model) {
 QList<Sight *> SightDataBaseDAO::getAllFilled() {
     QSqlQuery query;
     QList<Sight *> list;
-    if (query.exec("SELECT Sight.id, Sight.sight_name, Sight.address, Sight.year_of_foundation, Sight.toponym"
+    if (query.exec("SELECT Sight.id, Sight.sight_name, Sight.address, "
+                   "Sight.year_of_foundation, Sight.toponym, Sight.id_city, "
                    "City.city_name FROM Sight "
                    "LEFT JOIN City ON (Sight.id_city=City.id)"
                    "ORDER BY id")) {
@@ -107,7 +108,7 @@ QList<Sight *> SightDataBaseDAO::getAllFilled() {
                     query.value("address").toString(),
                     query.value("year_of_foundation").toDate(),
                     query.value("toponym").toString(),
-                    0
+                    query.value("id_city").toInt()
             );
             sight->setCity(new QString(query.value("city_name").toString()));
             list << sight;

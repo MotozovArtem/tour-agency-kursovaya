@@ -93,6 +93,7 @@ QList<Reservation *> ReservationDataBaseDAO::getAllFilled() {
     QSqlQuery query;
     QList<Reservation *> list;
     if (query.exec("SELECT Reservation.id, Reservation.date_of_begining, Reservation.date_of_ending, "
+                   "Reservation.id_hotel_room, Reservation.id_contract, "
                    "HotelRoom.hotel_room_name, Contract.contract_name FROM Reservation "
                    "LEFT JOIN HotelRoom ON (Reservation.id_hotel_room=HotelRoom.id)"
                    "LEFT JOIN Contract ON (Reservation.id_contract=Contract.id)"
@@ -102,8 +103,8 @@ QList<Reservation *> ReservationDataBaseDAO::getAllFilled() {
                     query.value("id").toInt(),
                     query.value("date_of_begining").toDate(),
                     query.value("date_of_ending").toDate(),
-                    0,
-                    0
+                    query.value("id_hotel_room").toInt(),
+                    query.value("id_contract").toInt()
             );
             reservation->setContract(new QString(query.value("contract_name").toString()));
             reservation->setHotelRoom(new QString(query.value("hotel_room_name").toString()));

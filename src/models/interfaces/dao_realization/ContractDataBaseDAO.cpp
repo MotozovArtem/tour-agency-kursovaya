@@ -108,7 +108,8 @@ QList<Contract *> ContractDataBaseDAO::getAllFilled() {
     QSqlQuery query;
     QList<Contract *> list;
     if (query.exec(
-            "SELECT Contract.id, Contract.contract_name, Contract.date_of_payment, Contract.date_of_issue, Contract.total"
+            "SELECT Contract.id, Contract.contract_name, Contract.date_of_payment, Contract.date_of_issue, "
+            "Contract.total, Contract.id_status, Contract.id_tour_type, Contract.id_documents, "
             "Status.status_name, TourType.tour_type_name, Documents.document_serial FROM Contract "
             "LEFT JOIN Status ON (Contract.id_status=Status.id)"
             "LEFT JOIN TourType ON (Contract.id_tour_type=TourType.id)"
@@ -121,7 +122,9 @@ QList<Contract *> ContractDataBaseDAO::getAllFilled() {
                     query.value("date_of_payment").toDate(),
                     query.value("date_of_issue").toDate(),
                     query.value("total").toFloat(),
-                    0, 0, 0
+                    query.value("id_status").toInt(),
+                    query.value("id_tour_type").toInt(),
+                    query.value("id_documents").toInt()
             );
             contract->setStatusName(new QString(query.value("status_name").toString()));
             contract->setTourTypeName(new QString(query.value("tour_type_name").toString()));

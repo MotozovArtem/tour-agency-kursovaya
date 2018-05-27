@@ -86,7 +86,8 @@ void CityDataBaseDAO::del(City *model) {
 QList<City *> CityDataBaseDAO::getAllFilled() {
     QSqlQuery query;
     QList<City *> list;
-    if (query.exec("SELECT City.id, City.city_name, Country.country_name, CityType.city_type_name FROM City "
+    if (query.exec("SELECT City.id, City.city_name, Country.country_name, "
+                   "City.id_city_type, City.id_country, CityType.city_type_name FROM City "
                    "LEFT JOIN Country ON (City.id_country=Country.id) "
                    "LEFT JOIN CityType ON (City.id_city_type=CityType.id)"
                    "ORDER BY id")) {
@@ -94,7 +95,8 @@ QList<City *> CityDataBaseDAO::getAllFilled() {
             City *city = new City(
                     query.value("id").toInt(),
                     query.value("city_name").toString(),
-                    0, 0
+                    query.value("id_city_type").toInt(),
+                    query.value("id_country").toInt()
             );
             city->setCountryName(new QString(query.value("country_name").toString()));
             city->setCityTypeName(new QString(query.value("city_type_name").toString()));

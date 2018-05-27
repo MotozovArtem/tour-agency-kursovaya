@@ -83,14 +83,16 @@ void ClientRestDataBaseDAO::del(ClientRest *model) {
 QList<ClientRest *> ClientRestDataBaseDAO::getAllFilled() {
     QSqlQuery query;
     QList<ClientRest *> list;
-    if (query.exec("SELECT ClientRest.id, Contract.contract_name, Client.surname FROM ClientRest "
+    if (query.exec("SELECT ClientRest.id, ClientRest.id_contract, ClientRest.id_client, "
+                   "Contract.contract_name, Client.surname FROM ClientRest "
                    "LEFT JOIN Contract ON (ClientRest.id_city=Contract.id) "
                    "LEFT JOIN Client ON (ClientRest.id_city=Client.id) "
                    "ORDER BY id")) {
         while (query.next()) {
             ClientRest *client = new ClientRest(
                     query.value("id").toInt(),
-                    0, 0
+                    query.value("id_contract").toInt(),
+                    query.value("id_client").toInt()
             );
             client->setContract(new QString(query.value("contract_name").toString()));
             client->setClientName(new QString(query.value("surname").toString()));
