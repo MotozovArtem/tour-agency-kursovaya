@@ -6,14 +6,26 @@
 
 Reservation::Reservation(int id, QDate *dateOfBegining, QDate *dateOfEnding, int idHotelRoom, int idContract) : Model(
         id), dateOfBegining(dateOfBegining), idHotelRoom(idHotelRoom), dateOfEnding(dateOfEnding), idContract(
-        idContract) {}
+        idContract) {
+    this->hotelRoom = nullptr;
+    this->contract = nullptr;
+}
 
 Reservation::Reservation(QDate *dateOfBegining, QDate *dateOfEnding, int idHotelRoom, int idContract) : dateOfBegining(
-        dateOfBegining), idHotelRoom(idHotelRoom), dateOfEnding(dateOfEnding), idContract(idContract) {}
+        dateOfBegining), idHotelRoom(idHotelRoom), dateOfEnding(dateOfEnding), idContract(idContract) {
+    this->hotelRoom = nullptr;
+    this->contract = nullptr;
+}
 
-Reservation::Reservation(int id) : Model(id) {}
+Reservation::Reservation(int id) : Model(id) {
+    this->hotelRoom = nullptr;
+    this->contract = nullptr;
+}
 
-Reservation::Reservation() {}
+Reservation::Reservation() {
+    this->hotelRoom = nullptr;
+    this->contract = nullptr;
+}
 
 Reservation::Reservation(int id, const QDate &dateOfBegining, const QDate &dateOfEnding, int idHotelRoom,
                          int idContract) : Model(id) {
@@ -21,6 +33,9 @@ Reservation::Reservation(int id, const QDate &dateOfBegining, const QDate &dateO
     this->dateOfBegining = new QDate(dateOfBegining);
     this->idContract = idContract;
     this->idHotelRoom = idHotelRoom;
+
+    this->hotelRoom = nullptr;
+    this->contract = nullptr;
 }
 
 Reservation::Reservation(const QDate &dateOfBegining, const QDate &dateOfEnding, int idHotelRoom, int idContract)
@@ -29,11 +44,23 @@ Reservation::Reservation(const QDate &dateOfBegining, const QDate &dateOfEnding,
     this->dateOfEnding = new QDate(dateOfEnding);
     this->idContract = idContract;
     this->idHotelRoom = idHotelRoom;
+
+    this->hotelRoom = nullptr;
+    this->contract = nullptr;
 }
 
 Reservation::~Reservation() {
     delete this->dateOfBegining;
     delete this->dateOfEnding;
+
+    if (this->hotelRoom != nullptr) {
+        delete this->hotelRoom;
+        this->hotelRoom = nullptr;
+    }
+    if (this->contract != nullptr) {
+        delete this->contract;
+        this->contract = nullptr;
+    }
 }
 
 QDate *Reservation::getDateOfBegining() const {

@@ -8,18 +8,45 @@ DocumentsForTour::DocumentsForTour(int id, int idDocument, int idClient, int idD
                                                                                                idDocument(idDocument),
                                                                                                idClient(idClient),
                                                                                                idDocumentType(
-                                                                                                       idDocumentType) {}
+                                                                                                       idDocumentType) {
+    this->document = nullptr;
+    this->clientName = nullptr;
+    this->documentType = nullptr;
+}
 
 DocumentsForTour::DocumentsForTour(int idDocument, int idClient, int idDocumentType) : idDocument(idDocument),
                                                                                        idClient(idClient),
-                                                                                       idDocumentType(idDocumentType) {}
+                                                                                       idDocumentType(idDocumentType) {
+    this->document = nullptr;
+    this->clientName = nullptr;
+    this->documentType = nullptr;
+}
 
-DocumentsForTour::DocumentsForTour(int id) : Model(id) {}
+DocumentsForTour::DocumentsForTour(int id) : Model(id) {
+    this->document = nullptr;
+    this->clientName = nullptr;
+    this->documentType = nullptr;
+}
 
-DocumentsForTour::DocumentsForTour() {}
+DocumentsForTour::DocumentsForTour() {
+    this->document = nullptr;
+    this->clientName = nullptr;
+    this->documentType = nullptr;
+}
 
 DocumentsForTour::~DocumentsForTour() {
-
+    if (this->documentType != nullptr) {
+        delete this->documentType;
+        this->documentType = nullptr;
+    }
+    if (this->document != nullptr) {
+        delete this->document;
+        this->document = nullptr;
+    }
+    if (this->clientName != nullptr) {
+        delete this->clientName;
+        this->clientName = nullptr;
+    }
 }
 
 int DocumentsForTour::getIdDocument() const {

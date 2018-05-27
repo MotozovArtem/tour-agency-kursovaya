@@ -4,31 +4,63 @@
 
 #include "TransportNode.h"
 
-TransportNode::TransportNode(int id, QString *nodeName, int idFlight, int idTransportNodeType) : Model(id),
-                                                                                                 transportNodeName(nodeName),
-                                                                                                 idFlight(idFlight),
-                                                                                                 idTransportNodeType(
-                                                                                                         idTransportNodeType) {}
+TransportNode::TransportNode(int id, QString *nodeName, int idFlight, int idTransportNodeType) :
+        Model(id),
+        transportNodeName(nodeName),
+        idFlight(idFlight),
+        idTransportNodeType(idTransportNodeType) {
+    this->flight = nullptr;
+    this->transportNodeType = nullptr;
+}
 
-TransportNode::TransportNode(QString *nodeName, int idFlight, int idTransportNodeType) : transportNodeName(nodeName),
-                                                                                         idFlight(idFlight),
-                                                                                         idTransportNodeType(
-                                                                                                 idTransportNodeType) {}
+TransportNode::TransportNode(QString *nodeName, int idFlight, int idTransportNodeType) :
+        transportNodeName(nodeName),
+        idFlight(idFlight),
+        idTransportNodeType(idTransportNodeType) {
+    this->flight = nullptr;
+    this->transportNodeType = nullptr;
+}
 
-TransportNode::TransportNode(int id) : Model(id) {}
+TransportNode::TransportNode(int id) : Model(id) {
+    this->flight = nullptr;
+    this->transportNodeType = nullptr;
+}
 
-TransportNode::TransportNode() {}
+TransportNode::TransportNode() {
+    this->flight = nullptr;
+    this->transportNodeType = nullptr;
+}
 
 TransportNode::TransportNode(int id, const QString &nodeName, int idFlight, int idTransportNodeType) : Model(id) {
     this->transportNodeName = new QString(nodeName);
     this->idFlight = idFlight;
     this->idTransportNodeType = idTransportNodeType;
+
+    this->flight = nullptr;
+    this->transportNodeType = nullptr;
 }
+
 
 TransportNode::TransportNode(const QString &nodeName, int idFlight, int idTransportNodeType) : Model() {
     this->transportNodeName = new QString(nodeName);
     this->idFlight = idFlight;
     this->idTransportNodeType = idTransportNodeType;
+
+    this->flight = nullptr;
+    this->transportNodeType = nullptr;
+}
+
+TransportNode::~TransportNode() {
+    delete this->transportNodeName;
+
+    if (this->flight != nullptr) {
+        delete this->flight;
+        this->flight = nullptr;
+    }
+    if (this->transportNodeType != nullptr) {
+        delete this->transportNodeType;
+        this->transportNodeType = nullptr;
+    }
 }
 
 QString *TransportNode::getNodeName() const {
@@ -74,5 +106,6 @@ void TransportNode::setTransportNodeType(QString *transportNodeType) {
 QStringList TransportNode::columnList = {"ID", "Node name", "Flight_f", "Transport Node Type_f"};
 
 QStringList *TransportNode::getValueList() {
-    return new QStringList({QString::number(this->id), *this->transportNodeName, *this->flight, *this->transportNodeType});
+    return new QStringList(
+            {QString::number(this->id), *this->transportNodeName, *this->flight, *this->transportNodeType});
 }

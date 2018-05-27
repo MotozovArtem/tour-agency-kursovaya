@@ -31,6 +31,8 @@ public:
 
     TransportNode();
 
+    virtual ~TransportNode();
+
     QString *getNodeName() const;
 
     void setNodeName(QString *nodeName);

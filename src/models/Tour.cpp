@@ -4,18 +4,61 @@
 
 #include "Tour.h"
 
-Tour::Tour(int id, QString *name, int days, int idCity, int idTourType) : Model(id), tourName(name), days(days),
-                                                                          idCity(idCity), idTourType(idTourType) {}
+Tour::Tour(int id, QString *name, int days, int idCity, int idTourType) :
+        Model(id), tourName(name), days(days),
+        idCity(idCity), idTourType(idTourType) {
+    this->city = nullptr;
+    this->tourType = nullptr;
+}
 
-Tour::Tour(QString *name, int days, int idCity, int idTourType) : tourName(name), days(days), idCity(idCity),
-                                                                  idTourType(idTourType) {}
+Tour::Tour(QString *name, int days, int idCity, int idTourType) :
+        tourName(name), days(days), idCity(idCity),
+        idTourType(idTourType) {
+    this->city = nullptr;
+    this->tourType = nullptr;
+}
 
-Tour::Tour(int id) : Model(id) {}
+Tour::Tour(int id) : Model(id) {
+    this->city = nullptr;
+    this->tourType = nullptr;
+}
 
-Tour::Tour() {}
+Tour::Tour() {
+    this->city = nullptr;
+    this->tourType = nullptr;
+}
+
+Tour::Tour(int id, const QString &name, int days, int idCity, int idTourType) : Model(id) {
+    this->tourName = new QString(name);
+    this->days = days;
+    this->idCity = idCity;
+    this->idTourType = idTourType;
+
+    this->city = nullptr;
+    this->tourType = nullptr;
+}
+
+Tour::Tour(const QString &name, int days, int idCity, int idTourType) : Model() {
+    this->tourName = new QString(name);
+    this->days = days;
+    this->idCity = idCity;
+    this->idTourType = idTourType;
+
+    this->city = nullptr;
+    this->tourType = nullptr;
+}
 
 Tour::~Tour() {
     delete this->tourName;
+
+    if(this->city!=nullptr){
+        delete this->city;
+        this->city=nullptr;
+    }
+    if(this->tourType!=nullptr){
+        delete this->tourType;
+        this->tourType=nullptr;
+    }
 }
 
 QString *Tour::getName() const {
@@ -48,20 +91,6 @@ int Tour::getIdTourType() const {
 
 void Tour::setIdTourType(int idTourType) {
     Tour::idTourType = idTourType;
-}
-
-Tour::Tour(int id, const QString &name, int days, int idCity, int idTourType) : Model(id) {
-    this->tourName = new QString(name);
-    this->days = days;
-    this->idCity = idCity;
-    this->idTourType = idTourType;
-}
-
-Tour::Tour(const QString &name, int days, int idCity, int idTourType) : Model() {
-    this->tourName = new QString(name);
-    this->days = days;
-    this->idCity = idCity;
-    this->idTourType = idTourType;
 }
 
 QString *Tour::getCity() const {

@@ -5,16 +5,35 @@
 #include "ClientRest.h"
 
 ClientRest::ClientRest(int id, int idContract, int idClient) : Model(id), idContract(idContract),
-                                                                 idClient(idClient) {}
+                                                               idClient(idClient) {
+    this->contract = nullptr;
+    this->clientName = nullptr;
+}
 
-ClientRest::ClientRest(int idContract, int idClient) : idContract(idContract), idClient(idClient) {}
+ClientRest::ClientRest(int idContract, int idClient) : idContract(idContract), idClient(idClient) {
+    this->contract = nullptr;
+    this->clientName = nullptr;
+}
 
-ClientRest::ClientRest(int id) : Model(id) {}
+ClientRest::ClientRest(int id) : Model(id) {
+    this->contract = nullptr;
+    this->clientName = nullptr;
+}
 
-ClientRest::ClientRest() {}
+ClientRest::ClientRest() {
+    this->contract = nullptr;
+    this->clientName = nullptr;
+}
 
 ClientRest::~ClientRest() {
-
+    if (this->contract != nullptr) {
+        delete this->contract;
+        this->contract = nullptr;
+    }
+    if (this->clientName != nullptr) {
+        delete this->clientName;
+        this->clientName = nullptr;
+    }
 }
 
 int ClientRest::getIdContract() const {

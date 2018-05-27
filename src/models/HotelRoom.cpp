@@ -8,16 +8,28 @@ HotelRoom::HotelRoom(int id, QString *hotelRoomName, int places, bool shower, bo
                      int idHotel, int idHotelRoomType) : Model(id), hotelRoomName(hotelRoomName), places(places),
                                                          shower(shower), secondRestroom(secondRestroom),
                                                          balcony(balcony), idHotel(idHotel),
-                                                         idHotelRoomType(idHotelRoomType) {}
+                                                         idHotelRoomType(idHotelRoomType) {
+    this->hotel = nullptr;
+    this->hotelRoomType = nullptr;
+}
 
 HotelRoom::HotelRoom(QString *hotelRoomName, int places, bool shower, bool secondRestroom, bool balcony, int idHotel,
                      int idHotelRoomType) : hotelRoomName(hotelRoomName), places(places), shower(shower),
                                             secondRestroom(secondRestroom), balcony(balcony), idHotel(idHotel),
-                                            idHotelRoomType(idHotelRoomType) {}
+                                            idHotelRoomType(idHotelRoomType) {
+    this->hotel = nullptr;
+    this->hotelRoomType = nullptr;
+}
 
-HotelRoom::HotelRoom(int id) : Model(id) {}
+HotelRoom::HotelRoom(int id) : Model(id) {
+    this->hotel = nullptr;
+    this->hotelRoomType = nullptr;
+}
 
-HotelRoom::HotelRoom() {}
+HotelRoom::HotelRoom() {
+    this->hotel = nullptr;
+    this->hotelRoomType = nullptr;
+}
 
 QString *HotelRoom::getHotelRoomName() const {
     return hotelRoomName;
@@ -77,6 +89,14 @@ void HotelRoom::setIdHotelRoomType(int idHotelRoomType) {
 
 HotelRoom::~HotelRoom() {
     delete hotelRoomName;
+    if (this->hotelRoomType != nullptr) {
+        delete this->hotelRoomType;
+        this->hotelRoomType = nullptr;
+    }
+    if (this->hotel != nullptr) {
+        delete this->hotel;
+        this->hotel = nullptr;
+    }
 }
 
 HotelRoom::HotelRoom(const QString &hotelRoomName, int places, bool shower, bool secondRestroom, bool balcony,
@@ -88,6 +108,9 @@ HotelRoom::HotelRoom(const QString &hotelRoomName, int places, bool shower, bool
     this->balcony = balcony;
     this->idHotel = idHotel;
     this->idHotelRoomType = idHotelRoomType;
+
+    this->hotel = nullptr;
+    this->hotelRoomType = nullptr;
 }
 
 HotelRoom::HotelRoom(int id, const QString &hotelRoomName, int places, bool shower, bool secondRestroom, bool balcony,
@@ -99,6 +122,9 @@ HotelRoom::HotelRoom(int id, const QString &hotelRoomName, int places, bool show
     this->balcony = balcony;
     this->idHotel = idHotel;
     this->idHotelRoomType = idHotelRoomType;
+
+    this->hotel = nullptr;
+    this->hotelRoomType = nullptr;
 }
 
 QString *HotelRoom::getHotel() const {

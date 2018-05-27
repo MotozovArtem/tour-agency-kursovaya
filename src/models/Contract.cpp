@@ -6,22 +6,53 @@
 
 Contract::Contract(int id, QString *name, QDate *dateOfPayment, QDate *dateOfIssue, float total, int idStatus,
                    int idTourType,
-                   int idDocuments) : Model(id), contractName(name), dateOfPayment(dateOfPayment), dateOfIssue(dateOfIssue),
+                   int idDocuments) : Model(id), contractName(name), dateOfPayment(dateOfPayment),
+                                      dateOfIssue(dateOfIssue),
                                       total(total), idStatus(idStatus), idTourType(idTourType),
-                                      idDocuments(idDocuments) {}
+                                      idDocuments(idDocuments) {
+    this->docuements = nullptr;
+    this->statusName = nullptr;
+    this->tourTypeName = nullptr;
+}
 
 Contract::Contract(QString *name, QDate *dateOfPayment, QDate *dateOfIssue, float total, int idStatus, int idTourType,
-                   int idDocuments) : contractName(name), dateOfPayment(dateOfPayment), dateOfIssue(dateOfIssue), total(total),
-                                      idStatus(idStatus), idTourType(idTourType), idDocuments(idDocuments) {}
+                   int idDocuments) : contractName(name), dateOfPayment(dateOfPayment), dateOfIssue(dateOfIssue),
+                                      total(total),
+                                      idStatus(idStatus), idTourType(idTourType), idDocuments(idDocuments) {
+    this->docuements = nullptr;
+    this->statusName = nullptr;
+    this->tourTypeName = nullptr;
+}
 
-Contract::Contract(int id) : Model(id) {}
+Contract::Contract(int id) : Model(id) {
+    this->docuements = nullptr;
+    this->statusName = nullptr;
+    this->tourTypeName = nullptr;
+}
 
-Contract::Contract() {}
+Contract::Contract() {
+    this->docuements = nullptr;
+    this->statusName = nullptr;
+    this->tourTypeName = nullptr;
+}
 
 Contract::~Contract() {
     delete this->contractName;
     delete this->dateOfIssue;
     delete this->dateOfPayment;
+
+    if (this->docuements != nullptr) {
+        delete this->docuements;
+        this->docuements = nullptr;
+    }
+    if (this->tourTypeName != nullptr) {
+        delete this->tourTypeName;
+        this->tourTypeName = nullptr;
+    }
+    if (this->statusName != nullptr) {
+        delete this->statusName;
+        this->statusName = nullptr;
+    }
 }
 
 QString *Contract::getName() const {
@@ -131,6 +162,7 @@ QStringList Contract::columnList = {"ID", "Name", "Date of payment_f", "Date of 
 
 QStringList *Contract::getValueList() {
     return new QStringList(
-            {QString::number(this->id), *this->contractName, this->dateOfPayment->toString(), this->dateOfIssue->toString(),
+            {QString::number(this->id), *this->contractName, this->dateOfPayment->toString(),
+             this->dateOfIssue->toString(),
              QString::number(this->total), *this->statusName, *this->tourTypeName, *this->docuements});
 }

@@ -4,30 +4,35 @@
 
 #include "Sight.h"
 
-Sight::Sight(int id, QString *name, QString *address, QDate *yearOfCreation, QString *toponym, int idCity) : Model(id),
-                                                                                                             sightName(name),
-                                                                                                             address(address),
-                                                                                                             yearOfCreation(
-                                                                                                                     yearOfCreation),
-                                                                                                             toponym(toponym),
-                                                                                                             idCity(idCity) {}
+Sight::Sight(int id, QString *name, QString *address, QDate *yearOfCreation, QString *toponym, int idCity) :
+        Model(id),
+        sightName(name),
+        address(address),
+        yearOfCreation(yearOfCreation),
+        toponym(toponym),
+        idCity(idCity) { this->city = nullptr; }
 
-Sight::Sight(QString *name, QString *address, QDate *yearOfCreation, QString *toponym, int idCity) : sightName(name),
-                                                                                                     address(address),
-                                                                                                     yearOfCreation(
-                                                                                                             yearOfCreation),
-                                                                                                     toponym(toponym),
-                                                                                                     idCity(idCity) {}
+Sight::Sight(QString *name, QString *address, QDate *yearOfCreation, QString *toponym, int idCity) :
+        sightName(name),
+        address(address),
+        yearOfCreation(yearOfCreation),
+        toponym(toponym),
+        idCity(idCity) { this->city = nullptr; }
 
-Sight::Sight(int id) : Model(id) {}
+Sight::Sight(int id) : Model(id) { this->city = nullptr; }
 
-Sight::Sight() {}
+Sight::Sight() { this->city = nullptr; }
 
 Sight::~Sight() {
     delete this->sightName;
     delete this->address;
     delete this->toponym;
     delete this->yearOfCreation;
+
+    if (this->city != nullptr) {
+        delete this->city;
+        this->city = nullptr;
+    }
 }
 
 QString *Sight::getName() const {
@@ -76,6 +81,8 @@ Sight::Sight(int id, const QString &name, const QString &address, const QDate &y
     this->address = new QString(address);
     this->yearOfCreation = new QDate(yearOfCreation);
     this->toponym = new QString(toponym);
+
+    this->city = nullptr;
 }
 
 Sight::Sight(const QString &name, const QString &address, const QDate &yearOfCreation, const QString &toponym,
@@ -84,6 +91,8 @@ Sight::Sight(const QString &name, const QString &address, const QDate &yearOfCre
     this->address = new QString(address);
     this->yearOfCreation = new QDate(yearOfCreation);
     this->toponym = new QString(toponym);
+
+    this->city = nullptr;
 }
 
 QString *Sight::getCity() const {
@@ -98,6 +107,7 @@ QStringList Sight::columnList = {"ID", "Name", "Address", "Year of creation", "T
 
 QStringList *Sight::getValueList() {
     return new QStringList(
-            {QString::number(this->id), *this->sightName, *this->address, this->yearOfCreation->toString(), *this->toponym,
+            {QString::number(this->id), *this->sightName, *this->address, this->yearOfCreation->toString(),
+             *this->toponym,
              *this->city});
 }

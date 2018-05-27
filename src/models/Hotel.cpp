@@ -5,14 +5,23 @@
 #include "Hotel.h"
 
 Hotel::Hotel(int id, QString *hotelName, QString *address, int stars, QDate *yearOfFoundation, int idCity) : Model(
-        id), hotelName(hotelName), address(address), stars(stars), yearOfFoundation(yearOfFoundation), idCity(idCity) {}
+        id), hotelName(hotelName), address(address), stars(stars), yearOfFoundation(yearOfFoundation), idCity(idCity) {
+    this->cityName = nullptr;
+}
 
 Hotel::Hotel(QString *hotelName, QString *address, int stars, QDate *yearOfFoundation, int idCity) : hotelName(
-        hotelName), address(address), stars(stars), yearOfFoundation(yearOfFoundation), idCity(idCity) {}
+        hotelName), address(address), stars(stars), yearOfFoundation(yearOfFoundation), idCity(idCity) {
+    this->cityName = nullptr;
 
-Hotel::Hotel(int id) : Model(id) {}
+}
 
-Hotel::Hotel() {}
+Hotel::Hotel(int id) : Model(id) {
+    this->cityName = nullptr;
+}
+
+Hotel::Hotel() {
+    this->cityName = nullptr;
+}
 
 QString *Hotel::getHotelName() const {
     return hotelName;
@@ -51,6 +60,10 @@ Hotel::~Hotel() {
     delete this->hotelName;
     delete this->address;
     delete this->yearOfFoundation;
+    if (this->cityName != nullptr) {
+        delete this->cityName;
+        this->cityName = nullptr;
+    }
 }
 
 int Hotel::getIdCity() const {
@@ -68,6 +81,8 @@ Hotel::Hotel(int id, const QString &hotelName, const QString &address, int stars
     this->yearOfFoundation = new QDate(yearOfFoundation);
     this->stars = stars;
     this->idCity = idCity;
+
+    this->cityName = nullptr;
 }
 
 Hotel::Hotel(const QString &hotelName, const QString &address, int stars, const QDate &yearOfFoundation, int idCity)
@@ -77,6 +92,8 @@ Hotel::Hotel(const QString &hotelName, const QString &address, int stars, const 
     this->yearOfFoundation = new QDate(yearOfFoundation);
     this->stars = stars;
     this->idCity = idCity;
+
+    this->cityName = nullptr;
 }
 
 QStringList Hotel::columnList = {"ID", "Hotel Name", "Address", "Year of Foundation", "Stars", "City"};

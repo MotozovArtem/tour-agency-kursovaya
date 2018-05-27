@@ -5,16 +5,37 @@
 #include "City.h"
 
 City::City(int id, QString *name, int idCityType, int idCountry) : Model(id), cityName(name), idCityType(idCityType),
-                                                                   idCountry(idCountry) {}
+                                                                   idCountry(idCountry) {
+    this->cityName = nullptr;
+    this->cityTypeName = nullptr;
+}
 
-City::City(QString *name, int idCityType, int idCountry) : cityName(name), idCityType(idCityType), idCountry(idCountry) {}
+City::City(QString *name, int idCityType, int idCountry) : cityName(name), idCityType(idCityType),
+                                                           idCountry(idCountry) {
+    this->cityName = nullptr;
+    this->cityTypeName = nullptr;
+}
 
-City::City(int id) : Model(id) {}
+City::City(int id) : Model(id) {
+    this->cityName = nullptr;
+    this->cityTypeName = nullptr;
+}
 
-City::City() {}
+City::City() {
+    this->cityName = nullptr;
+    this->cityTypeName = nullptr;
+}
 
 City::~City() {
     delete this->cityName;
+    if (this->countryName != nullptr) {
+        delete this->countryName;
+        this->countryName = nullptr;
+    }
+    if (this->cityTypeName != nullptr) {
+        delete this->cityTypeName;
+        this->cityTypeName = nullptr;
+    }
 }
 
 QString *City::getName() const {

@@ -19,23 +19,24 @@ int main(int argc, char **argv) {
         return -1;
     }
 
-    QTableWidget *view = window->getPTable();
+//    QTableWidget *view = window->getPTable();
 
-    QList<Hotel *> hotelList = HotelDataBaseDAO().getAll();
-
-    view->setRowCount(hotelList.size());
-    view->setColumnCount(Hotel::columnList.length());
-
-    view->setHorizontalHeaderLabels(Hotel::columnList);
-    int i = 0;
-            foreach(Hotel *hotel, hotelList) {
-            view->setItem(i, 0, new QTableWidgetItem(QString::number(hotel->getId())));
-            view->setItem(i, 1, new QTableWidgetItem(*hotel->getHotelName()));
-            view->setItem(i, 2, new QTableWidgetItem(*hotel->getAddress()));
-            view->setItem(i, 3, new QTableWidgetItem(QString::number(hotel->getStars())));
-            view->setItem(i, 4, new QTableWidgetItem(hotel->getYearOfFoundation()->toString()));
-            view->setItem(i, 5, new QTableWidgetItem(QString::number(hotel->getIdCity())));
-        }
+//    QList<Hotel *> hotelList = HotelDataBaseDAO().getAll();
+//
+//    view->setRowCount(hotelList.size());
+//    view->setColumnCount(Hotel::columnList.length());
+//
+//    view->setHorizontalHeaderLabels(Hotel::columnList);
+//    int i = 0;
+//            foreach(Hotel *hotel, hotelList) {
+//            view->setItem(i, 0, new QTableWidgetItem(QString::number(hotel->getId())));
+//            view->setItem(i, 1, new QTableWidgetItem(*hotel->getHotelName()));
+//            view->setItem(i, 2, new QTableWidgetItem(*hotel->getAddress()));
+//            view->setItem(i, 3, new QTableWidgetItem(QString::number(hotel->getStars())));
+//            view->setItem(i, 4, new QTableWidgetItem(hotel->getYearOfFoundation()->toString()));
+//            view->setItem(i, 5, new QTableWidgetItem(QString::number(hotel->getIdCity())));
+//        }
+    window->renderTable<Hotel, HotelDataBaseDAO>();
 
     window->show();
     int exit_code = QApplication::exec();

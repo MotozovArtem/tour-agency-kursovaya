@@ -5,15 +5,23 @@
 #include "Ticket.h"
 
 Ticket::Ticket(int id, int place, QDate *dateFlight, float price, QDate *dateOfPurchase, int idDocuments, int idFlight)
-        : Model(id), place(place), dateFlight(dateFlight), price(price), idDocuments(idDocuments),
+        : Model(id),
+          place(place),
+          dateFlight(dateFlight),
+          price(price),
+          idDocuments(idDocuments),
           dateOfPurchase(dateOfPurchase),
-          idFlight(idFlight) {}
+          idFlight(idFlight) {
+    this->documents = nullptr;
+    this->flight = nullptr;
+}
 
 Ticket::Ticket(int place, QDate *dateFlight, float price, QDate *dateOfPurchase, int idDocuments, int idFlight)
-        : place(
-        place), dateFlight(dateFlight), price(price), idDocuments(idDocuments), dateOfPurchase(dateOfPurchase),
-          idFlight(
-                  idFlight) {}
+        : place(place), dateFlight(dateFlight), price(price), idDocuments(idDocuments), dateOfPurchase(dateOfPurchase),
+          idFlight(idFlight) {
+    this->documents = nullptr;
+    this->flight = nullptr;
+}
 
 Ticket::Ticket(int id, int place, const QDate &dateFlight, float price, const QDate &dateOfPurchase, int idDocuments,
                int idFlight) : Model(id) {
@@ -23,6 +31,9 @@ Ticket::Ticket(int id, int place, const QDate &dateFlight, float price, const QD
     this->idDocuments = idDocuments;
     this->dateOfPurchase = new QDate(dateOfPurchase);
     this->idFlight = idFlight;
+
+    this->documents = nullptr;
+    this->flight = nullptr;
 }
 
 Ticket::Ticket(int place, const QDate &dateFlight, float price, const QDate &dateOfPurchase, int idDocuments,
@@ -33,15 +44,33 @@ Ticket::Ticket(int place, const QDate &dateFlight, float price, const QDate &dat
     this->idDocuments = idDocuments;
     this->dateOfPurchase = new QDate(dateOfPurchase);
     this->idFlight = idFlight;
+
+    this->documents = nullptr;
+    this->flight = nullptr;
 }
 
-Ticket::Ticket(int id) : Model(id) {}
+Ticket::Ticket(int id) : Model(id) {
+    this->documents = nullptr;
+    this->flight = nullptr;
+}
 
-Ticket::Ticket() {}
+Ticket::Ticket() {
+    this->documents = nullptr;
+    this->flight = nullptr;
+}
 
 Ticket::~Ticket() {
     delete this->dateFlight;
     delete this->dateOfPurchase;
+
+    if (this->documents != nullptr) {
+        delete this->documents;
+        this->documents = nullptr;
+    }
+    if (this->flight != nullptr) {
+        delete this->flight;
+        this->flight = nullptr;
+    }
 }
 
 int Ticket::getPlace() const {

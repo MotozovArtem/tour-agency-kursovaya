@@ -4,23 +4,42 @@
 
 #include "ReservByAgreement.h"
 
-ReservByAgreement::ReservByAgreement(int id, QDate *dateOfBegining, int idHotelRoom, int idContract) : Model(id),
-                                                                                                       dateOfBegining(
-                                                                                                               dateOfBegining),
-                                                                                                       idHotelRoom(
-                                                                                                               idHotelRoom),
-                                                                                                       idContract(
-                                                                                                               idContract) {}
+ReservByAgreement::ReservByAgreement(int id, QDate *dateOfBegining, int idHotelRoom, int idContract) :
+        Model(id),
+        dateOfBegining(dateOfBegining),
+        idHotelRoom(idHotelRoom),
+        idContract(idContract) {
+    this->contract = nullptr;
+    this->hotelRoom = nullptr;
+}
 
 ReservByAgreement::ReservByAgreement(QDate *dateOfBegining, int idHotelRoom, int idContract) : dateOfBegining(
-        dateOfBegining), idHotelRoom(idHotelRoom), idContract(idContract) {}
+        dateOfBegining), idHotelRoom(idHotelRoom), idContract(idContract) {
+    this->contract = nullptr;
+    this->hotelRoom = nullptr;
+}
 
-ReservByAgreement::ReservByAgreement(int id) : Model(id) {}
+ReservByAgreement::ReservByAgreement(int id) : Model(id) {
+    this->contract = nullptr;
+    this->hotelRoom = nullptr;
+}
 
-ReservByAgreement::ReservByAgreement() {}
+ReservByAgreement::ReservByAgreement() {
+    this->contract = nullptr;
+    this->hotelRoom = nullptr;
+}
 
 ReservByAgreement::~ReservByAgreement() {
     delete this->dateOfBegining;
+
+    if (this->contract != nullptr) {
+        delete this->contract;
+        this->contract = nullptr;
+    }
+    if (this->hotelRoom != nullptr) {
+        delete this->hotelRoom;
+        this->hotelRoom = nullptr;
+    }
 }
 
 QDate *ReservByAgreement::getDateOfBegining() const {
@@ -51,12 +70,18 @@ ReservByAgreement::ReservByAgreement(const QDate &dateOfBegining, int idHotelRoo
     this->dateOfBegining = new QDate(dateOfBegining);
     this->idHotelRoom = idHotelRoom;
     this->idContract = idContract;
+
+    this->contract = nullptr;
+    this->hotelRoom = nullptr;
 }
 
 ReservByAgreement::ReservByAgreement(int id, const QDate &dateOfBegining, int idHotelRoom, int idContract) : Model(id) {
     this->dateOfBegining = new QDate(dateOfBegining);
     this->idHotelRoom = idHotelRoom;
     this->idContract = idContract;
+
+    this->contract = nullptr;
+    this->hotelRoom = nullptr;
 }
 
 QStringList ReservByAgreement::columnList = {"ID", "Date of begining", "Hotel room_f", "Contract_f"};
