@@ -4,26 +4,26 @@
 
 #include "Country.h"
 
-Country::Country(int id, QString *name, QDate *foundationDate) : Model(id), name(name),
+Country::Country(int id, QString *name, QDate *foundationDate) : Model(id), countryName(name),
                                                                  foundationDate(foundationDate) {}
 
-Country::Country(QString *name, QDate *foundationDate) : name(name), foundationDate(foundationDate) {}
+Country::Country(QString *name, QDate *foundationDate) : countryName(name), foundationDate(foundationDate) {}
 
 Country::Country(int id) : Model(id) {}
 
 Country::Country() {}
 
 Country::~Country() {
-    delete this->name;
+    delete this->countryName;
     delete this->foundationDate;
 }
 
 QString *Country::getName() const {
-    return name;
+    return countryName;
 }
 
 void Country::setName(QString *name) {
-    Country::name = name;
+    Country::countryName = name;
 }
 
 QDate *Country::getFoundationDate() const {
@@ -35,17 +35,17 @@ void Country::setFoundationDate(QDate *foundationDate) {
 }
 
 Country::Country(int id, const QString &name, const QDate &foundationDate) : Model(id) {
-    this->name = new QString(name);
+    this->countryName = new QString(name);
     this->foundationDate = new QDate(foundationDate);
 }
 
 Country::Country(const QString &name, const QDate &foundationDate) : Model() {
-    this->name = new QString(name);
+    this->countryName = new QString(name);
     this->foundationDate = new QDate(foundationDate);
 }
 
 QStringList Country::columnList = {"ID", "Name", "Foundation date"};
 
 QStringList *Country::getValueList() {
-    return new QStringList({QString::number(this->id), *this->name, this->foundationDate->toString()});
+    return new QStringList({QString::number(this->id), *this->countryName, this->foundationDate->toString()});
 }

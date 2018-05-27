@@ -9,11 +9,11 @@
 QList<HotelRoomType *> HotelRoomTypeDataBaseDAO::getAll() {
     QSqlQuery query;
     QList<HotelRoomType *> list;
-    if (query.exec("SELECT id, name FROM HotelRoomType")) {
+    if (query.exec("SELECT id, hotelRoomTypeName FROM HotelRoomType")) {
         while (query.next()) {
             list << new HotelRoomType(
                     query.value("id").toInt(),
-                    query.value("name").toString()
+                    query.value("hotelRoomTypeName").toString()
             );
         }
     } else {
@@ -26,12 +26,12 @@ QList<HotelRoomType *> HotelRoomTypeDataBaseDAO::getAll() {
 HotelRoomType *HotelRoomTypeDataBaseDAO::getById(int id) {
     QSqlQuery query;
     HotelRoomType *hotelRoomType = nullptr;
-    query.prepare("SELECT id, name FROM HotelRoomType WHERE id=:id");
+    query.prepare("SELECT id, hotel_room_type_name FROM HotelRoomType WHERE id=:id");
     query.bindValue(":id", id);
     if (query.exec()) {
         hotelRoomType = new HotelRoomType(
                 query.value("id").toInt(),
-                query.value("name").toString()
+                query.value("hotel_room_type_name").toString()
         );
     } else {
         Logger logger(nullptr, "log.txt", nullptr);
@@ -42,8 +42,8 @@ HotelRoomType *HotelRoomTypeDataBaseDAO::getById(int id) {
 
 void HotelRoomTypeDataBaseDAO::add(HotelRoomType *model) {
     QSqlQuery query;
-    query.prepare("INSERT INTO HotelRoomType(name) VALUES (:name)");
-    query.bindValue(":name", *model->getName());
+    query.prepare("INSERT INTO HotelRoomType(hotel_room_type_name) VALUES (:hotelRoomTypeName)");
+    query.bindValue(":hotel_room_type_name", *model->getName());
     if (!query.exec()) {
         Logger logger(nullptr, "log.txt", nullptr);
         logger.write(QString("%1 %2").arg("HotelRoomTypeDataBaseDAO::add error", query.lastError().text()));
@@ -52,8 +52,8 @@ void HotelRoomTypeDataBaseDAO::add(HotelRoomType *model) {
 
 void HotelRoomTypeDataBaseDAO::update(HotelRoomType *model) {
     QSqlQuery query;
-    query.prepare("UPDATE HotelRoomType SET name=:name WHERE id=:id");
-    query.bindValue(":name", *model->getName());
+    query.prepare("UPDATE HotelRoomType SET hotel_room_type_name=:hotel_room_type_name WHERE id=:id");
+    query.bindValue(":hotel_room_type_name", *model->getName());
     query.bindValue(":id", model->getId());
     if (!query.exec()) {
         Logger logger(nullptr, "log.txt", nullptr);
@@ -69,4 +69,8 @@ void HotelRoomTypeDataBaseDAO::del(HotelRoomType *model) {
         Logger logger(nullptr, "log.txt", nullptr);
         logger.write(QString("%1 %2").arg("HotelRoomTypeDataBaseDAO::del error", query.lastError().text()));
     }
+}
+
+QList<HotelRoomType *> HotelRoomTypeDataBaseDAO::getAllFilled() {
+    return HotelRoomTypeDataBaseDAO::getAll();
 }

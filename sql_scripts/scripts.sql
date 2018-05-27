@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS Hotel (
 
 CREATE TABLE IF NOT EXISTS HotelRoomType (
   id   SERIAL PRIMARY KEY,
-  name VARCHAR(100)
+  hotel_room_type_name VARCHAR(100)
 );
 
 CREATE TABLE IF NOT EXISTS HotelRoom (
@@ -32,12 +32,12 @@ CREATE TABLE IF NOT EXISTS Reservation (
 
 CREATE TABLE IF NOT EXISTS TourType (
   id   SERIAL PRIMARY KEY,
-  name VARCHAR(70)
+  tour_type_name VARCHAR(70)
 );
 
 CREATE TABLE IF NOT EXISTS Tour (
   id           SERIAL PRIMARY KEY,
-  name         VARCHAR(200),
+  tour_name         VARCHAR(200),
   days         INTEGER,
   id_city      INTEGER,
   id_tour_type INTEGER
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS Tour (
 
 CREATE TABLE IF NOT EXISTS Sight (
   id                 SERIAL PRIMARY KEY,
-  name               VARCHAR(100),
+  sight_name               VARCHAR(100),
   address            VARCHAR(150),
   year_of_foundation DATE,
   toponym            VARCHAR(100),
@@ -54,25 +54,25 @@ CREATE TABLE IF NOT EXISTS Sight (
 
 CREATE TABLE IF NOT EXISTS City (
   id           SERIAL PRIMARY KEY,
-  name         VARCHAR(100),
+  city_name         VARCHAR(100),
   id_country   INTEGER,
   id_city_type INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS CityType (
   id   SERIAL PRIMARY KEY,
-  name VARCHAR(80)
+  city_type_name VARCHAR(80)
 );
 
 CREATE TABLE IF NOT EXISTS Country (
   id              SERIAL PRIMARY KEY,
-  name            VARCHAR(100),
+  country_name            VARCHAR(100),
   foundation_date DATE
 );
 
 CREATE TABLE IF NOT EXISTS Contract (
   id              SERIAL PRIMARY KEY,
-  name            VARCHAR(100),
+  contract_name            VARCHAR(100),
   date_of_payment DATE,
   date_of_issue   DATE,
   total           NUMERIC(12, 2),
@@ -115,7 +115,7 @@ CREATE TABLE IF NOT EXISTS TransportNode (
 
 CREATE TABLE IF NOT EXISTS PlaceArrival (
   id                    SERIAL PRIMARY KEY,
-  name                  VARCHAR(100),
+  place_arrival_name                  VARCHAR(100),
   address               VARCHAR(200),
   id_city               INTEGER,
   id_place_arrival_type INTEGER
@@ -123,14 +123,14 @@ CREATE TABLE IF NOT EXISTS PlaceArrival (
 
 CREATE TABLE IF NOT EXISTS PlaceArrivalType (
   id   SERIAL PRIMARY KEY,
-  name VARCHAR(100)
+  place_arrival_type_name VARCHAR(100)
 );
 
 CREATE TABLE IF NOT EXISTS Client (
   id             SERIAL PRIMARY KEY,
   passport_data  VARCHAR(200),
   surname        VARCHAR(50),
-  name           VARCHAR(50),
+  client_name           VARCHAR(50),
   patronymic     VARCHAR(50),
   date_of_birth  DATE,
   place_of_birth VARCHAR(100),
@@ -160,15 +160,15 @@ CREATE TABLE IF NOT EXISTS ReservByAgreement(
 
 CREATE TABLE IF NOT EXISTS DocumentType(
     id SERIAL PRIMARY KEY,
-    name VARCHAR(100)
+    document_type_name VARCHAR(100)
 );
 
 CREATE TABLE IF NOT EXISTS TransportNodeType(
     id SERIAL PRIMARY KEY,
-    name VARCHAR(100)
+    transport_node_type_name VARCHAR(100)
 );
 
 CREATE TABLE IF NOT EXISTS Status(
     id SERIAL PRIMARY KEY,
-    name VARCHAR(100)
+    status_name VARCHAR(100)
 );

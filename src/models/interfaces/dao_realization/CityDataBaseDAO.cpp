@@ -9,11 +9,11 @@
 QList<City *> CityDataBaseDAO::getAll() {
     QSqlQuery query;
     QList<City *> list;
-    if (query.exec("SELECT id, name, id_city_type, id_country FROM City ORDER BY id")) {
+    if (query.exec("SELECT id, city_name, id_city_type, id_country FROM City ORDER BY id")) {
         while (query.next()) {
             list << new City(
                     query.value("id").toInt(),
-                    query.value("name").toString(),
+                    query.value("city_name").toString(),
                     query.value("id_city_type").toInt(),
                     query.value("id_country").toInt()
             );
@@ -27,14 +27,14 @@ QList<City *> CityDataBaseDAO::getAll() {
 
 City *CityDataBaseDAO::getById(int id) {
     QSqlQuery query;
-    query.prepare("SELECT id, name, id_city_type, id_country FROM City WHERE id=:id");
+    query.prepare("SELECT id, city_name, id_city_type, id_country FROM City WHERE id=:id");
     query.bindValue(":id", id);
     City *city = nullptr;
     if (query.exec()) {
         while (query.next()) {
             city = new City(
                     id,
-                    query.value("name").toString(),
+                    query.value("city_name").toString(),
                     query.value("id_city_type").toInt(),
                     query.value("id_country").toInt()
             );
@@ -48,9 +48,9 @@ City *CityDataBaseDAO::getById(int id) {
 
 void CityDataBaseDAO::add(City *model) {
     QSqlQuery query;
-    query.prepare("INSERT INTO City(name, id_city_type, id_country) VALUES"
-                  "(:name, :id_city_type, :id_country)");
-    query.bindValue(":name", *model->getName());
+    query.prepare("INSERT INTO City(city_name, id_city_type, id_country) VALUES"
+                  "(:city_name, :id_city_type, :id_country)");
+    query.bindValue(":cityName", *model->getName());
     query.bindValue(":id_city_type", model->getIdCityType());
     query.bindValue(":id_country", model->getIdCountry());
     if (!query.exec()) {
@@ -61,8 +61,9 @@ void CityDataBaseDAO::add(City *model) {
 
 void CityDataBaseDAO::update(City *model) {
     QSqlQuery query;
-    query.prepare("UPDATE City SET name=:name, id_city_type=:id_city_type, id_country=:id_country WHERE id=:id");
-    query.bindValue(":name", *model->getName());
+    query.prepare(
+            "UPDATE City SET cityName=:city_name, id_city_type=:id_city_type, id_country=:id_country WHERE id=:id");
+    query.bindValue(":city_name", *model->getName());
     query.bindValue(":id_city_type", model->getIdCityType());
     query.bindValue(":id_country", model->getIdCountry());
     query.bindValue(":id", model->getId());
@@ -80,4 +81,28 @@ void CityDataBaseDAO::del(City *model) {
         Logger logger(nullptr, "log.txt", nullptr);
         logger.write(QString("%1 %2").arg("CityDataBaseDAO::del error", query.lastError().text()));
     }
+}
+
+QList<City *> CityDataBaseDAO::getAllFilled() {
+    QSqlQuery query;
+    QList<City *> list;
+    if (query.exec("SELECT City.id, City.city_name, Country.country_name, CityType.city_type_name FROM City "
+                   "LEFT JOIN Country ON (City.id_country=Country.id) "
+                   "LEFT JOIN CityType ON (City.id_city_type=CityType.id)"
+                   "ORDER BY id")) {
+        while (query.next()) {
+            City *city = new City(
+                    query.value("id").toInt(),
+                    query.value("city_name").toString(),
+                    0, 0
+            );
+            city->setCountryName(new QString(query.value("country_name").toString()));
+            city->setCityTypeName(new QString(query.value("city_type_name").toString()));
+            list << city;
+        }
+    } else {
+        Logger logger(nullptr, "log.txt", nullptr);
+        logger.write(QString("%1 %2").arg("CityDataBaseDAO::getAllFilled() error", query.lastError().text()));
+    }
+    return list;
 }

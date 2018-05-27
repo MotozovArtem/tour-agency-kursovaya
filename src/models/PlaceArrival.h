@@ -11,7 +11,7 @@
 
 class PlaceArrival : public Model {
 private:
-    QString *name;
+    QString *placeArrivalName;
     QString *address;
     int idCity;
     int idPlaceArrivalType;

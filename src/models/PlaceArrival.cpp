@@ -6,13 +6,13 @@
 
 
 PlaceArrival::PlaceArrival(int id, QString *name, QString *address, int idCity, int idPlaceArrivalType) : Model(id),
-                                                                                                          name(name),
+                                                                                                          placeArrivalName(name),
                                                                                                           address(address),
                                                                                                           idCity(idCity),
                                                                                                           idPlaceArrivalType(
                                                                                                                   idPlaceArrivalType) {}
 
-PlaceArrival::PlaceArrival(QString *name, QString *address, int idCity, int idPlaceArrivalType) : name(name),
+PlaceArrival::PlaceArrival(QString *name, QString *address, int idCity, int idPlaceArrivalType) : placeArrivalName(name),
                                                                                                   address(address),
                                                                                                   idCity(idCity),
                                                                                                   idPlaceArrivalType(
@@ -23,16 +23,16 @@ PlaceArrival::PlaceArrival(int id) : Model(id) {}
 PlaceArrival::PlaceArrival() {}
 
 PlaceArrival::~PlaceArrival() {
-    delete this->name;
+    delete this->placeArrivalName;
     delete this->address;
 }
 
 QString *PlaceArrival::getName() const {
-    return name;
+    return placeArrivalName;
 }
 
 void PlaceArrival::setName(QString *name) {
-    PlaceArrival::name = name;
+    PlaceArrival::placeArrivalName = name;
 }
 
 QString *PlaceArrival::getAddress() const {
@@ -61,14 +61,14 @@ void PlaceArrival::setIdPlaceArrivalType(int idPlaceArrivalType) {
 
 PlaceArrival::PlaceArrival(int id, const QString &name, const QString &address, int idCity, int idPlaceArrivalType)
         : Model(id) {
-    this->name = new QString(name);
+    this->placeArrivalName = new QString(name);
     this->address = new QString(address);
     this->idCity = idCity;
     this->idPlaceArrivalType = idPlaceArrivalType;
 }
 
 PlaceArrival::PlaceArrival(const QString &name, const QString &address, int idCity, int idPlaceArrivalType) : Model() {
-    this->name = new QString(name);
+    this->placeArrivalName = new QString(name);
     this->address = new QString(address);
     this->idCity = idCity;
     this->idPlaceArrivalType = idPlaceArrivalType;
@@ -94,5 +94,5 @@ QStringList PlaceArrival::columnList = {"ID", "Name", "Address", "City_f", "Plac
 
 QStringList *PlaceArrival::getValueList() {
     return new QStringList(
-            {QString::number(this->id), *this->name, *this->address, *this->city, *this->placeArrivalType});
+            {QString::number(this->id), *this->placeArrivalName, *this->address, *this->city, *this->placeArrivalType});
 }

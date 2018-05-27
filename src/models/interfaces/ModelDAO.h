@@ -28,6 +28,7 @@ public:
 
     virtual void del(T *model)=0;
 
+    virtual QList<T *> getAllFilled()=0;
 };
 
 

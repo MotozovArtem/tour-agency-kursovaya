@@ -10,7 +10,7 @@
 
 class HotelRoomType : public Model {
 private:
-    QString *name;
+    QString *hotelRoomTypeName;
 public:
     static QStringList columnList;
     

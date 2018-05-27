@@ -5,12 +5,12 @@
 #include "Client.h"
 
 Client::Client(int id, QString *passportData, QString *surname, QString *name, QString *patronymic, QDate *dateOfBirth,
-               QString *placeOfBirth, bool sex) : Model(id), passportData(passportData), surname(surname), name(name),
+               QString *placeOfBirth, bool sex) : Model(id), passportData(passportData), surname(surname), clientName(name),
                                                   patronymic(patronymic), dateOfBirth(dateOfBirth),
                                                   placeOfBirth(placeOfBirth), sex(sex) {}
 
 Client::Client(QString *passportData, QString *surname, QString *name, QString *patronymic, QDate *dateOfBirth,
-               QString *placeOfBirth, bool sex) : passportData(passportData), surname(surname), name(name),
+               QString *placeOfBirth, bool sex) : passportData(passportData), surname(surname), clientName(name),
                                                   patronymic(patronymic), dateOfBirth(dateOfBirth),
                                                   placeOfBirth(placeOfBirth), sex(sex) {}
 
@@ -20,7 +20,7 @@ Client::Client() {}
 
 Client::~Client() {
     delete this->surname;
-    delete this->name;
+    delete this->clientName;
     delete this->patronymic;
     delete this->dateOfBirth;
     delete this->placeOfBirth;
@@ -44,11 +44,11 @@ void Client::setSurname(QString *surname) {
 }
 
 QString *Client::getName() const {
-    return name;
+    return clientName;
 }
 
 void Client::setName(QString *name) {
-    Client::name = name;
+    Client::clientName = name;
 }
 
 QString *Client::getPatronymic() const {
@@ -88,7 +88,7 @@ Client::Client(int id, const QString &passportData, const QString &surname, cons
         id) {
     this->passportData = new QString(passportData);
     this->surname = new QString(surname);
-    this->name = new QString(name);
+    this->clientName = new QString(name);
     this->patronymic = new QString(patronymic);
     this->dateOfBirth = new QDate(dateOfBirth);
     this->sex = sex;
@@ -98,7 +98,7 @@ Client::Client(const QString &passportData, const QString &surname, const QStrin
                const QString &patronymic, const QDate &dateOfBirth, const QString *&placeOfBirth, bool sex) : Model() {
     this->passportData = new QString(passportData);
     this->surname = new QString(surname);
-    this->name = new QString(name);
+    this->clientName = new QString(name);
     this->patronymic = new QString(patronymic);
     this->dateOfBirth = new QDate(dateOfBirth);
     this->sex = sex;
@@ -109,6 +109,6 @@ QStringList Client::columnList = {"ID", "Passport Data", "Surname", "Name", "Pat
 
 QStringList *Client::getValueList() {
     return new QStringList(
-            {QString::number(this->id), *this->passportData, *this->surname, *this->name, *this->patronymic,
+            {QString::number(this->id), *this->passportData, *this->surname, *this->clientName, *this->patronymic,
              this->dateOfBirth->toString(), *this->placeOfBirth, (this->sex ? "+" : "-")});
 }

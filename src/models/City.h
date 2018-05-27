@@ -10,7 +10,7 @@
 
 class City : public Model {
 private:
-    QString *name;
+    QString *cityName;
     int idCityType;
     int idCountry;
 

@@ -4,32 +4,32 @@
 
 #include "HotelRoomType.h"
 
-HotelRoomType::HotelRoomType(int id, QString *name) : Model(id), name(name) {}
+HotelRoomType::HotelRoomType(int id, QString *name) : Model(id), hotelRoomTypeName(name) {}
 
-HotelRoomType::HotelRoomType(QString *name) : name(name) {}
+HotelRoomType::HotelRoomType(QString *name) : hotelRoomTypeName(name) {}
 
 HotelRoomType::HotelRoomType(int id) : Model(id) {}
 
 HotelRoomType::HotelRoomType() {}
 
 HotelRoomType::HotelRoomType(int id, const QString &name) : Model(id) {
-    this->name = new QString(name);
+    this->hotelRoomTypeName = new QString(name);
 }
 
 HotelRoomType::HotelRoomType(const QString &name) : Model() {
-    this->name = new QString(name);
+    this->hotelRoomTypeName = new QString(name);
 }
 
 QString *HotelRoomType::getName() const {
-    return name;
+    return hotelRoomTypeName;
 }
 
 void HotelRoomType::setName(QString *name) {
-    this->name = name;
+    this->hotelRoomTypeName = name;
 }
 
 HotelRoomType::~HotelRoomType() {
-    delete this->name;
+    delete this->hotelRoomTypeName;
 }
 
 QStringList HotelRoomType::columnList = {"ID", "Name"};
@@ -37,6 +37,6 @@ QStringList HotelRoomType::columnList = {"ID", "Name"};
 QStringList *HotelRoomType::getValueList() {
     return new QStringList({
                                    QString::number(this->id),
-                                   *this->name
+                                   *this->hotelRoomTypeName
                            });
 }

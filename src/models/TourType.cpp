@@ -4,36 +4,36 @@
 
 #include "TourType.h"
 
-TourType::TourType(int id, QString *name) : Model(id), name(name) {}
+TourType::TourType(int id, QString *name) : Model(id), tourTypeName(name) {}
 
 TourType::TourType(int id) : Model(id) {}
 
-TourType::TourType(QString *name) : name(name) {}
+TourType::TourType(QString *name) : tourTypeName(name) {}
 
 TourType::TourType() {}
 
 TourType::~TourType() {
-    delete this->name;
+    delete this->tourTypeName;
 }
 
 QString *TourType::getName() const {
-    return name;
+    return tourTypeName;
 }
 
 void TourType::setName(QString *name) {
-    TourType::name = name;
+    TourType::tourTypeName = name;
 }
 
 TourType::TourType(int id, const QString &name) : Model(id) {
-    this->name = new QString(name);
+    this->tourTypeName = new QString(name);
 }
 
 TourType::TourType(const QString &name) : Model() {
-    this->name = new QString(name);
+    this->tourTypeName = new QString(name);
 }
 
 QStringList TourType::columnList = {"ID", "Name"};
 
 QStringList *TourType::getValueList() {
-    return new QStringList({QString::number(this->id), *this->name});
+    return new QStringList({QString::number(this->id), *this->tourTypeName});
 }

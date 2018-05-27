@@ -11,7 +11,7 @@
 
 class Country : public Model{
 private:
-    QString *name;
+    QString *countryName;
     QDate *foundationDate;
 public:
     static QStringList columnList;

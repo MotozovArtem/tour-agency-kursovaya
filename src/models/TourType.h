@@ -10,7 +10,7 @@
 
 class TourType : public Model {
 private:
-    QString *name;
+    QString *tourTypeName;
 public:
     static QStringList columnList;
     TourType(int id, QString *name);

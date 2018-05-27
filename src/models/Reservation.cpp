@@ -4,16 +4,32 @@
 
 #include "Reservation.h"
 
-Reservation::Reservation(int id, QDate *dateOfBegining, int idHotelRoom, QDate *dateOfEnding, int idContract) : Model(
+Reservation::Reservation(int id, QDate *dateOfBegining, QDate *dateOfEnding, int idHotelRoom, int idContract) : Model(
         id), dateOfBegining(dateOfBegining), idHotelRoom(idHotelRoom), dateOfEnding(dateOfEnding), idContract(
         idContract) {}
 
-Reservation::Reservation(QDate *dateOfBegining, int idHotelRoom, QDate *dateOfEnding, int idContract) : dateOfBegining(
+Reservation::Reservation(QDate *dateOfBegining, QDate *dateOfEnding, int idHotelRoom, int idContract) : dateOfBegining(
         dateOfBegining), idHotelRoom(idHotelRoom), dateOfEnding(dateOfEnding), idContract(idContract) {}
 
 Reservation::Reservation(int id) : Model(id) {}
 
 Reservation::Reservation() {}
+
+Reservation::Reservation(int id, const QDate &dateOfBegining, const QDate &dateOfEnding, int idHotelRoom,
+                         int idContract) : Model(id) {
+    this->dateOfEnding = new QDate(dateOfEnding);
+    this->dateOfBegining = new QDate(dateOfBegining);
+    this->idContract = idContract;
+    this->idHotelRoom = idHotelRoom;
+}
+
+Reservation::Reservation(const QDate &dateOfBegining, const QDate &dateOfEnding, int idHotelRoom, int idContract)
+        : Model() {
+    this->dateOfBegining = new QDate(dateOfBegining);
+    this->dateOfEnding = new QDate(dateOfEnding);
+    this->idContract = idContract;
+    this->idHotelRoom = idHotelRoom;
+}
 
 Reservation::~Reservation() {
     delete this->dateOfBegining;
@@ -52,21 +68,6 @@ void Reservation::setIdContract(int idContract) {
     Reservation::idContract = idContract;
 }
 
-Reservation::Reservation(const QDate &dateOfBegining, int idHotelRoom, const QDate &dateOfEnding, int idContract)
-        : Model() {
-    this->dateOfBegining = new QDate(dateOfBegining);
-    this->dateOfEnding = new QDate(dateOfEnding);
-    this->idContract = idContract;
-    this->idHotelRoom = idHotelRoom;
-}
-
-Reservation::Reservation(int id, const QDate &dateOfBegining, int idHotelRoom, const QDate &dateOfEnding,
-                         int idContract) : Model(id) {
-    this->dateOfEnding = new QDate(dateOfEnding);
-    this->dateOfBegining = new QDate(dateOfBegining);
-    this->idContract = idContract;
-    this->idHotelRoom = idHotelRoom;
-}
 
 QString *Reservation::getHotelRoom() const {
     return hotelRoom;

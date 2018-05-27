@@ -16,6 +16,8 @@ private:
     int stars;
     QDate *yearOfFoundation;
     int idCity;
+
+    QString *cityName;
 public:
     static QStringList columnList;
 
@@ -53,6 +55,10 @@ public:
     int getIdCity() const;
 
     void setIdCity(int idCity);
+
+    QString *getCityName() const;
+
+    void setCityName(QString *cityName);
 
     virtual QStringList *getValueList();
 

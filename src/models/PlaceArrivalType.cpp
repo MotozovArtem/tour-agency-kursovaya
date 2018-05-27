@@ -4,36 +4,36 @@
 
 #include "PlaceArrivalType.h"
 
-PlaceArrivalType::PlaceArrivalType(int id, QString *name) : Model(id), name(name) {}
+PlaceArrivalType::PlaceArrivalType(int id, QString *name) : Model(id), placeArrivalTypeName(name) {}
 
-PlaceArrivalType::PlaceArrivalType(QString *name) : name(name) {}
+PlaceArrivalType::PlaceArrivalType(QString *name) : placeArrivalTypeName(name) {}
 
 PlaceArrivalType::PlaceArrivalType(int id) : Model(id) {}
 
 PlaceArrivalType::PlaceArrivalType() {}
 
 PlaceArrivalType::~PlaceArrivalType() {
-    delete this->name;
+    delete this->placeArrivalTypeName;
 }
 
 QString *PlaceArrivalType::getName() const {
-    return name;
+    return placeArrivalTypeName;
 }
 
 void PlaceArrivalType::setName(QString *name) {
-    PlaceArrivalType::name = name;
+    PlaceArrivalType::placeArrivalTypeName = name;
 }
 
 PlaceArrivalType::PlaceArrivalType(int id, const QString &name) : Model(id) {
-    this->name = new QString(name);
+    this->placeArrivalTypeName = new QString(name);
 }
 
 PlaceArrivalType::PlaceArrivalType(const QString &name) {
-    this->name = new QString(name);
+    this->placeArrivalTypeName = new QString(name);
 }
 
 QStringList PlaceArrivalType::columnList = {"ID", "Name"};
 
 QStringList *PlaceArrivalType::getValueList() {
-    return new QStringList({QString::number(this->id), *this->name});
+    return new QStringList({QString::number(this->id), *this->placeArrivalTypeName});
 }

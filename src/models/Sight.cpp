@@ -5,14 +5,14 @@
 #include "Sight.h"
 
 Sight::Sight(int id, QString *name, QString *address, QDate *yearOfCreation, QString *toponym, int idCity) : Model(id),
-                                                                                                             name(name),
+                                                                                                             sightName(name),
                                                                                                              address(address),
                                                                                                              yearOfCreation(
                                                                                                                      yearOfCreation),
                                                                                                              toponym(toponym),
                                                                                                              idCity(idCity) {}
 
-Sight::Sight(QString *name, QString *address, QDate *yearOfCreation, QString *toponym, int idCity) : name(name),
+Sight::Sight(QString *name, QString *address, QDate *yearOfCreation, QString *toponym, int idCity) : sightName(name),
                                                                                                      address(address),
                                                                                                      yearOfCreation(
                                                                                                              yearOfCreation),
@@ -24,18 +24,18 @@ Sight::Sight(int id) : Model(id) {}
 Sight::Sight() {}
 
 Sight::~Sight() {
-    delete this->name;
+    delete this->sightName;
     delete this->address;
     delete this->toponym;
     delete this->yearOfCreation;
 }
 
 QString *Sight::getName() const {
-    return name;
+    return sightName;
 }
 
 void Sight::setName(QString *name) {
-    Sight::name = name;
+    Sight::sightName = name;
 }
 
 QString *Sight::getAddress() const {
@@ -72,7 +72,7 @@ void Sight::setIdCity(int idCity) {
 
 Sight::Sight(int id, const QString &name, const QString &address, const QDate &yearOfCreation, const QString &toponym,
              int idCity) : Model(id) {
-    this->name = new QString(name);
+    this->sightName = new QString(name);
     this->address = new QString(address);
     this->yearOfCreation = new QDate(yearOfCreation);
     this->toponym = new QString(toponym);
@@ -80,7 +80,7 @@ Sight::Sight(int id, const QString &name, const QString &address, const QDate &y
 
 Sight::Sight(const QString &name, const QString &address, const QDate &yearOfCreation, const QString &toponym,
              int idCity) : Model() {
-    this->name = new QString(name);
+    this->sightName = new QString(name);
     this->address = new QString(address);
     this->yearOfCreation = new QDate(yearOfCreation);
     this->toponym = new QString(toponym);
@@ -98,6 +98,6 @@ QStringList Sight::columnList = {"ID", "Name", "Address", "Year of creation", "T
 
 QStringList *Sight::getValueList() {
     return new QStringList(
-            {QString::number(this->id), *this->name, *this->address, this->yearOfCreation->toString(), *this->toponym,
+            {QString::number(this->id), *this->sightName, *this->address, this->yearOfCreation->toString(), *this->toponym,
              *this->city});
 }

@@ -11,7 +11,7 @@
 
 class Status : public Model {
 private:
-    QString *name;
+    QString *statusName;
 public:
     static QStringList columnList;
 

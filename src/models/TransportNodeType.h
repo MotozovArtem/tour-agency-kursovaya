@@ -11,7 +11,7 @@
 
 class TransportNodeType : public Model {
 private:
-    QString *name;
+    QString *transportNodeTypeName;
 public:
     static QStringList columnList;
 

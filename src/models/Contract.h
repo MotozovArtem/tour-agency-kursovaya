@@ -11,7 +11,7 @@
 
 class Contract: public Model {
 private:
-    QString *name;
+    QString *contractName;
     QDate *dateOfPayment;
     QDate *dateOfIssue;
     float total;

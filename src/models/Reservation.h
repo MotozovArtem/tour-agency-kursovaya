@@ -12,21 +12,21 @@
 class Reservation : public Model {
 private:
     QDate *dateOfBegining;
-    int idHotelRoom;
     QDate *dateOfEnding;
+    int idHotelRoom;
     int idContract;
 
     QString *hotelRoom;
     QString *contract;
 public:
     static QStringList columnList;
-    Reservation(QDate *dateOfBegining, int idHotelRoom, QDate *dateOfEnding, int idContract);
+    Reservation(QDate *dateOfBegining,QDate *dateOfEnding, int idHotelRoom,  int idContract);
 
-    Reservation(const QDate &dateOfBegining, int idHotelRoom, const QDate &dateOfEnding, int idContract);
+    Reservation(const QDate &dateOfBegining, const QDate &dateOfEnding,int idHotelRoom,  int idContract);
 
-    Reservation(int id, QDate *dateOfBegining, int idHotelRoom, QDate *dateOfEnding, int idContract);
+    Reservation(int id, QDate *dateOfBegining, QDate *dateOfEnding,int idHotelRoom,  int idContract);
 
-    Reservation(int id, const QDate &dateOfBegining, int idHotelRoom, const QDate &dateOfEnding, int idContract);
+    Reservation(int id, const QDate &dateOfBegining,const QDate &dateOfEnding, int idHotelRoom,  int idContract);
 
     Reservation(int id);
 

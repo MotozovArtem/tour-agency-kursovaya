@@ -18,6 +18,8 @@ public:
     virtual void update(City *model);
 
     virtual void del(City *model);
+
+    virtual QList<City *> getAllFilled();
 };
 
 

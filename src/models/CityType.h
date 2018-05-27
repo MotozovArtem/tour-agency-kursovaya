@@ -10,7 +10,7 @@
 
 class CityType : public Model {
 private:
-    QString *name;
+    QString *cityTypeName;
 public:
     static QStringList columnList;
     CityType(int id, QString *name);

@@ -6,14 +6,12 @@ set(PROJECT_NAME psqlWork)
 set(CMAKE_AUTOMOC True)
 
 
-find_package(PostgreSQL REQUIRED)
+#find_package(PostgreSQL REQUIRED)
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Sql REQUIRED)
-#find_package(Boost 1.64 REQUIRED)
 
 
-include_directories(${PostgreSQL_INCLUDE_DIRS})
-#include_directories(${Boost_INCLUDE_DIRS})
+#include_directories(${PostgreSQL_INCLUDE_DIRS})
 include_directories(src src/models)
 
 set(PROJECT_SOURCE_DIR src)
@@ -35,7 +33,8 @@ set(INTERFACES src/models/interfaces/ModelDAO.h src/models/interfaces/HotelDAO.h
         src/models/interfaces/PlaceArrivalDAO.h src/models/interfaces/PlaceArrivalTypeDAO.h
         src/models/interfaces/ClientDAO.h src/models/interfaces/DocumentsDAO.h
         src/models/interfaces/DocumentsForTourDAO.h src/models/interfaces/ReservByAgreementDAO.h
-        src/models/interfaces/CountryDAO.h src/models/interfaces/DocumentTypeDAO.h src/models/interfaces/StatusDAO.h)
+        src/models/interfaces/CountryDAO.h src/models/interfaces/DocumentTypeDAO.h
+        src/models/interfaces/StatusDAO.h)
 
 
 set(MODELS ${PROJECT_SOURCE_DIR}/models/Model.cpp ${PROJECT_SOURCE_DIR}/models/Model.h
@@ -64,9 +63,18 @@ set(MODELS ${PROJECT_SOURCE_DIR}/models/Model.cpp ${PROJECT_SOURCE_DIR}/models/M
         src/models/DocumentType.cpp src/models/DocumentType.h src/models/Status.cpp src/models/Status.h)
 
 
-set(REALIZATION src/models/interfaces/dao_realization/HotelDataBaseDAO.cpp src/models/interfaces/dao_realization/HotelDataBaseDAO.h src/models/interfaces/dao_realization/CityDataBaseDAO.cpp src/models/interfaces/dao_realization/CityDataBaseDAO.h src/models/interfaces/dao_realization/HotelRoomTypeDataBaseDAO.cpp src/models/interfaces/dao_realization/HotelRoomTypeDataBaseDAO.h src/models/interfaces/dao_realization/HotelRoomDataBaseDAO.cpp src/models/interfaces/dao_realization/HotelRoomDataBaseDAO.h)
+set(REALIZATION src/models/interfaces/dao_realization/HotelDataBaseDAO.cpp
+        src/models/interfaces/dao_realization/HotelDataBaseDAO.h
+        src/models/interfaces/dao_realization/CityDataBaseDAO.cpp
+        src/models/interfaces/dao_realization/CityDataBaseDAO.h
+        src/models/interfaces/dao_realization/HotelRoomTypeDataBaseDAO.cpp
+        src/models/interfaces/dao_realization/HotelRoomTypeDataBaseDAO.h
+        src/models/interfaces/dao_realization/HotelRoomDataBaseDAO.cpp
+        src/models/interfaces/dao_realization/HotelRoomDataBaseDAO.h
+        src/models/interfaces/dao_realization/ReservationDataBaseDAO.cpp
+        src/models/interfaces/dao_realization/ReservationDataBaseDAO.h)
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${MODELS} ${INTERFACES} ${REALIZATION})
-target_link_libraries(${PROJECT_NAME} ${PostgreSQL_LIBRARIES})
+#target_link_libraries(${PROJECT_NAME} ${PostgreSQL_LIBRARIES})
 target_link_libraries(${PROJECT_NAME} Qt5::Widgets)
 target_link_libraries(${PROJECT_NAME} Qt5::Sql)

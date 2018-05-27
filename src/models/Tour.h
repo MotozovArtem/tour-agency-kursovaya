@@ -10,7 +10,7 @@
 
 class Tour : public Model {
 private:
-    QString *name;
+    QString *tourName;
     int days;
     int idCity;
     int idTourType;

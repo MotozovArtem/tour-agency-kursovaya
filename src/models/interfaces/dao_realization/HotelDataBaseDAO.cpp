@@ -8,11 +8,6 @@
 
 
 QList<Hotel *> HotelDataBaseDAO::getAll() {
-//    SQLConnection *con = new SQLConnection("tour_agency", "rienel", "1957");
-//    QSqlDatabase db = con->getConnection();
-//    if (!db.open()) {
-//        qDebug() << "Ошибка"; // TODO: Запихнуть сюда логгер кастомный
-//    }
     QSqlQuery query;
     QList<Hotel *> hotelList;
     if (query.exec("SELECT * FROM Hotel")) {
@@ -31,9 +26,6 @@ QList<Hotel *> HotelDataBaseDAO::getAll() {
         Logger logger(nullptr, "log.txt", nullptr);
         logger.write(QString("%1 %2").arg("HotelDataBaseDAO::getAll error", query.lastError().text()));
     }
-
-
-//    delete con;
     return hotelList;
 }
 
@@ -100,4 +92,31 @@ void HotelDataBaseDAO::del(Hotel *model) {
         Logger logger(nullptr, "log.txt", nullptr);
         logger.write(QString("%1 %2").arg("HotelDataBaseDAO::del error", query.lastError().text()));
     }
+}
+
+QList<Hotel *> HotelDataBaseDAO::getAllFilled() {
+    QSqlQuery query;
+    QList<Hotel *> hotelList;
+    if (query.exec("SELECT Hotel.id, Hotel.hotel_name, Hotel.address, Hotel.stars, "
+                   "Hotel.years, Hotel.year_of_foundation, City.city_name FROM Hotel "
+                   "LEFT JOIN City ON (Hotel.id_city=City.id)"
+                   "ORDER BY id")) {
+        QSqlRecord rec = query.record();
+        while (query.next()) {
+            Hotel *hotel = new Hotel(
+                    query.value(rec.indexOf("id")).toInt(),
+                    query.value(rec.indexOf("hotel_name")).toString(),
+                    query.value(rec.indexOf("address")).toString(),
+                    query.value(rec.indexOf("stars")).toInt(),
+                    query.value(rec.indexOf("year_of_foundation")).toDate(),
+                    0
+            );
+            hotel->setCityName(new QString(query.value("city_name").toString()));
+            hotelList << hotel;
+        }
+    } else {
+        Logger logger(nullptr, "log.txt", nullptr);
+        logger.write(QString("%1 %2").arg("HotelDataBaseDAO::getAllFilled() error", query.lastError().text()));
+    }
+    return hotelList;
 }

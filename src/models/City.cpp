@@ -4,25 +4,25 @@
 
 #include "City.h"
 
-City::City(int id, QString *name, int idCityType, int idCountry) : Model(id), name(name), idCityType(idCityType),
+City::City(int id, QString *name, int idCityType, int idCountry) : Model(id), cityName(name), idCityType(idCityType),
                                                                    idCountry(idCountry) {}
 
-City::City(QString *name, int idCityType, int idCountry) : name(name), idCityType(idCityType), idCountry(idCountry) {}
+City::City(QString *name, int idCityType, int idCountry) : cityName(name), idCityType(idCityType), idCountry(idCountry) {}
 
 City::City(int id) : Model(id) {}
 
 City::City() {}
 
 City::~City() {
-    delete this->name;
+    delete this->cityName;
 }
 
 QString *City::getName() const {
-    return name;
+    return cityName;
 }
 
 void City::setName(QString *name) {
-    City::name = name;
+    City::cityName = name;
 }
 
 int City::getIdCityType() const {
@@ -42,13 +42,13 @@ void City::setIdCountry(int idCountry) {
 }
 
 City::City(int id, const QString &name, int idCityType, int idCountry) : Model(id) {
-    this->name = new QString(name);
+    this->cityName = new QString(name);
     this->idCityType = idCityType;
     this->idCountry = idCountry;
 }
 
 City::City(const QString &name, int idCityType, int idCountry) : Model() {
-    this->name = new QString(name);
+    this->cityName = new QString(name);
     this->idCityType = idCityType;
     this->idCountry = idCountry;
 }
@@ -72,5 +72,5 @@ void City::setCountryName(QString *countryName) {
 QStringList City::columnList = {"ID", "Name", "id City Type", "id Country"};
 
 QStringList *City::getValueList() {
-    return new QStringList({QString::number(this->id), *this->name, *this->cityTypeName, *this->countryName});
+    return new QStringList({QString::number(this->id), *this->cityName, *this->cityTypeName, *this->countryName});
 }

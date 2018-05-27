@@ -11,7 +11,7 @@
 
 class PlaceArrivalType : public Model {
 private:
-    QString *name;
+    QString *placeArrivalTypeName;
 public:
     static QStringList columnList;
 

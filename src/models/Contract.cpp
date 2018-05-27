@@ -6,12 +6,12 @@
 
 Contract::Contract(int id, QString *name, QDate *dateOfPayment, QDate *dateOfIssue, float total, int idStatus,
                    int idTourType,
-                   int idDocuments) : Model(id), name(name), dateOfPayment(dateOfPayment), dateOfIssue(dateOfIssue),
+                   int idDocuments) : Model(id), contractName(name), dateOfPayment(dateOfPayment), dateOfIssue(dateOfIssue),
                                       total(total), idStatus(idStatus), idTourType(idTourType),
                                       idDocuments(idDocuments) {}
 
 Contract::Contract(QString *name, QDate *dateOfPayment, QDate *dateOfIssue, float total, int idStatus, int idTourType,
-                   int idDocuments) : name(name), dateOfPayment(dateOfPayment), dateOfIssue(dateOfIssue), total(total),
+                   int idDocuments) : contractName(name), dateOfPayment(dateOfPayment), dateOfIssue(dateOfIssue), total(total),
                                       idStatus(idStatus), idTourType(idTourType), idDocuments(idDocuments) {}
 
 Contract::Contract(int id) : Model(id) {}
@@ -19,17 +19,17 @@ Contract::Contract(int id) : Model(id) {}
 Contract::Contract() {}
 
 Contract::~Contract() {
-    delete this->name;
+    delete this->contractName;
     delete this->dateOfIssue;
     delete this->dateOfPayment;
 }
 
 QString *Contract::getName() const {
-    return name;
+    return contractName;
 }
 
 void Contract::setName(QString *name) {
-    Contract::name = name;
+    Contract::contractName = name;
 }
 
 QDate *Contract::getDateOfPayment() const {
@@ -82,7 +82,7 @@ void Contract::setIdDocuments(int idDocuments) {
 
 Contract::Contract(int id, const QString &name, const QDate &dateOfPayment, const QDate &dateOfIssue, float total,
                    int idStatus, int idTourType, int idDocuments) : Model(id) {
-    this->name = new QString(name);
+    this->contractName = new QString(name);
     this->dateOfPayment = new QDate(dateOfPayment);
     this->dateOfIssue = new QDate(dateOfIssue);
     this->total = total;
@@ -93,7 +93,7 @@ Contract::Contract(int id, const QString &name, const QDate &dateOfPayment, cons
 
 Contract::Contract(const QString &name, const QDate &dateOfPayment, const QDate &dateOfIssue, float total, int idStatus,
                    int idTourType, int idDocuments) : Model() {
-    this->name = new QString(name);
+    this->contractName = new QString(name);
     this->dateOfPayment = new QDate(dateOfPayment);
     this->dateOfIssue = new QDate(dateOfIssue);
     this->total = total;
@@ -131,6 +131,6 @@ QStringList Contract::columnList = {"ID", "Name", "Date of payment_f", "Date of 
 
 QStringList *Contract::getValueList() {
     return new QStringList(
-            {QString::number(this->id), *this->name, this->dateOfPayment->toString(), this->dateOfIssue->toString(),
+            {QString::number(this->id), *this->contractName, this->dateOfPayment->toString(), this->dateOfIssue->toString(),
              QString::number(this->total), *this->statusName, *this->tourTypeName, *this->docuements});
 }

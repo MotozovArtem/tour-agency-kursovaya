@@ -11,7 +11,7 @@
 
 class Sight : public Model {
 private:
-    QString *name;
+    QString *sightName;
     QString *address;
     QDate *yearOfCreation;
     QString *toponym;

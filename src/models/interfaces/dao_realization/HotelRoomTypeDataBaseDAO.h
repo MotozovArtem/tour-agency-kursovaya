@@ -19,6 +19,8 @@ public:
     virtual void update(HotelRoomType *model);
 
     virtual void del(HotelRoomType *model);
+
+    virtual QList<HotelRoomType *> getAllFilled();
 };
 
 

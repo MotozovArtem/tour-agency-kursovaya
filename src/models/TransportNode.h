@@ -11,7 +11,7 @@
 
 class TransportNode: public Model {
 private:
-    QString *nodeName;
+    QString *transportNodeName;
     int idFlight;
     int idTransportNodeType;
 

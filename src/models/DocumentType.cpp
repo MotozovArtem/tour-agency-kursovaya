@@ -4,36 +4,36 @@
 
 #include "DocumentType.h"
 
-DocumentType::DocumentType(int id, QString *name) : Model(id), name(name) {}
+DocumentType::DocumentType(int id, QString *name) : Model(id), documentTypeName(name) {}
 
-DocumentType::DocumentType(QString *name) : name(name) {}
+DocumentType::DocumentType(QString *name) : documentTypeName(name) {}
 
 DocumentType::DocumentType(int id) : Model(id) {}
 
 DocumentType::DocumentType() {}
 
 DocumentType::~DocumentType() {
-    delete this->name;
+    delete this->documentTypeName;
 }
 
 QString *DocumentType::getName() const {
-    return name;
+    return documentTypeName;
 }
 
 void DocumentType::setName(QString *name) {
-    DocumentType::name = name;
+    DocumentType::documentTypeName = name;
 }
 
 DocumentType::DocumentType(int id, const QString &name) : Model(id) {
-    this->name = new QString(name);
+    this->documentTypeName = new QString(name);
 }
 
 DocumentType::DocumentType(const QString &name) : Model() {
-    this->name = new QString(name);
+    this->documentTypeName = new QString(name);
 }
 
 QStringList DocumentType::columnList = {"ID", "Name"};
 
 QStringList *DocumentType::getValueList() {
-    return new QStringList({QString::number(this->id), *this->name});
+    return new QStringList({QString::number(this->id), *this->documentTypeName});
 }

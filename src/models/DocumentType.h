@@ -11,7 +11,7 @@
 
 class DocumentType : public Model {
 private:
-    QString *name;
+    QString *documentTypeName;
 public:
     static QStringList columnList;
     DocumentType(int id, QString *name);

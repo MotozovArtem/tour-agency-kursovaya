@@ -87,3 +87,11 @@ QStringList *Hotel::getValueList() {
             {QString::number(this->id), *this->hotelName, *this->address, this->yearOfFoundation->toString(),
              QString::number(this->stars), QString::number(this->idCity)});
 }
+
+QString *Hotel::getCityName() const {
+    return cityName;
+}
+
+void Hotel::setCityName(QString *cityName) {
+    Hotel::cityName = cityName;
+}

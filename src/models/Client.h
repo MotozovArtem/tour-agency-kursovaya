@@ -13,7 +13,7 @@ class Client : public Model {
 private:
     QString *passportData;
     QString *surname;
-    QString *name;
+    QString *clientName;
     QString *patronymic;
     QDate *dateOfBirth;
     QString *placeOfBirth;

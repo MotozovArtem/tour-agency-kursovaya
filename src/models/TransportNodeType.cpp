@@ -4,36 +4,36 @@
 
 #include "TransportNodeType.h"
 
-TransportNodeType::TransportNodeType(int id, QString *name) : Model(id), name(name) {}
+TransportNodeType::TransportNodeType(int id, QString *name) : Model(id), transportNodeTypeName(name) {}
 
-TransportNodeType::TransportNodeType(QString *name) : name(name) {}
+TransportNodeType::TransportNodeType(QString *name) : transportNodeTypeName(name) {}
 
 TransportNodeType::TransportNodeType(int id) : Model(id) {}
 
 TransportNodeType::TransportNodeType() {}
 
 TransportNodeType::~TransportNodeType() {
-    delete this->name;
+    delete this->transportNodeTypeName;
 }
 
 QString *TransportNodeType::getName() const {
-    return name;
+    return transportNodeTypeName;
 }
 
 void TransportNodeType::setName(QString *name) {
-    TransportNodeType::name = name;
+    TransportNodeType::transportNodeTypeName = name;
 }
 
 TransportNodeType::TransportNodeType(int id, const QString &name) : Model(id) {
-    this->name = new QString(name);
+    this->transportNodeTypeName = new QString(name);
 }
 
 TransportNodeType::TransportNodeType(const QString &name) : Model() {
-    this->name = new QString(name);
+    this->transportNodeTypeName = new QString(name);
 }
 
 QStringList TransportNodeType::columnList = {"ID", "Name"};
 
 QStringList *TransportNodeType::getValueList() {
-    return new QStringList({QString::number(this->id), *this->name});
+    return new QStringList({QString::number(this->id), *this->transportNodeTypeName});
 }

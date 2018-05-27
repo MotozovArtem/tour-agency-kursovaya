@@ -4,36 +4,36 @@
 
 #include "CityType.h"
 
-CityType::CityType(int id, QString *name) : Model(id), name(name) {}
+CityType::CityType(int id, QString *name) : Model(id), cityTypeName(name) {}
 
-CityType::CityType(QString *name) : name(name) {}
+CityType::CityType(QString *name) : cityTypeName(name) {}
 
 CityType::CityType(int id) : Model(id) {}
 
 CityType::CityType() {}
 
 CityType::~CityType() {
-    delete this->name;
+    delete this->cityTypeName;
 }
 
 QString *CityType::getName() const {
-    return name;
+    return cityTypeName;
 }
 
 void CityType::setName(QString *name) {
-    CityType::name = name;
+    CityType::cityTypeName = name;
 }
 
 CityType::CityType(int id, const QString &name) : Model(id) {
-    this->name = new QString(name);
+    this->cityTypeName = new QString(name);
 }
 
 CityType::CityType(const QString &name) : Model() {
-    this->name = new QString(name);
+    this->cityTypeName = new QString(name);
 }
 
 QStringList CityType::columnList = {"ID", "Name"};
 
 QStringList *CityType::getValueList() {
-    return new QStringList({QString::number(this->id), *this->name});
+    return new QStringList({QString::number(this->id), *this->cityTypeName});
 }

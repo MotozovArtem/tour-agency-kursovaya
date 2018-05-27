@@ -5,12 +5,12 @@
 #include "TransportNode.h"
 
 TransportNode::TransportNode(int id, QString *nodeName, int idFlight, int idTransportNodeType) : Model(id),
-                                                                                                 nodeName(nodeName),
+                                                                                                 transportNodeName(nodeName),
                                                                                                  idFlight(idFlight),
                                                                                                  idTransportNodeType(
                                                                                                          idTransportNodeType) {}
 
-TransportNode::TransportNode(QString *nodeName, int idFlight, int idTransportNodeType) : nodeName(nodeName),
+TransportNode::TransportNode(QString *nodeName, int idFlight, int idTransportNodeType) : transportNodeName(nodeName),
                                                                                          idFlight(idFlight),
                                                                                          idTransportNodeType(
                                                                                                  idTransportNodeType) {}
@@ -20,23 +20,23 @@ TransportNode::TransportNode(int id) : Model(id) {}
 TransportNode::TransportNode() {}
 
 TransportNode::TransportNode(int id, const QString &nodeName, int idFlight, int idTransportNodeType) : Model(id) {
-    this->nodeName = new QString(nodeName);
+    this->transportNodeName = new QString(nodeName);
     this->idFlight = idFlight;
     this->idTransportNodeType = idTransportNodeType;
 }
 
 TransportNode::TransportNode(const QString &nodeName, int idFlight, int idTransportNodeType) : Model() {
-    this->nodeName = new QString(nodeName);
+    this->transportNodeName = new QString(nodeName);
     this->idFlight = idFlight;
     this->idTransportNodeType = idTransportNodeType;
 }
 
 QString *TransportNode::getNodeName() const {
-    return nodeName;
+    return transportNodeName;
 }
 
 void TransportNode::setNodeName(QString *nodeName) {
-    TransportNode::nodeName = nodeName;
+    TransportNode::transportNodeName = nodeName;
 }
 
 int TransportNode::getIdFlight() const {
@@ -74,5 +74,5 @@ void TransportNode::setTransportNodeType(QString *transportNodeType) {
 QStringList TransportNode::columnList = {"ID", "Node name", "Flight_f", "Transport Node Type_f"};
 
 QStringList *TransportNode::getValueList() {
-    return new QStringList({QString::number(this->id), *this->nodeName, *this->flight, *this->transportNodeType});
+    return new QStringList({QString::number(this->id), *this->transportNodeName, *this->flight, *this->transportNodeType});
 }

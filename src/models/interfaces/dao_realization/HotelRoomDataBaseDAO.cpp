@@ -60,14 +60,14 @@ HotelRoom *HotelRoomDataBaseDAO::getById(int id) {
 void HotelRoomDataBaseDAO::add(HotelRoom *model) {
     QSqlQuery query;
     query.prepare(
-            "INSERT INTO HotelRoo(hotel_room_name, places, shower, second_restroom, balcony, id_hotel, id_hotel_room_type)"
+            "INSERT INTO HotelRoom(hotel_room_name, places, shower, second_restroom, balcony, id_hotel, id_hotel_room_type)"
             "VALUES(:hotel_room_name, :places, :shower, :second_restroom, :balcony, :id_hotel, :id_hotel_room_type)");
     query.bindValue(":hotel_room_name", *model->getHotelRoomName());
     query.bindValue(":places", model->getPlaces());
     query.bindValue(":shower", model->isShower());
     query.bindValue(":second_restroom", model->isSecondRestroom());
     query.bindValue(":balcony", model->isBalcony());
-    query.bindValue(":id_hotel", model->getIdHotel();
+    query.bindValue(":id_hotel", model->getIdHotel());
     query.bindValue(":id_hotel_room_type", model->getIdHotelRoomType());
     if (!query.exec()) {
         Logger logger(nullptr, "log.txt", nullptr);
@@ -85,7 +85,7 @@ void HotelRoomDataBaseDAO::update(HotelRoom *model) {
     query.bindValue(":shower", model->isShower());
     query.bindValue(":second_restroom", model->isSecondRestroom());
     query.bindValue(":balcony", model->isBalcony());
-    query.bindValue(":id_hotel", model->getIdHotel();
+    query.bindValue(":id_hotel", model->getIdHotel());
     query.bindValue(":id_hotel_room_type", model->getIdHotelRoomType());
     if (!query.exec()) {
         Logger logger(nullptr, "log.txt", nullptr);
@@ -101,4 +101,35 @@ void HotelRoomDataBaseDAO::del(HotelRoom *model) {
         Logger logger(nullptr, "log.txt", nullptr);
         logger.write(QString("%1 %2").arg("HotelRoomDataBaseDAO::del() error", query.lastError().text()));
     }
+}
+
+QList<HotelRoom *> HotelRoomDataBaseDAO::getAllFilled() {
+    QSqlQuery query;
+    QList<HotelRoom *> hotelRoomList;
+    if (query.exec(
+            "SELECT HotelRoom.id, HotelRoom.hotel_room_name, HotelRoom.places, HotelRoom.shower, HotelRoom.second_restroom, HotelRoom.balcony,"
+            " Hotel.hotel_name, HotelRoomType.hotelRoomTypeName FROM HotelRoom "
+            "LEFT JOIN Hotel ON (HotelRoom.id_hotel=Hotel.id) "
+            "LEFT JOIN HotelRoomType ON (HotelRoom.id_hotel_room_type=HotelRoomType.id) "
+            "ORDER BY id")) {
+        while (query.next()) {
+            HotelRoom *hotelRoom = new HotelRoom(
+                    query.value("id").toInt(),
+                    query.value("hotel_room_name").toString(),
+                    query.value("places").toInt(),
+                    query.value("shower").toBool(),
+                    query.value("second_restroom").toBool(),
+                    query.value("balcony").toBool(),
+                    0, 0
+            );
+
+            hotelRoom->setHotel(new QString(query.value("hotel_name").toString()));
+            hotelRoom->setHotelRoomType(new QString(query.value("hotelRoomTypeName").toString()));
+            hotelRoomList << hotelRoom;
+        }
+    } else {
+        Logger logger(nullptr, "log.txt", nullptr);
+        logger.write(QString("%1 %2").arg("HotelRoomDataBaseDAO::getAllFilled() error", query.lastError().text()));
+    }
+    return hotelRoomList;
 }
