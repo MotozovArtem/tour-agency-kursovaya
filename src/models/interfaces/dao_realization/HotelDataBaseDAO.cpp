@@ -98,7 +98,7 @@ QList<Hotel *> HotelDataBaseDAO::getAllFilled() {
     QSqlQuery query;
     QList<Hotel *> hotelList;
     if (query.exec("SELECT Hotel.id, Hotel.hotel_name, Hotel.address, Hotel.stars, "
-                   "Hotel.years, Hotel.year_of_foundation, Hotel.id_city,City.city_name FROM Hotel "
+                   "Hotel.year_of_foundation, Hotel.id_city,City.city_name FROM Hotel "
                    "LEFT JOIN City ON (Hotel.id_city=City.id)"
                    "ORDER BY id")) {
         QSqlRecord rec = query.record();

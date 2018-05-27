@@ -17,6 +17,33 @@ private:
     QTabWidget *tabWidget;
     QMenuBar *menu;
 public:
+    enum Tables {
+        TCity = 0,
+        TCityType,
+        TClient,
+        TClientRest,
+        TContract,
+        TCountry,
+        TDocuments,
+        TDocumentsForTour,
+        TDocumentsType,
+        TFlight,
+        THotel,
+        THotelRoom,
+        THotelRoomType,
+        TPlaceArrival,
+        TPlaceArrivalType,
+        TReservation,
+        TReservByAgreement,
+        TSight,
+        TStatus,
+        TTicket,
+        TTour,
+        TTourType,
+        TTransportNode,
+        TTransportNodeType
+    };
+
     MainWindow(QMainWindow *pwgt = 0);
 
     virtual ~MainWindow();
@@ -34,8 +61,8 @@ public:
     void setTabWidget(QTabWidget *tabWidget);
 
     template<class modelClass, class daoClass>
-    void renderTable() {
-        QList<modelClass *> objectList = daoClass().getAll();
+    void _renderTable() {
+        QList<modelClass *> objectList = daoClass().getAllFilled();
         this->pTable->setRowCount(objectList.size());
         this->pTable->setColumnCount(modelClass::columnList.length());
 
@@ -51,6 +78,10 @@ public:
                 i++;
             }
     };
+
+public slots:
+
+    void renderTable(Tables tables);
 
 
 //    template<class modelClass, class daoClass>
