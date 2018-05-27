@@ -20,6 +20,8 @@ public:
     virtual void update(City *model) =0;
 
     virtual void del(City *model) =0;
+
+
 };
 
 

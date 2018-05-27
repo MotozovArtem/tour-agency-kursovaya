@@ -92,7 +92,7 @@ void ReservationDataBaseDAO::del(Reservation *model) {
 QList<Reservation *> ReservationDataBaseDAO::getAllFilled() {
     QSqlQuery query;
     QList<Reservation *> list;
-    if (query.exec("SELECT id, date_of_begining, date_of_ending, "
+    if (query.exec("SELECT Reservation.id, Reservation.date_of_begining, Reservation.date_of_ending, "
                    "HotelRoom.hotel_room_name, Contract.contract_name FROM Reservation "
                    "LEFT JOIN HotelRoom ON (Reservation.id_hotel_room=HotelRoom.id)"
                    "LEFT JOIN Contract ON (Reservation.id_contract=Contract.id)"

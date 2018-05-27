@@ -20,6 +20,8 @@ public:
     virtual void update(DocumentType *model) =0;
 
     virtual void del(DocumentType *model) =0;
+
+    virtual QList<DocumentType *> getAllFilled() =0;
 };
 
 

@@ -19,6 +19,8 @@ public:
     virtual void update(Flight *model) =0;
 
     virtual void del(Flight *model) =0;
+
+    virtual QList<Flight *> getAllFilled() =0;
 };
 
 

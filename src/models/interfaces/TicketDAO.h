@@ -19,6 +19,8 @@ public:
     virtual void update(Ticket *model) =0;
 
     virtual void del(Ticket *model) =0;
+
+    virtual QList<Ticket *> getAllFilled() =0;
 };
 
 

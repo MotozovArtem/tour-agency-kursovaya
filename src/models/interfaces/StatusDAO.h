@@ -19,6 +19,8 @@ public:
     virtual void update(Status *model) =0;
 
     virtual void del(Status *model) =0;
+
+    virtual QList<Status *> getAllFilled() =0;
 };
 
 #endif //PSQLWORK_STATUSDAO_H

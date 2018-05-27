@@ -20,6 +20,8 @@ public:
     virtual void update(Client *model) =0;
 
     virtual void del(Client *model) =0;
+
+    virtual QList<Client *> getAllFilled() =0;
 };
 
 

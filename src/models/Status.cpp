@@ -8,11 +8,11 @@ Status::Status(int id, QString *name) : Model(id), statusName(name) {}
 
 Status::Status(QString *name) : statusName(name) {}
 
-Status::Status(int id, QString &name) : Model(id) {
+Status::Status(int id, const QString &name) : Model(id) {
     this->statusName = new QString(name);
 }
 
-Status::Status(QString &name) : Model() {
+Status::Status(const QString &name) : Model() {
     this->statusName = new QString(name);
 }
 

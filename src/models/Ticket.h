@@ -12,24 +12,25 @@
 class Ticket : public Model {
 private:
     int place;
-    QDate *date_flight;
+    QDate *dateFlight;
     float price;
-    int idDocuments;
     QDate *dateOfPurchase;
+    int idDocuments;
     int idFlight;
 
     QString *documents;
     QString *flight;
 public:
     static QStringList columnList;
-    Ticket(int id, int place, QDate *date_flight, float price, int idDocuments, QDate *dateOfPurchase, int idFlight);
 
-    Ticket(int id, int place, const QDate &date_flight, float price, int idDocuments, const QDate &dateOfPurchase,
+    Ticket(int id, int place, QDate *date_flight, float price, QDate *dateOfPurchase, int idDocuments, int idFlight);
+
+    Ticket(int id, int place, const QDate &date_flight, float price, const QDate &dateOfPurchase, int idDocuments,
            int idFlight);
 
-    Ticket(int place, QDate *date_flight, float price, int idDocuments, QDate *dateOfPurchase, int idFlight);
+    Ticket(int place, QDate *date_flight, float price, QDate *dateOfPurchase, int idDocuments, int idFlight);
 
-    Ticket(int place, const QDate &date_flight, float price, int idDocuments, const QDate &dateOfPurchase,
+    Ticket(int place, const QDate &date_flight, float price, const QDate &dateOfPurchase, int idDocuments,
            int idFlight);
 
     Ticket(int id);
@@ -42,9 +43,9 @@ public:
 
     void setPlace(int place);
 
-    QDate *getDate_flight() const;
+    QDate *getDateFlight() const;
 
-    void setDate_flight(QDate *date_flight);
+    void setDateFlight(QDate *dateFlight);
 
     float getPrice() const;
 

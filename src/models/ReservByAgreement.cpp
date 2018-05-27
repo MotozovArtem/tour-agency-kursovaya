@@ -65,3 +65,19 @@ QStringList *ReservByAgreement::getValueList() {
     return new QStringList(
             {QString::number(this->id), this->dateOfBegining->toString(), *this->hotelRoom, *this->contract});
 }
+
+QString *ReservByAgreement::getHotelRoom() const {
+    return hotelRoom;
+}
+
+void ReservByAgreement::setHotelRoom(QString *hotelRoom) {
+    ReservByAgreement::hotelRoom = hotelRoom;
+}
+
+QString *ReservByAgreement::getContract() const {
+    return contract;
+}
+
+void ReservByAgreement::setContract(QString *contract) {
+    ReservByAgreement::contract = contract;
+}

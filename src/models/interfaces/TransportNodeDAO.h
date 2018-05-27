@@ -19,6 +19,8 @@ public:
     virtual void update(TransportNode *model) =0;
 
     virtual void del(TransportNode *model) =0;
+
+    virtual QList<TransportNode *> getAllFilled() =0;
 };
 
 

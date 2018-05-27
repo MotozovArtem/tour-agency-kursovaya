@@ -107,8 +107,10 @@ QList<HotelRoom *> HotelRoomDataBaseDAO::getAllFilled() {
     QSqlQuery query;
     QList<HotelRoom *> hotelRoomList;
     if (query.exec(
-            "SELECT HotelRoom.id, HotelRoom.hotel_room_name, HotelRoom.places, HotelRoom.shower, HotelRoom.second_restroom, HotelRoom.balcony,"
-            " Hotel.hotel_name, HotelRoomType.hotelRoomTypeName FROM HotelRoom "
+            "SELECT HotelRoom.id, HotelRoom.hotel_room_name, HotelRoom.places, HotelRoom.shower, "
+            "HotelRoom.second_restroom, HotelRoom.balcony, "
+            "HotelRoom.id_hotel, HotelRoom.id_hotel_room_type, "
+            "Hotel.hotel_name, HotelRoomType.hotelRoomTypeName FROM HotelRoom "
             "LEFT JOIN Hotel ON (HotelRoom.id_hotel=Hotel.id) "
             "LEFT JOIN HotelRoomType ON (HotelRoom.id_hotel_room_type=HotelRoomType.id) "
             "ORDER BY id")) {
@@ -120,7 +122,8 @@ QList<HotelRoom *> HotelRoomDataBaseDAO::getAllFilled() {
                     query.value("shower").toBool(),
                     query.value("second_restroom").toBool(),
                     query.value("balcony").toBool(),
-                    0, 0
+                    query.value("id_hotel").toInt(),
+                    query.value("id_hotel_room_type").toInt()
             );
 
             hotelRoom->setHotel(new QString(query.value("hotel_name").toString()));

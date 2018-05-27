@@ -6,19 +6,21 @@
 #define PSQLWORK_CLIENTSRESTDAO_H
 
 #include "ModelDAO.h"
-#include "../ClientsRest.h"
+#include "models/ClientRest.h"
 
-class ClientsRestDAO : public ModelDAO<ClientsRest *> {
+class ClientsRestDAO : public ModelDAO<ClientRest *> {
 public:
-    virtual QList<ClientsRest *> getAll() =0;
+    virtual QList<ClientRest *> getAll() =0;
 
-    virtual ClientsRest *getById(int id) =0;
+    virtual ClientRest *getById(int id) =0;
 
-    virtual void add(ClientsRest *model) =0;
+    virtual void add(ClientRest *model) =0;
 
-    virtual void update(ClientsRest *model) =0;
+    virtual void update(ClientRest *model) =0;
 
-    virtual void del(ClientsRest *model) =0;
+    virtual void del(ClientRest *model) =0;
+
+    virtual QList<ClientRest *> getAllFilled() =0;
 };
 
 

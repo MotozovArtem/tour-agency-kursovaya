@@ -19,6 +19,8 @@ public:
     virtual void update(PlaceArrival *model) =0;
 
     virtual void del(PlaceArrival *model) =0;
+
+    virtual QList<PlaceArrival *> getAllFilled() =0;
 };
 
 

@@ -19,6 +19,8 @@ public:
     virtual void update(Contract *model) =0;
 
     virtual void del(Contract *model) =0;
+
+    virtual QList<Contract *> getAllFilled() =0;
 };
 
 

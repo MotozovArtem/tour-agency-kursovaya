@@ -19,6 +19,8 @@ public:
     virtual void update(Sight *model) =0;
 
     virtual void del(Sight *model) =0;
+
+    virtual QList<Sight *> getAllFilled() =0;
 };
 
 

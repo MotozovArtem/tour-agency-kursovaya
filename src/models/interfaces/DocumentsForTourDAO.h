@@ -20,6 +20,8 @@ public:
     virtual void update(DocumentsForTour *model) =0;
 
     virtual void del(DocumentsForTour *model) =0;
+
+    virtual QList<DocumentsForTour *> getAllFilled() =0;
 };
 
 

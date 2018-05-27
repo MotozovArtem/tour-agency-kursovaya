@@ -19,6 +19,8 @@ public:
     virtual void update(ReservByAgreement *model) =0;
 
     virtual void del(ReservByAgreement *model) =0;
+
+    virtual QList<ReservByAgreement *> getAllFilled() =0;
 };
 
 

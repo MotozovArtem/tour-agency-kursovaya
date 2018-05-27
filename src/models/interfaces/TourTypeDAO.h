@@ -21,6 +21,8 @@ public:
 
     virtual void del(TourType *model) =0;
 
+    virtual QList<TourType *> getAllFilled() =0;
+
 };
 
 

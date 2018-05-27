@@ -19,6 +19,8 @@ public:
     virtual void update(Country *model) =0;
 
     virtual void del(Country *model) =0;
+
+    virtual QList<Country *> getAllFilled() =0;
 };
 
 

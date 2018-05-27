@@ -19,6 +19,8 @@ public:
     void update(Hotel *model) =0;
 
     void del(Hotel *model) =0;
+
+    virtual QList<Hotel *> getAllFilled() =0;
 };
 
 

@@ -8,7 +8,7 @@
 #include <QtCore>
 #include "Model.h"
 
-class ClientsRest: public Model {
+class ClientRest: public Model {
 private:
     int idContract;
     int idClient;
@@ -17,15 +17,15 @@ private:
     QString *clientName;
 public:
     static QStringList columnList;
-    ClientsRest(int id, int idContract, int idClient);
+    ClientRest(int id, int idContract, int idClient);
 
-    ClientsRest(int idContract, int idClient);
+    ClientRest(int idContract, int idClient);
 
-    ClientsRest(int id);
+    ClientRest(int id);
 
-    ClientsRest();
+    ClientRest();
 
-    virtual ~ClientsRest();
+    virtual ~ClientRest();
 
     int getIdContract() const;
 

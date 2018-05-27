@@ -19,6 +19,9 @@ public:
     virtual void update(Tour *model) =0;
 
     virtual void del(Tour *model) =0;
+
+    virtual QList<Tour *> getAllFilled() =0;
+
 };
 
 

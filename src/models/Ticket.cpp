@@ -4,44 +4,44 @@
 
 #include "Ticket.h"
 
-Ticket::Ticket(int id, int place, QDate *date_flight, float price, int idDocuments, QDate *dateOfPurchase, int idFlight)
-        : Model(id), place(place), date_flight(date_flight), price(price), idDocuments(idDocuments),
+Ticket::Ticket(int id, int place, QDate *dateFlight, float price, QDate *dateOfPurchase, int idDocuments, int idFlight)
+        : Model(id), place(place), dateFlight(dateFlight), price(price), idDocuments(idDocuments),
           dateOfPurchase(dateOfPurchase),
           idFlight(idFlight) {}
 
-Ticket::Ticket(int place, QDate *date_flight, float price, int idDocuments, QDate *dateOfPurchase, int idFlight)
+Ticket::Ticket(int place, QDate *dateFlight, float price, QDate *dateOfPurchase, int idDocuments, int idFlight)
         : place(
-        place), date_flight(date_flight), price(price), idDocuments(idDocuments), dateOfPurchase(dateOfPurchase),
+        place), dateFlight(dateFlight), price(price), idDocuments(idDocuments), dateOfPurchase(dateOfPurchase),
           idFlight(
                   idFlight) {}
+
+Ticket::Ticket(int id, int place, const QDate &dateFlight, float price, const QDate &dateOfPurchase, int idDocuments,
+               int idFlight) : Model(id) {
+    this->place = place;
+    this->dateFlight = new QDate(dateFlight);
+    this->price = price;
+    this->idDocuments = idDocuments;
+    this->dateOfPurchase = new QDate(dateOfPurchase);
+    this->idFlight = idFlight;
+}
+
+Ticket::Ticket(int place, const QDate &dateFlight, float price, const QDate &dateOfPurchase, int idDocuments,
+               int idFlight) {
+    this->place = place;
+    this->dateFlight = new QDate(dateFlight);
+    this->price = price;
+    this->idDocuments = idDocuments;
+    this->dateOfPurchase = new QDate(dateOfPurchase);
+    this->idFlight = idFlight;
+}
 
 Ticket::Ticket(int id) : Model(id) {}
 
 Ticket::Ticket() {}
 
 Ticket::~Ticket() {
-    delete this->date_flight;
+    delete this->dateFlight;
     delete this->dateOfPurchase;
-}
-
-Ticket::Ticket(int id, int place, const QDate &date_flight, float price, int idDocuments, const QDate &dateOfPurchase,
-               int idFlight) : Model(id) {
-    this->place = place;
-    this->date_flight = new QDate(date_flight);
-    this->price = price;
-    this->idDocuments = idDocuments;
-    this->dateOfPurchase = new QDate(dateOfPurchase);
-    this->idFlight = idFlight;
-}
-
-Ticket::Ticket(int place, const QDate &date_flight, float price, int idDocuments, const QDate &dateOfPurchase,
-               int idFlight) {
-    this->place = place;
-    this->date_flight = new QDate(date_flight);
-    this->price = price;
-    this->idDocuments = idDocuments;
-    this->dateOfPurchase = new QDate(dateOfPurchase);
-    this->idFlight = idFlight;
 }
 
 int Ticket::getPlace() const {
@@ -52,12 +52,12 @@ void Ticket::setPlace(int place) {
     Ticket::place = place;
 }
 
-QDate *Ticket::getDate_flight() const {
-    return date_flight;
+QDate *Ticket::getDateFlight() const {
+    return dateFlight;
 }
 
-void Ticket::setDate_flight(QDate *date_flight) {
-    Ticket::date_flight = date_flight;
+void Ticket::setDateFlight(QDate *dateFlight) {
+    Ticket::dateFlight = dateFlight;
 }
 
 float Ticket::getPrice() const {
@@ -111,7 +111,7 @@ void Ticket::setFlight(QString *flight) {
 QStringList Ticket::columnList = {"ID", "Place", "Date", "Price", "Date of purchase", "Documents_f", "Flight_f"};
 
 QStringList *Ticket::getValueList() {
-    return new QStringList({QString::number(this->id), QString::number(this->place), this->date_flight->toString(),
+    return new QStringList({QString::number(this->id), QString::number(this->place), this->dateFlight->toString(),
                             QString::number(this->price), this->dateOfPurchase->toString(), *this->documents,
                             *this->flight});
 }

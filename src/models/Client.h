@@ -25,7 +25,7 @@ public:
 
     Client(int id, const QString &passportData, const QString &surname, const QString &name, const QString &patronymic,
            const QDate &dateOfBirth,
-           const QString *&placeOfBirth, bool sex);
+           const QString &placeOfBirth, bool sex);
 
     Client(QString *passportData, QString *surname, QString *name, QString *patronymic, QDate *dateOfBirth,
            QString *placeOfBirth, bool sex);

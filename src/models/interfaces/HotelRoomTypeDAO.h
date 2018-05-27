@@ -19,6 +19,8 @@ public:
     void update(HotelRoomType* model) =0;
 
     void del(HotelRoomType *model) =0;
+
+    virtual QList<HotelRoomType *> getAllFilled() =0;
 };
 
 #endif //PSQLWORK_HOTELROOMTYPEDAO_H

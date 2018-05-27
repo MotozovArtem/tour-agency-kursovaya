@@ -17,11 +17,11 @@ public:
 
     Status(int id, QString *name);
 
-    Status(int id, QString &name);
+    Status(int id, const QString &name);
 
     Status(QString *name);
 
-    Status(QString &name);
+    Status(const QString &name);
 
     Status(int id);
 

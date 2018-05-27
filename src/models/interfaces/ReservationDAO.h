@@ -19,6 +19,8 @@ public:
     virtual void update(Reservation *model) =0;
 
     virtual void del(Reservation *model) =0;
+
+    virtual QList<Reservation *> getAllFilled() =0;
 };
 
 

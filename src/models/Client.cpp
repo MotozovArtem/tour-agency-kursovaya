@@ -84,7 +84,7 @@ void Client::setSex(bool sex) {
 }
 
 Client::Client(int id, const QString &passportData, const QString &surname, const QString &name,
-               const QString &patronymic, const QDate &dateOfBirth, const QString *&placeOfBirth, bool sex) : Model(
+               const QString &patronymic, const QDate &dateOfBirth, const QString &placeOfBirth, bool sex) : Model(
         id) {
     this->passportData = new QString(passportData);
     this->surname = new QString(surname);

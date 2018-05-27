@@ -45,6 +45,14 @@ public:
 
     void setIdContract(int idContract);
 
+    QString *getHotelRoom() const;
+
+    void setHotelRoom(QString *hotelRoom);
+
+    QString *getContract() const;
+
+    void setContract(QString *contract);
+
     virtual QStringList *getValueList();
 };
 
