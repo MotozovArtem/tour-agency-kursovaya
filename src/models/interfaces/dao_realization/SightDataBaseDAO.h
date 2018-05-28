@@ -9,6 +9,7 @@
 
 
 class SightDataBaseDAO: SightDAO {
+public:
     virtual QList<Sight *> getAll();
 
     virtual Sight *getById(int id);

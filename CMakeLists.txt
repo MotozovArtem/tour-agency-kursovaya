@@ -16,7 +16,7 @@ set(SOURCES ${PROJECT_SOURCE_DIR}/main.cpp
         src/SQL/SQLConnection.cpp src/SQL/SQLConnection.h
         src/utils/Logger.cpp src/utils/Logger.h
         src/GUI/MainWindow.cpp src/GUI/MainWindow.h
-        src/GUI/MainTabWidget.cpp src/GUI/MainTabWidget.h)
+        src/GUI/RightMenuWidget.cpp src/GUI/RightMenuWidget.h src/GUI/RightMenuItem.cpp src/GUI/RightMenuItem.h src/utils/Tables.h)
 
 
 set(INTERFACES src/models/interfaces/ModelDAO.h src/models/interfaces/HotelDAO.h

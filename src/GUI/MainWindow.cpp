@@ -31,18 +31,30 @@
 
 
 MainWindow::MainWindow(QMainWindow *pwgt) : QMainWindow(pwgt) {
-    this->pTable = new QTableWidget();
-    this->pButton = new QPushButton();
-    this->menu = new QMenuBar;
 
+    this->mainWidget = new QWidget();
+    this->mainLayout = new QGridLayout(this->mainWidget);
+
+
+    this->pTable = new QTableWidget(this->mainWidget);
+    this->pButton = new QPushButton(this->mainWidget);
+    this->rightMenu = new RightMenuWidget(this->mainWidget);
+
+
+    initRightMenu();
+    this->mainLayout->addWidget(this->pTable, 0, 0);
+    this->mainLayout->addWidget(this->rightMenu, 0, 1);
+
+    this->menu = new QMenuBar;
     QMenu *files = new QMenu("&Files");
     menu->addMenu(files);
-
     QAction *exit = new QAction("&Close");
-
     connect(exit, &QAction::triggered, this, &MainWindow::close);
     files->addAction(exit);
-    this->setCentralWidget(pTable);
+
+    connect(this->rightMenu, SIGNAL(change(Tables)), this, SLOT(renderTable(Tables)));
+
+    this->setCentralWidget(this->mainWidget);
     this->setMenuBar(menu);
 }
 
@@ -62,18 +74,11 @@ void MainWindow::setPButton(QPushButton *pButton) {
     MainWindow::pButton = pButton;
 }
 
-QTabWidget *MainWindow::getTabWidget() const {
-    return tabWidget;
-}
-
-void MainWindow::setTabWidget(QTabWidget *tabWidget) {
-    MainWindow::tabWidget = tabWidget;
-}
 
 MainWindow::~MainWindow() {
     delete this->pButton;
     delete this->pTable;
-    delete this->tabWidget;
+    delete this->rightMenu;
     delete this->menu;
 }
 
@@ -81,7 +86,7 @@ MainWindow::~MainWindow() {
 void MainWindow::renderTable(Tables tables) {
     switch (tables) {
         case Tables::TCity:
-            _renderTable<City, CityTypeDataBaseDAO>();
+            _renderTable<City, CityDataBaseDAO>();
             break;
         case Tables::TCityType:
             _renderTable<CityType, CityTypeDataBaseDAO>();
@@ -154,21 +159,25 @@ void MainWindow::renderTable(Tables tables) {
             break;
     }
 }
-//template<class modelClass, class daoClass>
-//void MainWindow::renderTable() {
-//    QList<modelClass *> objectList = daoClass().getAll();
-//    this->pTable->setRowCount(objectList.size());
-//    this->pTable->setColumnCount(modelClass::columnList.length());
-//
-//    this->pTable->setHorizontalHeaderLabels(modelClass::columnList);
-//    int i = 0;
-//            foreach(modelClass *model, objectList) {
-//            int j = 0;
-//            QStringListIterator iterator(*model->getValueList());
-//            while (iterator.hasNext()) {
-//                this->pTable->setItem(i, j, new QTableWidgetItem(iterator.next()));
-//                j++;
-//            }
-//            i++;
-//        }
-//};
+
+void MainWindow::initRightMenu() {
+    QStringList tables;
+    tables << "City" << "CityType" << "Client" << "ClientRest" <<
+           "Contract" << "Country" << "Documents" << "DocumentsForTour" << "DocumentsType" <<
+           "Flight" << "Hotel" << "HotelRoom" << "HotelRoomType" <<
+           "PlaceArrival" << "PlaceArrivalType" << "Reservation" << "ReservByAgreement" << "Sight" <<
+           "Status" << "Ticket" << "Tour" << "TourType" << "TransportNode" << "TransportNodeType";
+    int i = 0;
+            foreach(QString tableName, tables) {
+            new RightMenuItem(tableName, rightMenu, 1, (Tables) i);
+            i++;
+        }
+}
+
+RightMenuWidget *MainWindow::getRightMenu() const {
+    return rightMenu;
+}
+
+void MainWindow::setRightMenu(RightMenuWidget *rightMenu) {
+    MainWindow::rightMenu = rightMenu;
+}

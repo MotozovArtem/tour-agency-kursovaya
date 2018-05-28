@@ -6,43 +6,25 @@
 #define PSQLWORK_MAINWINDOW_H
 
 #include <QtCore>
-#include <QtWidgets>
+#include <QtWidgets/QtWidgets>
 #include <models/interfaces/ModelDAO.h>
+
+#include "utils/Tables.h"
+#include "RightMenuWidget.h"
 
 class MainWindow : public QMainWindow {
 Q_OBJECT
 private:
     QTableWidget *pTable;
     QPushButton *pButton;
-    QTabWidget *tabWidget;
+    RightMenuWidget *rightMenu;
     QMenuBar *menu;
+
+    QWidget *mainWidget;
+    QGridLayout *mainLayout;
 public:
-    enum Tables {
-        TCity = 0,
-        TCityType,
-        TClient,
-        TClientRest,
-        TContract,
-        TCountry,
-        TDocuments,
-        TDocumentsForTour,
-        TDocumentsType,
-        TFlight,
-        THotel,
-        THotelRoom,
-        THotelRoomType,
-        TPlaceArrival,
-        TPlaceArrivalType,
-        TReservation,
-        TReservByAgreement,
-        TSight,
-        TStatus,
-        TTicket,
-        TTour,
-        TTourType,
-        TTransportNode,
-        TTransportNodeType
-    };
+
+    Tables currentTable;
 
     MainWindow(QMainWindow *pwgt = 0);
 
@@ -56,9 +38,11 @@ public:
 
     void setPButton(QPushButton *pButton);
 
-    QTabWidget *getTabWidget() const;
+    RightMenuWidget *getRightMenu() const;
 
-    void setTabWidget(QTabWidget *tabWidget);
+    void setRightMenu(RightMenuWidget *rightMenu);
+
+    void initRightMenu();
 
     template<class modelClass, class daoClass>
     void _renderTable() {
@@ -67,6 +51,7 @@ public:
         this->pTable->setColumnCount(modelClass::columnList.length());
 
         this->pTable->setHorizontalHeaderLabels(modelClass::columnList);
+
         int i = 0;
                 foreach(modelClass *model, objectList) {
                 int j = 0;
@@ -77,15 +62,15 @@ public:
                 }
                 i++;
             }
+
+        this->pTable->resizeColumnsToContents();
+        this->pTable->resizeRowsToContents();
     };
 
 public slots:
 
     void renderTable(Tables tables);
 
-
-//    template<class modelClass, class daoClass>
-//    void renderTable();
 };
 
 
