@@ -28,7 +28,9 @@
 #include <models/interfaces/dao_realization/TransportNodeTypeDataBaseDAO.h>
 
 #include "MainWindow.h"
+#include "AddWindow.h"
 
+#include <iostream>
 
 MainWindow::MainWindow(QMainWindow *pwgt) : QMainWindow(pwgt) {
 
@@ -37,11 +39,13 @@ MainWindow::MainWindow(QMainWindow *pwgt) : QMainWindow(pwgt) {
 
 
     this->pTable = new QTableWidget(this->mainWidget);
-    this->pButton = new QPushButton(this->mainWidget);
+//    this->pButton = new QPushButton(this->mainWidget);
+    this->toolBar = new QToolBar();
+    initToolBar();
+
     this->rightMenu = new RightMenuWidget(this->mainWidget);
-
-
     initRightMenu();
+
     this->mainLayout->addWidget(this->pTable, 0, 0);
     this->mainLayout->addWidget(this->rightMenu, 0, 1);
 
@@ -66,24 +70,30 @@ void MainWindow::setPTable(QTableWidget *pTable) {
     MainWindow::pTable = pTable;
 }
 
-QPushButton *MainWindow::getPButton() const {
-    return pButton;
-}
-
-void MainWindow::setPButton(QPushButton *pButton) {
-    MainWindow::pButton = pButton;
-}
+//QPushButton *MainWindow::getPButton() const {
+//    return pButton;
+//}
+//
+//void MainWindow::setPButton(QPushButton *pButton) {
+//    MainWindow::pButton = pButton;
+//}
 
 
 MainWindow::~MainWindow() {
-    delete this->pButton;
+//    delete this->pButton;
     delete this->pTable;
     delete this->rightMenu;
     delete this->menu;
+    delete this->toolBar;
+
+    foreach(QAction *actionMember, this->actionList){
+        delete actionMember;
+    }
 }
 
 
 void MainWindow::renderTable(Tables tables) {
+    this->currentTable = tables;
     switch (tables) {
         case Tables::TCity:
             _renderTable<City, CityDataBaseDAO>();
@@ -162,16 +172,16 @@ void MainWindow::renderTable(Tables tables) {
 
 void MainWindow::initRightMenu() {
     QStringList tables;
-    tables << "City" << "CityType" << "Client" << "ClientRest" <<
-           "Contract" << "Country" << "Documents" << "DocumentsForTour" << "DocumentsType" <<
-           "Flight" << "Hotel" << "HotelRoom" << "HotelRoomType" <<
-           "PlaceArrival" << "PlaceArrivalType" << "Reservation" << "ReservByAgreement" << "Sight" <<
-           "Status" << "Ticket" << "Tour" << "TourType" << "TransportNode" << "TransportNodeType";
+    tables << "City" << "City Type" << "Client" << "Client Rest" <<
+           "Contract" << "Country" << "Documents" << "Documents For Tour" << "Documents Type" <<
+           "Flight" << "Hotel" << "Hotel Room" << "Hotel Room Type" <<
+           "Place Arrival" << "Place Arrival Type" << "Reservation" << "Reservation By Agreement" << "Sight" <<
+           "Status" << "Ticket" << "Tour" << "Tour Type" << "Transport Node" << "Transport Node Type";
     int i = 0;
-            foreach(QString tableName, tables) {
-            new RightMenuItem(tableName, rightMenu, 1, (Tables) i);
-            i++;
-        }
+    foreach(QString tableName, tables) {
+        new RightMenuItem(tableName, rightMenu, 1, (Tables) i);
+        i++;
+    }
 }
 
 RightMenuWidget *MainWindow::getRightMenu() const {
@@ -180,4 +190,43 @@ RightMenuWidget *MainWindow::getRightMenu() const {
 
 void MainWindow::setRightMenu(RightMenuWidget *rightMenu) {
     MainWindow::rightMenu = rightMenu;
+}
+
+void MainWindow::initToolBar() {
+    QAction *action = new QAction(QPixmap(":add.png"), "Add to selected table");
+    connect(action, SIGNAL(triggered()), this, SLOT(addRow()));
+    this->actionList << action;
+
+    action = new QAction(QPixmap(":edit.png"), "Edit selected");
+    connect(action, SIGNAL(triggered()), this, SLOT(editRow()));
+    this->actionList << action;
+
+    action = new QAction(QPixmap(":del.png"), "Delete selected row");
+    connect(action, SIGNAL(triggered()), this, SLOT(deleteRow()));
+    this->actionList << action;
+
+    foreach(QAction *actionMember, this->actionList){
+        this->toolBar->addAction(actionMember);
+    }
+    this->addToolBar(Qt::ToolBarArea::TopToolBarArea, toolBar);
+}
+
+void MainWindow::addRow() {
+    std::cout<< "Add row slot\n";
+    AddWindow addWindow(this, Qt::Window | Qt::WindowSystemMenuHint, this->currentTable);
+    int exit_code = addWindow.exec();
+    std::cout<<exit_code<<"\n";
+    if(exit_code){
+        std::cout<<"ACCEPTED\n";
+    }else{
+        std::cout<<"REJECTED\n";
+    }
+}
+
+void MainWindow::editRow() {
+    std::cout<< "edit row slot\n";
+}
+
+void MainWindow::deleteRow() {
+    std::cout<< "delete row slot\n";
 }

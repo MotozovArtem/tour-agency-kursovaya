@@ -19,8 +19,8 @@ int main(int argc, char **argv) {
         delete msgBox;
         return -1;
     }
-
-    window->renderTable(Tables::TCity);
+//
+//    window->renderTable(Tables::TCity);
 
     window->show();
     int exit_code = QApplication::exec();

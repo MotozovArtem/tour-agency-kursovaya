@@ -68,7 +68,7 @@ void ClientRest::setClientName(QString *clientName) {
     ClientRest::clientName = clientName;
 }
 
-QStringList ClientRest::columnList = {"ID", "Contract_f", "Client_f"};
+QStringList ClientRest::columnList = {"ID_i", "Contract_f", "Client_f"};
 
 QStringList *ClientRest::getValueList() {
     return new QStringList({QString::number(this->id), *this->contract, *this->clientName});

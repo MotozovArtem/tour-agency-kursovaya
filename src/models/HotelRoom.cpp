@@ -143,7 +143,7 @@ void HotelRoom::setHotelRoomType(QString *hotelRoomType) {
     HotelRoom::hotelRoomType = hotelRoomType;
 }
 
-QStringList HotelRoom::columnList = {"ID", "Hotel room name", "Places", "Shower", "Second restroom", "Balcony",
+QStringList HotelRoom::columnList = {"ID_i", "Hotel room name_s", "Places_i", "Shower_b", "Second restroom_b", "Balcony_b",
                                      "Hotel_f", "Hotel Room Type_f"};
 
 QStringList *HotelRoom::getValueList() {

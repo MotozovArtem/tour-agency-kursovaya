@@ -32,7 +32,7 @@ void Status::setName(QString *name) {
     Status::statusName = name;
 }
 
-QStringList Status::columnList = {"ID", "Name"};
+QStringList Status::columnList = {"ID_i", "Name_s"};
 
 QStringList *Status::getValueList() {
     QStringList *list = new QStringList({QString::number(this->id), *this->statusName});

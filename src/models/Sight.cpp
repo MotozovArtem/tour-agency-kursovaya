@@ -103,7 +103,7 @@ void Sight::setCity(QString *city) {
     Sight::city = city;
 }
 
-QStringList Sight::columnList = {"ID", "Name", "Address", "Year of creation", "Toponym", "City_f"};
+QStringList Sight::columnList = {"ID_i", "Name_s", "Address_s", "Year of creation_d", "Toponym_s", "City_f"};
 
 QStringList *Sight::getValueList() {
     return new QStringList(

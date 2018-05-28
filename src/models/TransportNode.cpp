@@ -103,7 +103,7 @@ void TransportNode::setTransportNodeType(QString *transportNodeType) {
     TransportNode::transportNodeType = transportNodeType;
 }
 
-QStringList TransportNode::columnList = {"ID", "Node name", "Flight_f", "Transport Node Type_f"};
+QStringList TransportNode::columnList = {"ID_i", "Node name_s", "Flight_f", "Transport Node Type_f"};
 
 QStringList *TransportNode::getValueList() {
     return new QStringList(

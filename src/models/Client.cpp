@@ -104,8 +104,8 @@ Client::Client(const QString &passportData, const QString &surname, const QStrin
     this->sex = sex;
 }
 
-QStringList Client::columnList = {"ID", "Passport Data", "Surname", "Name", "Patronymic", "Date of birth",
-                                  "Place of birth", "Sex"};
+QStringList Client::columnList = {"ID_i", "Passport Data_s", "Surname_s", "Name_s", "Patronymic_s", "Date of birth_d",
+                                  "Place of birth_s", "Sex_b"};
 
 QStringList *Client::getValueList() {
     return new QStringList(

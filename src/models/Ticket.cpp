@@ -137,7 +137,7 @@ void Ticket::setFlight(QString *flight) {
     Ticket::flight = flight;
 }
 
-QStringList Ticket::columnList = {"ID", "Place", "Date", "Price", "Date of purchase", "Documents_f", "Flight_f"};
+QStringList Ticket::columnList = {"ID_i", "Place_i", "Date_d", "Price_n", "Date of purchase_d", "Documents_f", "Flight_f"};
 
 QStringList *Ticket::getValueList() {
     return new QStringList({QString::number(this->id), QString::number(this->place), this->dateFlight->toString(),

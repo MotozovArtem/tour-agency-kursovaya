@@ -112,7 +112,7 @@ void Reservation::setContract(QString *contract) {
     Reservation::contract = contract;
 }
 
-QStringList Reservation::columnList = {"ID", "Date of begining", "Date of Ending", "Hotel room_f", "Contract_f"};
+QStringList Reservation::columnList = {"ID_i", "Date of begining_d", "Date of Ending_d", "Hotel room_f", "Contract_f"};
 
 QStringList *Reservation::getValueList() {
     return new QStringList({QString::number(this->id), this->dateOfBegining->toString(), this->dateOfEnding->toString(),

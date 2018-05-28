@@ -96,7 +96,7 @@ Hotel::Hotel(const QString &hotelName, const QString &address, int stars, const 
     this->cityName = nullptr;
 }
 
-QStringList Hotel::columnList = {"ID", "Hotel Name", "Address", "Year of Foundation", "Stars", "City"};
+QStringList Hotel::columnList = {"ID_i", "Hotel Name_s", "Address_s", "Year of Foundation_d", "Stars_i", "City_f"};
 
 
 QStringList *Hotel::getValueList() {

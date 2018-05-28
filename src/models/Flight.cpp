@@ -82,8 +82,8 @@ Flight::Flight(const QDate &dateOfPurchase, const QDate &dateOfDeparture, const 
     this->arrivalDate = new QDate(arrivalDate);
 }
 
-QStringList Flight::columnList = {"ID", "Date of Purchase", "Date of Departure", "Departure time", "Arrival time",
-                                  "Arrival date"};
+QStringList Flight::columnList = {"ID_i", "Date of Purchase_d", "Date of Departure_d", "Departure time_t", "Arrival time_t",
+                                  "Arrival date_d"};
 
 QStringList *Flight::getValueList() {
     return new QStringList(

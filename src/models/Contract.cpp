@@ -157,7 +157,7 @@ void Contract::setDocuements(QString *docuements) {
     Contract::docuements = docuements;
 }
 
-QStringList Contract::columnList = {"ID", "Name", "Date of payment_f", "Date of issue", "Total", "Status_f",
+QStringList Contract::columnList = {"ID_i", "Name_s", "Date of payment_d", "Date of issue_d", "Total_n", "Status_f",
                                     "Tour type_f", "Documents_f"};
 
 QStringList *Contract::getValueList() {

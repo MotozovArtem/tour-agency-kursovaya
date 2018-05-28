@@ -118,7 +118,7 @@ void PlaceArrival::setPlaceArrivalType(QString *placeArrivalType) {
     PlaceArrival::placeArrivalType = placeArrivalType;
 }
 
-QStringList PlaceArrival::columnList = {"ID", "Name", "Address", "City_f", "Place arrival type_f"};
+QStringList PlaceArrival::columnList = {"ID_i", "Name_s", "Address_s", "City_f", "Place arrival type_f"};
 
 QStringList *PlaceArrival::getValueList() {
     return new QStringList(

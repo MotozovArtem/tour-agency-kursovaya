@@ -4,7 +4,6 @@
 
 #include "RightMenuWidget.h"
 #include <QtWidgets>
-#include <iostream>
 
 RightMenuWidget::RightMenuWidget(QWidget *parent) : QListWidget(parent) {
     connect(this, SIGNAL(itemClicked(QListWidgetItem * )), this, SLOT(selected(QListWidgetItem * )));

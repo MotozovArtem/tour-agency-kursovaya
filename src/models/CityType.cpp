@@ -32,7 +32,7 @@ CityType::CityType(const QString &name) : Model() {
     this->cityTypeName = new QString(name);
 }
 
-QStringList CityType::columnList = {"ID", "Name"};
+QStringList CityType::columnList = {"ID_i", "Name_s"};
 
 QStringList *CityType::getValueList() {
     return new QStringList({QString::number(this->id), *this->cityTypeName});

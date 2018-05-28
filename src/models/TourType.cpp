@@ -32,7 +32,7 @@ TourType::TourType(const QString &name) : Model() {
     this->tourTypeName = new QString(name);
 }
 
-QStringList TourType::columnList = {"ID", "Name"};
+QStringList TourType::columnList = {"ID_i", "Name_s"};
 
 QStringList *TourType::getValueList() {
     return new QStringList({QString::number(this->id), *this->tourTypeName});

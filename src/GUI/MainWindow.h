@@ -15,10 +15,12 @@
 class MainWindow : public QMainWindow {
 Q_OBJECT
 private:
+    QList<QAction *> actionList;
+
     QTableWidget *pTable;
-    QPushButton *pButton;
     RightMenuWidget *rightMenu;
     QMenuBar *menu;
+    QToolBar *toolBar;
 
     QWidget *mainWidget;
     QGridLayout *mainLayout;
@@ -34,15 +36,17 @@ public:
 
     void setPTable(QTableWidget *pTable);
 
-    QPushButton *getPButton() const;
-
-    void setPButton(QPushButton *pButton);
+//    QPushButton *getPButton() const;
+//
+//    void setPButton(QPushButton *pButton);
 
     RightMenuWidget *getRightMenu() const;
 
     void setRightMenu(RightMenuWidget *rightMenu);
 
     void initRightMenu();
+
+    void initToolBar();
 
     template<class modelClass, class daoClass>
     void _renderTable() {
@@ -70,6 +74,12 @@ public:
 public slots:
 
     void renderTable(Tables tables);
+
+    void addRow();
+
+    void editRow();
+
+    void deleteRow();
 
 };
 
