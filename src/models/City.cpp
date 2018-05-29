@@ -6,23 +6,23 @@
 
 City::City(int id, QString *name, int idCityType, int idCountry) : Model(id), cityName(name), idCityType(idCityType),
                                                                    idCountry(idCountry) {
-    this->cityName = nullptr;
+    this->countryName = nullptr;
     this->cityTypeName = nullptr;
 }
 
 City::City(QString *name, int idCityType, int idCountry) : cityName(name), idCityType(idCityType),
                                                            idCountry(idCountry) {
-    this->cityName = nullptr;
+    this->countryName = nullptr;
     this->cityTypeName = nullptr;
 }
 
 City::City(int id) : Model(id) {
-    this->cityName = nullptr;
+    this->countryName = nullptr;
     this->cityTypeName = nullptr;
 }
 
 City::City() {
-    this->cityName = nullptr;
+    this->countryName = nullptr;
     this->cityTypeName = nullptr;
 }
 
@@ -105,6 +105,6 @@ City::City(const QStringList &args) : Model(args) {
     this->idCityType = args[2].toInt();
     this->idCountry = args[3].toInt();
 
-    this->cityName = nullptr;
+    this->countryName = nullptr;
     this->cityTypeName = nullptr;
 }

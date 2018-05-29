@@ -4,6 +4,7 @@
 
 #include <QtSql/QtSql>
 #include <utils/Logger.h>
+#include <iostream>
 #include "CityDataBaseDAO.h"
 
 QList<City *> CityDataBaseDAO::getAll() {
@@ -50,7 +51,7 @@ void CityDataBaseDAO::add(City *model) {
     QSqlQuery query;
     query.prepare("INSERT INTO City(city_name, id_city_type, id_country) VALUES"
                   "(:city_name, :id_city_type, :id_country)");
-    query.bindValue(":cityName", *model->getName());
+    query.bindValue(":city_name", *model->getName());
     query.bindValue(":id_city_type", model->getIdCityType());
     query.bindValue(":id_country", model->getIdCountry());
     if (!query.exec()) {

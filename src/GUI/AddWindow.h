@@ -71,6 +71,9 @@ public:
             QString labelName = labelSplited[0];
             QString labelType = labelSplited[1];
             formLabel= new QLabel(labelName);
+            if(labelName=="ID"){
+                continue;
+            }
             if(labelType == "i" || labelType == "n"){
                 numberEdit = new QSpinBox();
                 this->editList << numberEdit;

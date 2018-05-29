@@ -81,15 +81,15 @@ public:
     modelClass* _getValuesFromDialog(AddWindow *window) {
         QList<QWidget *> editList = window->getEditList();
         QStringList valuesFromEditLines;
+        valuesFromEditLines << QString::number(0);
                 foreach(QWidget *lineEdit, editList) {
                 QString typeName(lineEdit->metaObject()->className());
 //                QMessageBox(QMessageBox::Information, "Message",
 //                            lineEdit->metaObject()->className(), QMessageBox::Ok).exec();
-
                 if (typeName == "QLineEdit") {
                     valuesFromEditLines << dynamic_cast<QLineEdit *>(lineEdit)->text();
                 } else if (typeName == "QComboBox") {
-                    valuesFromEditLines << dynamic_cast<QComboBox *>(lineEdit)->currentText();
+                    valuesFromEditLines << QString(dynamic_cast<QComboBox *>(lineEdit)->currentText().split(" ")[0]);
                 } else if (typeName== "QDateEdit") {
                     valuesFromEditLines << dynamic_cast<QDateEdit *>(lineEdit)->text();
                 } else if (typeName == "QTimeEdit") {

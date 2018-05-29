@@ -212,10 +212,8 @@ void MainWindow::initToolBar() {
 }
 
 void MainWindow::addRow() {
-//    std::cout << "Add row slot\n";
     AddWindow *addWindow = new AddWindow(this, Qt::Window | Qt::WindowSystemMenuHint, this->currentTable);
     int exit_code = addWindow->exec();
-//    std::cout << exit_code << "\n";
     if (exit_code == 1) {
         getValuesFromDialog(addWindow);
     } else {
@@ -313,145 +311,145 @@ void MainWindow::getValuesFromDialog(AddWindow *window) {
     QList<QWidget *> editList = window->getEditList();
     switch (this->currentTable) {
         case Tables::TCity: {
-            City *city = _getValuesFromDialog<City>(window);
+            auto *city = _getValuesFromDialog<City>(window);
             _addInDataBase<City, CityDataBaseDAO>(city);
             delete city;
             break;
         }
         case Tables::TCityType: {
-            CityType *cityType = _getValuesFromDialog<CityType>(window);
+            auto *cityType = _getValuesFromDialog<CityType>(window);
             _addInDataBase<CityType, CityTypeDataBaseDAO>(cityType);
             delete cityType;
             break;
         }
         case Tables::TClient: {
-            Client *client = _getValuesFromDialog<Client>(window);
+            auto *client = _getValuesFromDialog<Client>(window);
             _addInDataBase<Client, ClientDataBaseDAO>(client);
             delete client;
             break;
         }
         case Tables::TClientRest: {
-            ClientRest *clientRest = _getValuesFromDialog<ClientRest>(window);
+            auto *clientRest = _getValuesFromDialog<ClientRest>(window);
             _addInDataBase<ClientRest, ClientRestDataBaseDAO>(clientRest);
             delete clientRest;
             break;
         }
         case Tables::TContract: {
-            Contract *contract = _getValuesFromDialog<Contract>(window);
+            auto *contract = _getValuesFromDialog<Contract>(window);
             _addInDataBase<Contract, ContractDataBaseDAO>(contract);
             delete contract;
             break;
         }
         case Tables::TCountry: {
-            Country *country = _getValuesFromDialog<Country>(window);
+            auto *country = _getValuesFromDialog<Country>(window);
             _addInDataBase<Country, CountryDataBaseDAO>(country);
             delete country;
             break;
         }
         case Tables::TDocuments: {
-            Documents *document = _getValuesFromDialog<Documents>(window);
+            auto *document = _getValuesFromDialog<Documents>(window);
             _addInDataBase<Documents, DocumentsDataBaseDAO>(document);
             delete document;
             break;
         }
         case Tables::TDocumentsForTour: {
-            DocumentsForTour *documentsForTour = _getValuesFromDialog<DocumentsForTour>(window);
+            auto *documentsForTour = _getValuesFromDialog<DocumentsForTour>(window);
             _addInDataBase<DocumentsForTour, DocumentsForTourDataBaseDAO>(documentsForTour);
             delete documentsForTour;
             break;
         }
         case Tables::TDocumentsType: {
-            DocumentType *documentType = _getValuesFromDialog<DocumentType>(window);
+            auto *documentType = _getValuesFromDialog<DocumentType>(window);
             _addInDataBase<DocumentType, DocumentTypeDataBaseDAO>(documentType);
             delete documentType;
             break;
         }
         case Tables::TFlight: {
-            Flight *flight = _getValuesFromDialog<Flight>(window);
+            auto *flight = _getValuesFromDialog<Flight>(window);
             _addInDataBase<Flight, FlightDataBaseDAO>(flight);
             delete flight;
             break;
         }
         case Tables::THotel: {
-            Hotel *hotel = _getValuesFromDialog<Hotel>(window);
+            auto *hotel = _getValuesFromDialog<Hotel>(window);
             _addInDataBase<Hotel, HotelDataBaseDAO>(hotel);
             delete hotel;
             break;
         }
         case Tables::THotelRoom: {
-            HotelRoom *hotelRoom = _getValuesFromDialog<HotelRoom>(window);
+            auto *hotelRoom = _getValuesFromDialog<HotelRoom>(window);
             _addInDataBase<HotelRoom, HotelRoomDataBaseDAO>(hotelRoom);
             delete hotelRoom;
             break;
         }
         case Tables::THotelRoomType: {
-            HotelRoomType *hotelRoomType = _getValuesFromDialog<HotelRoomType>(window);
+            auto *hotelRoomType = _getValuesFromDialog<HotelRoomType>(window);
             _addInDataBase<HotelRoomType, HotelRoomTypeDataBaseDAO>(hotelRoomType);
             delete hotelRoomType;
             break;
         }
         case Tables::TPlaceArrival: {
-            PlaceArrival *placeArrival = _getValuesFromDialog<PlaceArrival>(window);
+            auto *placeArrival = _getValuesFromDialog<PlaceArrival>(window);
             _addInDataBase<PlaceArrival, PlaceArrivalDataBaseDAO>(placeArrival);
             delete placeArrival;
             break;
         }
         case Tables::TPlaceArrivalType: {
-            PlaceArrivalType *placeArrivalType = _getValuesFromDialog<PlaceArrivalType>(window);
+            auto *placeArrivalType = _getValuesFromDialog<PlaceArrivalType>(window);
             _addInDataBase<PlaceArrivalType, PlaceArrivalTypeDataBaseDAO>(placeArrivalType);
             delete placeArrivalType;
             break;
         }
         case Tables::TReservation: {
-            Reservation *reservation = _getValuesFromDialog<Reservation>(window);
+            auto *reservation = _getValuesFromDialog<Reservation>(window);
             _addInDataBase<Reservation, ReservationDataBaseDAO>(reservation);
             delete reservation;
             break;
         }
         case Tables::TReservByAgreement: {
-            ReservByAgreement *reservByAgreement = _getValuesFromDialog<ReservByAgreement>(window);
+            auto *reservByAgreement = _getValuesFromDialog<ReservByAgreement>(window);
             _addInDataBase<ReservByAgreement, ReservByAgreementDataBaseDAO>(reservByAgreement);
             delete reservByAgreement;
             break;
         }
         case Tables::TSight: {
-            Sight *sight = _getValuesFromDialog<Sight>(window);
+            auto *sight = _getValuesFromDialog<Sight>(window);
             _addInDataBase<Sight, SightDataBaseDAO>(sight);
             delete sight;
             break;
         }
         case Tables::TStatus: {
-            Status *status = _getValuesFromDialog<Status>(window);
+            auto *status = _getValuesFromDialog<Status>(window);
             _addInDataBase<Status, StatusDataBaseDAO>(status);
             delete status;
             break;
         }
         case Tables::TTicket: {
-            Ticket *ticket = _getValuesFromDialog<Ticket>(window);
+            auto *ticket = _getValuesFromDialog<Ticket>(window);
             _addInDataBase<Ticket, TicketDataBaseDAO>(ticket);
             delete ticket;
             break;
         }
         case Tables::TTour: {
-            Tour *tour = _getValuesFromDialog<Tour>(window);
+            auto *tour = _getValuesFromDialog<Tour>(window);
             _addInDataBase<Tour, TourDataBaseDAO>(tour);
             delete tour;
             break;
         }
         case Tables::TTourType: {
-            TourType *tourType = _getValuesFromDialog<TourType>(window);
+            auto *tourType = _getValuesFromDialog<TourType>(window);
             _addInDataBase<TourType, TourTypeDataBaseDAO>(tourType);
             delete tourType;
             break;
         }
         case Tables::TTransportNode: {
-            TransportNode *transportNode = _getValuesFromDialog<TransportNode>(window);
+            auto *transportNode = _getValuesFromDialog<TransportNode>(window);
             _addInDataBase<TransportNode, TransportNodeDataBaseDAO>(transportNode);
             delete transportNode;
             break;
         }
         case Tables::TTransportNodeType: {
-            TransportNodeType *transportNodeType = _getValuesFromDialog<TransportNodeType>(window);
+            auto *transportNodeType = _getValuesFromDialog<TransportNodeType>(window);
             _addInDataBase<TransportNodeType, TransportNodeTypeDataBaseDAO>(transportNodeType);
             delete transportNodeType;
             break;
