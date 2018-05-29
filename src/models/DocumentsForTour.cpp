@@ -97,8 +97,12 @@ void DocumentsForTour::setDocumentType(QString *documentType) {
     DocumentsForTour::documentType = documentType;
 }
 
-QStringList DocumentsForTour::columnList = {"ID_i", "Document_f", "Client_f", "Document type_f"};
+QStringList DocumentsForTour::columnList = {"ID_i", "Documents_f", "Client_f", "Document type_f"};
 
 QStringList *DocumentsForTour::getValueList() {
     return new QStringList({QString::number(this->id), *this->document, *this->clientName, *this->documentType});
+}
+
+QStringList *DocumentsForTour::getValForAdd() {
+    return getValueList();
 }

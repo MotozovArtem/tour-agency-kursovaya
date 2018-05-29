@@ -54,6 +54,8 @@ public:
     void setCountryName(QString *countryName);
 
     virtual QStringList *getValueList();
+
+    virtual QStringList *getValForAdd();
 };
 
 

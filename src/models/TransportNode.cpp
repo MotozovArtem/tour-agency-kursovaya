@@ -109,3 +109,8 @@ QStringList *TransportNode::getValueList() {
     return new QStringList(
             {QString::number(this->id), *this->transportNodeName, *this->flight, *this->transportNodeType});
 }
+
+QStringList *TransportNode::getValForAdd() {
+    return new QStringList(
+            {QString::number(this->id), *this->transportNodeName, *this->transportNodeType});
+}

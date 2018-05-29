@@ -37,3 +37,7 @@ QStringList TransportNodeType::columnList = {"ID_i", "Name_s"};
 QStringList *TransportNodeType::getValueList() {
     return new QStringList({QString::number(this->id), *this->transportNodeTypeName});
 }
+
+QStringList *TransportNodeType::getValForAdd() {
+    return getValueList();
+}

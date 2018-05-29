@@ -77,6 +77,8 @@ public:
     void setHotelRoomType(QString *hotelRoomType);
 
     virtual QStringList *getValueList();
+
+    virtual QStringList *getValForAdd();
 };
 
 

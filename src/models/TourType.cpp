@@ -37,3 +37,7 @@ QStringList TourType::columnList = {"ID_i", "Name_s"};
 QStringList *TourType::getValueList() {
     return new QStringList({QString::number(this->id), *this->tourTypeName});
 }
+
+QStringList *TourType::getValForAdd() {
+    return getValueList();
+}

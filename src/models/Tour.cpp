@@ -115,3 +115,8 @@ QStringList *Tour::getValueList() {
     return new QStringList(
             {QString::number(this->id), *this->tourName, QString::number(this->days), *this->city, *this->tourType});
 }
+
+QStringList *Tour::getValForAdd() {
+    return new QStringList(
+            {QString::number(this->id), *this->tourName});
+}

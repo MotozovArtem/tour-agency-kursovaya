@@ -54,6 +54,8 @@ public:
     void setTransportNodeType(QString *transportNodeType);
 
     virtual QStringList *getValueList();
+
+    virtual QStringList *getValForAdd();
 };
 
 

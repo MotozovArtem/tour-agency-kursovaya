@@ -37,3 +37,7 @@ QStringList DocumentType::columnList = {"ID_i", "Name_s"};
 QStringList *DocumentType::getValueList() {
     return new QStringList({QString::number(this->id), *this->documentTypeName});
 }
+
+QStringList *DocumentType::getValForAdd() {
+    return getValueList();
+}

@@ -43,6 +43,8 @@ public:
     void setIssuanceDepartment(QString *issuanceDepartment);
 
     virtual QStringList *getValueList();
+
+    virtual QStringList *getValForAdd();
 };
 
 

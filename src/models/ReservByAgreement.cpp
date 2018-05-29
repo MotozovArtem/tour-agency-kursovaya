@@ -106,3 +106,8 @@ QString *ReservByAgreement::getContract() const {
 void ReservByAgreement::setContract(QString *contract) {
     ReservByAgreement::contract = contract;
 }
+
+QStringList *ReservByAgreement::getValForAdd() {
+    return new QStringList(
+            {QString::number(this->id),*this->hotelRoom, *this->contract, this->dateOfBegining->toString() });
+}

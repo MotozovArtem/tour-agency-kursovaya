@@ -58,6 +58,8 @@ public:
     void setArrivalDate(QDate *arrivalDate);
 
     virtual QStringList *getValueList();
+
+    virtual QStringList *getValForAdd();
 };
 
 

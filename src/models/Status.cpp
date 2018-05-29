@@ -35,6 +35,9 @@ void Status::setName(QString *name) {
 QStringList Status::columnList = {"ID_i", "Name_s"};
 
 QStringList *Status::getValueList() {
-    QStringList *list = new QStringList({QString::number(this->id), *this->statusName});
-    return list;
+    return new QStringList({QString::number(this->id), *this->statusName});
+}
+
+QStringList *Status::getValForAdd() {
+    return getValueList();
 }

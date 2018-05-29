@@ -11,6 +11,7 @@
 
 #include "utils/Tables.h"
 #include "RightMenuWidget.h"
+#include "AddWindow.h"
 
 class MainWindow : public QMainWindow {
 Q_OBJECT
@@ -48,6 +49,10 @@ public:
 
     void initToolBar();
 
+    void addInDataBase();
+
+    void getValuesFromDialog(AddWindow *window);
+
     template<class modelClass, class daoClass>
     void _renderTable() {
         QList<modelClass *> objectList = daoClass().getAllFilled();
@@ -70,6 +75,18 @@ public:
         this->pTable->resizeColumnsToContents();
         this->pTable->resizeRowsToContents();
     };
+
+    template <class modelClass>
+    void _getValuesFromDialog(AddWindow *window){
+        QList<QWidget *> editList = window->getEditList();
+        modelClass model;
+    }
+
+    template <class modelClass, class modelDaoClass>
+    void _addInDataBase(){
+
+    }
+
 
 public slots:
 

@@ -62,6 +62,7 @@ public:
 
     virtual QStringList *getValueList();
 
+    virtual QStringList *getValForAdd();
 };
 
 

@@ -54,6 +54,8 @@ public:
     void setContract(QString *contract);
 
     virtual QStringList *getValueList();
+
+    virtual QStringList *getValForAdd();
 };
 
 

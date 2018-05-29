@@ -60,6 +60,8 @@ public:
     void setCity(QString *city);
 
     virtual QStringList *getValueList();
+
+    virtual QStringList *getValForAdd();
 };
 
 

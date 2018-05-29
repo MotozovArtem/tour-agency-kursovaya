@@ -54,6 +54,8 @@ public:
     void setDocumentType(QString *documentType);
 
     virtual QStringList *getValueList();
+
+    virtual QStringList *getValForAdd();
 };
 
 

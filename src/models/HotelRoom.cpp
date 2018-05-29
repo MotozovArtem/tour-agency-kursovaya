@@ -156,3 +156,7 @@ QStringList *HotelRoom::getValueList() {
                             *this->hotel,
                             *this->hotelRoomType});
 }
+
+QStringList *HotelRoom::getValForAdd() {
+    return new QStringList({QString::number(this->id),*this->hotelRoomName});
+}

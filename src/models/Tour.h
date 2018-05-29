@@ -59,6 +59,8 @@ public:
     void setTourType(QString *tourType);
 
     virtual QStringList *getValueList();
+
+    virtual QStringList *getValForAdd();
 };
 
 

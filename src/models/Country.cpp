@@ -49,3 +49,7 @@ QStringList Country::columnList = {"ID_i", "Name_s", "Foundation date_d"};
 QStringList *Country::getValueList() {
     return new QStringList({QString::number(this->id), *this->countryName, this->foundationDate->toString()});
 }
+
+QStringList *Country::getValForAdd() {
+    return new QStringList({QString::number(this->id), *this->countryName});
+}

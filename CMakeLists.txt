@@ -29,7 +29,7 @@ set(SOURCES ${PROJECT_SOURCE_DIR}/main.cpp
         src/GUI/RightMenuItem.cpp
         src/GUI/RightMenuItem.h
         src/utils/Tables.h
-        src/GUI/AddWindow.cpp src/GUI/AddWindow.h)
+        src/GUI/AddWindow.cpp src/GUI/AddWindow.h src/GUI/EditWindow.cpp src/GUI/EditWindow.h)
 
 set(INTERFACES src/models/interfaces/ModelDAO.h
         src/models/interfaces/HotelDAO.h

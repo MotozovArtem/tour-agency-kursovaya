@@ -44,6 +44,8 @@ public:
     void setClientName(QString *clientName);
 
     virtual QStringList *getValueList();
+
+    virtual QStringList *getValForAdd();
 };
 
 

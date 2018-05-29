@@ -83,6 +83,8 @@ public:
     void setDocuements(QString *docuements);
 
     virtual QStringList *getValueList();
+
+    virtual QStringList *getValForAdd();
 };
 
 

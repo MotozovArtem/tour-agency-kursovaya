@@ -144,3 +144,7 @@ QStringList *Ticket::getValueList() {
                             QString::number(this->price), this->dateOfPurchase->toString(), *this->documents,
                             *this->flight});
 }
+
+QStringList *Ticket::getValForAdd() {
+    return new QStringList({QString::number(this->id), this->dateFlight->toString(), *this->flight});
+}

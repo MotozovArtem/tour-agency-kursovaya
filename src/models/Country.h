@@ -38,6 +38,8 @@ public:
     void setFoundationDate(QDate *foundationDate);
 
     virtual QStringList *getValueList();
+
+    virtual QStringList *getValForAdd();
 };
 
 

@@ -73,6 +73,8 @@ public:
     void setFlight(QString *flight);
 
     virtual QStringList *getValueList();
+
+    virtual QStringList *getValForAdd();
 };
 
 

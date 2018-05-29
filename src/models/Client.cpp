@@ -5,7 +5,8 @@
 #include "Client.h"
 
 Client::Client(int id, QString *passportData, QString *surname, QString *name, QString *patronymic, QDate *dateOfBirth,
-               QString *placeOfBirth, bool sex) : Model(id), passportData(passportData), surname(surname), clientName(name),
+               QString *placeOfBirth, bool sex) : Model(id), passportData(passportData), surname(surname),
+                                                  clientName(name),
                                                   patronymic(patronymic), dateOfBirth(dateOfBirth),
                                                   placeOfBirth(placeOfBirth), sex(sex) {}
 
@@ -111,4 +112,10 @@ QStringList *Client::getValueList() {
     return new QStringList(
             {QString::number(this->id), *this->passportData, *this->surname, *this->clientName, *this->patronymic,
              this->dateOfBirth->toString(), *this->placeOfBirth, (this->sex ? "+" : "-")});
+}
+
+QStringList *Client::getValForAdd() {
+    return new QStringList(
+            {QString::number(this->id), *this->surname, *this->clientName, *this->patronymic,
+             this->dateOfBirth->toString()});
 }

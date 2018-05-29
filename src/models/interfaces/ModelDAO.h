@@ -18,7 +18,7 @@ class ModelDAO {
 template<class T>
 class ModelDAO<T *> {
 public:
-    virtual QList<T *> getAll()= 0;
+    virtual QList<T *> getAll()=0;
 
     virtual T *getById(int id)= 0;
 

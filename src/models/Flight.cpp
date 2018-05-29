@@ -90,3 +90,7 @@ QStringList *Flight::getValueList() {
             {QString::number(this->id), this->dateOfPurchase->toString(), this->dateOfDeparture->toString(),
              this->departureTime->toString(), this->arrivalTime->toString(), this->arrivalDate->toString()});
 }
+
+QStringList *Flight::getValForAdd() {
+    return new QStringList({QString::number(this->id)});
+}

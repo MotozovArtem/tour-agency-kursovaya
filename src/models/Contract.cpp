@@ -166,3 +166,7 @@ QStringList *Contract::getValueList() {
              this->dateOfIssue->toString(),
              QString::number(this->total), *this->statusName, *this->tourTypeName, *this->docuements});
 }
+
+QStringList *Contract::getValForAdd() {
+    return new QStringList({QString::number(this->id), *this->contractName});
+}

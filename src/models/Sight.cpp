@@ -111,3 +111,8 @@ QStringList *Sight::getValueList() {
              *this->toponym,
              *this->city});
 }
+
+QStringList *Sight::getValForAdd() {
+    return new QStringList(
+            {QString::number(this->id), *this->sightName, *this->city});
+}

@@ -176,3 +176,57 @@ AddWindow::~AddWindow() {
         delete label;
     }
 }
+
+QComboBox *AddWindow::initForeignEditLine(const QString columnName) {
+    if (columnName.compare("City", Qt::CaseInsensitive) == 0) {
+        return _initForeignEditLine<City, CityDataBaseDAO>(columnName);
+    } else if (columnName.compare("City Type", Qt::CaseInsensitive) == 0) {
+        return _initForeignEditLine<CityType, CityTypeDataBaseDAO>(columnName);
+    } else if (columnName.compare("Client", Qt::CaseInsensitive) == 0) {
+        return _initForeignEditLine<Client, ClientDataBaseDAO>(columnName);
+    } else if (columnName.compare("Client rest", Qt::CaseInsensitive) == 0) {
+        return _initForeignEditLine<ClientRest, ClientRestDataBaseDAO>(columnName);
+    } else if (columnName.compare("Contract", Qt::CaseInsensitive) == 0) {
+        return _initForeignEditLine<Contract, ContractDataBaseDAO>(columnName);
+    } else if (columnName.compare("Country", Qt::CaseInsensitive) == 0) {
+        return _initForeignEditLine<Country, CountryDataBaseDAO>(columnName);
+    } else if (columnName.compare("Documents", Qt::CaseInsensitive) == 0) {
+        return _initForeignEditLine<Documents, DocumentsDataBaseDAO>(columnName);
+    } else if (columnName.compare("Documents for tour", Qt::CaseInsensitive) == 0) {
+        return _initForeignEditLine<DocumentsForTour, DocumentsForTourDataBaseDAO>(columnName);
+    } else if (columnName.compare("Flight", Qt::CaseInsensitive) == 0) {
+        return _initForeignEditLine<Flight, FlightDataBaseDAO>(columnName);
+    } else if (columnName.compare("Hotel", Qt::CaseInsensitive) == 0) {
+        return _initForeignEditLine<Hotel, HotelDataBaseDAO>(columnName);
+    } else if (columnName.compare("Hotel room", Qt::CaseInsensitive) == 0) {
+        return _initForeignEditLine<HotelRoom, HotelRoomDataBaseDAO>(columnName);
+    } else if (columnName.compare("Hotel room type", Qt::CaseInsensitive) == 0) {
+        return _initForeignEditLine<HotelRoomType, HotelRoomTypeDataBaseDAO>(columnName);
+    } else if (columnName.compare("Place arrival", Qt::CaseInsensitive) == 0) {
+        return _initForeignEditLine<PlaceArrival, PlaceArrivalDataBaseDAO>(columnName);
+    } else if (columnName.compare("Place arrival type", Qt::CaseInsensitive) == 0) {
+        return _initForeignEditLine<PlaceArrivalType, PlaceArrivalTypeDataBaseDAO>(columnName);
+    } else if (columnName.compare("Reservation", Qt::CaseInsensitive) == 0) {
+        return _initForeignEditLine<Reservation, ReservationDataBaseDAO>(columnName);
+    } else if (columnName.compare("Reservation by agreement", Qt::CaseInsensitive) == 0) {
+        return _initForeignEditLine<ReservByAgreement, ReservByAgreementDataBaseDAO>(columnName);
+    } else if (columnName.compare("Sight", Qt::CaseInsensitive) == 0) {
+        return _initForeignEditLine<Sight, SightDataBaseDAO>(columnName);
+    } else if (columnName.compare("Ticket", Qt::CaseInsensitive) == 0) {
+        return _initForeignEditLine<Ticket, TicketDataBaseDAO>(columnName);
+    } else if (columnName.compare("Tour", Qt::CaseInsensitive) == 0) {
+        return _initForeignEditLine<Tour, TourDataBaseDAO>(columnName);
+    } else if (columnName.compare("Tour Type", Qt::CaseInsensitive) == 0) {
+        return _initForeignEditLine<TourType, TourTypeDataBaseDAO>(columnName);
+    } else if (columnName.compare("Transport node", Qt::CaseInsensitive) == 0) {
+        return _initForeignEditLine<TransportNode, TransportNodeDataBaseDAO>(columnName);
+    } else if (columnName.compare("Transport node type", Qt::CaseInsensitive) == 0) {
+        return _initForeignEditLine<TransportNodeType, TransportNodeTypeDataBaseDAO>(columnName);
+    } else if (columnName.compare("Status", Qt::CaseInsensitive) == 0) {
+        return _initForeignEditLine<Status, StatusDataBaseDAO>(columnName);
+    } else if (columnName.compare("Document Type", Qt::CaseInsensitive) == 0) {
+        return _initForeignEditLine<DocumentType, DocumentTypeDataBaseDAO>(columnName);
+    }
+    return nullptr;
+}
+

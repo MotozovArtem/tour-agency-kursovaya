@@ -112,3 +112,8 @@ QString *Hotel::getCityName() const {
 void Hotel::setCityName(QString *cityName) {
     Hotel::cityName = cityName;
 }
+
+QStringList *Hotel::getValForAdd() {
+    return new QStringList(
+            {QString::number(this->id), *this->hotelName});
+}

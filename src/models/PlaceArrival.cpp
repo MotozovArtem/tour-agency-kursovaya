@@ -124,3 +124,7 @@ QStringList *PlaceArrival::getValueList() {
     return new QStringList(
             {QString::number(this->id), *this->placeArrivalName, *this->address, *this->city, *this->placeArrivalType});
 }
+
+QStringList *PlaceArrival::getValForAdd() {
+    return new QStringList({QString::number(this->id), *this->placeArrivalName, *this->city, *this->placeArrivalType});
+}

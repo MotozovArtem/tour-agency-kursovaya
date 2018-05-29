@@ -118,3 +118,7 @@ QStringList *Reservation::getValueList() {
     return new QStringList({QString::number(this->id), this->dateOfBegining->toString(), this->dateOfEnding->toString(),
                             *this->hotelRoom, *this->contract});
 }
+
+QStringList *Reservation::getValForAdd() {
+    return new QStringList({QString::number(this->id), *this->hotelRoom, *this->contract, this->dateOfBegining->toString(), this->dateOfEnding->toString()});
+}

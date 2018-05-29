@@ -73,3 +73,7 @@ QStringList ClientRest::columnList = {"ID_i", "Contract_f", "Client_f"};
 QStringList *ClientRest::getValueList() {
     return new QStringList({QString::number(this->id), *this->contract, *this->clientName});
 }
+
+QStringList *ClientRest::getValForAdd() {
+    return getValueList();
+}

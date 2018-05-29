@@ -69,3 +69,7 @@ QStringList *Documents::getValueList() {
     return new QStringList({QString::number(this->id), *this->documentSerial, this->dateOfIssue->toString(),
                             *this->issuanceDepartment});
 }
+
+QStringList *Documents::getValForAdd() {
+    return getValueList();
+}

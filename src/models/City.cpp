@@ -95,3 +95,7 @@ QStringList City::columnList = {"ID_i", "Name_s", "City Type_f", "Country_f"};
 QStringList *City::getValueList() {
     return new QStringList({QString::number(this->id), *this->cityName, *this->cityTypeName, *this->countryName});
 }
+
+QStringList *City::getValForAdd() {
+    return getValueList();
+}

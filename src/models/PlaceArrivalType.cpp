@@ -37,3 +37,7 @@ QStringList PlaceArrivalType::columnList = {"ID_i", "Name_s"};
 QStringList *PlaceArrivalType::getValueList() {
     return new QStringList({QString::number(this->id), *this->placeArrivalTypeName});
 }
+
+QStringList *PlaceArrivalType::getValForAdd() {
+    return getValueList();
+}

@@ -44,11 +44,24 @@ public:
 
     void initDialogForm();
 
+    QComboBox *initForeignEditLine(const QString columnName);
+
+    template<class modelClass, class modelDaoClass>
+    QComboBox *_initForeignEditLine(const QString columnName){
+        QList<modelClass *> modelList = modelDaoClass().getAllFilled();
+        auto comboBox = new QComboBox();
+        foreach(modelClass *model, modelList){
+            comboBox->addItem(model->getValForAdd()->join(" "));
+        }
+        return comboBox;
+    };
+
     template<class modelClass>
     void _initDialogForm(){
         QStringList labelList = modelClass::columnList;
         QLabel *formLabel= nullptr;
         QLineEdit *lineEdit = nullptr;
+        QComboBox *comboBox = nullptr;
         QDateEdit *dateEdit = nullptr;
         QTimeEdit *timeEdit = nullptr;
         QCheckBox *checkBox = nullptr;
@@ -79,10 +92,9 @@ public:
                 this->editList << checkBox;
                 this->formLayout->addRow(formLabel, checkBox);
             }else{
-                lineEdit = new QLineEdit();
-                this->editList << lineEdit;
-                this->formLayout->addRow(formLabel, lineEdit);
-                // TODO: ШОТО СЛОЖНОЕ
+                comboBox = initForeignEditLine(labelName);
+                this->editList << comboBox;
+                this->formLayout->addRow(formLabel, comboBox);
             }
             this->labelList << formLabel;
         }

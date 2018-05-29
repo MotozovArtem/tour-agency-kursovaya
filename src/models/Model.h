@@ -22,6 +22,8 @@ public:
     void setId(int id);
 
     virtual QStringList *getValueList()=0;
+
+    virtual QStringList *getValForAdd()=0;
 };
 
 

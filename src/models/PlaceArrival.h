@@ -60,6 +60,8 @@ public:
     void setPlaceArrivalType(QString *placeArrivalType);
 
     virtual QStringList *getValueList();
+
+    virtual QStringList *getValForAdd();
 };
 
 

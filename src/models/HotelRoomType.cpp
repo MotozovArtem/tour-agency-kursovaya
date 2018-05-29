@@ -37,3 +37,7 @@ QStringList HotelRoomType::columnList = {"ID_i", "Name_s"};
 QStringList *HotelRoomType::getValueList() {
     return new QStringList({QString::number(this->id),*this->hotelRoomTypeName});
 }
+
+QStringList *HotelRoomType::getValForAdd() {
+    return getValueList();
+}

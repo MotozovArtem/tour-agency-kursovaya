@@ -69,6 +69,8 @@ public:
     void setSex(bool sex);
 
     virtual QStringList *getValueList();
+
+    virtual QStringList *getValForAdd();
 };
 
 
