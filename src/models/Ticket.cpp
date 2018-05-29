@@ -151,9 +151,9 @@ QStringList *Ticket::getValForAdd() {
 
 Ticket::Ticket(const QStringList &args) : Model(args) {
     this->place = args[1].toInt();
-    this->dateFlight = new QDate(args[2]);
+    this->dateFlight = toDate(args[2]);
     this->price = args[3].toFloat();
-    this->dateOfPurchase = new QDate(args[4]);
+    this->dateOfPurchase = toDate(args[4]);
     this->idDocuments = args[5].toInt();
     this->idFlight = args[6].toInt();
 

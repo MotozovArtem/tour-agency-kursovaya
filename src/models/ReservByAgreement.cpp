@@ -113,7 +113,7 @@ QStringList *ReservByAgreement::getValForAdd() {
 }
 
 ReservByAgreement::ReservByAgreement(const QStringList &args) : Model(args) {
-    this->dateOfBegining = new QDate(args[1]);
+    this->dateOfBegining = toDate(args[1]);
     this->idHotelRoom = args[2].toInt();
     this->idContract = args[3].toInt();
 

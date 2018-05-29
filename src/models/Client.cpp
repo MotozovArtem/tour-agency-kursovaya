@@ -125,7 +125,7 @@ Client::Client(const QStringList &args) : Model(args) {
     this->surname= new QString(args[2]);
     this->clientName = new QString(args[3]);
     this->patronymic = new QString(args[4]);
-//    this->dateOfBirth = new QDate(args[5].split("."));
+    this->dateOfBirth = toDate(args[5]);
     this->placeOfBirth = new QString(args[6]);
 //    this->sex = args[6];
 }

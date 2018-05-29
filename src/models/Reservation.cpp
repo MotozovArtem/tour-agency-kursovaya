@@ -124,8 +124,8 @@ QStringList *Reservation::getValForAdd() {
 }
 
 Reservation::Reservation(const QStringList &args) : Model(args) {
-    this->dateOfBegining = new QDate(args[1]);
-    this->dateOfEnding = new QDate(args[2]);
+    this->dateOfBegining = toDate(args[1]);
+    this->dateOfEnding = toDate(args[2]);
     this->idHotelRoom = args[3].toInt();
     this->idContract = args[4].toInt();
 

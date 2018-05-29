@@ -56,5 +56,5 @@ QStringList *Country::getValForAdd() {
 
 Country::Country(const QStringList &args) : Model(args) {
     this->countryName=new QString(args[1]);
-    this->foundationDate = new QDate(args[2]);
+    this->foundationDate = toDate(args[2]);
 }

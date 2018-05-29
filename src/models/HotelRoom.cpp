@@ -2,6 +2,7 @@
 // Created by rienel on 08.04.18.
 //
 
+#include <iostream>
 #include "HotelRoom.h"
 
 HotelRoom::HotelRoom(int id, QString *hotelRoomName, int places, bool shower, bool secondRestroom, bool balcony,
@@ -165,9 +166,10 @@ QStringList *HotelRoom::getValForAdd() {
 HotelRoom::HotelRoom(const QStringList &args) : Model(args) {
     this->hotelRoomName = new QString(args[1]);
     this->places = args[2].toInt();
-    this->shower = args[3].toBool();
-    this->secondRestroom = args[4].toBool();
-    this->balcony = args[5].toBool();
+    std::cout << args[3].toStdString();
+//    this->shower = args[3].toBool();
+//    this->secondRestroom = args[4].toBool();
+//    this->balcony = args[5].toBool();
     this->idHotel = args[6].toInt();
     this->idHotelRoomType = args[7].toInt();
 

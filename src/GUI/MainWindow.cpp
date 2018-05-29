@@ -212,11 +212,11 @@ void MainWindow::initToolBar() {
 }
 
 void MainWindow::addRow() {
-    std::cout << "Add row slot\n";
+//    std::cout << "Add row slot\n";
     AddWindow *addWindow = new AddWindow(this, Qt::Window | Qt::WindowSystemMenuHint, this->currentTable);
     int exit_code = addWindow->exec();
-    std::cout << exit_code << "\n";
-    if (exit_code==1) {
+//    std::cout << exit_code << "\n";
+    if (exit_code == 1) {
         getValuesFromDialog(addWindow);
     } else {
         std::cout << "REJECTED\n";
@@ -233,156 +233,229 @@ void MainWindow::deleteRow() {
 }
 
 void MainWindow::addInDataBase() {
-    switch (this->currentTable) {
-        case Tables::TCity:
-            _addInDataBase<City, CityDataBaseDAO>();
-            break;
-        case Tables::TCityType:
-            _addInDataBase<CityType, CityTypeDataBaseDAO>();
-            break;
-        case Tables::TClient:
-            _addInDataBase<Client, ClientDataBaseDAO>();
-            break;
-        case Tables::TClientRest:
-            _addInDataBase<ClientRest, ClientRestDataBaseDAO>();
-            break;
-        case Tables::TContract:
-            _addInDataBase<Contract, ContractDataBaseDAO>();
-            break;
-        case Tables::TCountry:
-            _addInDataBase<Country, CountryDataBaseDAO>();
-            break;
-        case Tables::TDocuments:
-            _addInDataBase<Documents, DocumentsDataBaseDAO>();
-            break;
-        case Tables::TDocumentsForTour:
-            _addInDataBase<DocumentsForTour, DocumentsForTourDataBaseDAO>();
-            break;
-        case Tables::TDocumentsType:
-            _addInDataBase<DocumentType, DocumentTypeDataBaseDAO>();
-            break;
-        case Tables::TFlight:
-            _addInDataBase<Flight, FlightDataBaseDAO>();
-            break;
-        case Tables::THotel:
-            _addInDataBase<Hotel, HotelDataBaseDAO>();
-            break;
-        case Tables::THotelRoom:
-            _addInDataBase<HotelRoom, HotelRoomDataBaseDAO>();
-            break;
-        case Tables::THotelRoomType:
-            _addInDataBase<HotelRoomType, HotelRoomTypeDataBaseDAO>();
-            break;
-        case Tables::TPlaceArrival:
-            _addInDataBase<PlaceArrival, PlaceArrivalDataBaseDAO>();
-            break;
-        case Tables::TPlaceArrivalType:
-            _addInDataBase<PlaceArrivalType, PlaceArrivalTypeDataBaseDAO>();
-            break;
-        case Tables::TReservation:
-            _addInDataBase<Reservation, ReservationDataBaseDAO>();
-            break;
-        case Tables::TReservByAgreement:
-            _addInDataBase<ReservByAgreement, ReservByAgreementDataBaseDAO>();
-            break;
-        case Tables::TSight:
-            _addInDataBase<Sight, SightDataBaseDAO>();
-            break;
-        case Tables::TStatus:
-            _addInDataBase<Status, StatusDataBaseDAO>();
-            break;
-        case Tables::TTicket:
-            _addInDataBase<Ticket, TicketDataBaseDAO>();
-            break;
-        case Tables::TTour:
-            _addInDataBase<Tour, TourDataBaseDAO>();
-            break;
-        case Tables::TTourType:
-            _addInDataBase<TourType, TourTypeDataBaseDAO>();
-            break;
-        case Tables::TTransportNode:
-            _addInDataBase<TransportNode, TransportNodeDataBaseDAO>();
-            break;
-        case Tables::TTransportNodeType:
-            _addInDataBase<TransportNodeType, TransportNodeTypeDataBaseDAO>();
-            break;
-    }
+//    switch (this->currentTable) {
+//        case Tables::TCity:
+//            _addInDataBase<City, CityDataBaseDAO>();
+//            break;
+//        case Tables::TCityType:
+//            _addInDataBase<CityType, CityTypeDataBaseDAO>();
+//            break;
+//        case Tables::TClient:
+//            _addInDataBase<Client, ClientDataBaseDAO>();
+//            break;
+//        case Tables::TClientRest:
+//            _addInDataBase<ClientRest, ClientRestDataBaseDAO>();
+//            break;
+//        case Tables::TContract:
+//            _addInDataBase<Contract, ContractDataBaseDAO>();
+//            break;
+//        case Tables::TCountry:
+//            _addInDataBase<Country, CountryDataBaseDAO>();
+//            break;
+//        case Tables::TDocuments:
+//            _addInDataBase<Documents, DocumentsDataBaseDAO>();
+//            break;
+//        case Tables::TDocumentsForTour:
+//            _addInDataBase<DocumentsForTour, DocumentsForTourDataBaseDAO>();
+//            break;
+//        case Tables::TDocumentsType:
+//            _addInDataBase<DocumentType, DocumentTypeDataBaseDAO>();
+//            break;
+//        case Tables::TFlight:
+//            _addInDataBase<Flight, FlightDataBaseDAO>();
+//            break;
+//        case Tables::THotel:
+//            _addInDataBase<Hotel, HotelDataBaseDAO>();
+//            break;
+//        case Tables::THotelRoom:
+//            _addInDataBase<HotelRoom, HotelRoomDataBaseDAO>();
+//            break;
+//        case Tables::THotelRoomType:
+//            _addInDataBase<HotelRoomType, HotelRoomTypeDataBaseDAO>();
+//            break;
+//        case Tables::TPlaceArrival:
+//            _addInDataBase<PlaceArrival, PlaceArrivalDataBaseDAO>();
+//            break;
+//        case Tables::TPlaceArrivalType:
+//            _addInDataBase<PlaceArrivalType, PlaceArrivalTypeDataBaseDAO>();
+//            break;
+//        case Tables::TReservation:
+//            _addInDataBase<Reservation, ReservationDataBaseDAO>();
+//            break;
+//        case Tables::TReservByAgreement:
+//            _addInDataBase<ReservByAgreement, ReservByAgreementDataBaseDAO>();
+//            break;
+//        case Tables::TSight:
+//            _addInDataBase<Sight, SightDataBaseDAO>();
+//            break;
+//        case Tables::TStatus:
+//            _addInDataBase<Status, StatusDataBaseDAO>();
+//            break;
+//        case Tables::TTicket:
+//            _addInDataBase<Ticket, TicketDataBaseDAO>();
+//            break;
+//        case Tables::TTour:
+//            _addInDataBase<Tour, TourDataBaseDAO>();
+//            break;
+//        case Tables::TTourType:
+//            _addInDataBase<TourType, TourTypeDataBaseDAO>();
+//            break;
+//        case Tables::TTransportNode:
+//            _addInDataBase<TransportNode, TransportNodeDataBaseDAO>();
+//            break;
+//        case Tables::TTransportNodeType:
+//            _addInDataBase<TransportNodeType, TransportNodeTypeDataBaseDAO>();
+//            break;
+//    }
 }
 
 void MainWindow::getValuesFromDialog(AddWindow *window) {
     QList<QWidget *> editList = window->getEditList();
     switch (this->currentTable) {
-        case Tables::TCity:
-            _getValuesFromDialog<City>(window);
+        case Tables::TCity: {
+            City *city = _getValuesFromDialog<City>(window);
+            _addInDataBase<City, CityDataBaseDAO>(city);
+            delete city;
             break;
-        case Tables::TCityType:
-            _getValuesFromDialog<CityType>(window);
+        }
+        case Tables::TCityType: {
+            CityType *cityType = _getValuesFromDialog<CityType>(window);
+            _addInDataBase<CityType, CityTypeDataBaseDAO>(cityType);
+            delete cityType;
             break;
-        case Tables::TClient:
-            _getValuesFromDialog<Client>(window);
+        }
+        case Tables::TClient: {
+            Client *client = _getValuesFromDialog<Client>(window);
+            _addInDataBase<Client, ClientDataBaseDAO>(client);
+            delete client;
             break;
-        case Tables::TClientRest:
-            _getValuesFromDialog<ClientRest>(window);
+        }
+        case Tables::TClientRest: {
+            ClientRest *clientRest = _getValuesFromDialog<ClientRest>(window);
+            _addInDataBase<ClientRest, ClientRestDataBaseDAO>(clientRest);
+            delete clientRest;
             break;
-        case Tables::TContract:
-            _getValuesFromDialog<Contract>(window);
+        }
+        case Tables::TContract: {
+            Contract *contract = _getValuesFromDialog<Contract>(window);
+            _addInDataBase<Contract, ContractDataBaseDAO>(contract);
+            delete contract;
             break;
-        case Tables::TCountry:
-            _getValuesFromDialog<Country>(window);
+        }
+        case Tables::TCountry: {
+            Country *country = _getValuesFromDialog<Country>(window);
+            _addInDataBase<Country, CountryDataBaseDAO>(country);
+            delete country;
             break;
-        case Tables::TDocuments:
-            _getValuesFromDialog<Documents>(window);
+        }
+        case Tables::TDocuments: {
+            Documents *document = _getValuesFromDialog<Documents>(window);
+            _addInDataBase<Documents, DocumentsDataBaseDAO>(document);
+            delete document;
             break;
-        case Tables::TDocumentsForTour:
-            _getValuesFromDialog<DocumentsForTour>(window);
+        }
+        case Tables::TDocumentsForTour: {
+            DocumentsForTour *documentsForTour = _getValuesFromDialog<DocumentsForTour>(window);
+            _addInDataBase<DocumentsForTour, DocumentsForTourDataBaseDAO>(documentsForTour);
+            delete documentsForTour;
             break;
-        case Tables::TDocumentsType:
-            _getValuesFromDialog<DocumentType>(window);
+        }
+        case Tables::TDocumentsType: {
+            DocumentType *documentType = _getValuesFromDialog<DocumentType>(window);
+            _addInDataBase<DocumentType, DocumentTypeDataBaseDAO>(documentType);
+            delete documentType;
             break;
-        case Tables::TFlight:
-            _getValuesFromDialog<Flight>(window);
+        }
+        case Tables::TFlight: {
+            Flight *flight = _getValuesFromDialog<Flight>(window);
+            _addInDataBase<Flight, FlightDataBaseDAO>(flight);
+            delete flight;
             break;
-        case Tables::THotel:
-            _getValuesFromDialog<Hotel>(window);
+        }
+        case Tables::THotel: {
+            Hotel *hotel = _getValuesFromDialog<Hotel>(window);
+            _addInDataBase<Hotel, HotelDataBaseDAO>(hotel);
+            delete hotel;
             break;
-        case Tables::THotelRoom:
-            _getValuesFromDialog<HotelRoom>(window);
+        }
+        case Tables::THotelRoom: {
+            HotelRoom *hotelRoom = _getValuesFromDialog<HotelRoom>(window);
+            _addInDataBase<HotelRoom, HotelRoomDataBaseDAO>(hotelRoom);
+            delete hotelRoom;
             break;
-        case Tables::THotelRoomType:
-            _getValuesFromDialog<HotelRoomType>(window);
+        }
+        case Tables::THotelRoomType: {
+            HotelRoomType *hotelRoomType = _getValuesFromDialog<HotelRoomType>(window);
+            _addInDataBase<HotelRoomType, HotelRoomTypeDataBaseDAO>(hotelRoomType);
+            delete hotelRoomType;
             break;
-        case Tables::TPlaceArrival:
-            _getValuesFromDialog<PlaceArrival>(window);
+        }
+        case Tables::TPlaceArrival: {
+            PlaceArrival *placeArrival = _getValuesFromDialog<PlaceArrival>(window);
+            _addInDataBase<PlaceArrival, PlaceArrivalDataBaseDAO>(placeArrival);
+            delete placeArrival;
             break;
-        case Tables::TPlaceArrivalType:
-            _getValuesFromDialog<PlaceArrivalType>(window);
+        }
+        case Tables::TPlaceArrivalType: {
+            PlaceArrivalType *placeArrivalType = _getValuesFromDialog<PlaceArrivalType>(window);
+            _addInDataBase<PlaceArrivalType, PlaceArrivalTypeDataBaseDAO>(placeArrivalType);
+            delete placeArrivalType;
             break;
-        case Tables::TReservation:
-            _getValuesFromDialog<Reservation>(window);
+        }
+        case Tables::TReservation: {
+            Reservation *reservation = _getValuesFromDialog<Reservation>(window);
+            _addInDataBase<Reservation, ReservationDataBaseDAO>(reservation);
+            delete reservation;
             break;
-        case Tables::TReservByAgreement:
-            _getValuesFromDialog<ReservByAgreement>(window);
+        }
+        case Tables::TReservByAgreement: {
+            ReservByAgreement *reservByAgreement = _getValuesFromDialog<ReservByAgreement>(window);
+            _addInDataBase<ReservByAgreement, ReservByAgreementDataBaseDAO>(reservByAgreement);
+            delete reservByAgreement;
             break;
-        case Tables::TSight:
-            _getValuesFromDialog<Sight>(window);
+        }
+        case Tables::TSight: {
+            Sight *sight = _getValuesFromDialog<Sight>(window);
+            _addInDataBase<Sight, SightDataBaseDAO>(sight);
+            delete sight;
             break;
-        case Tables::TStatus:
-            _getValuesFromDialog<Status>(window);
+        }
+        case Tables::TStatus: {
+            Status *status = _getValuesFromDialog<Status>(window);
+            _addInDataBase<Status, StatusDataBaseDAO>(status);
+            delete status;
             break;
-        case Tables::TTicket:
-            _getValuesFromDialog<Ticket>(window);
+        }
+        case Tables::TTicket: {
+            Ticket *ticket = _getValuesFromDialog<Ticket>(window);
+            _addInDataBase<Ticket, TicketDataBaseDAO>(ticket);
+            delete ticket;
             break;
-        case Tables::TTour:
-            _getValuesFromDialog<Tour>(window);
+        }
+        case Tables::TTour: {
+            Tour *tour = _getValuesFromDialog<Tour>(window);
+            _addInDataBase<Tour, TourDataBaseDAO>(tour);
+            delete tour;
             break;
-        case Tables::TTourType:
-            _getValuesFromDialog<TourType>(window);
+        }
+        case Tables::TTourType: {
+            TourType *tourType = _getValuesFromDialog<TourType>(window);
+            _addInDataBase<TourType, TourTypeDataBaseDAO>(tourType);
+            delete tourType;
             break;
-        case Tables::TTransportNode:
-            _getValuesFromDialog<TransportNode>(window);
+        }
+        case Tables::TTransportNode: {
+            TransportNode *transportNode = _getValuesFromDialog<TransportNode>(window);
+            _addInDataBase<TransportNode, TransportNodeDataBaseDAO>(transportNode);
+            delete transportNode;
             break;
-        case Tables::TTransportNodeType:
-            _getValuesFromDialog<TransportNodeType>(window);
+        }
+        case Tables::TTransportNodeType: {
+            TransportNodeType *transportNodeType = _getValuesFromDialog<TransportNodeType>(window);
+            _addInDataBase<TransportNodeType, TransportNodeTypeDataBaseDAO>(transportNodeType);
+            delete transportNodeType;
             break;
+        }
     }
+    renderTable(this->currentTable);
 }

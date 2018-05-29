@@ -8,6 +8,7 @@
 #include <QtCore>
 #include <QtWidgets/QtWidgets>
 #include <models/interfaces/ModelDAO.h>
+#include <iostream>
 
 #include "utils/Tables.h"
 #include "RightMenuWidget.h"
@@ -76,15 +77,35 @@ public:
         this->pTable->resizeRowsToContents();
     };
 
-    template <class modelClass>
-    void _getValuesFromDialog(AddWindow *window){
+    template<class modelClass>
+    modelClass* _getValuesFromDialog(AddWindow *window) {
         QList<QWidget *> editList = window->getEditList();
-        modelClass model;
+        QStringList valuesFromEditLines;
+                foreach(QWidget *lineEdit, editList) {
+                QString typeName(lineEdit->metaObject()->className());
+//                QMessageBox(QMessageBox::Information, "Message",
+//                            lineEdit->metaObject()->className(), QMessageBox::Ok).exec();
+
+                if (typeName == "QLineEdit") {
+                    valuesFromEditLines << dynamic_cast<QLineEdit *>(lineEdit)->text();
+                } else if (typeName == "QComboBox") {
+                    valuesFromEditLines << dynamic_cast<QComboBox *>(lineEdit)->currentText();
+                } else if (typeName== "QDateEdit") {
+                    valuesFromEditLines << dynamic_cast<QDateEdit *>(lineEdit)->text();
+                } else if (typeName == "QTimeEdit") {
+                    valuesFromEditLines << dynamic_cast<QTimeEdit *>(lineEdit)->text();
+                } else if (typeName == "QSpinBox") {
+                    valuesFromEditLines << dynamic_cast<QSpinBox *>(lineEdit)->text();
+                } else if (typeName == "QCheckBox") {
+                    valuesFromEditLines << (dynamic_cast<QCheckBox *>(lineEdit)->isChecked() ? "+": "-");
+                }
+            }
+            return new modelClass(valuesFromEditLines);
     }
 
-    template <class modelClass, class modelDaoClass>
-    void _addInDataBase(){
-
+    template<class modelClass, class modelDaoClass>
+    void _addInDataBase(modelClass *model) {
+        modelDaoClass().add(model);
     }
 
 

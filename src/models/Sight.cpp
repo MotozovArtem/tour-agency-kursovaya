@@ -120,7 +120,7 @@ QStringList *Sight::getValForAdd() {
 Sight::Sight(const QStringList &args) : Model(args) {
     this->sightName = new QString(args[1]);
     this->address = new QString(args[2]);
-    this->yearOfCreation = new QDate(args[3]);
+    this->yearOfCreation = toDate(args[3]);
     this->toponym = new QString(args[4]);
     this->idCity = args[5].toInt();
 

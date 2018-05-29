@@ -96,9 +96,9 @@ QStringList *Flight::getValForAdd() {
 }
 
 Flight::Flight(const QStringList &args) : Model(args) {
-    this->dateOfPurchase = new QDate(args[1]);
-    this->dateOfDeparture=new QDate(args[2]);
-    this->departureTime=new QTime(args[3]);
-    this->arrivalTime=new QTime(args[4]);
-    this->arrivalDate=new QDate(args[5]);
+    this->dateOfPurchase = toDate(args[1]);
+    this->dateOfDeparture=toDate(args[2]);
+    this->departureTime=toTime(args[3]);
+    this->arrivalTime=toTime(args[4]);
+    this->arrivalDate=toDate(args[5]);
 }

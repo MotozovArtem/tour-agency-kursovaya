@@ -10,6 +10,8 @@
 class Model {
 protected:
     int id;
+    QDate *toDate(const QString dateString);
+    QTime *toTime(const QString timeString);
 public:
     Model(int id);
 
@@ -26,6 +28,7 @@ public:
     virtual QStringList *getValueList()=0;
 
     virtual QStringList *getValForAdd()=0;
+
 };
 
 
