@@ -170,3 +170,17 @@ QStringList *Contract::getValueList() {
 QStringList *Contract::getValForAdd() {
     return new QStringList({QString::number(this->id), *this->contractName});
 }
+
+Contract::Contract(const QStringList &args) : Model(args) {
+    this->contractName = new QString(args[1]);
+    this->dateOfPayment = new QDate(args[2]);
+    this->dateOfIssue = new QDate(args[3]);
+    this->total = args[4].toFloat();
+    this->idStatus = args[5].toInt();
+    this->idTourType = args[6].toInt();
+    this->idDocuments = args[7].toInt();
+
+    this->docuements = nullptr;
+    this->statusName = nullptr;
+    this->tourTypeName = nullptr;
+}

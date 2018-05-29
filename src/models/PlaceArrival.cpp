@@ -128,3 +128,13 @@ QStringList *PlaceArrival::getValueList() {
 QStringList *PlaceArrival::getValForAdd() {
     return new QStringList({QString::number(this->id), *this->placeArrivalName, *this->city, *this->placeArrivalType});
 }
+
+PlaceArrival::PlaceArrival(const QStringList &args) : Model(args) {
+    this->placeArrivalName = new QString(args[1]);
+    this->address = new QString(args[2]);
+    this->idCity = args[3].toInt();
+    this->idPlaceArrivalType = args[4].toInt();
+
+    this->placeArrivalType = nullptr;
+    this->city = nullptr;
+}

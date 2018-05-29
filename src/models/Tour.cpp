@@ -120,3 +120,13 @@ QStringList *Tour::getValForAdd() {
     return new QStringList(
             {QString::number(this->id), *this->tourName});
 }
+
+Tour::Tour(const QStringList &args) : Model(args) {
+    this->tourName = new QString(args[1]);
+    this->days = args[2].toInt();
+    this->idCity = args[3].toInt();
+    this->idTourType = args[4].toInt();
+
+    this->city = nullptr;
+    this->tourType = nullptr;
+}

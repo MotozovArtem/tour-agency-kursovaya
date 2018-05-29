@@ -148,3 +148,15 @@ QStringList *Ticket::getValueList() {
 QStringList *Ticket::getValForAdd() {
     return new QStringList({QString::number(this->id), this->dateFlight->toString(), *this->flight});
 }
+
+Ticket::Ticket(const QStringList &args) : Model(args) {
+    this->place = args[1].toInt();
+    this->dateFlight = new QDate(args[2]);
+    this->price = args[3].toFloat();
+    this->dateOfPurchase = new QDate(args[4]);
+    this->idDocuments = args[5].toInt();
+    this->idFlight = args[6].toInt();
+
+    this->documents = nullptr;
+    this->flight = nullptr;
+}

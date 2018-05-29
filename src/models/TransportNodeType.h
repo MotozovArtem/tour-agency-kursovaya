@@ -27,6 +27,8 @@ public:
 
     TransportNodeType();
 
+    TransportNodeType(const QStringList &args);
+
     virtual ~TransportNodeType();
 
     QString *getName() const;

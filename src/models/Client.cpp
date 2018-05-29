@@ -119,3 +119,13 @@ QStringList *Client::getValForAdd() {
             {QString::number(this->id), *this->surname, *this->clientName, *this->patronymic,
              this->dateOfBirth->toString()});
 }
+
+Client::Client(const QStringList &args) : Model(args) {
+    this->passportData = new QString(args[1]);
+    this->surname= new QString(args[2]);
+    this->clientName = new QString(args[3]);
+    this->patronymic = new QString(args[4]);
+//    this->dateOfBirth = new QDate(args[5].split("."));
+    this->placeOfBirth = new QString(args[6]);
+//    this->sex = args[6];
+}

@@ -15,6 +15,8 @@ public:
 
     Model();
 
+    Model(QStringList args);
+
     virtual ~Model();
 
     int getId() const;

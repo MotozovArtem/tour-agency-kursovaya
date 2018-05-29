@@ -99,3 +99,12 @@ QStringList *City::getValueList() {
 QStringList *City::getValForAdd() {
     return getValueList();
 }
+
+City::City(const QStringList &args) : Model(args) {
+    this->cityName = new QString(args[1]);
+    this->idCityType = args[2].toInt();
+    this->idCountry = args[3].toInt();
+
+    this->cityName = nullptr;
+    this->cityTypeName = nullptr;
+}

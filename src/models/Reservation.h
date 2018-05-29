@@ -32,6 +32,8 @@ public:
 
     Reservation();
 
+    Reservation(const QStringList &args);
+
     QDate *getDateOfBegining() const;
 
     void setDateOfBegining(QDate *dateOfBegining);

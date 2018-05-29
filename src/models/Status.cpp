@@ -41,3 +41,7 @@ QStringList *Status::getValueList() {
 QStringList *Status::getValForAdd() {
     return getValueList();
 }
+
+Status::Status(const QStringList &args) : Model(args) {
+    this->statusName = new QString(args[1]);
+}

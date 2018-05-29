@@ -41,3 +41,7 @@ QStringList *CityType::getValueList() {
 QStringList *CityType::getValForAdd() {
     return getValueList();
 }
+
+CityType::CityType(const QStringList &args) : Model(args) {
+    this->cityTypeName = new QString(args[1]);
+}

@@ -106,3 +106,13 @@ QStringList *DocumentsForTour::getValueList() {
 QStringList *DocumentsForTour::getValForAdd() {
     return getValueList();
 }
+
+DocumentsForTour::DocumentsForTour(const QStringList &args) : Model(args) {
+    this->idDocument = args[1].toInt();
+    this->idClient = args[2].toInt();
+    this->idDocumentType = args[3].toInt();
+
+    this->document = nullptr;
+    this->clientName = nullptr;
+    this->documentType = nullptr;
+}

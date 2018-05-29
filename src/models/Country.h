@@ -27,6 +27,8 @@ public:
 
     Country();
 
+    Country(const QStringList &args);
+
     virtual ~Country();
 
     QString *getName() const;

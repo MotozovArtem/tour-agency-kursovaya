@@ -38,6 +38,8 @@ public:
 
     Client();
 
+    Client(const QStringList &args);
+
     virtual ~Client();
 
     QString *getPassportData() const;

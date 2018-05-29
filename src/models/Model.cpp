@@ -18,4 +18,8 @@ Model::Model(int id) {
     this->id = id;
 }
 
+Model::Model(QStringList args) {
+    this->id=args[0].toInt();
+}
+
 Model::~Model() = default;

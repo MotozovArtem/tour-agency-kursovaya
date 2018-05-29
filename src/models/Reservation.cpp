@@ -122,3 +122,13 @@ QStringList *Reservation::getValueList() {
 QStringList *Reservation::getValForAdd() {
     return new QStringList({QString::number(this->id), *this->hotelRoom, *this->contract, this->dateOfBegining->toString(), this->dateOfEnding->toString()});
 }
+
+Reservation::Reservation(const QStringList &args) : Model(args) {
+    this->dateOfBegining = new QDate(args[1]);
+    this->dateOfEnding = new QDate(args[2]);
+    this->idHotelRoom = args[3].toInt();
+    this->idContract = args[4].toInt();
+
+    this->hotelRoom = nullptr;
+    this->contract = nullptr;
+}

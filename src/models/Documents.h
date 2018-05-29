@@ -28,6 +28,8 @@ public:
 
     Documents();
 
+    Documents(const QStringList &args);
+
     virtual ~Documents();
 
     QString *getSerial() const;

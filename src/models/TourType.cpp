@@ -41,3 +41,7 @@ QStringList *TourType::getValueList() {
 QStringList *TourType::getValForAdd() {
     return getValueList();
 }
+
+TourType::TourType(const QStringList &args) : Model(args) {
+    this->tourTypeName = new QString(args[1]);
+}

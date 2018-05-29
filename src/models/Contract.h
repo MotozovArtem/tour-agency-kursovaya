@@ -40,6 +40,8 @@ public:
 
     Contract();
 
+    Contract(const QStringList &args);
+
     virtual ~Contract();
 
     QString *getName() const;

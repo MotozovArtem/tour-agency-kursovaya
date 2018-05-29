@@ -41,3 +41,7 @@ QStringList *TransportNodeType::getValueList() {
 QStringList *TransportNodeType::getValForAdd() {
     return getValueList();
 }
+
+TransportNodeType::TransportNodeType(const QStringList &args) : Model(args) {
+    this->transportNodeTypeName = new QString(args[1]);
+}

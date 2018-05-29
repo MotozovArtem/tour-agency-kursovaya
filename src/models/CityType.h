@@ -25,6 +25,8 @@ public:
 
     CityType();
 
+    CityType(const QStringList &args);
+
     virtual ~CityType();
 
     QString *getName() const;

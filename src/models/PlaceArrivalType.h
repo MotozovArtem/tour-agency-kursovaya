@@ -27,6 +27,8 @@ public:
 
     PlaceArrivalType();
 
+    PlaceArrivalType(const QStringList &args);
+
     virtual ~PlaceArrivalType();
 
     QString *getName() const;

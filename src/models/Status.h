@@ -27,6 +27,8 @@ public:
 
     Status();
 
+    Status(const QStringList &args);
+
     virtual ~Status();
 
     QString *getName() const;

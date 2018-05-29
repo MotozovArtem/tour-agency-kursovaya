@@ -77,3 +77,11 @@ QStringList *ClientRest::getValueList() {
 QStringList *ClientRest::getValForAdd() {
     return getValueList();
 }
+
+ClientRest::ClientRest(const QStringList &args) : Model(args) {
+    this->idContract = args[1].toInt();
+    this->idClient=args[1].toInt();
+
+    this->contract = nullptr;
+    this->clientName = nullptr;
+}

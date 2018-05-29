@@ -38,6 +38,8 @@ public:
 
     HotelRoom();
 
+    HotelRoom(const QStringList &args);
+
     virtual ~HotelRoom();
 
     QString *getHotelRoomName() const;

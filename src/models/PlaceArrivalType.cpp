@@ -41,3 +41,7 @@ QStringList *PlaceArrivalType::getValueList() {
 QStringList *PlaceArrivalType::getValForAdd() {
     return getValueList();
 }
+
+PlaceArrivalType::PlaceArrivalType(const QStringList &args) : Model(args) {
+    this->placeArrivalTypeName = new QString(args[1]);
+}

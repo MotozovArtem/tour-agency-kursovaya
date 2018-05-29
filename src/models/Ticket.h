@@ -37,6 +37,8 @@ public:
 
     Ticket();
 
+    Ticket(const QStringList &args);
+
     virtual ~Ticket();
 
     int getPlace() const;

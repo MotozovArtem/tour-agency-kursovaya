@@ -34,6 +34,8 @@ public:
 
     Hotel();
 
+    Hotel(const QStringList &args);
+
     virtual ~Hotel();
 
     QString *getHotelName() const;

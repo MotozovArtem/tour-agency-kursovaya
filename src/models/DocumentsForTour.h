@@ -27,6 +27,8 @@ public:
 
     DocumentsForTour();
 
+    DocumentsForTour(const QStringList &args);
+
     virtual ~DocumentsForTour();
 
     int getIdDocument() const;

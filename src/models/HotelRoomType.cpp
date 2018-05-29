@@ -41,3 +41,7 @@ QStringList *HotelRoomType::getValueList() {
 QStringList *HotelRoomType::getValForAdd() {
     return getValueList();
 }
+
+HotelRoomType::HotelRoomType(const QStringList &args) : Model(args) {
+    this->hotelRoomTypeName = new QString(args[1]);
+}

@@ -33,6 +33,8 @@ public:
 
     PlaceArrival();
 
+    PlaceArrival(const QStringList &args);
+
     virtual ~PlaceArrival();
 
     QString *getName() const;

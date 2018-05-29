@@ -32,6 +32,8 @@ public:
 
     Tour();
 
+    Tour(const QStringList &args);
+
     virtual ~Tour();
 
     QString *getName() const;

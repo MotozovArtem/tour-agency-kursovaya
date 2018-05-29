@@ -33,6 +33,8 @@ public:
 
     Sight();
 
+    Sight(const QStringList &args);
+
     virtual ~Sight();
 
     QString *getName() const;

@@ -114,3 +114,12 @@ QStringList *TransportNode::getValForAdd() {
     return new QStringList(
             {QString::number(this->id), *this->transportNodeName, *this->transportNodeType});
 }
+
+TransportNode::TransportNode(const QStringList &args) : Model(args) {
+    this->transportNodeName = new QString(args[1]);
+    this->idFlight = args[2].toInt();
+    this->idTransportNodeType = args[3].toInt();
+
+    this->flight = nullptr;
+    this->transportNodeType = nullptr;
+}

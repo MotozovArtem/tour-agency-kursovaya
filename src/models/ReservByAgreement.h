@@ -31,6 +31,8 @@ public:
 
     ReservByAgreement();
 
+    ReservByAgreement(const QStringList &args);
+
     virtual ~ReservByAgreement();
 
     QDate *getDateOfBegining() const;

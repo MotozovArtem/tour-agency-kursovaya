@@ -73,3 +73,9 @@ QStringList *Documents::getValueList() {
 QStringList *Documents::getValForAdd() {
     return getValueList();
 }
+
+Documents::Documents(const QStringList &args) : Model(args) {
+    this->documentSerial = new QString(args[1]);
+    this->dateOfIssue = new QDate(args[2]);
+    this->issuanceDepartment = new QString(args[3]);
+}

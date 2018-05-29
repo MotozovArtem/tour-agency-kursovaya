@@ -53,3 +53,8 @@ QStringList *Country::getValueList() {
 QStringList *Country::getValForAdd() {
     return new QStringList({QString::number(this->id), *this->countryName});
 }
+
+Country::Country(const QStringList &args) : Model(args) {
+    this->countryName=new QString(args[1]);
+    this->foundationDate = new QDate(args[2]);
+}

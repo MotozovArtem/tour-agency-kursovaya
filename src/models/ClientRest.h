@@ -25,6 +25,8 @@ public:
 
     ClientRest();
 
+    ClientRest(const QStringList &args);
+
     virtual ~ClientRest();
 
     int getIdContract() const;
@@ -46,6 +48,8 @@ public:
     virtual QStringList *getValueList();
 
     virtual QStringList *getValForAdd();
+
+
 };
 
 

@@ -25,6 +25,8 @@ public:
 
     TourType();
 
+    TourType(const QStringList &args);
+
     virtual ~TourType();
 
     QString *getName() const;

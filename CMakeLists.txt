@@ -18,18 +18,14 @@ set(PROJECT_SOURCE_DIR src)
 set(RESOURCES res/images.qrc)
 
 set(SOURCES ${PROJECT_SOURCE_DIR}/main.cpp
-        src/SQL/SQLConnection.cpp
-        src/SQL/SQLConnection.h
-        src/utils/Logger.cpp
-        src/utils/Logger.h
-        src/GUI/MainWindow.cpp
-        src/GUI/MainWindow.h
-        src/GUI/RightMenuWidget.cpp
-        src/GUI/RightMenuWidget.h
-        src/GUI/RightMenuItem.cpp
-        src/GUI/RightMenuItem.h
+        src/SQL/SQLConnection.cpp src/SQL/SQLConnection.h
+        src/utils/Logger.cpp src/utils/Logger.h
+        src/GUI/MainWindow.cpp src/GUI/MainWindow.h
+        src/GUI/RightMenuWidget.cpp src/GUI/RightMenuWidget.h
+        src/GUI/RightMenuItem.cpp src/GUI/RightMenuItem.h
         src/utils/Tables.h
-        src/GUI/AddWindow.cpp src/GUI/AddWindow.h src/GUI/EditWindow.cpp src/GUI/EditWindow.h)
+        src/GUI/AddWindow.cpp src/GUI/AddWindow.h
+        src/GUI/EditWindow.cpp src/GUI/EditWindow.h)
 
 set(INTERFACES src/models/interfaces/ModelDAO.h
         src/models/interfaces/HotelDAO.h

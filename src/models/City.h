@@ -31,6 +31,8 @@ public:
 
     City();
 
+    City(const QStringList &args);
+
     QString *getName() const;
 
     void setName(QString *name);

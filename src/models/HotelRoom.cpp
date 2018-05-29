@@ -143,7 +143,8 @@ void HotelRoom::setHotelRoomType(QString *hotelRoomType) {
     HotelRoom::hotelRoomType = hotelRoomType;
 }
 
-QStringList HotelRoom::columnList = {"ID_i", "Hotel room name_s", "Places_i", "Shower_b", "Second restroom_b", "Balcony_b",
+QStringList HotelRoom::columnList = {"ID_i", "Hotel room name_s", "Places_i", "Shower_b", "Second restroom_b",
+                                     "Balcony_b",
                                      "Hotel_f", "Hotel Room Type_f"};
 
 QStringList *HotelRoom::getValueList() {
@@ -158,5 +159,19 @@ QStringList *HotelRoom::getValueList() {
 }
 
 QStringList *HotelRoom::getValForAdd() {
-    return new QStringList({QString::number(this->id),*this->hotelRoomName});
+    return new QStringList({QString::number(this->id), *this->hotelRoomName});
+}
+
+HotelRoom::HotelRoom(const QStringList &args) : Model(args) {
+    this->hotelRoomName = new QString(args[1]);
+    this->places = args[2].toInt();
+    this->shower = args[3].toBool();
+    this->secondRestroom = args[4].toBool();
+    this->balcony = args[5].toBool();
+    this->idHotel = args[6].toInt();
+    this->idHotelRoomType = args[7].toInt();
+
+
+    this->hotel = nullptr;
+    this->hotelRoomType = nullptr;
 }

@@ -26,6 +26,8 @@ public:
 
     DocumentType();
 
+    DocumentType(const QStringList &args);
+
     virtual ~DocumentType();
 
     QString *getName() const;

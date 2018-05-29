@@ -41,3 +41,7 @@ QStringList *DocumentType::getValueList() {
 QStringList *DocumentType::getValForAdd() {
     return getValueList();
 }
+
+DocumentType::DocumentType(const QStringList &args) : Model(args) {
+    this->documentTypeName = new QString(args[1]);
+}

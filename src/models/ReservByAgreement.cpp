@@ -109,5 +109,14 @@ void ReservByAgreement::setContract(QString *contract) {
 
 QStringList *ReservByAgreement::getValForAdd() {
     return new QStringList(
-            {QString::number(this->id),*this->hotelRoom, *this->contract, this->dateOfBegining->toString() });
+            {QString::number(this->id), *this->hotelRoom, *this->contract, this->dateOfBegining->toString()});
+}
+
+ReservByAgreement::ReservByAgreement(const QStringList &args) : Model(args) {
+    this->dateOfBegining = new QDate(args[1]);
+    this->idHotelRoom = args[2].toInt();
+    this->idContract = args[3].toInt();
+
+    this->contract = nullptr;
+    this->hotelRoom = nullptr;
 }

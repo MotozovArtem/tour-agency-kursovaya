@@ -35,6 +35,8 @@ public:
 
     Flight();
 
+    Flight(const QStringList &args);
+
     virtual ~Flight();
 
     QDate *getDateOfPurchase() const;
