@@ -12,7 +12,7 @@
 
 #include "utils/Tables.h"
 #include "RightMenuWidget.h"
-#include "AddWindow.h"
+#include "EditWindow.h"
 
 class MainWindow : public QMainWindow {
 Q_OBJECT
@@ -38,10 +38,6 @@ public:
 
     void setPTable(QTableWidget *pTable);
 
-//    QPushButton *getPButton() const;
-//
-//    void setPButton(QPushButton *pButton);
-
     RightMenuWidget *getRightMenu() const;
 
     void setRightMenu(RightMenuWidget *rightMenu);
@@ -50,9 +46,9 @@ public:
 
     void initToolBar();
 
-    void addInDataBase();
-
     void getValuesFromDialog(AddWindow *window);
+
+    void getValuesForEdit(EditWindow *window, int idRow);
 
     template<class modelClass, class daoClass>
     void _renderTable() {
@@ -78,7 +74,7 @@ public:
     };
 
     template<class modelClass>
-    modelClass* _getValuesFromDialog(AddWindow *window) {
+    modelClass *_getValuesFromDialog(AddWindow *window) {
         QList<QWidget *> editList = window->getEditList();
         QStringList valuesFromEditLines;
         valuesFromEditLines << QString::number(0);
@@ -90,23 +86,34 @@ public:
                     valuesFromEditLines << dynamic_cast<QLineEdit *>(lineEdit)->text();
                 } else if (typeName == "QComboBox") {
                     valuesFromEditLines << QString(dynamic_cast<QComboBox *>(lineEdit)->currentText().split(" ")[0]);
-                } else if (typeName== "QDateEdit") {
+                } else if (typeName == "QDateEdit") {
                     valuesFromEditLines << dynamic_cast<QDateEdit *>(lineEdit)->text();
                 } else if (typeName == "QTimeEdit") {
                     valuesFromEditLines << dynamic_cast<QTimeEdit *>(lineEdit)->text();
                 } else if (typeName == "QSpinBox") {
                     valuesFromEditLines << dynamic_cast<QSpinBox *>(lineEdit)->text();
                 } else if (typeName == "QCheckBox") {
-                    valuesFromEditLines << (dynamic_cast<QCheckBox *>(lineEdit)->isChecked() ? "+": "-");
+                    valuesFromEditLines << (dynamic_cast<QCheckBox *>(lineEdit)->isChecked() ? "+" : "-");
                 }
             }
-            return new modelClass(valuesFromEditLines);
+        return new modelClass(valuesFromEditLines);
     }
 
     template<class modelClass, class modelDaoClass>
     void _addInDataBase(modelClass *model) {
         modelDaoClass().add(model);
     }
+
+    template<class modelClass, class modelDaoClass>
+    void _deleteFromDataBase(int id) {
+        auto *obj = new modelClass(id);
+        modelDaoClass().del(obj);
+    };
+
+    template<class modelClass, class modelDaoClass>
+    void _editInDataBase(modelClass *model) {
+        modelDaoClass().update(model);
+    };
 
 
 public slots:

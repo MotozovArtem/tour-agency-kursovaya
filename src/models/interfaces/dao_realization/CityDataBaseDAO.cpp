@@ -5,6 +5,7 @@
 #include <QtSql/QtSql>
 #include <utils/Logger.h>
 #include <iostream>
+#include <QtWidgets/QMessageBox>
 #include "CityDataBaseDAO.h"
 
 QList<City *> CityDataBaseDAO::getAll() {
@@ -28,17 +29,22 @@ QList<City *> CityDataBaseDAO::getAll() {
 
 City *CityDataBaseDAO::getById(int id) {
     QSqlQuery query;
-    query.prepare("SELECT id, city_name, id_city_type, id_country FROM City WHERE id=:id");
+    query.prepare("SELECT City.id, City.city_name, City.id_city_type, City.id_country, CityType.city_type_name, Country.country_name FROM City "
+                  "LEFT JOIN CityType ON (City.id_city_type=CityType.id) "
+                  "LEFT JOIN Country ON (City.id_country=Country.id) "
+                  "WHERE City.id=:id");
     query.bindValue(":id", id);
     City *city = nullptr;
     if (query.exec()) {
         while (query.next()) {
             city = new City(
-                    id,
+                    query.value("id").toInt(),
                     query.value("city_name").toString(),
                     query.value("id_city_type").toInt(),
                     query.value("id_country").toInt()
             );
+            city->setCountryName(new QString(query.value("country_name").toString()));
+            city->setCityTypeName(new QString(query.value("city_type_name").toString()));
         }
     } else {
         Logger logger(nullptr, "log.txt", nullptr);
@@ -63,7 +69,7 @@ void CityDataBaseDAO::add(City *model) {
 void CityDataBaseDAO::update(City *model) {
     QSqlQuery query;
     query.prepare(
-            "UPDATE City SET cityName=:city_name, id_city_type=:id_city_type, id_country=:id_country WHERE id=:id");
+            "UPDATE City SET city_name=:city_name, id_city_type=:id_city_type, id_country=:id_country WHERE id=:id");
     query.bindValue(":city_name", *model->getName());
     query.bindValue(":id_city_type", model->getIdCityType());
     query.bindValue(":id_country", model->getIdCountry());
@@ -90,7 +96,7 @@ QList<City *> CityDataBaseDAO::getAllFilled() {
     if (query.exec("SELECT City.id, City.city_name, Country.country_name, "
                    "City.id_city_type, City.id_country, CityType.city_type_name FROM City "
                    "LEFT JOIN Country ON (City.id_country=Country.id) "
-                   "LEFT JOIN CityType ON (City.id_city_type=CityType.id)"
+                   "LEFT JOIN CityType ON (City.id_city_type=CityType.id) "
                    "ORDER BY id")) {
         while (query.next()) {
             City *city = new City(

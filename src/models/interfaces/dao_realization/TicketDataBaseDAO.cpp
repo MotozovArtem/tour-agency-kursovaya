@@ -31,8 +31,11 @@ QList<Ticket *> TicketDataBaseDAO::getAll() {
 
 Ticket *TicketDataBaseDAO::getById(int id) {
     QSqlQuery query;
-    query.prepare("SELECT id, place, date_flight, price, date_of_purchase, id_documents, id_flight  "
-                  "FROM Ticket WHERE id=:id");
+    query.prepare("SELECT Ticket.id, Ticket.place, Ticket.date_flight, Ticket.price, Ticket.date_of_purchase, Ticket.id_documents, Ticket.id_flight,  "
+                  "Documents.document_serial "
+                  "FROM Ticket "
+                  "LEFT JOIN Documents ON (Ticket.id_documents=Documents.id) "
+                  "WHERE Ticket.id=:id");
     query.bindValue(":id", id);
     Ticket *ticket = nullptr;
     if (query.exec()) {
@@ -46,6 +49,8 @@ Ticket *TicketDataBaseDAO::getById(int id) {
                     query.value("id_documents").toInt(),
                     query.value("id_flight").toInt()
             );
+            ticket->setFlight(new QString(query.value("id_flight").toString()));
+            ticket->setDocuments(new QString(query.value("document_serial").toString()));
         }
     } else {
         Logger logger(nullptr, "log.txt", nullptr);

@@ -22,9 +22,19 @@ Documents::Documents(int id) : Model(id) {}
 Documents::Documents() {}
 
 Documents::~Documents() {
-    delete this->dateOfIssue;
-    delete this->issuanceDepartment;
-    delete this->documentSerial;
+
+    if(this->dateOfIssue!=nullptr){
+        delete this->dateOfIssue;
+        this->dateOfIssue=nullptr;
+    }
+    if(this->issuanceDepartment!=nullptr){
+        delete this->issuanceDepartment;
+        this->issuanceDepartment=nullptr;
+    }
+    if(this->documentSerial!=nullptr){
+        delete this->documentSerial;
+        this->documentSerial=nullptr;
+    }
 }
 
 QString *Documents::getSerial() const {

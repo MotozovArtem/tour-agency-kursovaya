@@ -89,7 +89,12 @@ void HotelRoom::setIdHotelRoomType(int idHotelRoomType) {
 }
 
 HotelRoom::~HotelRoom() {
-    delete hotelRoomName;
+
+    if(this->hotelRoomName!=nullptr){
+        delete this->hotelRoomName;
+        this->hotelRoomName=nullptr;
+    }
+
     if (this->hotelRoomType != nullptr) {
         delete this->hotelRoomType;
         this->hotelRoomType = nullptr;

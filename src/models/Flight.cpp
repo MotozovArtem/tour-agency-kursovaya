@@ -17,11 +17,26 @@ Flight::Flight(int id) : Model(id) {}
 Flight::Flight() {}
 
 Flight::~Flight() {
-    delete this->dateOfPurchase;
-    delete this->arrivalDate;
-    delete this->arrivalTime;
-    delete this->dateOfDeparture;
-    delete this->departureTime;
+    if(this->dateOfPurchase!=nullptr){
+        delete this->dateOfPurchase;
+        this->dateOfPurchase=nullptr;
+    }
+    if(this->arrivalDate!=nullptr){
+        delete this->arrivalDate;
+        this->arrivalDate=nullptr;
+    }
+    if(this->arrivalTime!=nullptr){
+        delete this->arrivalTime;
+        this->arrivalTime=nullptr;
+    }
+    if(this->dateOfDeparture!=nullptr){
+        delete this->dateOfDeparture;
+        this->dateOfDeparture=nullptr;
+    }
+    if(this->departureTime!=nullptr){
+        delete this->departureTime;
+        this->departureTime=nullptr;
+    }
 }
 
 QDate *Flight::getDateOfPurchase() const {

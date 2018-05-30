@@ -29,8 +29,12 @@ QList<PlaceArrival *> PlaceArrivalDataBaseDAO::getAll() {
 
 PlaceArrival *PlaceArrivalDataBaseDAO::getById(int id) {
     QSqlQuery query;
-    query.prepare("SELECT id, place_arrival_name, address, id_city, id_place_arrival_type "
-                  "FROM PlaceArrival WHERE id=:id");
+    query.prepare("SELECT PlaceArrival.id, PlaceArrival.place_arrival_name, PlaceArrival.address, PlaceArrival.id_city, "
+                  "PlaceArrival.id_place_arrival_type, PlaceArrivalType.place_arrival_type_name, City.city_name "
+                  "FROM PlaceArrival "
+                  "LEFT JOIN PlaceArrivalType ON (PlaceArrival.id_place_arrival_type=PlaceArrivalType.id) "
+                  "LEFT JOIN City ON (PlaceArrival.id_city=City.id) "
+                  "WHERE PlaceArrival.id=:id");
     query.bindValue(":id", id);
     PlaceArrival *placeArrival = nullptr;
     if (query.exec()) {
@@ -42,6 +46,8 @@ PlaceArrival *PlaceArrivalDataBaseDAO::getById(int id) {
                     query.value("id_city").toInt(),
                     query.value("id_place_arrival_type").toInt()
             );
+            placeArrival->setPlaceArrivalType(new QString(query.value("place_arrival_type_name").toString()));
+            placeArrival->setCity(new QString(query.value("city_name").toString()));
         }
     } else {
         Logger logger(nullptr, "log.txt", nullptr);

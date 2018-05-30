@@ -30,8 +30,10 @@ QList<Sight *> SightDataBaseDAO::getAll() {
 
 Sight *SightDataBaseDAO::getById(int id) {
     QSqlQuery query;
-    query.prepare("SELECT id, sight_name, address, year_of_foundation, toponym, id_city "
-                  "FROM Sight WHERE id=:id");
+    query.prepare("SELECT Sight.id, Sight.sight_name, Sight.address, Sight.year_of_foundation, Sight.toponym, Sight.id_city, City.city_name"
+                  "FROM Sight "
+                  "LEFT JOIN City ON (Sight.id_city=City.id) "
+                  "WHERE Sight.id=:id");
     query.bindValue(":id", id);
     Sight *sight = nullptr;
     if (query.exec()) {
@@ -44,6 +46,7 @@ Sight *SightDataBaseDAO::getById(int id) {
                     query.value("toponym").toString(),
                     query.value("id_city").toInt()
             );
+            sight->setCity(new QString(query.value("city_name").toString()));
         }
     } else {
         Logger logger(nullptr, "log.txt", nullptr);

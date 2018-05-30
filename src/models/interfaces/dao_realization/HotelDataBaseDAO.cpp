@@ -31,7 +31,11 @@ QList<Hotel *> HotelDataBaseDAO::getAll() {
 
 Hotel *HotelDataBaseDAO::getById(int id) {
     QSqlQuery query;
-    query.prepare("SELECT * FROM Hotel WHERE id=:id");
+    query.prepare("SELECT Hotel.id, Hotel.hotel_name, Hotel.address, Hotel.stars, "
+                  "Hotel.year_of_foundation, Hotel.id_city, City.city_name "
+                  "FROM Hotel "
+                  "LEFT JOIN City ON (Hotel.id_city=City.id) "
+                  "WHERE Hotel.id=:id");
     query.bindValue(":id", id);
     Hotel *hotel = nullptr;
     if (query.exec()) {
@@ -45,6 +49,7 @@ Hotel *HotelDataBaseDAO::getById(int id) {
                     query.value(rec.indexOf("year_of_foundation")).toDate(),
                     query.value(rec.indexOf("id_city")).toInt()
             );
+            hotel->setCityName(new QString(query.value("city_name").toString()));
         }
     } else {
         Logger logger(nullptr, "log.txt", nullptr);

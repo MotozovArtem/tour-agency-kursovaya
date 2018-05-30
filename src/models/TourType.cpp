@@ -13,7 +13,10 @@ TourType::TourType(QString *name) : tourTypeName(name) {}
 TourType::TourType() {}
 
 TourType::~TourType() {
-    delete this->tourTypeName;
+    if(this->tourTypeName!=nullptr){
+        delete this->tourTypeName;
+        this->tourTypeName=nullptr;
+    }
 }
 
 QString *TourType::getName() const {

@@ -95,78 +95,126 @@ MainWindow::~MainWindow() {
 void MainWindow::renderTable(Tables tables) {
     this->currentTable = tables;
     switch (tables) {
-        case Tables::TCity:
+        case Tables::TCity: {
             _renderTable<City, CityDataBaseDAO>();
+            this->setWindowTitle("City");
             break;
-        case Tables::TCityType:
+        }
+        case Tables::TCityType: {
             _renderTable<CityType, CityTypeDataBaseDAO>();
+            this->setWindowTitle("City Type");
             break;
-        case Tables::TClient:
+        }
+        case Tables::TClient: {
             _renderTable<Client, ClientDataBaseDAO>();
+            this->setWindowTitle("Client");
             break;
-        case Tables::TClientRest:
+        }
+        case Tables::TClientRest: {
             _renderTable<ClientRest, ClientRestDataBaseDAO>();
+            this->setWindowTitle("Client Rest");
             break;
-        case Tables::TContract:
+        }
+        case Tables::TContract: {
             _renderTable<Contract, ContractDataBaseDAO>();
+            this->setWindowTitle("Contract");
             break;
-        case Tables::TCountry:
+        }
+        case Tables::TCountry: {
             _renderTable<Country, CountryDataBaseDAO>();
+            this->setWindowTitle("Country");
             break;
-        case Tables::TDocuments:
+        }
+        case Tables::TDocuments: {
             _renderTable<Documents, DocumentsDataBaseDAO>();
+            this->setWindowTitle("Documents");
             break;
-        case Tables::TDocumentsForTour:
+        }
+        case Tables::TDocumentsForTour: {
             _renderTable<DocumentsForTour, DocumentsForTourDataBaseDAO>();
+            this->setWindowTitle("Documents for Tour");
             break;
-        case Tables::TDocumentsType:
+        }
+        case Tables::TDocumentsType: {
             _renderTable<DocumentType, DocumentTypeDataBaseDAO>();
+            this->setWindowTitle("Document type");
             break;
-        case Tables::TFlight:
+        }
+        case Tables::TFlight: {
             _renderTable<Flight, FlightDataBaseDAO>();
+            this->setWindowTitle("Flight");
             break;
-        case Tables::THotel:
+        }
+        case Tables::THotel: {
             _renderTable<Hotel, HotelDataBaseDAO>();
+            this->setWindowTitle("Hotel");
             break;
-        case Tables::THotelRoom:
+        }
+        case Tables::THotelRoom: {
             _renderTable<HotelRoom, HotelRoomDataBaseDAO>();
+            this->setWindowTitle("Hotel Room");
             break;
-        case Tables::THotelRoomType:
+        }
+        case Tables::THotelRoomType: {
             _renderTable<HotelRoomType, HotelRoomTypeDataBaseDAO>();
+            this->setWindowTitle("Hotell Room Type");
             break;
-        case Tables::TPlaceArrival:
+        }
+        case Tables::TPlaceArrival: {
             _renderTable<PlaceArrival, PlaceArrivalDataBaseDAO>();
+            this->setWindowTitle("Place Arrival");
             break;
-        case Tables::TPlaceArrivalType:
+        }
+        case Tables::TPlaceArrivalType: {
             _renderTable<PlaceArrivalType, PlaceArrivalTypeDataBaseDAO>();
+            this->setWindowTitle("Place Arrival Type");
             break;
-        case Tables::TReservation:
+        }
+        case Tables::TReservation: {
             _renderTable<Reservation, ReservationDataBaseDAO>();
+            this->setWindowTitle("Reservation");
             break;
-        case Tables::TReservByAgreement:
+        }
+        case Tables::TReservByAgreement: {
             _renderTable<ReservByAgreement, ReservByAgreementDataBaseDAO>();
+            this->setWindowTitle("Reservation by Agreement");
             break;
-        case Tables::TSight:
+        }
+        case Tables::TSight: {
             _renderTable<Sight, SightDataBaseDAO>();
+            this->setWindowTitle("Sight");
             break;
-        case Tables::TStatus:
+        }
+        case Tables::TStatus: {
             _renderTable<Status, StatusDataBaseDAO>();
+            this->setWindowTitle("Status");
             break;
-        case Tables::TTicket:
+        }
+        case Tables::TTicket: {
             _renderTable<Ticket, TicketDataBaseDAO>();
+            this->setWindowTitle("Ticket");
             break;
-        case Tables::TTour:
+        }
+        case Tables::TTour: {
             _renderTable<Tour, TourDataBaseDAO>();
+            this->setWindowTitle("Tour");
             break;
-        case Tables::TTourType:
+        }
+        case Tables::TTourType: {
             _renderTable<TourType, TourTypeDataBaseDAO>();
+            this->setWindowTitle("Tour type");
             break;
-        case Tables::TTransportNode:
+        }
+        case Tables::TTransportNode: {
             _renderTable<TransportNode, TransportNodeDataBaseDAO>();
+            this->setWindowTitle("Transport node");
             break;
-        case Tables::TTransportNodeType:
+        }
+        case Tables::TTransportNodeType: {
             _renderTable<TransportNodeType, TransportNodeTypeDataBaseDAO>();
+            this->setWindowTitle("Transport node type");
             break;
+        }
     }
 }
 
@@ -205,16 +253,17 @@ void MainWindow::initToolBar() {
     connect(action, SIGNAL(triggered()), this, SLOT(deleteRow()));
     this->actionList << action;
 
-            foreach(QAction *actionMember, this->actionList) {
-            this->toolBar->addAction(actionMember);
-        }
+    foreach(QAction *actionMember, this->actionList) {
+        this->toolBar->addAction(actionMember); 
+    }
     this->addToolBar(Qt::ToolBarArea::TopToolBarArea, toolBar);
 }
 
 void MainWindow::addRow() {
     AddWindow *addWindow = new AddWindow(this, Qt::Window | Qt::WindowSystemMenuHint, this->currentTable);
+    addWindow->setModal(true);
     int exit_code = addWindow->exec();
-    if (exit_code == 1) {
+    if (exit_code == QDialog::Accepted) {
         getValuesFromDialog(addWindow);
     } else {
         std::cout << "REJECTED\n";
@@ -223,88 +272,102 @@ void MainWindow::addRow() {
 }
 
 void MainWindow::editRow() {
-    std::cout << "edit row slot\n";
+    int curRow = this->pTable->currentRow();
+    int idRow = this->pTable->item(curRow, 0)->text().toInt();
+    EditWindow *editWindow = new EditWindow(this, Qt::Window | Qt::WindowSystemMenuHint, this->currentTable, idRow);
+    editWindow->setModal(true);
+    if (editWindow->exec() == QDialog::Accepted) {
+        getValuesForEdit(editWindow, idRow);
+    } else {
+        std::cout << "REJECTED\n";
+    }
+    delete editWindow;
 }
 
 void MainWindow::deleteRow() {
-    std::cout << "delete row slot\n";
-}
-
-void MainWindow::addInDataBase() {
-//    switch (this->currentTable) {
-//        case Tables::TCity:
-//            _addInDataBase<City, CityDataBaseDAO>();
-//            break;
-//        case Tables::TCityType:
-//            _addInDataBase<CityType, CityTypeDataBaseDAO>();
-//            break;
-//        case Tables::TClient:
-//            _addInDataBase<Client, ClientDataBaseDAO>();
-//            break;
-//        case Tables::TClientRest:
-//            _addInDataBase<ClientRest, ClientRestDataBaseDAO>();
-//            break;
-//        case Tables::TContract:
-//            _addInDataBase<Contract, ContractDataBaseDAO>();
-//            break;
-//        case Tables::TCountry:
-//            _addInDataBase<Country, CountryDataBaseDAO>();
-//            break;
-//        case Tables::TDocuments:
-//            _addInDataBase<Documents, DocumentsDataBaseDAO>();
-//            break;
-//        case Tables::TDocumentsForTour:
-//            _addInDataBase<DocumentsForTour, DocumentsForTourDataBaseDAO>();
-//            break;
-//        case Tables::TDocumentsType:
-//            _addInDataBase<DocumentType, DocumentTypeDataBaseDAO>();
-//            break;
-//        case Tables::TFlight:
-//            _addInDataBase<Flight, FlightDataBaseDAO>();
-//            break;
-//        case Tables::THotel:
-//            _addInDataBase<Hotel, HotelDataBaseDAO>();
-//            break;
-//        case Tables::THotelRoom:
-//            _addInDataBase<HotelRoom, HotelRoomDataBaseDAO>();
-//            break;
-//        case Tables::THotelRoomType:
-//            _addInDataBase<HotelRoomType, HotelRoomTypeDataBaseDAO>();
-//            break;
-//        case Tables::TPlaceArrival:
-//            _addInDataBase<PlaceArrival, PlaceArrivalDataBaseDAO>();
-//            break;
-//        case Tables::TPlaceArrivalType:
-//            _addInDataBase<PlaceArrivalType, PlaceArrivalTypeDataBaseDAO>();
-//            break;
-//        case Tables::TReservation:
-//            _addInDataBase<Reservation, ReservationDataBaseDAO>();
-//            break;
-//        case Tables::TReservByAgreement:
-//            _addInDataBase<ReservByAgreement, ReservByAgreementDataBaseDAO>();
-//            break;
-//        case Tables::TSight:
-//            _addInDataBase<Sight, SightDataBaseDAO>();
-//            break;
-//        case Tables::TStatus:
-//            _addInDataBase<Status, StatusDataBaseDAO>();
-//            break;
-//        case Tables::TTicket:
-//            _addInDataBase<Ticket, TicketDataBaseDAO>();
-//            break;
-//        case Tables::TTour:
-//            _addInDataBase<Tour, TourDataBaseDAO>();
-//            break;
-//        case Tables::TTourType:
-//            _addInDataBase<TourType, TourTypeDataBaseDAO>();
-//            break;
-//        case Tables::TTransportNode:
-//            _addInDataBase<TransportNode, TransportNodeDataBaseDAO>();
-//            break;
-//        case Tables::TTransportNodeType:
-//            _addInDataBase<TransportNodeType, TransportNodeTypeDataBaseDAO>();
-//            break;
-//    }
+    QMessageBox *msgBox = new QMessageBox(QMessageBox::Question, "Delete", "Do you want to delete this row?",
+                                          QMessageBox::No | QMessageBox::Yes);
+    msgBox->setModal(true);
+    if (msgBox->exec() == QMessageBox::Yes) {
+        int curRow = this->pTable->currentRow();
+        int idRow = this->pTable->item(curRow, 0)->text().toInt();
+        switch (this->currentTable) {
+            case Tables::TCity:
+                _deleteFromDataBase<City, CityDataBaseDAO>(idRow);
+                break;
+            case Tables::TCityType:
+                _deleteFromDataBase<CityType, CityTypeDataBaseDAO>(idRow);
+                break;
+            case Tables::TClient:
+                _deleteFromDataBase<Client, ClientDataBaseDAO>(idRow);
+                break;
+            case Tables::TClientRest:
+                _deleteFromDataBase<ClientRest, ClientRestDataBaseDAO>(idRow);
+                break;
+            case Tables::TContract:
+                _deleteFromDataBase<Contract, ContractDataBaseDAO>(idRow);
+                break;
+            case Tables::TCountry:
+                _deleteFromDataBase<Country, CountryDataBaseDAO>(idRow);
+                break;
+            case Tables::TDocuments:
+                _deleteFromDataBase<Documents, DocumentsDataBaseDAO>(idRow);
+                break;
+            case Tables::TDocumentsForTour:
+                _deleteFromDataBase<DocumentsForTour, DocumentsForTourDataBaseDAO>(idRow);
+                break;
+            case Tables::TDocumentsType:
+                _deleteFromDataBase<DocumentType, DocumentTypeDataBaseDAO>(idRow);
+                break;
+            case Tables::TFlight:
+                _deleteFromDataBase<Flight, FlightDataBaseDAO>(idRow);
+                break;
+            case Tables::THotel:
+                _deleteFromDataBase<Hotel, HotelDataBaseDAO>(idRow);
+                break;
+            case Tables::THotelRoom:
+                _deleteFromDataBase<HotelRoom, HotelRoomDataBaseDAO>(idRow);
+                break;
+            case Tables::THotelRoomType:
+                _deleteFromDataBase<HotelRoomType, HotelRoomTypeDataBaseDAO>(idRow);
+                break;
+            case Tables::TPlaceArrival:
+                _deleteFromDataBase<PlaceArrival, PlaceArrivalDataBaseDAO>(idRow);
+                break;
+            case Tables::TPlaceArrivalType:
+                _deleteFromDataBase<PlaceArrivalType, PlaceArrivalTypeDataBaseDAO>(idRow);
+                break;
+            case Tables::TReservation:
+                _deleteFromDataBase<Reservation, ReservationDataBaseDAO>(idRow);
+                break;
+            case Tables::TReservByAgreement:
+                _deleteFromDataBase<ReservByAgreement, ReservByAgreementDataBaseDAO>(idRow);
+                break;
+            case Tables::TSight:
+                _deleteFromDataBase<Sight, SightDataBaseDAO>(idRow);
+                break;
+            case Tables::TStatus:
+                _deleteFromDataBase<Status, StatusDataBaseDAO>(idRow);
+                break;
+            case Tables::TTicket:
+                _deleteFromDataBase<Ticket, TicketDataBaseDAO>(idRow);
+                break;
+            case Tables::TTour:
+                _deleteFromDataBase<Tour, TourDataBaseDAO>(idRow);
+                break;
+            case Tables::TTourType:
+                _deleteFromDataBase<TourType, TourTypeDataBaseDAO>(idRow);
+                break;
+            case Tables::TTransportNode:
+                _deleteFromDataBase<TransportNode, TransportNodeDataBaseDAO>(idRow);
+                break;
+            case Tables::TTransportNodeType:
+                _deleteFromDataBase<TransportNodeType, TransportNodeTypeDataBaseDAO>(idRow);
+                break;
+        }
+    }
+    delete msgBox;
+    this->renderTable(this->currentTable);
 }
 
 void MainWindow::getValuesFromDialog(AddWindow *window) {
@@ -452,6 +515,181 @@ void MainWindow::getValuesFromDialog(AddWindow *window) {
             auto *transportNodeType = _getValuesFromDialog<TransportNodeType>(window);
             _addInDataBase<TransportNodeType, TransportNodeTypeDataBaseDAO>(transportNodeType);
             delete transportNodeType;
+            break;
+        }
+    }
+    renderTable(this->currentTable);
+}
+
+void MainWindow::getValuesForEdit(EditWindow *window, int idRow) {
+    QList<QWidget *> editList = window->getEditList();
+    switch (this->currentTable) {
+        case Tables::TCity: {
+            auto *obj = _getValuesFromDialog<City>(window);
+            obj->setId(idRow);
+            _editInDataBase<City, CityDataBaseDAO>(obj);
+            delete obj;
+            break;
+        }
+        case Tables::TCityType: {
+            auto *obj = _getValuesFromDialog<CityType>(window);
+            obj->setId(idRow);
+            _editInDataBase<CityType, CityTypeDataBaseDAO>(obj);
+            delete obj;
+            break;
+        }
+        case Tables::TClient: {
+            auto *obj = _getValuesFromDialog<Client>(window);
+            obj->setId(idRow);
+            _editInDataBase<Client, ClientDataBaseDAO>(obj);
+            delete obj;
+            break;
+        }
+        case Tables::TClientRest: {
+            auto *obj = _getValuesFromDialog<ClientRest>(window);
+            obj->setId(idRow);
+            _editInDataBase<ClientRest, ClientRestDataBaseDAO>(obj);
+            delete obj;
+            break;
+        }
+        case Tables::TContract: {
+            auto *obj = _getValuesFromDialog<Contract>(window);
+            obj->setId(idRow);
+            _editInDataBase<Contract, ContractDataBaseDAO>(obj);
+            delete obj;
+            break;
+        }
+        case Tables::TCountry: {
+            auto *obj = _getValuesFromDialog<Country>(window);
+            obj->setId(idRow);
+            _editInDataBase<Country, CountryDataBaseDAO>(obj);
+            delete obj;
+            break;
+        }
+        case Tables::TDocuments: {
+            auto *obj = _getValuesFromDialog<Documents>(window);
+            obj->setId(idRow);
+            _editInDataBase<Documents, DocumentsDataBaseDAO>(obj);
+            delete obj;
+            break;
+        }
+        case Tables::TDocumentsForTour: {
+            auto *obj = _getValuesFromDialog<DocumentsForTour>(window);
+            obj->setId(idRow);
+            _editInDataBase<DocumentsForTour, DocumentsForTourDataBaseDAO>(obj);
+            delete obj;
+            break;
+        }
+        case Tables::TDocumentsType: {
+            auto *obj = _getValuesFromDialog<DocumentType>(window);
+            obj->setId(idRow);
+            _editInDataBase<DocumentType, DocumentTypeDataBaseDAO>(obj);
+            delete obj;
+            break;
+        }
+        case Tables::TFlight: {
+            auto *obj = _getValuesFromDialog<Flight>(window);
+            obj->setId(idRow);
+            _editInDataBase<Flight, FlightDataBaseDAO>(obj);
+            delete obj;
+            break;
+        }
+        case Tables::THotel: {
+            auto *obj = _getValuesFromDialog<Hotel>(window);
+            obj->setId(idRow);
+            _editInDataBase<Hotel, HotelDataBaseDAO>(obj);
+            delete obj;
+            break;
+        }
+        case Tables::THotelRoom: {
+            auto *obj = _getValuesFromDialog<HotelRoom>(window);
+            obj->setId(idRow);
+            _editInDataBase<HotelRoom, HotelRoomDataBaseDAO>(obj);
+            delete obj;
+            break;
+        }
+        case Tables::THotelRoomType: {
+            auto *obj = _getValuesFromDialog<HotelRoomType>(window);
+            obj->setId(idRow);
+            _editInDataBase<HotelRoomType, HotelRoomTypeDataBaseDAO>(obj);
+            delete obj;
+            break;
+        }
+        case Tables::TPlaceArrival: {
+            auto *obj = _getValuesFromDialog<PlaceArrival>(window);
+            obj->setId(idRow);
+            _editInDataBase<PlaceArrival, PlaceArrivalDataBaseDAO>(obj);
+            delete obj;
+            break;
+        }
+        case Tables::TPlaceArrivalType: {
+            auto *obj = _getValuesFromDialog<PlaceArrivalType>(window);
+            obj->setId(idRow);
+            _editInDataBase<PlaceArrivalType, PlaceArrivalTypeDataBaseDAO>(obj);
+            delete obj;
+            break;
+        }
+        case Tables::TReservation: {
+            auto *obj = _getValuesFromDialog<Reservation>(window);
+            obj->setId(idRow);
+            _editInDataBase<Reservation, ReservationDataBaseDAO>(obj);
+            delete obj;
+            break;
+        }
+        case Tables::TReservByAgreement: {
+            auto *obj = _getValuesFromDialog<ReservByAgreement>(window);
+            obj->setId(idRow);
+            _editInDataBase<ReservByAgreement, ReservByAgreementDataBaseDAO>(obj);
+            delete obj;
+            break;
+        }
+        case Tables::TSight: {
+            auto *obj = _getValuesFromDialog<Sight>(window);
+            obj->setId(idRow);
+            _editInDataBase<Sight, SightDataBaseDAO>(obj);
+            delete obj;
+            break;
+        }
+        case Tables::TStatus: {
+            auto *obj = _getValuesFromDialog<Status>(window);
+            obj->setId(idRow);
+            _editInDataBase<Status, StatusDataBaseDAO>(obj);
+            delete obj;
+            break;
+        }
+        case Tables::TTicket: {
+            auto *obj = _getValuesFromDialog<Ticket>(window);
+            obj->setId(idRow);
+            _editInDataBase<Ticket, TicketDataBaseDAO>(obj);
+            delete obj;
+            break;
+        }
+        case Tables::TTour: {
+            auto *obj = _getValuesFromDialog<Tour>(window);
+            obj->setId(idRow);
+            _editInDataBase<Tour, TourDataBaseDAO>(obj);
+            delete obj;
+            break;
+        }
+        case Tables::TTourType: {
+            auto *obj = _getValuesFromDialog<TourType>(window);
+            obj->setId(idRow);
+            _editInDataBase<TourType, TourTypeDataBaseDAO>(obj);
+            delete obj;
+            break;
+        }
+        case Tables::TTransportNode: {
+            auto *obj = _getValuesFromDialog<TransportNode>(window);
+            obj->setId(idRow);
+            _editInDataBase<TransportNode, TransportNodeDataBaseDAO>(obj);
+            delete obj;
+            break;
+        }
+        case Tables::TTransportNodeType: {
+            auto *obj = _getValuesFromDialog<TransportNodeType>(window);
+            obj->setId(idRow);
+            _editInDataBase<TransportNodeType, TransportNodeTypeDataBaseDAO>(obj);
+            delete obj;
             break;
         }
     }

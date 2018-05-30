@@ -27,8 +27,12 @@ QList<TransportNode *> TransportNodeDataBaseDAO::getAll() {
 
 TransportNode *TransportNodeDataBaseDAO::getById(int id) {
     QSqlQuery query;
-    query.prepare("SELECT id, node_name, id_flight, id_transport_node_type  "
-                  "FROM TransportNode WHERE id=:id");
+    query.prepare(
+            "SELECT TransportNode.id, TransportNode.node_name, TransportNode.id_flight, TransportNode.id_transport_node_type,"
+            "TransportNodeType.transport_node_type_name "
+            "FROM TransportNode "
+            "LEFT JOIN TransportNodeType ON (TransportNode.id_transport_node_type=TransportNodeType.id) "
+            "WHERE TransportNode.id=:id");
     query.bindValue(":id", id);
     TransportNode *transportNode = nullptr;
     if (query.exec()) {
@@ -39,6 +43,8 @@ TransportNode *TransportNodeDataBaseDAO::getById(int id) {
                     query.value("id_flight").toInt(),
                     query.value("id_transport_node_type").toInt()
             );
+            transportNode->setFlight(new QString(query.value("id_flight").toString()));
+            transportNode->setTransportNodeType(new QString(query.value("transport_node_type_name").toString()));
         }
     } else {
         Logger logger(nullptr, "log.txt", nullptr);

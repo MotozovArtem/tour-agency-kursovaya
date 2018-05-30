@@ -26,8 +26,11 @@ QList<ClientRest *> ClientRestDataBaseDAO::getAll() {
 
 ClientRest *ClientRestDataBaseDAO::getById(int id) {
     QSqlQuery query;
-    query.prepare("SELECT id, id_contract, id_client,  "
-                  "FROM ClientRest WHERE id=:id");
+    query.prepare("SELECT ClientRest.id, ClientRest.id_contract, ClientRest.id_client,  Contract.contract_name, Client.surname"
+                  "FROM ClientRest "
+                  "LEFT JOIN Contract ON (ClientRest.id_contract=Contract.id) "
+                  "LEFT JOIN Client ON (ClientRest.id_client=Client.id) "
+                  "WHERE ClientRest.id=:id");
     query.bindValue(":id", id);
     ClientRest *client = nullptr;
     if (query.exec()) {
@@ -37,6 +40,8 @@ ClientRest *ClientRestDataBaseDAO::getById(int id) {
                     query.value("id_contract").toInt(),
                     query.value("id_client").toInt()
             );
+            client->setContract(new QString(query.value("contract_name").toString()));
+            client->setClientName(new QString(query.value("surname").toString()));
         }
     } else {
         Logger logger(nullptr, "log.txt", nullptr);

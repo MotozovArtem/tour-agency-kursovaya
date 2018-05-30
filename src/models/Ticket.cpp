@@ -60,8 +60,14 @@ Ticket::Ticket() {
 }
 
 Ticket::~Ticket() {
-    delete this->dateFlight;
-    delete this->dateOfPurchase;
+    if(this->dateFlight!=nullptr){
+        delete this->dateFlight;
+        this->dateFlight=nullptr;
+    }
+    if(this->dateOfPurchase!=nullptr){
+        delete this->dateOfPurchase;
+        this->dateOfPurchase=nullptr;
+    }
 
     if (this->documents != nullptr) {
         delete this->documents;

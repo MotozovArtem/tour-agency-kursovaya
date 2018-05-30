@@ -13,7 +13,10 @@ DocumentType::DocumentType(int id) : Model(id) {}
 DocumentType::DocumentType() {}
 
 DocumentType::~DocumentType() {
-    delete this->documentTypeName;
+    if(this->documentTypeName!=nullptr){
+        delete this->documentTypeName;
+        this->documentTypeName=nullptr;
+    }
 }
 
 QString *DocumentType::getName() const {

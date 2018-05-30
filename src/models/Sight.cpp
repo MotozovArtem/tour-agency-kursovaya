@@ -24,10 +24,22 @@ Sight::Sight(int id) : Model(id) { this->city = nullptr; }
 Sight::Sight() { this->city = nullptr; }
 
 Sight::~Sight() {
-    delete this->sightName;
-    delete this->address;
-    delete this->toponym;
-    delete this->yearOfCreation;
+    if(this->sightName!=nullptr){
+        delete this->sightName;
+        this->sightName=nullptr;
+    }
+    if(this->address!=nullptr){
+        delete this->address;
+        this->address=nullptr;
+    }
+    if(this->toponym!=nullptr){
+        delete this->toponym;
+        this->toponym=nullptr;
+    }
+    if(this->yearOfCreation!=nullptr){
+        delete this->yearOfCreation;
+        this->yearOfCreation=nullptr;
+    }
 
     if (this->city != nullptr) {
         delete this->city;

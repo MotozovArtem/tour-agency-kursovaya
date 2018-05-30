@@ -9,7 +9,7 @@
 #include <utils/Tables.h>
 
 class AddWindow : public QDialog {
-private:
+protected:
     QList<QWidget *> editList;
     QList<QLabel *> labelList;
     QPushButton *okButton;

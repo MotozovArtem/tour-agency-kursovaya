@@ -33,8 +33,14 @@ QList<Contract *> ContractDataBaseDAO::getAll() {
 Contract *ContractDataBaseDAO::getById(int id) {
     QSqlQuery query;
     query.prepare(
-            "SELECT id, contract_name, date_of_payment, date_of_issue, total, id_status, id_tour_type, id_documents"
-            "FROM Contract WHERE id=:id");
+            "SELECT Contract.id, Contract.contract_name, Contract.date_of_payment, Contract.date_of_issue, "
+            "Contract.total, Contract.id_status, Contract.id_tour_type, Contract.id_documents, "
+            "Status.status_name, TourType.tour_type_name, Documents.document_serial"
+            "FROM Contract "
+            "LEFT JOIN Status ON (Contract.id_status=Status.id) "
+            "LEFT JOIN TourType ON (Contract.id_tour_type=TourType.id) "
+            "LEFT JOIN Documents ON (Contract.id_documents=Documents.id) "
+            "WHERE Contract.id=:id");
     query.bindValue(":id", id);
     Contract *contract = nullptr;
     if (query.exec()) {
@@ -49,6 +55,9 @@ Contract *ContractDataBaseDAO::getById(int id) {
                     query.value("id_tour_type").toInt(),
                     query.value("id_documents").toInt()
             );
+            contract->setStatusName(new QString(query.value("status_name").toString()));
+            contract->setTourTypeName(new QString(query.value("tour_type_name").toString()));
+            contract->setDocuements(new QString(query.value("document_serial").toString()));
         }
     } else {
         Logger logger(nullptr, "log.txt", nullptr);

@@ -20,12 +20,30 @@ Client::Client(int id) : Model(id) {}
 Client::Client() {}
 
 Client::~Client() {
-    delete this->surname;
-    delete this->clientName;
-    delete this->patronymic;
-    delete this->dateOfBirth;
-    delete this->placeOfBirth;
-    delete this->passportData;
+    if(this->surname!=nullptr){
+        delete this->surname;
+        this->surname=nullptr;
+    }
+    if(this->clientName!=nullptr){
+        delete this->clientName;
+        this->clientName=nullptr;
+    }
+    if(this->patronymic!=nullptr){
+        delete this->patronymic;
+        this->patronymic=nullptr;
+    }
+    if(this->dateOfBirth!=nullptr){
+        delete this->dateOfBirth;
+        this->dateOfBirth=nullptr;
+    }
+    if(this->placeOfBirth!=nullptr){
+        delete this->placeOfBirth;
+        this->placeOfBirth=nullptr;
+    }
+    if(this->passportData!=nullptr){
+        delete this->passportData;
+        this->passportData=nullptr;
+    }
 }
 
 QString *Client::getPassportData() const {

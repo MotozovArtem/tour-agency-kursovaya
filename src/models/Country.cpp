@@ -14,8 +14,14 @@ Country::Country(int id) : Model(id) {}
 Country::Country() {}
 
 Country::~Country() {
-    delete this->countryName;
-    delete this->foundationDate;
+    if(this->countryName!=nullptr){
+        delete this->countryName;
+        this->countryName=nullptr;
+    }
+    if(this->foundationDate!=nullptr){
+        delete this->foundationDate;
+        this->foundationDate=nullptr;
+    }
 }
 
 QString *Country::getName() const {

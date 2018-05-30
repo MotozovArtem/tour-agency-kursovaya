@@ -27,7 +27,12 @@ City::City() {
 }
 
 City::~City() {
-    delete this->cityName;
+    if(this->cityName!=nullptr){
+        delete this->cityName;
+        this->cityName=nullptr;
+    }
+
+
     if (this->countryName != nullptr) {
         delete this->countryName;
         this->countryName = nullptr;

@@ -35,8 +35,14 @@ PlaceArrival::PlaceArrival() {
 }
 
 PlaceArrival::~PlaceArrival() {
-    delete this->placeArrivalName;
-    delete this->address;
+    if(this->placeArrivalName!=nullptr){
+        delete this->placeArrivalName;
+        this->placeArrivalName=nullptr;
+    }
+    if(this->address!=nullptr){
+        delete this->address;
+        this->address=nullptr;
+    }
 
     if (this->city != nullptr) {
         delete this->city;

@@ -50,8 +50,14 @@ Reservation::Reservation(const QDate &dateOfBegining, const QDate &dateOfEnding,
 }
 
 Reservation::~Reservation() {
-    delete this->dateOfBegining;
-    delete this->dateOfEnding;
+    if(this->dateOfBegining!=nullptr){
+        delete this->dateOfBegining;
+        this->dateOfBegining=nullptr;
+    }
+    if(this->dateOfEnding!=nullptr){
+        delete this->dateOfEnding;
+        this->dateOfEnding=nullptr;
+    }
 
     if (this->hotelRoom != nullptr) {
         delete this->hotelRoom;

@@ -28,8 +28,11 @@ QList<Tour *> TourDataBaseDAO::getAll() {
 
 Tour *TourDataBaseDAO::getById(int id) {
     QSqlQuery query;
-    query.prepare("SELECT id, tour_name, days, id_city, id_tour_type "
-                  "FROM Tour WHERE id=:id");
+    query.prepare("SELECT Tour.id, Tour.tour_name, Tour.days, Tour.id_city, Tour.id_tour_type, City.city_name, TourType.tour_type_name "
+                  "FROM Tour "
+                  "LEFT JOIN City ON (Tour.id_city=City.id) "
+                  "LEFT JOIN TourType ON (Tour.id_tour_type=TourType.id) "
+                  "WHERE Tour.id=:id");
     query.bindValue(":id", id);
     Tour *tour = nullptr;
     if (query.exec()) {
@@ -41,6 +44,8 @@ Tour *TourDataBaseDAO::getById(int id) {
                     query.value("id_city").toInt(),
                     query.value("id_tour_type").toInt()
             );
+            tour->setTourType(new QString(query.value("tour_type_name").toString()));
+            tour->setCity(new QString(query.value("city_name").toString()));
         }
     } else {
         Logger logger(nullptr, "log.txt", nullptr);

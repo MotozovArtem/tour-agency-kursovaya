@@ -43,6 +43,7 @@ AddWindow::AddWindow(QWidget *parent, const Qt::WindowFlags &f, Tables table) : 
     connect(this->cancelButton, SIGNAL(clicked()), this, SLOT(reject()));
     this->formLayout->addRow(this->okButton, this->cancelButton);
 
+    this->setModal(true);
     this->setLayout(this->formLayout);
     this->show();
 }

@@ -49,7 +49,10 @@ Tour::Tour(const QString &name, int days, int idCity, int idTourType) : Model() 
 }
 
 Tour::~Tour() {
-    delete this->tourName;
+    if(this->tourName!=nullptr){
+        delete this->tourName;
+        this->tourName=nullptr;
+    }
 
     if(this->city!=nullptr){
         delete this->city;

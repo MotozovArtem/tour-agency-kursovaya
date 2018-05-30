@@ -21,7 +21,10 @@ Status::Status(int id) : Model(id) {}
 Status::Status() {}
 
 Status::~Status() {
-    delete this->statusName;
+    if(this->statusName!=nullptr){
+        delete this->statusName;
+        this->statusName=nullptr;
+    }
 }
 
 QString *Status::getName() const {

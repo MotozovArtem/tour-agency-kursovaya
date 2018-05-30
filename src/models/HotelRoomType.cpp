@@ -29,7 +29,10 @@ void HotelRoomType::setName(QString *name) {
 }
 
 HotelRoomType::~HotelRoomType() {
-    delete this->hotelRoomTypeName;
+    if(this->hotelRoomTypeName!=nullptr){
+        delete this->hotelRoomTypeName;
+        this->hotelRoomTypeName=nullptr;
+    }
 }
 
 QStringList HotelRoomType::columnList = {"ID_i", "Name_s"};

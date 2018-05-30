@@ -13,7 +13,11 @@ PlaceArrivalType::PlaceArrivalType(int id) : Model(id) {}
 PlaceArrivalType::PlaceArrivalType() {}
 
 PlaceArrivalType::~PlaceArrivalType() {
-    delete this->placeArrivalTypeName;
+    if(this->placeArrivalTypeName!=nullptr){
+        delete this->placeArrivalTypeName;
+        this->placeArrivalTypeName=nullptr;
+    }
+
 }
 
 QString *PlaceArrivalType::getName() const {

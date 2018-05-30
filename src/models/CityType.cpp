@@ -13,7 +13,10 @@ CityType::CityType(int id) : Model(id) {}
 CityType::CityType() {}
 
 CityType::~CityType() {
-    delete this->cityTypeName;
+    if(this->cityTypeName!=nullptr){
+        delete this->cityTypeName;
+        this->cityTypeName=nullptr;
+    }
 }
 
 QString *CityType::getName() const {

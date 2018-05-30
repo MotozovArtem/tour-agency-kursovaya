@@ -23,6 +23,27 @@ Hotel::Hotel() {
     this->cityName = nullptr;
 }
 
+Hotel::~Hotel() {
+    if(this->hotelName!=nullptr){
+        delete this->hotelName;
+        this->hotelName=nullptr;
+    }
+    if(this->address!=nullptr){
+        delete this->address;
+        this->address=nullptr;
+    }
+    if(this->yearOfFoundation!=nullptr){
+        delete this->yearOfFoundation;
+        this->yearOfFoundation=nullptr;
+    }
+
+
+    if (this->cityName != nullptr) {
+        delete this->cityName;
+        this->cityName = nullptr;
+    }
+}
+
 QString *Hotel::getHotelName() const {
     return hotelName;
 }
@@ -51,19 +72,9 @@ QDate *Hotel::getYearOfFoundation() const {
     return yearOfFoundation;
 }
 
+
 void Hotel::setYearOfFoundation(QDate *yearOfFoundation) {
     Hotel::yearOfFoundation = yearOfFoundation;
-}
-
-
-Hotel::~Hotel() {
-    delete this->hotelName;
-    delete this->address;
-    delete this->yearOfFoundation;
-    if (this->cityName != nullptr) {
-        delete this->cityName;
-        this->cityName = nullptr;
-    }
 }
 
 int Hotel::getIdCity() const {

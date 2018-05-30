@@ -51,7 +51,10 @@ TransportNode::TransportNode(const QString &nodeName, int idFlight, int idTransp
 }
 
 TransportNode::~TransportNode() {
-    delete this->transportNodeName;
+    if(this->transportNodeName!=nullptr){
+        delete this->transportNodeName;
+        this->transportNodeName=nullptr;
+    }
 
     if (this->flight != nullptr) {
         delete this->flight;

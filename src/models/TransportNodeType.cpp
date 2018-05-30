@@ -13,7 +13,10 @@ TransportNodeType::TransportNodeType(int id) : Model(id) {}
 TransportNodeType::TransportNodeType() {}
 
 TransportNodeType::~TransportNodeType() {
-    delete this->transportNodeTypeName;
+    if(this->transportNodeTypeName!=nullptr){
+        delete this->transportNodeTypeName;
+        this->transportNodeTypeName=nullptr;
+    }
 }
 
 QString *TransportNodeType::getName() const {

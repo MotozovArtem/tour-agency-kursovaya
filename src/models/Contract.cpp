@@ -37,9 +37,19 @@ Contract::Contract() {
 }
 
 Contract::~Contract() {
-    delete this->contractName;
-    delete this->dateOfIssue;
-    delete this->dateOfPayment;
+
+    if(this->contractName!=nullptr){
+        delete this->contractName;
+        this->contractName=nullptr;
+    }
+    if(this->dateOfIssue!=nullptr){
+        delete this->dateOfIssue;
+        this->dateOfIssue=nullptr;
+    }
+    if(this->dateOfPayment!=nullptr){
+        delete this->dateOfPayment;
+        this->dateOfPayment=nullptr;
+    }
 
     if (this->docuements != nullptr) {
         delete this->docuements;

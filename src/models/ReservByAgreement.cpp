@@ -30,7 +30,10 @@ ReservByAgreement::ReservByAgreement() {
 }
 
 ReservByAgreement::~ReservByAgreement() {
-    delete this->dateOfBegining;
+    if(this->dateOfBegining!=nullptr){
+        delete this->dateOfBegining;
+        this->dateOfBegining=nullptr;
+    }
 
     if (this->contract != nullptr) {
         delete this->contract;
