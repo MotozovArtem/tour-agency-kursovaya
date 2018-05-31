@@ -4,7 +4,6 @@
 
 #include "ClientDataBaseDAO.h"
 #include <QtSql/QtSql>
-#include <QtWidgets/QMessageBox>
 #include "utils/Logger.h"
 
 QList<Client *> ClientDataBaseDAO::getAll() {

@@ -14,7 +14,7 @@ private:
     QString *contractName;
     QDate *dateOfPayment;
     QDate *dateOfIssue;
-    float total;
+    double total;
     int idStatus;
     int idTourType;
     int idDocuments;
@@ -24,16 +24,16 @@ private:
     QString *docuements;
 public:
     static QStringList columnList;
-    Contract(int id, QString *name, QDate *dateOfPayment, QDate *dateOfIssue, float total, int idStatus, int idTourType,
+    Contract(int id, QString *name, QDate *dateOfPayment, QDate *dateOfIssue, double total, int idStatus, int idTourType,
           int idDocuments);
 
-    Contract(int id,const QString &name,const QDate &dateOfPayment,const QDate &dateOfIssue, float total, int idStatus, int idTourType,
+    Contract(int id,const QString &name,const QDate &dateOfPayment,const QDate &dateOfIssue, double total, int idStatus, int idTourType,
              int idDocuments);
 
-    Contract(QString *name, QDate *dateOfPayment, QDate *dateOfIssue, float total, int idStatus, int idTourType,
+    Contract(QString *name, QDate *dateOfPayment, QDate *dateOfIssue, double total, int idStatus, int idTourType,
           int idDocuments);
 
-    Contract(const QString &name,const QDate &dateOfPayment,const QDate &dateOfIssue, float total, int idStatus, int idTourType,
+    Contract(const QString &name,const QDate &dateOfPayment,const QDate &dateOfIssue, double total, int idStatus, int idTourType,
              int idDocuments);
 
     Contract(int id);
@@ -56,9 +56,9 @@ public:
 
     void setDateOfIssue(QDate *dateOfIssue);
 
-    float getTotal() const;
+    double getTotal() const;
 
-    void setTotal(float total);
+    void setTotal(double total);
 
     int getIdStatus() const;
 

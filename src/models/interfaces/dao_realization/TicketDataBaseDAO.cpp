@@ -121,7 +121,7 @@ QList<Ticket *> TicketDataBaseDAO::getAllFilled() {
                     query.value("id_documents").toInt(),
                     query.value("id_flight").toInt()
             );
-            ticket->setDocuments(new QString(query.value("city_name").toString()));
+            ticket->setDocuments(new QString(query.value("document_serial").toString()));
             ticket->setFlight(new QString(query.value("id_flight").toString()));
             list << ticket;
         }

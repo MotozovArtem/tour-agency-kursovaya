@@ -18,11 +18,17 @@ Reservation::Reservation(QDate *dateOfBegining, QDate *dateOfEnding, int idHotel
 }
 
 Reservation::Reservation(int id) : Model(id) {
+    this->dateOfBegining= nullptr;
+    this->dateOfEnding = nullptr;
+
     this->hotelRoom = nullptr;
     this->contract = nullptr;
 }
 
 Reservation::Reservation() {
+    this->dateOfBegining= nullptr;
+    this->dateOfEnding = nullptr;
+
     this->hotelRoom = nullptr;
     this->contract = nullptr;
 }

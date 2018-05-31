@@ -22,6 +22,8 @@ public:
 
     virtual QList<Reservation *> getAllFilled();
 
+    virtual bool isBusy(Reservation *model);
+
 };
 
 

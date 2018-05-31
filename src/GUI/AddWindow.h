@@ -9,6 +9,7 @@
 #include <utils/Tables.h>
 
 class AddWindow : public QDialog {
+    Q_OBJECT
 protected:
     QList<QWidget *> editList;
     QList<QLabel *> labelList;
@@ -77,20 +78,31 @@ public:
             }
             if(labelType == "i"){
                 numberEdit = new QSpinBox();
-                numberEdit->setMaximum(10000000);
+                if(labelName=="Stars"){
+                    numberEdit->setMaximum(5);
+                    numberEdit->setMinimum(1);
+                }else if(labelName=="Places"){
+                    numberEdit->setMinimum(1);
+                    numberEdit->setMaximum(7);
+                }else{
+                    numberEdit->setMaximum(10000000);
+                }
                 this->editList << numberEdit;
                 this->formLayout->addRow(formLabel, numberEdit);
             }else if (labelType == "n"){
                 doubleNumberEdit = new QDoubleSpinBox();
                 doubleNumberEdit->setMaximum(10000000);
-                doubleNumberEdit->setSingleStep(0.01);
+                doubleNumberEdit->setSingleStep(1);
+                doubleNumberEdit->setDecimals(0);
                 this->editList << doubleNumberEdit;
                 this->formLayout->addRow(formLabel, doubleNumberEdit);
             }else if (labelType=="d"){
                 dateEdit = new QDateEdit();
                 dateEdit->setCalendarPopup(true);
-                dateEdit->setMinimumDate(QDate(1900,1,1));
+                dateEdit->setMinimumDate(QDate(500,1,1));
+                dateEdit->setMaximumDate(QDate(2100,1,1));
                 dateEdit->setDisplayFormat(QString("dd.MM.yyyy"));
+                dateEdit->setDate(QDate::currentDate());
                 this->editList << dateEdit;
                 this->formLayout->addRow(formLabel, dateEdit);
             }else if (labelType=="t") {
@@ -113,6 +125,10 @@ public:
             this->labelList << formLabel;
         }
     };
+
+public slots:
+
+    void acceptForReservation();
 };
 
 

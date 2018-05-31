@@ -29,12 +29,13 @@ QList<Reservation *> ReservationDataBaseDAO::getAll() {
 
 Reservation *ReservationDataBaseDAO::getById(int id) {
     QSqlQuery query;
-    query.prepare("SELECT Reservation.id, Reservation.date_of_begining, Reservation.date_of_ending, Reservation.id_hotel_room, Reservation.id_contract, "
-                  "HotelRoom.hotel_room_name, Contract.contract_name "
-                  "FROM Reservation "
-                  "LEFT JOIN Contract ON (Reservation.id_contract=Contract.id) "
-                  "LEFT JOIN HotelRoom ON (Reservation.id_hotel_room=HotelRoom.id) "
-                  "WHERE Reservation.id=:id");
+    query.prepare(
+            "SELECT Reservation.id, Reservation.date_of_begining, Reservation.date_of_ending, Reservation.id_hotel_room, Reservation.id_contract, "
+            "HotelRoom.hotel_room_name, Contract.contract_name "
+            "FROM Reservation "
+            "LEFT JOIN Contract ON (Reservation.id_contract=Contract.id) "
+            "LEFT JOIN HotelRoom ON (Reservation.id_hotel_room=HotelRoom.id) "
+            "WHERE Reservation.id=:id");
     query.bindValue(":id", id);
     Reservation *reservation = nullptr;
     if (query.exec()) {
@@ -121,4 +122,25 @@ QList<Reservation *> ReservationDataBaseDAO::getAllFilled() {
         logger.write(QString("%1 %2").arg("ReservationDataBaseDAO::getAllFilled() error", query.lastError().text()));
     }
     return list;
+}
+
+bool ReservationDataBaseDAO::isBusy(Reservation *model) {
+    QSqlQuery query;
+    query.prepare(
+            "SELECT (:date_of_begining, :date_of_ending) OVERLAPS (Reservation.date_of_begining, Reservation.date_of_ending) AS res "
+            "FROM Reservation WHERE Reservation.id_hotel_room=:id_hotel_room");
+    query.bindValue(":date_of_begining", model->getDateOfBegining()->toString("dd.MM.yyyy"));
+    query.bindValue(":date_of_ending", model->getDateOfEnding()->toString("dd.MM.yyyy"));
+    query.bindValue(":id_hotel_room", model->getIdHotelRoom());
+    query.bindValue(":id_contract", model->getIdContract());
+    bool result = false;
+    if (query.exec()) {
+        while (query.next()) {
+            result |= query.value("res").toBool();
+        }
+    } else {
+        Logger logger(nullptr, "log.txt", nullptr);
+        logger.write(QString("%1 %2").arg("ReservationDataBaseDAO::isBusy() error", query.lastError().text()));
+    }
+    return result;
 }

@@ -98,7 +98,7 @@ QList<DocumentsForTour *> DocumentsForTourDataBaseDAO::getAllFilled() {
             "SELECT DocumentsForTour.id, DocumentsForTour.id_document, DocumentsForTour.id_client, DocumentsForTour.id_document_type,"
             "Documents.document_serial, Client.surname, DocumentType.document_type_name "
             "FROM DocumentsForTour "
-            "LEFT JOIN Documents ON (DocumentsForTour.id_documents=Documents.id)"
+            "LEFT JOIN Documents ON (DocumentsForTour.id_document=Documents.id)"
             "LEFT JOIN Client ON (DocumentsForTour.id_client=Client.id)"
             "LEFT JOIN DocumentType ON (DocumentsForTour.id_document_type=DocumentType.id)"
             "ORDER BY id")) {

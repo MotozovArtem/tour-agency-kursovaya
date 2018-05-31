@@ -4,6 +4,7 @@
 
 #include "HotelDataBaseDAO.h"
 #include <QtSql/QtSql>
+#include <QtWidgets/QMessageBox>
 #include "utils/Logger.h"
 
 
@@ -65,7 +66,7 @@ void HotelDataBaseDAO::add(Hotel *model) {
     query.bindValue(":hotel_name", *model->getHotelName());
     query.bindValue(":address", *model->getAddress());
     query.bindValue(":stars", model->getStars());
-    query.bindValue(":year_of_foundation", *model->getYearOfFoundation());
+    query.bindValue(":year_of_foundation", model->getYearOfFoundation()->toString("dd.MM.yyyy"));
     query.bindValue(":id_city", model->getIdCity());
     if (!query.exec()) {
         Logger logger(nullptr, "log.txt", nullptr);
@@ -81,11 +82,15 @@ void HotelDataBaseDAO::update(Hotel *model) {
     query.bindValue(":address", *model->getAddress());
     query.bindValue(":hotel_name", *model->getHotelName());
     query.bindValue(":stars", model->getStars());
-    query.bindValue(":year_of_foundation", *model->getYearOfFoundation());
+    query.bindValue(":year_of_foundation", model->getYearOfFoundation()->toString("dd.MM.yyyy"));
     query.bindValue(":id_city", model->getIdCity());
+    query.bindValue(":id", model->getId());
     if (!query.exec()) {
         Logger logger(nullptr, "log.txt", nullptr);
         logger.write(QString("%1 %2").arg("HotelDataBaseDAO::update error", query.lastError().text()));
+    } else {
+        QMessageBox(QMessageBox::Information, "MSG", query.executedQuery()).exec();
+
     }
 }
 
@@ -103,7 +108,7 @@ QList<Hotel *> HotelDataBaseDAO::getAllFilled() {
     QSqlQuery query;
     QList<Hotel *> hotelList;
     if (query.exec("SELECT Hotel.id, Hotel.hotel_name, Hotel.address, Hotel.stars, "
-                   "Hotel.year_of_foundation, Hotel.id_city,City.city_name FROM Hotel "
+                   "Hotel.year_of_foundation, Hotel.id_city, City.city_name FROM Hotel "
                    "LEFT JOIN City ON (Hotel.id_city=City.id)"
                    "ORDER BY id")) {
         QSqlRecord rec = query.record();

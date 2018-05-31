@@ -74,6 +74,7 @@ public:
 
         this->pTable->setSelectionMode(QAbstractItemView::SingleSelection);
         this->pTable->setSelectionBehavior(QAbstractItemView::SelectionBehavior::SelectRows);
+        this->pTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
     };
 
     template<class modelClass>
@@ -83,27 +84,24 @@ public:
         valuesFromEditLines << QString::number(0);
                 foreach(QWidget *lineEdit, editList) {
                 QString typeName(lineEdit->metaObject()->className());
-//                QMessageBox(QMessageBox::Information, "Message",
-//                            lineEdit->metaObject()->className(), QMessageBox::Ok).exec();
                 if (typeName == "QLineEdit") {
                     valuesFromEditLines << dynamic_cast<QLineEdit *>(lineEdit)->text();
                 } else if (typeName == "QComboBox") {
                     valuesFromEditLines << QString(dynamic_cast<QComboBox *>(lineEdit)->currentText().split(" ")[0]);
                 } else if (typeName == "QDateEdit") {
-                    QMessageBox(QMessageBox::Information, "Message",
-                                dynamic_cast<QDateEdit *>(lineEdit)->date().toString("dd.MM.yyyy"), QMessageBox::Ok).exec();
                     valuesFromEditLines << dynamic_cast<QDateEdit *>(lineEdit)->date().toString("dd.MM.yyyy");
                 } else if (typeName == "QTimeEdit") {
                     valuesFromEditLines << dynamic_cast<QTimeEdit *>(lineEdit)->time().toString("HH:mm");
                 } else if (typeName == "QSpinBox") {
-                    valuesFromEditLines << dynamic_cast<QSpinBox *>(lineEdit)->text();
+                    valuesFromEditLines << QString::number(dynamic_cast<QSpinBox *>(lineEdit)->value());
                 } else if (typeName == "QCheckBox") {
-//                    QMessageBox(QMessageBox::Information, "Message",
-//                                QString::number(dynamic_cast<QCheckBox *>(lineEdit)->isChecked()), QMessageBox::Ok).exec();
                     valuesFromEditLines << (dynamic_cast<QCheckBox *>(lineEdit)->isChecked() ? "+" : "-");
+                } else if (typeName == "QDoubleSpinBox") {
+                    valuesFromEditLines << QString::number(dynamic_cast<QDoubleSpinBox *>(lineEdit)->value());
                 }
             }
-        return new modelClass(valuesFromEditLines);
+        modelClass *model = new modelClass(valuesFromEditLines);
+        return model;
     }
 
     template<class modelClass, class modelDaoClass>
@@ -115,6 +113,7 @@ public:
     void _deleteFromDataBase(int id) {
         auto *obj = new modelClass(id);
         modelDaoClass().del(obj);
+        delete obj;
     };
 
     template<class modelClass, class modelDaoClass>

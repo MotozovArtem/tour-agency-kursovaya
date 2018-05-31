@@ -29,6 +29,7 @@
 
 
 #include "AddWindow.h"
+#include "MainWindow.h"
 
 
 AddWindow::AddWindow(QWidget *parent, const Qt::WindowFlags &f, Tables table) : QDialog(parent, f) {
@@ -39,7 +40,13 @@ AddWindow::AddWindow(QWidget *parent, const Qt::WindowFlags &f, Tables table) : 
 
     this->okButton = new QPushButton("OK");
     this->cancelButton = new QPushButton("Cancel");
-    connect(this->okButton, SIGNAL(clicked()), this, SLOT(accept()));
+
+    if (this->currentTable == Tables::TReservation) {
+        connect(this->okButton, SIGNAL(clicked()), this, SLOT(acceptForReservation()));
+    }else{
+        connect(this->okButton, SIGNAL(clicked()), this, SLOT(accept()));
+    }
+
     connect(this->cancelButton, SIGNAL(clicked()), this, SLOT(reject()));
     this->formLayout->addRow(this->okButton, this->cancelButton);
 
@@ -170,12 +177,12 @@ AddWindow::~AddWindow() {
     delete this->okButton;
     delete this->cancelButton;
 
-    foreach(QWidget *widget, this->editList){
-        delete widget;
-    }
-    foreach(QLabel *label, this->labelList){
-        delete label;
-    }
+            foreach(QWidget *widget, this->editList) {
+            delete widget;
+        }
+            foreach(QLabel *label, this->labelList) {
+            delete label;
+        }
 }
 
 QComboBox *AddWindow::initForeignEditLine(const QString columnName) {
@@ -230,4 +237,37 @@ QComboBox *AddWindow::initForeignEditLine(const QString columnName) {
     }
     return nullptr;
 }
+
+void AddWindow::acceptForReservation() {
+    QStringList valuesFromDialog;
+    valuesFromDialog << QString("0");
+    for (int i = 0; i < this->editList.size(); i++) {
+        QWidget *widget = this->editList[i];
+        QString typeName(widget->metaObject()->className());
+        if (typeName == "QLineEdit") {
+            valuesFromDialog << dynamic_cast<QLineEdit *>(widget)->text();
+        } else if (typeName == "QComboBox") {
+            valuesFromDialog << QString(dynamic_cast<QComboBox *>(widget)->currentText().split(" ")[0]);
+        } else if (typeName == "QDateEdit") {
+            valuesFromDialog << dynamic_cast<QDateEdit *>(widget)->date().toString("dd.MM.yyyy");
+        }
+    }
+    Reservation *model=new Reservation(valuesFromDialog);
+    if(!ReservationDataBaseDAO().isBusy(model)){
+        delete model;
+        model= nullptr;
+        accept();
+    }else{
+        QMessageBox *msg = new QMessageBox(QMessageBox::Information, "Warning", "This hotel room is busy in this date interval!", QMessageBox::Ok);
+        msg->setModal(true);
+        msg->exec();
+        delete msg;
+    }
+    if(model!=nullptr){
+        delete model;
+        model=nullptr;
+    }
+}
+
+
 

@@ -10,6 +10,7 @@
 #include <QString>
 
 class EditWindow : public AddWindow {
+    Q_OBJECT
 protected:
     int id;
 public:
@@ -32,13 +33,15 @@ public:
                     editField->setCurrentIndex(index);
                 }
             } else if (typeName == "QDateEdit") {
-                dynamic_cast<QDateEdit *>(editWidget)->setDate(*objOfModel->toDate(valuesFromModel->value(i)));
+                dynamic_cast<QDateEdit *>(editWidget)->setDate(QDate::fromString(valuesFromModel->value(i), "dd.MM.yyyy"));
             } else if (typeName == "QTimeEdit") {
-                dynamic_cast<QDateEdit *>(editWidget)->setTime(*objOfModel->toTime(valuesFromModel->value(i)));
+                dynamic_cast<QDateEdit *>(editWidget)->setTime(QTime::fromString(valuesFromModel->value(i), "HH:mm"));
             } else if (typeName == "QSpinBox") {
                 dynamic_cast<QSpinBox *>(editWidget)->setValue(valuesFromModel->value(i).toInt());
             } else if (typeName == "QCheckBox") {
-                dynamic_cast<QCheckBox *>(editWidget)->setChecked(false);
+                dynamic_cast<QCheckBox *>(editWidget)->setChecked((valuesFromModel->value(i)=="+"));
+            }else if (typeName == "QDoubleSpinBox") {
+                dynamic_cast<QDoubleSpinBox *>(editWidget)->setValue(valuesFromModel->value(i).toDouble());
             }
         }
     };

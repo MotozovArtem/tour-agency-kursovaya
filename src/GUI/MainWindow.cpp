@@ -29,7 +29,6 @@
 
 #include "MainWindow.h"
 
-#include <iostream>
 
 MainWindow::MainWindow(QMainWindow *pwgt) : QMainWindow(pwgt) {
 
@@ -277,17 +276,12 @@ void MainWindow::addRow() {
 
 void MainWindow::editRow() {
     int curRow = this->pTable->currentRow();
-//    QMessageBox *msg = new QMessageBox(QMessageBox::Information, "MSG", QString::number(curRow));
-//    msg->exec();
-//    delete msg;
     if(curRow!=-1){
         int idRow = this->pTable->item(curRow, 0)->text().toInt();
         EditWindow *editWindow = new EditWindow(this, Qt::Window | Qt::WindowSystemMenuHint, this->currentTable, idRow);
         editWindow->setModal(true);
         if (editWindow->exec() == QDialog::Accepted) {
             getValuesForEdit(editWindow, idRow);
-        } else {
-            std::cout << "REJECTED\n";
         }
         delete editWindow;
     }else{
@@ -619,7 +613,7 @@ void MainWindow::getValuesForEdit(EditWindow *window, int idRow) {
             break;
         }
         case Tables::THotel: {
-            auto *obj = _getValuesFromDialog<Hotel>(window);
+            Hotel *obj = _getValuesFromDialog<Hotel>(window);
             obj->setId(idRow);
             _editInDataBase<Hotel, HotelDataBaseDAO>(obj);
             delete obj;

@@ -26,7 +26,7 @@ QList<Country *> CountryDataBaseDAO::getAll() {
 
 Country *CountryDataBaseDAO::getById(int id) {
     QSqlQuery query;
-    query.prepare("SELECT id, country_name FROM Country WHERE id=:id");
+    query.prepare("SELECT id, country_name, foundation_date  FROM Country WHERE id=:id");
     query.bindValue(":id", id);
     Country *country = nullptr;
     if (query.exec()) {

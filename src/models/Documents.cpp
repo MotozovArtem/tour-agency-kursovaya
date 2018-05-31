@@ -4,18 +4,16 @@
 
 #include "Documents.h"
 
-Documents::Documents(int id, QString *serial, QDate *dateOfIssue, QString *issuanceDepartment) : Model(id),
-                                                                                                 documentSerial(
-                                                                                                         serial),
-                                                                                                 dateOfIssue(
-                                                                                                         dateOfIssue),
-                                                                                                 issuanceDepartment(
-                                                                                                         issuanceDepartment) {}
+Documents::Documents(int id, QString *serial, QDate *dateOfIssue, QString *issuanceDepartment) :
+        Model(id),
+        documentSerial(serial),
+        dateOfIssue(dateOfIssue),
+        issuanceDepartment(issuanceDepartment) {}
 
-Documents::Documents(QString *serial, QDate *dateOfIssue, QString *issuanceDepartment) : documentSerial(serial),
-                                                                                         dateOfIssue(dateOfIssue),
-                                                                                         issuanceDepartment(
-                                                                                                 issuanceDepartment) {}
+Documents::Documents(QString *serial, QDate *dateOfIssue, QString *issuanceDepartment) :
+        documentSerial(serial),
+        dateOfIssue(dateOfIssue),
+        issuanceDepartment(issuanceDepartment) {}
 
 Documents::Documents(int id) : Model(id) {}
 
@@ -23,17 +21,17 @@ Documents::Documents() {}
 
 Documents::~Documents() {
 
-    if(this->dateOfIssue!=nullptr){
+    if (this->dateOfIssue != nullptr) {
         delete this->dateOfIssue;
-        this->dateOfIssue=nullptr;
+        this->dateOfIssue = nullptr;
     }
-    if(this->issuanceDepartment!=nullptr){
+    if (this->issuanceDepartment != nullptr) {
         delete this->issuanceDepartment;
-        this->issuanceDepartment=nullptr;
+        this->issuanceDepartment = nullptr;
     }
-    if(this->documentSerial!=nullptr){
+    if (this->documentSerial != nullptr) {
         delete this->documentSerial;
-        this->documentSerial=nullptr;
+        this->documentSerial = nullptr;
     }
 }
 
@@ -64,7 +62,9 @@ void Documents::setIssuanceDepartment(QString *issuanceDepartment) {
 Documents::Documents(int id, const QString &documentSerial, const QDate &dateOfIssue,
                      const QString &issuanceDepartment)
         : Model(id) {
-
+    this->documentSerial = new QString(documentSerial);
+    this->dateOfIssue = new QDate(dateOfIssue);
+    this->issuanceDepartment = new QString(issuanceDepartment);
 }
 
 Documents::Documents(const QString &documentSerial, const QDate &dateOfIssue, const QString &issuanceDepartment) {

@@ -21,6 +21,8 @@ public:
     virtual void del(Reservation *model) =0;
 
     virtual QList<Reservation *> getAllFilled() =0;
+
+    virtual bool isBusy(Reservation *model) =0;
 };
 
 

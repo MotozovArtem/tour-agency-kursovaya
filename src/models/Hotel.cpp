@@ -2,6 +2,7 @@
 // Created by rienel on 08.04.18.
 //
 
+#include <QtWidgets/QMessageBox>
 #include "Hotel.h"
 
 Hotel::Hotel(int id, QString *hotelName, QString *address, int stars, QDate *yearOfFoundation, int idCity) : Model(
@@ -132,8 +133,8 @@ QStringList *Hotel::getValForAdd() {
 Hotel::Hotel(const QStringList &args) : Model(args) {
     this->hotelName = new QString(args[1]);
     this->address = new QString(args[2]);
-    this->stars = args[3].toInt();
-    this->yearOfFoundation = toDate(args[4]);
+    this->yearOfFoundation = toDate(args[3]);
+    this->stars = args[4].toInt();
     this->idCity = args[5].toInt();
 
     this->cityName = nullptr;

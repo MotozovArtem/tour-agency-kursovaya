@@ -35,7 +35,7 @@ Contract *ContractDataBaseDAO::getById(int id) {
     query.prepare(
             "SELECT Contract.id, Contract.contract_name, Contract.date_of_payment, Contract.date_of_issue, "
             "Contract.total, Contract.id_status, Contract.id_tour_type, Contract.id_documents, "
-            "Status.status_name, TourType.tour_type_name, Documents.document_serial"
+            "Status.status_name, TourType.tour_type_name, Documents.document_serial "
             "FROM Contract "
             "LEFT JOIN Status ON (Contract.id_status=Status.id) "
             "LEFT JOIN TourType ON (Contract.id_tour_type=TourType.id) "

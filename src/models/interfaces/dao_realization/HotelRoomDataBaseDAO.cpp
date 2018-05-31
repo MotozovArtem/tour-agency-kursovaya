@@ -134,7 +134,7 @@ QList<HotelRoom *> HotelRoomDataBaseDAO::getAllFilled() {
             );
 
             hotelRoom->setHotel(new QString(query.value("hotel_name").toString()));
-            hotelRoom->setHotelRoomType(new QString(query.value("hotelRoomTypeName").toString()));
+            hotelRoom->setHotelRoomType(new QString(query.value("hotel_room_type_name").toString()));
             hotelRoomList << hotelRoom;
         }
     } else {

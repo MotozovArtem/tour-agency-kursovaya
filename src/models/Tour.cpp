@@ -112,7 +112,7 @@ void Tour::setTourType(QString *tourType) {
     Tour::tourType = tourType;
 }
 
-QStringList Tour::columnList = {"ID_i", "Name_s", "Days_d", "City_f", "Tour Type_f"};
+QStringList Tour::columnList = {"ID_i", "Name_s", "Days_i", "City_f", "Tour Type_f"};
 
 QStringList *Tour::getValueList() {
     return new QStringList(
