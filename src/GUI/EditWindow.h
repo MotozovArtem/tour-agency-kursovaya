@@ -26,7 +26,11 @@ public:
             if (typeName == "QLineEdit") {
                 dynamic_cast<QLineEdit *>(editWidget)->setText(valuesFromModel->value(i));
             } else if (typeName == "QComboBox") {
-//                dynamic_cast<QComboBox *>(editWidget)->setCurrentText();
+                auto *editField = dynamic_cast<QComboBox *>(editWidget);
+                int index;
+                if ((index = editField->findText(valuesFromModel->value(i), Qt::MatchContains))!=-1){
+                    editField->setCurrentIndex(index);
+                }
             } else if (typeName == "QDateEdit") {
                 dynamic_cast<QDateEdit *>(editWidget)->setDate(*objOfModel->toDate(valuesFromModel->value(i)));
             } else if (typeName == "QTimeEdit") {

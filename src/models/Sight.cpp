@@ -119,7 +119,7 @@ QStringList Sight::columnList = {"ID_i", "Name_s", "Address_s", "Year of creatio
 
 QStringList *Sight::getValueList() {
     return new QStringList(
-            {QString::number(this->id), *this->sightName, *this->address, this->yearOfCreation->toString(),
+            {QString::number(this->id), *this->sightName, *this->address, this->yearOfCreation->toString("dd.MM.yyyy"),
              *this->toponym,
              *this->city});
 }

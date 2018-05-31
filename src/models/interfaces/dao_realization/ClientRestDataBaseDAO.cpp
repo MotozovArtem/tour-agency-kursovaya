@@ -90,8 +90,8 @@ QList<ClientRest *> ClientRestDataBaseDAO::getAllFilled() {
     QList<ClientRest *> list;
     if (query.exec("SELECT ClientRest.id, ClientRest.id_contract, ClientRest.id_client, "
                    "Contract.contract_name, Client.surname FROM ClientRest "
-                   "LEFT JOIN Contract ON (ClientRest.id_city=Contract.id) "
-                   "LEFT JOIN Client ON (ClientRest.id_city=Client.id) "
+                   "LEFT JOIN Contract ON (ClientRest.id_contract=Contract.id) "
+                   "LEFT JOIN Client ON (ClientRest.id_client=Client.id) "
                    "ORDER BY id")) {
         while (query.next()) {
             ClientRest *client = new ClientRest(

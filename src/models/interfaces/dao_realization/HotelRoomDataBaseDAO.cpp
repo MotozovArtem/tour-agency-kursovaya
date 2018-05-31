@@ -117,9 +117,9 @@ QList<HotelRoom *> HotelRoomDataBaseDAO::getAllFilled() {
             "SELECT HotelRoom.id, HotelRoom.hotel_room_name, HotelRoom.places, HotelRoom.shower, "
             "HotelRoom.second_restroom, HotelRoom.balcony, "
             "HotelRoom.id_hotel, HotelRoom.id_hotel_room_type, "
-            "Hotel.hotel_name, HotelRoomType.hotelRoomTypeName FROM HotelRoom "
-            "LEFT JOIN Hotel ON (HotelRoom.id_hotel=Hotel.id) "
-            "LEFT JOIN HotelRoomType ON (HotelRoom.id_hotel_room_type=HotelRoomType.id) "
+            "Hotel.hotel_name, HotelRoomType.hotel_room_type_name FROM HotelRoom "
+            " LEFT JOIN Hotel ON (HotelRoom.id_hotel=Hotel.id) "
+            " LEFT JOIN HotelRoomType ON (HotelRoom.id_hotel_room_type=HotelRoomType.id) "
             "ORDER BY id")) {
         while (query.next()) {
             HotelRoom *hotelRoom = new HotelRoom(

@@ -112,7 +112,7 @@ QStringList Hotel::columnList = {"ID_i", "Hotel Name_s", "Address_s", "Year of F
 
 QStringList *Hotel::getValueList() {
     return new QStringList(
-            {QString::number(this->id), *this->hotelName, *this->address, this->yearOfFoundation->toString(),
+            {QString::number(this->id), *this->hotelName, *this->address, this->yearOfFoundation->toString("dd.MM.yyyy"),
              QString::number(this->stars), *this->cityName});
 }
 

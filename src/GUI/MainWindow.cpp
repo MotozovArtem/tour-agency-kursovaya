@@ -39,7 +39,6 @@ MainWindow::MainWindow(QMainWindow *pwgt) : QMainWindow(pwgt) {
 
 
     this->pTable = new QTableWidget(this->mainWidget);
-//    this->pButton = new QPushButton(this->mainWidget);
     this->toolBar = new QToolBar();
     initToolBar();
 
@@ -56,10 +55,24 @@ MainWindow::MainWindow(QMainWindow *pwgt) : QMainWindow(pwgt) {
     connect(exit, &QAction::triggered, this, &MainWindow::close);
     files->addAction(exit);
 
+    QMenu *about = new QMenu("&About");
+    menu->addMenu(about);
+
+    QAction *aboutAction = new QAction("&About");
+    about->addAction(aboutAction);
+
     connect(this->rightMenu, SIGNAL(change(Tables)), this, SLOT(renderTable(Tables)));
 
-    this->setCentralWidget(this->mainWidget);
+    this->resize(600, 400);
+
+    QRect frame = this->frameGeometry();
+    QPoint center = QDesktopWidget().availableGeometry().center();
+    frame.moveCenter(center);
+    this->move(frame.topLeft());
+
+
     this->setMenuBar(menu);
+    this->setCentralWidget(this->mainWidget);
 }
 
 QTableWidget *MainWindow::getPTable() const {
@@ -70,17 +83,8 @@ void MainWindow::setPTable(QTableWidget *pTable) {
     MainWindow::pTable = pTable;
 }
 
-//QPushButton *MainWindow::getPButton() const {
-//    return pButton;
-//}
-//
-//void MainWindow::setPButton(QPushButton *pButton) {
-//    MainWindow::pButton = pButton;
-//}
-
 
 MainWindow::~MainWindow() {
-//    delete this->pButton;
     delete this->pTable;
     delete this->rightMenu;
     delete this->menu;
@@ -273,101 +277,121 @@ void MainWindow::addRow() {
 
 void MainWindow::editRow() {
     int curRow = this->pTable->currentRow();
-    int idRow = this->pTable->item(curRow, 0)->text().toInt();
-    EditWindow *editWindow = new EditWindow(this, Qt::Window | Qt::WindowSystemMenuHint, this->currentTable, idRow);
-    editWindow->setModal(true);
-    if (editWindow->exec() == QDialog::Accepted) {
-        getValuesForEdit(editWindow, idRow);
-    } else {
-        std::cout << "REJECTED\n";
+//    QMessageBox *msg = new QMessageBox(QMessageBox::Information, "MSG", QString::number(curRow));
+//    msg->exec();
+//    delete msg;
+    if(curRow!=-1){
+        int idRow = this->pTable->item(curRow, 0)->text().toInt();
+        EditWindow *editWindow = new EditWindow(this, Qt::Window | Qt::WindowSystemMenuHint, this->currentTable, idRow);
+        editWindow->setModal(true);
+        if (editWindow->exec() == QDialog::Accepted) {
+            getValuesForEdit(editWindow, idRow);
+        } else {
+            std::cout << "REJECTED\n";
+        }
+        delete editWindow;
+    }else{
+        QMessageBox *msg = new QMessageBox(QMessageBox::Information, "Edit", "For editing select one row", QMessageBox::Ok);
+        msg->setModal(true);
+        msg->exec();
+        delete msg;
     }
-    delete editWindow;
+
+
+
 }
 
 void MainWindow::deleteRow() {
-    QMessageBox *msgBox = new QMessageBox(QMessageBox::Question, "Delete", "Do you want to delete this row?",
-                                          QMessageBox::No | QMessageBox::Yes);
-    msgBox->setModal(true);
-    if (msgBox->exec() == QMessageBox::Yes) {
-        int curRow = this->pTable->currentRow();
+    int curRow = this->pTable->currentRow();
+    if(curRow!=-1){
         int idRow = this->pTable->item(curRow, 0)->text().toInt();
-        switch (this->currentTable) {
-            case Tables::TCity:
-                _deleteFromDataBase<City, CityDataBaseDAO>(idRow);
-                break;
-            case Tables::TCityType:
-                _deleteFromDataBase<CityType, CityTypeDataBaseDAO>(idRow);
-                break;
-            case Tables::TClient:
-                _deleteFromDataBase<Client, ClientDataBaseDAO>(idRow);
-                break;
-            case Tables::TClientRest:
-                _deleteFromDataBase<ClientRest, ClientRestDataBaseDAO>(idRow);
-                break;
-            case Tables::TContract:
-                _deleteFromDataBase<Contract, ContractDataBaseDAO>(idRow);
-                break;
-            case Tables::TCountry:
-                _deleteFromDataBase<Country, CountryDataBaseDAO>(idRow);
-                break;
-            case Tables::TDocuments:
-                _deleteFromDataBase<Documents, DocumentsDataBaseDAO>(idRow);
-                break;
-            case Tables::TDocumentsForTour:
-                _deleteFromDataBase<DocumentsForTour, DocumentsForTourDataBaseDAO>(idRow);
-                break;
-            case Tables::TDocumentsType:
-                _deleteFromDataBase<DocumentType, DocumentTypeDataBaseDAO>(idRow);
-                break;
-            case Tables::TFlight:
-                _deleteFromDataBase<Flight, FlightDataBaseDAO>(idRow);
-                break;
-            case Tables::THotel:
-                _deleteFromDataBase<Hotel, HotelDataBaseDAO>(idRow);
-                break;
-            case Tables::THotelRoom:
-                _deleteFromDataBase<HotelRoom, HotelRoomDataBaseDAO>(idRow);
-                break;
-            case Tables::THotelRoomType:
-                _deleteFromDataBase<HotelRoomType, HotelRoomTypeDataBaseDAO>(idRow);
-                break;
-            case Tables::TPlaceArrival:
-                _deleteFromDataBase<PlaceArrival, PlaceArrivalDataBaseDAO>(idRow);
-                break;
-            case Tables::TPlaceArrivalType:
-                _deleteFromDataBase<PlaceArrivalType, PlaceArrivalTypeDataBaseDAO>(idRow);
-                break;
-            case Tables::TReservation:
-                _deleteFromDataBase<Reservation, ReservationDataBaseDAO>(idRow);
-                break;
-            case Tables::TReservByAgreement:
-                _deleteFromDataBase<ReservByAgreement, ReservByAgreementDataBaseDAO>(idRow);
-                break;
-            case Tables::TSight:
-                _deleteFromDataBase<Sight, SightDataBaseDAO>(idRow);
-                break;
-            case Tables::TStatus:
-                _deleteFromDataBase<Status, StatusDataBaseDAO>(idRow);
-                break;
-            case Tables::TTicket:
-                _deleteFromDataBase<Ticket, TicketDataBaseDAO>(idRow);
-                break;
-            case Tables::TTour:
-                _deleteFromDataBase<Tour, TourDataBaseDAO>(idRow);
-                break;
-            case Tables::TTourType:
-                _deleteFromDataBase<TourType, TourTypeDataBaseDAO>(idRow);
-                break;
-            case Tables::TTransportNode:
-                _deleteFromDataBase<TransportNode, TransportNodeDataBaseDAO>(idRow);
-                break;
-            case Tables::TTransportNodeType:
-                _deleteFromDataBase<TransportNodeType, TransportNodeTypeDataBaseDAO>(idRow);
-                break;
+        QMessageBox *msgBox = new QMessageBox(QMessageBox::Question, "Delete", "Do you want to delete this row?",
+                                              QMessageBox::No | QMessageBox::Yes);
+        msgBox->setModal(true);
+        if (msgBox->exec() == QMessageBox::Yes) {
+            switch (this->currentTable) {
+                case Tables::TCity:
+                    _deleteFromDataBase<City, CityDataBaseDAO>(idRow);
+                    break;
+                case Tables::TCityType:
+                    _deleteFromDataBase<CityType, CityTypeDataBaseDAO>(idRow);
+                    break;
+                case Tables::TClient:
+                    _deleteFromDataBase<Client, ClientDataBaseDAO>(idRow);
+                    break;
+                case Tables::TClientRest:
+                    _deleteFromDataBase<ClientRest, ClientRestDataBaseDAO>(idRow);
+                    break;
+                case Tables::TContract:
+                    _deleteFromDataBase<Contract, ContractDataBaseDAO>(idRow);
+                    break;
+                case Tables::TCountry:
+                    _deleteFromDataBase<Country, CountryDataBaseDAO>(idRow);
+                    break;
+                case Tables::TDocuments:
+                    _deleteFromDataBase<Documents, DocumentsDataBaseDAO>(idRow);
+                    break;
+                case Tables::TDocumentsForTour:
+                    _deleteFromDataBase<DocumentsForTour, DocumentsForTourDataBaseDAO>(idRow);
+                    break;
+                case Tables::TDocumentsType:
+                    _deleteFromDataBase<DocumentType, DocumentTypeDataBaseDAO>(idRow);
+                    break;
+                case Tables::TFlight:
+                    _deleteFromDataBase<Flight, FlightDataBaseDAO>(idRow);
+                    break;
+                case Tables::THotel:
+                    _deleteFromDataBase<Hotel, HotelDataBaseDAO>(idRow);
+                    break;
+                case Tables::THotelRoom:
+                    _deleteFromDataBase<HotelRoom, HotelRoomDataBaseDAO>(idRow);
+                    break;
+                case Tables::THotelRoomType:
+                    _deleteFromDataBase<HotelRoomType, HotelRoomTypeDataBaseDAO>(idRow);
+                    break;
+                case Tables::TPlaceArrival:
+                    _deleteFromDataBase<PlaceArrival, PlaceArrivalDataBaseDAO>(idRow);
+                    break;
+                case Tables::TPlaceArrivalType:
+                    _deleteFromDataBase<PlaceArrivalType, PlaceArrivalTypeDataBaseDAO>(idRow);
+                    break;
+                case Tables::TReservation:
+                    _deleteFromDataBase<Reservation, ReservationDataBaseDAO>(idRow);
+                    break;
+                case Tables::TReservByAgreement:
+                    _deleteFromDataBase<ReservByAgreement, ReservByAgreementDataBaseDAO>(idRow);
+                    break;
+                case Tables::TSight:
+                    _deleteFromDataBase<Sight, SightDataBaseDAO>(idRow);
+                    break;
+                case Tables::TStatus:
+                    _deleteFromDataBase<Status, StatusDataBaseDAO>(idRow);
+                    break;
+                case Tables::TTicket:
+                    _deleteFromDataBase<Ticket, TicketDataBaseDAO>(idRow);
+                    break;
+                case Tables::TTour:
+                    _deleteFromDataBase<Tour, TourDataBaseDAO>(idRow);
+                    break;
+                case Tables::TTourType:
+                    _deleteFromDataBase<TourType, TourTypeDataBaseDAO>(idRow);
+                    break;
+                case Tables::TTransportNode:
+                    _deleteFromDataBase<TransportNode, TransportNodeDataBaseDAO>(idRow);
+                    break;
+                case Tables::TTransportNodeType:
+                    _deleteFromDataBase<TransportNodeType, TransportNodeTypeDataBaseDAO>(idRow);
+                    break;
+            }
         }
+        delete msgBox;
+        this->renderTable(this->currentTable);
+    }else{
+        QMessageBox *msg = new QMessageBox(QMessageBox::Information, "Delete", "For deleting select one row", QMessageBox::Ok);
+        msg->setModal(true);
+        msg->exec();
+        delete msg;
     }
-    delete msgBox;
-    this->renderTable(this->currentTable);
 }
 
 void MainWindow::getValuesFromDialog(AddWindow *window) {

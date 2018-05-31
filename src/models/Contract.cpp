@@ -172,8 +172,8 @@ QStringList Contract::columnList = {"ID_i", "Name_s", "Date of payment_d", "Date
 
 QStringList *Contract::getValueList() {
     return new QStringList(
-            {QString::number(this->id), *this->contractName, this->dateOfPayment->toString(),
-             this->dateOfIssue->toString(),
+            {QString::number(this->id), *this->contractName, this->dateOfPayment->toString("dd.MM.yyyy"),
+             this->dateOfIssue->toString("dd.MM.yyyy"),
              QString::number(this->total), *this->statusName, *this->tourTypeName, *this->docuements});
 }
 

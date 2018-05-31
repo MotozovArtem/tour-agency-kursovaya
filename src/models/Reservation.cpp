@@ -121,12 +121,12 @@ void Reservation::setContract(QString *contract) {
 QStringList Reservation::columnList = {"ID_i", "Date of begining_d", "Date of Ending_d", "Hotel room_f", "Contract_f"};
 
 QStringList *Reservation::getValueList() {
-    return new QStringList({QString::number(this->id), this->dateOfBegining->toString(), this->dateOfEnding->toString(),
+    return new QStringList({QString::number(this->id), this->dateOfBegining->toString("dd.MM.yyyy"), this->dateOfEnding->toString("dd.MM.yyyy"),
                             *this->hotelRoom, *this->contract});
 }
 
 QStringList *Reservation::getValForAdd() {
-    return new QStringList({QString::number(this->id), *this->hotelRoom, *this->contract, this->dateOfBegining->toString(), this->dateOfEnding->toString()});
+    return new QStringList({QString::number(this->id), *this->hotelRoom, *this->contract, this->dateOfBegining->toString("dd.MM.yyyy"), this->dateOfEnding->toString("dd.MM.yyyy")});
 }
 
 Reservation::Reservation(const QStringList &args) : Model(args) {

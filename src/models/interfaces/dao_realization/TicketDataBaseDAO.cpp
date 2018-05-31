@@ -64,9 +64,9 @@ void TicketDataBaseDAO::add(Ticket *model) {
     query.prepare("INSERT INTO Ticket(place, date_flight, price, date_of_purchase, id_documents, id_flight) "
                   "VALUES (:place, :date_flight, :price, :date_of_purchase, :id_documents, :id_flight)");
     query.bindValue(":place", model->getPlace());
-    query.bindValue(":date_flight", *model->getDateFlight());
+    query.bindValue(":date_flight", model->getDateFlight()->toString("dd.MM.yyyy"));
     query.bindValue(":price", model->getPrice());
-    query.bindValue(":date_of_purchase", *model->getDateOfPurchase());
+    query.bindValue(":date_of_purchase", model->getDateOfPurchase()->toString("dd.MM.yyyy"));
     query.bindValue(":id_documents", model->getIdDocuments());
     query.bindValue(":id_flight", model->getIdFlight());
     if (!query.exec()) {
@@ -81,9 +81,9 @@ void TicketDataBaseDAO::update(Ticket *model) {
                   "price=:price, date_of_purchase=:date_of_purchase, id_documents=:id_documents, id_flight=:id_flight"
                   " WHERE id=:id");
     query.bindValue(":place", model->getPlace());
-    query.bindValue(":date_flight", *model->getDateFlight());
+    query.bindValue(":date_flight", model->getDateFlight()->toString("dd.MM.yyyy"));
     query.bindValue(":price", model->getPrice());
-    query.bindValue(":date_of_purchase", *model->getDateOfPurchase());
+    query.bindValue(":date_of_purchase", model->getDateOfPurchase()->toString("dd.MM.yyyy"));
     query.bindValue(":id_documents", model->getIdDocuments());
     query.bindValue(":id_flight", model->getIdFlight());
     query.bindValue(":id", model->getId());

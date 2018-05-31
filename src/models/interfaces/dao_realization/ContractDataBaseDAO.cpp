@@ -72,8 +72,8 @@ void ContractDataBaseDAO::add(Contract *model) {
             "INSERT INTO Contract(contract_name, date_of_payment, date_of_issue, total, id_status, id_tour_type, id_documents) "
             "VALUES (:contract_name, :date_of_payment, :date_of_issue, :total, :id_status, :id_tour_type, :id_documents)");
     query.bindValue(":contract_name", *model->getName());
-    query.bindValue(":date_of_payment", *model->getDateOfPayment());
-    query.bindValue(":date_of_issue", *model->getDateOfIssue());
+    query.bindValue(":date_of_payment", model->getDateOfPayment()->toString("dd.MM.yyyy"));
+    query.bindValue(":date_of_issue", model->getDateOfIssue()->toString("dd.MM.yyyy"));
     query.bindValue(":total", model->getTotal());
     query.bindValue(":id_status", model->getIdStatus());
     query.bindValue(":id_tour_type", model->getIdTourType());
@@ -90,8 +90,8 @@ void ContractDataBaseDAO::update(Contract *model) {
                   "date_of_issue=:date_of_issue, total=:total, id_status=:id_status, "
                   "id_tour_type=:id_tour_type, id_documents=:id_documents WHERE id=:id");
     query.bindValue(":contract_name", *model->getName());
-    query.bindValue(":date_of_payment", *model->getDateOfPayment());
-    query.bindValue(":date_of_issue", *model->getDateOfIssue());
+    query.bindValue(":date_of_payment", model->getDateOfPayment()->toString("dd.MM.yyyy"));
+    query.bindValue(":date_of_issue", model->getDateOfIssue()->toString("dd.MM.yyyy"));
     query.bindValue(":total", model->getTotal());
     query.bindValue(":id_status", model->getIdStatus());
     query.bindValue(":id_tour_type", model->getIdTourType());

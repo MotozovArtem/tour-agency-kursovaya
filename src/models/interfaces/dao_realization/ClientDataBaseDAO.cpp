@@ -4,6 +4,7 @@
 
 #include "ClientDataBaseDAO.h"
 #include <QtSql/QtSql>
+#include <QtWidgets/QMessageBox>
 #include "utils/Logger.h"
 
 QList<Client *> ClientDataBaseDAO::getAll() {
@@ -32,7 +33,7 @@ QList<Client *> ClientDataBaseDAO::getAll() {
 
 Client *ClientDataBaseDAO::getById(int id) {
     QSqlQuery query;
-    query.prepare("SELECT id, passport_data, surname, client_name, patronymic, date_of_birth, place_of_birth, sex"
+    query.prepare("SELECT id, passport_data, surname, client_name, patronymic, date_of_birth, place_of_birth, sex "
                   "FROM Client WHERE id=:id");
     query.bindValue(":id", id);
     Client *client = nullptr;
@@ -60,12 +61,13 @@ void ClientDataBaseDAO::add(Client *model) {
     QSqlQuery query;
     query.prepare(
             "INSERT INTO Client(passport_data, surname, client_name, patronymic, date_of_birth, place_of_birth, sex) "
-            "VALUES (:passport_data, :surname, :client_name, :patronymic, :date_of_birth,:place_of_birth, :sex)");
+            "VALUES (:passport_data, :surname, :client_name, :patronymic, :date_of_birth, :place_of_birth, :sex)");
     query.bindValue(":passport_data", *model->getPassportData());
     query.bindValue(":surname", *model->getSurname());
     query.bindValue(":client_name", *model->getName());
     query.bindValue(":patronymic", *model->getPatronymic());
-    query.bindValue(":date_of_birth", *model->getDateOfBirth());
+//    QMessageBox(QMessageBox::Information, "MSG", model->getDateOfBirth()->toString("dd.MM.yyyy")).exec();
+    query.bindValue(":date_of_birth", model->getDateOfBirth()->toString("dd.MM.yyyy"));
     query.bindValue(":place_of_birth", *model->getPlaceOfBirth());
     query.bindValue(":sex", model->isSex());
     if (!query.exec()) {
@@ -83,7 +85,7 @@ void ClientDataBaseDAO::update(Client *model) {
     query.bindValue(":surname", *model->getSurname());
     query.bindValue(":client_name", *model->getName());
     query.bindValue(":patronymic", *model->getPatronymic());
-    query.bindValue(":date_of_birth", *model->getDateOfBirth());
+    query.bindValue(":date_of_birth", model->getDateOfBirth()->toString("dd.MM.yyyy"));
     query.bindValue(":place_of_birth", *model->getPlaceOfBirth());
     query.bindValue(":sex", model->isSex());
     query.bindValue(":id", model->getId());

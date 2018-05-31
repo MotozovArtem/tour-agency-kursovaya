@@ -9,11 +9,11 @@
 QList<HotelRoomType *> HotelRoomTypeDataBaseDAO::getAll() {
     QSqlQuery query;
     QList<HotelRoomType *> list;
-    if (query.exec("SELECT id, hotelRoomTypeName FROM HotelRoomType")) {
+    if (query.exec("SELECT id, hotel_room_type_name FROM HotelRoomType")) {
         while (query.next()) {
             list << new HotelRoomType(
                     query.value("id").toInt(),
-                    query.value("hotelRoomTypeName").toString()
+                    query.value("hotel_room_type_name").toString()
             );
         }
     } else {
@@ -42,7 +42,7 @@ HotelRoomType *HotelRoomTypeDataBaseDAO::getById(int id) {
 
 void HotelRoomTypeDataBaseDAO::add(HotelRoomType *model) {
     QSqlQuery query;
-    query.prepare("INSERT INTO HotelRoomType(hotel_room_type_name) VALUES (:hotelRoomTypeName)");
+    query.prepare("INSERT INTO HotelRoomType(hotel_room_type_name) VALUES (:hotel_room_type_name)");
     query.bindValue(":hotel_room_type_name", *model->getName());
     if (!query.exec()) {
         Logger logger(nullptr, "log.txt", nullptr);

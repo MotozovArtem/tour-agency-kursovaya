@@ -99,8 +99,8 @@ QList<Tour *> TourDataBaseDAO::getAllFilled() {
     if (query.exec("SELECT Tour.id, Tour.tour_name, Tour.days, "
                    "Tour.id_city, Tour.id_tour_type, "
                    "City.city_name, TourType.tour_type_name FROM Tour "
-                   "LEFT JOIN City ON (Tour.id_hotel_room=City.id)"
-                   "LEFT JOIN TourType ON (Tour.id_contract=TourType.id)"
+                   "LEFT JOIN City ON (Tour.id_city=City.id)"
+                   "LEFT JOIN TourType ON (Tour.id_tour_type=TourType.id)"
                    "ORDER BY id")) {
         while (query.next()) {
             Tour *tour = new Tour(

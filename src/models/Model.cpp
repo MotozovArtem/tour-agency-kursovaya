@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Model.h"
 #include <QDate>
+#include <QtWidgets/QMessageBox>
 
 int Model::getId() const {
     return this->id;
@@ -25,13 +26,24 @@ Model::Model(QStringList args) {
 }
 
 QDate *Model::toDate(const QString dateString) {
-    QStringList dateSplited = dateString.split(QRegExp("[.-/]"));
-    return new QDate(dateSplited[0].toInt(), dateSplited[1].toInt(), dateSplited[2].toInt());
+//    QStringList dateSplited = dateString.split(QRegExp("[.-/]"));
+//    QMessageBox(QMessageBox::Information, "MSG", dateSplited[0]).exec();
+//    QMessageBox(QMessageBox::Information, "MSG", dateSplited[1]).exec();
+//    QMessageBox(QMessageBox::Information, "MSG", dateSplited[2]).exec();
+    QDate date = QDate::fromString(dateString, "dd.MM.yyyy");
+    return new QDate(date.year(), date.month(), date.day());
 }
 
 QTime *Model::toTime(const QString timeString) {
-    QStringList timeSplited = timeString.split(QRegExp("[:.-]"));
-    return new QTime(timeSplited[0].toInt(), timeSplited[1].toInt());
+//    QStringList timeSplited = timeString.split(QRegExp("[:.-]"));
+    QTime time = QTime::fromString(timeString, "HH:mm");
+    return new QTime(time.hour(), time.minute());
+}
+
+bool Model::toBool(const QString boolString) {
+    QMessageBox(QMessageBox::Information, "MSG", boolString).exec();
+    bool res = boolString == "+";
+    return res;
 }
 
 Model::~Model() = default;

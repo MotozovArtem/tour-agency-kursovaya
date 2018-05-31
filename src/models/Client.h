@@ -32,7 +32,7 @@ public:
 
     Client(const QString &passportData, const QString &surname, const QString &name, const QString &patronymic,
            const QDate &dateOfBirth,
-           const QString *&placeOfBirth, bool sex);
+           const QString &placeOfBirth, bool sex);
 
     Client(int id);
 

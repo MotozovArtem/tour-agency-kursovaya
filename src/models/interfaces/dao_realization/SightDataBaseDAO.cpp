@@ -61,7 +61,7 @@ void SightDataBaseDAO::add(Sight *model) {
                   "VALUES (:sight_name, :address, :year_of_foundation, :toponym, :id_city)");
     query.bindValue(":sight_name", *model->getName());
     query.bindValue(":address", *model->getAddress());
-    query.bindValue(":year_of_foundation", *model->getYearOfCreation());
+    query.bindValue(":year_of_foundation", model->getYearOfCreation()->toString("dd.MM.yyyy"));
     query.bindValue(":toponym", *model->getToponym());
     query.bindValue(":id_city", model->getIdCity());
     if (!query.exec()) {
@@ -76,7 +76,7 @@ void SightDataBaseDAO::update(Sight *model) {
                   "year_of_foundation=:year_of_foundation, toponym=:toponym, id_city=:id_city WHERE id=:id");
     query.bindValue(":sight_name", *model->getName());
     query.bindValue(":address", *model->getAddress());
-    query.bindValue(":year_of_foundation", *model->getYearOfCreation());
+    query.bindValue(":year_of_foundation", model->getYearOfCreation()->toString("dd.MM.yyyy"));
     query.bindValue(":toponym", *model->getToponym());
     query.bindValue(":id_city", model->getIdCity());
     query.bindValue(":id", model->getId());

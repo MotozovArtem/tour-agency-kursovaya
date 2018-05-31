@@ -76,7 +76,7 @@ Documents::Documents(const QString &documentSerial, const QDate &dateOfIssue, co
 QStringList Documents::columnList = {"ID_i", "Serial_s", "Date of issue_d", "Issuance department_s"};
 
 QStringList *Documents::getValueList() {
-    return new QStringList({QString::number(this->id), *this->documentSerial, this->dateOfIssue->toString(),
+    return new QStringList({QString::number(this->id), *this->documentSerial, this->dateOfIssue->toString("dd.MM.yyyy"),
                             *this->issuanceDepartment});
 }
 

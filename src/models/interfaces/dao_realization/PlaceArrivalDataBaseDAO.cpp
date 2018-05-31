@@ -30,8 +30,7 @@ QList<PlaceArrival *> PlaceArrivalDataBaseDAO::getAll() {
 PlaceArrival *PlaceArrivalDataBaseDAO::getById(int id) {
     QSqlQuery query;
     query.prepare("SELECT PlaceArrival.id, PlaceArrival.place_arrival_name, PlaceArrival.address, PlaceArrival.id_city, "
-                  "PlaceArrival.id_place_arrival_type, PlaceArrivalType.place_arrival_type_name, City.city_name "
-                  "FROM PlaceArrival "
+                  "PlaceArrival.id_place_arrival_type, City.city_name, PlaceArrivalType.place_arrival_type_name FROM PlaceArrival "
                   "LEFT JOIN PlaceArrivalType ON (PlaceArrival.id_place_arrival_type=PlaceArrivalType.id) "
                   "LEFT JOIN City ON (PlaceArrival.id_city=City.id) "
                   "WHERE PlaceArrival.id=:id");
@@ -100,7 +99,7 @@ QList<PlaceArrival *> PlaceArrivalDataBaseDAO::getAllFilled() {
     QList<PlaceArrival *> list;
     if (query.exec("SELECT PlaceArrival.id, PlaceArrival.place_arrival_name, PlaceArrival.address, "
                    "City.city_name,  PlaceArrivalType.place_arrival_type_name, "
-                   "PlaceArrival.id_city, PlaceArrival.id_place_arrival_type"
+                   "PlaceArrival.id_city, PlaceArrival.id_place_arrival_type "
                    "FROM PlaceArrival "
                    "LEFT JOIN City ON (PlaceArrival.id_city=City.id)"
                    "LEFT JOIN PlaceArrivalType ON (PlaceArrival.id_place_arrival_type=PlaceArrivalType.id)"

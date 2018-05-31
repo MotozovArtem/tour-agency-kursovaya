@@ -28,8 +28,7 @@ QList<DocumentsForTour *> DocumentsForTourDataBaseDAO::getAll() {
 DocumentsForTour *DocumentsForTourDataBaseDAO::getById(int id) {
     QSqlQuery query;
     query.prepare("SELECT DocumentsForTour.id, DocumentsForTour.id_document, DocumentsForTour.id_client, DocumentsForTour.id_document_type,"
-                  "Documents.document_serial, Client.surname, DocumentType.document_type_name "
-                  "FROM DocumentsForTour "
+                  "Documents.document_serial, DocumentType.document_type_name , Client.surname    FROM DocumentsForTour "
                   "LEFT JOIN Documents ON (DocumentsForTour.id_document=Documents.id) "
                   "LEFT JOIN Client ON (DocumentsForTour.id_client=Client.id) "
                   "LEFT JOIN DocumentType ON (DocumentsForTour.id_document_type=DocumentType.id) "
@@ -97,7 +96,7 @@ QList<DocumentsForTour *> DocumentsForTourDataBaseDAO::getAllFilled() {
     QList<DocumentsForTour *> list;
     if (query.exec(
             "SELECT DocumentsForTour.id, DocumentsForTour.id_document, DocumentsForTour.id_client, DocumentsForTour.id_document_type,"
-            "Documents.document_serial, Client.surname, DocumentType.document_type_name"
+            "Documents.document_serial, Client.surname, DocumentType.document_type_name "
             "FROM DocumentsForTour "
             "LEFT JOIN Documents ON (DocumentsForTour.id_documents=Documents.id)"
             "LEFT JOIN Client ON (DocumentsForTour.id_client=Client.id)"

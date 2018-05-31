@@ -32,6 +32,8 @@ public:
 
     QTime *toTime(const QString timeString);
 
+    bool toBool(const QString boolString);
+
 };
 
 

@@ -53,7 +53,7 @@ void DocumentsDataBaseDAO::add(Documents *model) {
     query.prepare("INSERT INTO Documents(document_serial, date_of_issue, issuance_department) "
                   "VALUES (:document_serial, :date_of_issue, :issuance_department)");
     query.bindValue(":document_serial", *model->getSerial());
-    query.bindValue(":date_of_issue", *model->getDateOfIssue());
+    query.bindValue(":date_of_issue", model->getDateOfIssue()->toString("dd.MM.yyyy"));
     query.bindValue(":issuance_department", *model->getIssuanceDepartment());
     if (!query.exec()) {
         Logger logger(nullptr, "log.txt", nullptr);
@@ -66,7 +66,7 @@ void DocumentsDataBaseDAO::update(Documents *model) {
     query.prepare("UPDATE Documents SET document_serial=:document_serial, date_of_issue=:date_of_issue, "
                   "issuance_department=:issuance_department WHERE id=:id");
     query.bindValue(":document_serial", *model->getSerial());
-    query.bindValue(":date_of_issue", *model->getDateOfIssue());
+    query.bindValue(":date_of_issue", model->getDateOfIssue()->toString("dd.MM.yyyy"));
     query.bindValue(":issuance_department", *model->getIssuanceDepartment());
     query.bindValue(":id", model->getId());
     if (!query.exec()) {

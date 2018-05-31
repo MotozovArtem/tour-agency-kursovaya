@@ -57,7 +57,7 @@ void ReservByAgreementDataBaseDAO::add(ReservByAgreement *model) {
     QSqlQuery query;
     query.prepare("INSERT INTO ReservByAgreement(date_of_begining, id_hotel_room, id_contract) "
                   "VALUES (:date_of_begining, :id_hotel_room, :id_contract)");
-    query.bindValue(":date_of_begining", *model->getDateOfBegining());
+    query.bindValue(":date_of_begining", model->getDateOfBegining()->toString("dd.MM.yyyy"));
     query.bindValue(":id_hotel_room", model->getIdHotelRoom());
     query.bindValue(":id_contract", model->getIdContract());
     if (!query.exec()) {
@@ -70,7 +70,7 @@ void ReservByAgreementDataBaseDAO::update(ReservByAgreement *model) {
     QSqlQuery query;
     query.prepare("UPDATE ReservByAgreement SET date_of_begining=:date_of_begining, id_hotel_room=:id_hotel_room, "
                   "id_contract=:id_contract WHERE id=:id");
-    query.bindValue(":date_of_begining", *model->getDateOfBegining());
+    query.bindValue(":date_of_begining", model->getDateOfBegining()->toString("dd.MM.yyyy"));
     query.bindValue(":id_hotel_room", model->getIdHotelRoom());
     query.bindValue(":id_contract", model->getIdContract());
     query.bindValue(":id", model->getId());
@@ -95,9 +95,9 @@ QList<ReservByAgreement *> ReservByAgreementDataBaseDAO::getAllFilled() {
     QList<ReservByAgreement *> list;
     if (query.exec(
             "SELECT ReservByAgreement.id, ReservByAgreement.date_of_begining, ReservByAgreement.id_hotel_room, "
-            "ReservByAgreement.id_contract, Contract.contract_name, HotelRoom.hotel_room_name"
-            "FROM ReservByAgreement "
-            "LEFT JOIN HotelRoom ON (ReservByAgreement.id_hotel_room=HotelRoom.id)"
+            "ReservByAgreement.id_contract, Contract.contract_name, HotelRoom.hotel_room_name  "
+            "  FROM ReservByAgreement "
+            " LEFT JOIN HotelRoom ON (ReservByAgreement.id_hotel_room=HotelRoom.id)"
             "LEFT JOIN Contract ON (ReservByAgreement.id_contract=Contract.id)"
             "ORDER BY id")) {
         while (query.next()) {

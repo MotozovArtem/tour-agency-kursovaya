@@ -172,9 +172,9 @@ HotelRoom::HotelRoom(const QStringList &args) : Model(args) {
     this->hotelRoomName = new QString(args[1]);
     this->places = args[2].toInt();
     std::cout << args[3].toStdString();
-//    this->shower = args[3].toBool();
-//    this->secondRestroom = args[4].toBool();
-//    this->balcony = args[5].toBool();
+    this->shower = toBool(args[3]);
+    this->secondRestroom = toBool(args[4]);
+    this->balcony = toBool(args[5]);
     this->idHotel = args[6].toInt();
     this->idHotelRoomType = args[7].toInt();
 

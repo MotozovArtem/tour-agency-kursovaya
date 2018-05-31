@@ -49,7 +49,7 @@ void CountryDataBaseDAO::add(Country *model) {
     query.prepare("INSERT INTO Country(country_name, foundation_date) "
                   "VALUES (:country_name, :foundation_date)");
     query.bindValue(":country_name", *model->getName());
-    query.bindValue(":foundation_date", *model->getFoundationDate());
+    query.bindValue(":foundation_date", model->getFoundationDate()->toString("dd.MM.yyyy"));
     if (!query.exec()) {
         Logger logger(nullptr, "log.txt", nullptr);
         logger.write(QString("%1 %2").arg("CountryDataBaseDAO::add() error", query.lastError().text()));
@@ -60,7 +60,7 @@ void CountryDataBaseDAO::update(Country *model) {
     QSqlQuery query;
     query.prepare("UPDATE Country SET country_name=:country_name, foundation_date=:foundation_date WHERE id=:id");
     query.bindValue(":country_name", *model->getName());
-    query.bindValue(":foundation_date", *model->getFoundationDate());
+    query.bindValue(":foundation_date", model->getFoundationDate()->toString("dd.MM.yyyy"));
     query.bindValue(":id", model->getId());
     if (!query.exec()) {
         Logger logger(nullptr, "log.txt", nullptr);

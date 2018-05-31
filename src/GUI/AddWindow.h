@@ -66,6 +66,7 @@ public:
         QTimeEdit *timeEdit = nullptr;
         QCheckBox *checkBox = nullptr;
         QSpinBox *numberEdit = nullptr;
+        QDoubleSpinBox *doubleNumberEdit = nullptr;
         foreach(QString label, labelList){
             QStringList labelSplited = label.split("_");
             QString labelName = labelSplited[0];
@@ -74,12 +75,22 @@ public:
             if(labelName=="ID"){
                 continue;
             }
-            if(labelType == "i" || labelType == "n"){
+            if(labelType == "i"){
                 numberEdit = new QSpinBox();
+                numberEdit->setMaximum(10000000);
                 this->editList << numberEdit;
                 this->formLayout->addRow(formLabel, numberEdit);
+            }else if (labelType == "n"){
+                doubleNumberEdit = new QDoubleSpinBox();
+                doubleNumberEdit->setMaximum(10000000);
+                doubleNumberEdit->setSingleStep(0.01);
+                this->editList << doubleNumberEdit;
+                this->formLayout->addRow(formLabel, doubleNumberEdit);
             }else if (labelType=="d"){
                 dateEdit = new QDateEdit();
+                dateEdit->setCalendarPopup(true);
+                dateEdit->setMinimumDate(QDate(1900,1,1));
+                dateEdit->setDisplayFormat(QString("dd.MM.yyyy"));
                 this->editList << dateEdit;
                 this->formLayout->addRow(formLabel, dateEdit);
             }else if (labelType=="t") {

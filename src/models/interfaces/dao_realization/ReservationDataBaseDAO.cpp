@@ -60,8 +60,8 @@ void ReservationDataBaseDAO::add(Reservation *model) {
     QSqlQuery query;
     query.prepare("INSERT INTO Reservation(date_of_begining, date_of_ending, id_hotel_room, id_contract) "
                   "VALUES (:date_of_begining, :date_of_ending, :id_hotel_room, :id_contract)");
-    query.bindValue(":date_of_begining", *model->getDateOfBegining());
-    query.bindValue(":date_of_ending", *model->getDateOfEnding());
+    query.bindValue(":date_of_begining", model->getDateOfBegining()->toString("dd.MM.yyyy"));
+    query.bindValue(":date_of_ending", model->getDateOfEnding()->toString("dd.MM.yyyy"));
     query.bindValue(":id_hotel_room", model->getIdHotelRoom());
     query.bindValue(":id_contract", model->getIdContract());
     if (!query.exec()) {
@@ -74,8 +74,8 @@ void ReservationDataBaseDAO::update(Reservation *model) {
     QSqlQuery query;
     query.prepare("UPDATE Reservation SET date_of_begining=:date_of_begining, date_of_ending=:date_of_ending, "
                   "id_hotel_room=:id_hotel_room, id_contract=:id_contract WHERE id=:id");
-    query.bindValue(":date_of_begining", *model->getDateOfBegining());
-    query.bindValue(":date_of_ending", *model->getDateOfEnding());
+    query.bindValue(":date_of_begining", model->getDateOfBegining()->toString("dd.MM.yyyy"));
+    query.bindValue(":date_of_ending", model->getDateOfEnding()->toString("dd.MM.yyyy"));
     query.bindValue(":id_hotel_room", model->getIdHotelRoom());
     query.bindValue(":id_contract", model->getIdContract());
     query.bindValue(":id", model->getId());

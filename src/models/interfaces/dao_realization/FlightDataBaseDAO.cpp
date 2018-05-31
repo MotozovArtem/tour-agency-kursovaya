@@ -56,11 +56,11 @@ void FlightDataBaseDAO::add(Flight *model) {
     QSqlQuery query;
     query.prepare("INSERT INTO Flight(date_of_purchase, date_of_departure, departure_time, arrival_time, arrival_date) "
                   "VALUES (:date_of_purchase, :date_of_departure, :departure_time, :arrival_time, :arrival_date)");
-    query.bindValue(":date_of_purchase", *model->getDateOfPurchase());
-    query.bindValue(":date_of_departure", *model->getDateOfDeparture());
-    query.bindValue(":departure_time", *model->getDepartureTime());
-    query.bindValue(":arrival_time", *model->getArrivalTime());
-    query.bindValue(":arrival_date", *model->getArrivalDate());
+    query.bindValue(":date_of_purchase", model->getDateOfPurchase()->toString("dd.MM.yyyy"));
+    query.bindValue(":date_of_departure", model->getDateOfDeparture()->toString("dd.MM.yyyy"));
+    query.bindValue(":departure_time", model->getDepartureTime()->toString("HH:mm"));
+    query.bindValue(":arrival_time", model->getArrivalTime()->toString("HH:mm"));
+    query.bindValue(":arrival_date", model->getArrivalDate()->toString("dd.MM.yyyy"));
     if (!query.exec()) {
         Logger logger(nullptr, "log.txt", nullptr);
         logger.write(QString("%1 %2").arg("FlightDataBaseDAO::add() error", query.lastError().text()));
@@ -71,11 +71,11 @@ void FlightDataBaseDAO::update(Flight *model) {
     QSqlQuery query;
     query.prepare("UPDATE Flight SET date_of_purchase=:date_of_purchase, date_of_departure=:date_of_departure, "
                   "departure_time=:departure_time, arrival_time=:arrival_time, arrival_date=:arrival_date WHERE id=:id");
-    query.bindValue(":date_of_purchase", *model->getDateOfPurchase());
-    query.bindValue(":date_of_departure", *model->getDateOfDeparture());
-    query.bindValue(":departure_time", *model->getDepartureTime());
-    query.bindValue(":arrival_time", *model->getArrivalTime());
-    query.bindValue(":arrival_date", *model->getArrivalDate());
+    query.bindValue(":date_of_purchase", model->getDateOfPurchase()->toString("dd.MM.yyyy"));
+    query.bindValue(":date_of_departure", model->getDateOfDeparture()->toString("dd.MM.yyyy"));
+    query.bindValue(":departure_time", model->getDepartureTime()->toString("HH:mm"));
+    query.bindValue(":arrival_time", model->getArrivalTime()->toString("HH:mm"));
+    query.bindValue(":arrival_date", model->getArrivalDate()->toString("dd.MM.yyyy"));
     query.bindValue(":id", model->getId());
     if (!query.exec()) {
         Logger logger(nullptr, "log.txt", nullptr);
