@@ -35,10 +35,10 @@ MainWindow::MainWindow(QMainWindow *pwgt) : QMainWindow(pwgt) {
     this->mainWidget = new QWidget();
     this->mainLayout = new QGridLayout(this->mainWidget);
     this->currentTable = Tables::TCity;
+    this->toolBar = new QToolBar();
 
 
     this->pTable = new QTableWidget(this->mainWidget);
-    this->toolBar = new QToolBar();
     initToolBar();
 
     this->rightMenu = new RightMenuWidget(this->mainWidget);
@@ -50,16 +50,21 @@ MainWindow::MainWindow(QMainWindow *pwgt) : QMainWindow(pwgt) {
     this->menu = new QMenuBar;
     QMenu *files = new QMenu("&Files");
     menu->addMenu(files);
+    this->menuList << files;
+
     QAction *exit = new QAction("&Close");
     connect(exit, &QAction::triggered, this, &MainWindow::close);
     files->addAction(exit);
+    this->actionList << exit;
 
-    QMenu *about = new QMenu("&About");
-    menu->addMenu(about);
+    QMenu *help = new QMenu("&Help");
+    menu->addMenu(help);
+    this->menuList << help;
 
     QAction *aboutAction = new QAction("&About");
-    about->addAction(aboutAction);
+    help->addAction(aboutAction);
 
+    this->actionList << aboutAction;
     connect(this->rightMenu, SIGNAL(change(Tables)), this, SLOT(renderTable(Tables)));
 
     this->resize(600, 400);
@@ -69,6 +74,7 @@ MainWindow::MainWindow(QMainWindow *pwgt) : QMainWindow(pwgt) {
     frame.moveCenter(center);
     this->move(frame.topLeft());
 
+    this->setWindowIcon(QIcon(":icon.ico"));
 
     this->setMenuBar(menu);
     this->setCentralWidget(this->mainWidget);
@@ -89,9 +95,13 @@ MainWindow::~MainWindow() {
     delete this->menu;
     delete this->toolBar;
 
-            foreach(QAction *actionMember, this->actionList) {
-            delete actionMember;
-        }
+    foreach(QAction *actionMember, this->actionList) {
+        delete actionMember;
+    }
+
+    foreach(QMenu *menu, this->menuList){
+        delete menu;
+    }
 }
 
 

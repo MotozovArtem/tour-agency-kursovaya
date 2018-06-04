@@ -4,5 +4,6 @@
         <file alias="add.png">../images/add_red.png</file>
         <file alias="edit.png">../images/edit_red.png</file>
         <file alias="del.png">../images/delete_red.png</file>
+        <file alias="icon.ico">../images/database.ico</file>
     </qresource>
 </RCC>

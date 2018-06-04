@@ -18,6 +18,8 @@ class MainWindow : public QMainWindow {
 Q_OBJECT
 private:
     QList<QAction *> actionList;
+    QList<QMenu *> menuList;
+
 
     QTableWidget *pTable;
     RightMenuWidget *rightMenu;
